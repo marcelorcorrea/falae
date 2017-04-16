@@ -9,14 +9,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridLayout;
+import android.widget.GridView;
+import android.widget.LinearLayout;
 
 import com.marcelorcorrea.falae.adapter.ItemAdapter;
 import com.marcelorcorrea.falae.decoration.SpacesItemDecoration;
 import com.marcelorcorrea.falae.model.Category;
 import com.marcelorcorrea.falae.model.Item;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 
 /**
@@ -76,19 +81,28 @@ public class SpreadSheetFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_spread_sheet, container, false);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recycler);
+//        GridView gridView = (GridView) view.findViewById(R.id.gridView);
+
 
         List<Item> items = Arrays.asList(Item.of("Comer", "http://static.tudointeressante.com.br/uploads/2016/02/comidas-desenhos-2-.jpg", "Comer", Category.VERB),
                 Item.of("Homer", "http://entretenimento.r7.com/blogs/keila-jimenez/files/2016/05/homer.jpg", "Homer", Category.SUBJECT),
-                Item.of("Comer", "http://static.tudointeressante.com.br/uploads/2016/02/comidas-desenhos-2-.jpg", "Comer", Category.VERB),
-                Item.of("Comer", "http://static.tudointeressante.com.br/uploads/2016/02/comidas-desenhos-2-.jpg", "Comer", Category.VERB),
-                Item.of("Comer", "http://static.tudointeressante.com.br/uploads/2016/02/comidas-desenhos-2-.jpg", "Comer", Category.VERB),
-                Item.of("Comer", "http://static.tudointeressante.com.br/uploads/2016/02/comidas-desenhos-2-.jpg", "Comer", Category.VERB),
-                Item.of("Comer", "http://static.tudointeressante.com.br/uploads/2016/02/comidas-desenhos-2-.jpg", "Comer", Category.VERB),
-                Item.of("Comer", "http://static.tudointeressante.com.br/uploads/2016/02/comidas-desenhos-2-.jpg", "Comer", Category.VERB));
+                Item.of("Olá", "http://2.bp.blogspot.com/-y2u_dCguCFY/Tjsi_14bDyI/AAAAAAAAAAs/MEO88PVvqQE/s1600/6536homer2.jpg", "Olá", Category.GREETINGS_SOCIAL_EXPRESSIONS),
+                Item.of("Gordo", "http://38.media.tumblr.com/23e8c8f2fd524f82076f050415b4e5e9/tumblr_n26z0jKDer1qh59n0o2_500.png", "Gordo", Category.ADJECTIVE),
+                Item.of("Cerveja", "http://www.plzdontletbuddie.com/uploads/1/2/1/5/12155558/2062398_orig.jpg", "Cerveja", Category.NOUN),
+                Item.of("Donut", "https://s-media-cache-ak0.pinimg.com/originals/a9/a0/75/a9a075788700ecec89413dce43408d26.jpg", "Donut", Category.NOUN));
 
-        recyclerView.setAdapter(new ItemAdapter(getContext(), items));
-        RecyclerView.LayoutManager layout = new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false);
+        List<Item> selectedItems = new ArrayList<>();
+        int numberOfItems = 16;
+        Random random = new Random();
+        for (int i = 0; i < numberOfItems; i++) {
+            int i1 = random.nextInt(items.size());
+            selectedItems.add(items.get(i1));
+        }
+
+        recyclerView.setAdapter(new ItemAdapter(getContext(), selectedItems));
+        RecyclerView.LayoutManager layout = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
         recyclerView.addItemDecoration(new SpacesItemDecoration(5));
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layout);
         return view;
     }

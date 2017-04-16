@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.marcelorcorrea.falae.R;
@@ -52,7 +53,7 @@ public class ItemAdapter extends RecyclerView.Adapter {
     }
 
     private static class ItemViewHolder extends RecyclerView.ViewHolder {
-        final ConstraintLayout layout;
+        final LinearLayout layout;
         final TextView name;
         final ImageView imageView;
 
@@ -60,7 +61,7 @@ public class ItemAdapter extends RecyclerView.Adapter {
             super(view);
             name = (TextView) view.findViewById(R.id.spreadsheet_item_name);
             imageView = (ImageView) view.findViewById(R.id.spreadsheet_item_image_view);
-            layout = (ConstraintLayout) view.findViewById(R.id.item_layout);
+            layout = (LinearLayout) view.findViewById(R.id.item_layout);
         }
     }
 }
