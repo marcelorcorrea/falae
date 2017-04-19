@@ -1,0 +1,92 @@
+[
+  {
+    "initialPage": "Main",
+    "name": "Prancha 1",
+    "pages": [
+      {
+        "items": [
+          {
+            "category": "VERB",
+            "imgSrc": "http://static.tudointeressante.com.br/uploads/2016/02/comidas-desenhos-2-.jpg",
+            "linkTo": "FoodPage",
+            "name": "Comer",
+            "nameToPronounce": "Comer"
+          },
+          {
+            "category": "VERB",
+            "imgSrc": "https://www.kegworks.com/wp/wp-content/uploads/2013/05/HomerSimpson22.gif",
+            "linkTo": "DrinkPage",
+            "name": "Beber",
+            "nameToPronounce": "Beber"
+          },
+          {
+            "category": "SUBJECT",
+            "imgSrc": "https://s-media-cache-ak0.pinimg.com/736x/0b/0a/7c/0b0a7cf59a449faea80543721d17c09d.jpg",
+            "linkTo": null,
+            "name": "Você",
+            "nameToPronounce": "Você"
+          },
+          {
+            "category": "SUBJECT",
+            "imgSrc": "http://entretenimento.r7.com/blogs/keila-jimenez/files/2016/05/homer.jpg",
+            "name": "Homer",
+            "nameToPronounce": "Homer"
+          },
+          {
+            "category": "GREETINGS_SOCIAL_EXPRESSIONS",
+            "imgSrc": "http://2.bp.blogspot.com/-y2u_dCguCFY/Tjsi_14bDyI/AAAAAAAAAAs/MEO88PVvqQE/s1600/6536homer2.jpg",
+            "name": "Olá",
+            "nameToPronounce": "Olá"
+          },
+          {
+            "category": "ADJECTIVE",
+            "imgSrc": "http://38.media.tumblr.com/23e8c8f2fd524f82076f050415b4e5e9/tumblr_n26z0jKDer1qh59n0o2_500.png",
+            "name": "Gordo",
+            "nameToPronounce": "Gordo"
+          }
+        ],
+        "name": "Main"
+      },
+      {
+        "items": [
+          {
+            "category": "NOUN",
+            "imgSrc": "https://s-media-cache-ak0.pinimg.com/originals/a9/a0/75/a9a075788700ecec89413dce43408d26.jpg",
+            "name": "Donut",
+            "nameToPronounce": "Donut"
+          },
+          {
+            "category": "NOUN",
+            "imgSrc": "https://rchaybok.files.wordpress.com/2009/02/homereatingsub.jpg",
+            "name": "Sanduíche",
+            "nameToPronounce": "Sanduíche"
+          },
+          {
+            "category": "NOUN",
+            "imgSrc": "http://www.taurusarmed.net/forums/attachments/diner/68891d1385221291-pie-homer_drool.jpg",
+            "name": "Bolo",
+            "nameToPronounce": "Bolo"
+          }
+        ],
+        "name": "FoodPage"
+      },
+      {
+        "items": [
+          {
+            "category": "NOUN",
+            "imgSrc": "http://www.plzdontletbuddie.com/uploads/1/2/1/5/12155558/2062398_orig.jpg",
+            "name": "Cerveja",
+            "nameToPronounce": "Cerveja"
+          },
+          {
+            "category": "NOUN",
+            "imgSrc": "https://i.ytimg.com/vi/mM5q1Pzod1I/hqdefault.jpg",
+            "name": "Água",
+            "nameToPronounce": "Água"
+          }
+        ],
+        "name": "DrinkPage"
+      }
+    ]
+  }
+]

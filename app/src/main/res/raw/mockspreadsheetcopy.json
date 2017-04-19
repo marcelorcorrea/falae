@@ -1,0 +1,119 @@
+[
+  {
+    "initialPage": "mainPage",
+    "name": "Prancha1",
+    "pages": [
+      {
+        "page": {
+          "name": "mainPage",
+          "items": [
+            {
+              "item": {
+                "name": "Comer",
+                "imgSrc": "http://www.image.com/image.jpg",
+                "nameToPronounce": "Comer",
+                "category": "VERB",
+                "linkTo": "fodds"
+              }
+            },
+            {
+              "item": {
+                "name": "Homer",
+                "imgSrc": "http://entretenimento.r7.com/blogs/keila-jimenez/files/2016/05/homer.jpg",
+                "nameToPronounce": "homer",
+                "category": "SUBJECT",
+                "linkTo": null
+              }
+            },
+            {
+              "item": {
+                "name": "Olá",
+                "imgSrc": "http://2.bp.blogspot.com/-y2u_dCguCFY/Tjsi_14bDyI/AAAAAAAAAAs/MEO88PVvqQE/s1600/6536homer2.jpg",
+                "nameToPronounce": "Olá",
+                "category": "GREETINGS_SOCIAL_EXPRESSIONS",
+                "linkTo": null
+              }
+            },
+            {
+              "item": {
+                "name": "Gordo",
+                "imgSrc": "http://38.media.tumblr.com/23e8c8f2fd524f82076f050415b4e5e9/tumblr_n26z0jKDer1qh59n0o2_500.png",
+                "nameToPronounce": "Gordo",
+                "category": "ADJECTIVE",
+                "linkTo": null
+              }
+            },
+            {
+              "item": {
+                "name": "Beber",
+                "imgSrc": "https://www.kegworks.com/wp/wp-content/uploads/2013/05/HomerSimpson22.gif",
+                "nameToPronounce": "Beber",
+                "category": "VERB",
+                "linkTo": "drinks"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "page": {
+          "name": "foods",
+          "items": [
+            {
+              "item": {
+                "name": "Donut",
+                "imgSrc": "https://s-media-cache-ak0.pinimg.com/originals/a9/a0/75/a9a075788700ecec89413dce43408d26.jpg",
+                "nameToPronounce": "Donut",
+                "category": "NOUN",
+                "linkTo": null
+              }
+            },
+            {
+              "item": {
+                "name": "Sanduíche",
+                "imgSrc": "https://rchaybok.files.wordpress.com/2009/02/homereatingsub.jpg",
+                "nameToPronounce": "Sanduíche",
+                "category": "NOUN",
+                "linkTo": null
+              }
+            },
+            {
+              "item": {
+                "name": "Bolo",
+                "imgSrc": "http://www.taurusarmed.net/forums/attachments/diner/68891d1385221291-pie-homer_drool.jpg",
+                "nameToPronounce": "Bolo",
+                "category": "NOUN",
+                "linkTo": null
+              }
+            }
+          ]
+        }
+      },
+      {
+        "page": {
+          "name": "drinks",
+          "items": [
+            {
+              "item": {
+                "name": "Cerveja",
+                "imgSrc": "http://www.plzdontletbuddie.com/uploads/1/2/1/5/12155558/2062398_orig.jpg",
+                "nameToPronounce": "Cerveja",
+                "category": "NOUN",
+                "linkTo": null
+              }
+            },
+            {
+              "item": {
+                "name": "Água",
+                "imgSrc": "https://i.ytimg.com/vi/mM5q1Pzod1I/hqdefault.jpg",
+                "nameToPronounce": "Água",
+                "category": "NOUN",
+                "linkTo": null
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

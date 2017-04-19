@@ -1,10 +1,10 @@
 package com.marcelorcorrea.falae;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,8 +13,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.marcelorcorrea.falae.model.Page;
+import com.marcelorcorrea.falae.model.SpreadSheet;
+
 public class NavigationActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, SpreadSheetFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, SpreadSheetFragment.OnFragmentInteractionListener, PageFragment.OnFragmentInteractionListener {
 
     private DrawerLayout drawer;
 
@@ -72,24 +75,15 @@ public class NavigationActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         Fragment fragment = null;
+        String tag = "";
         int id = item.getItemId();
-        if (id == R.id.nav_camera) {
-            fragment = SpreadSheetFragment.newInstance("", "");
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_spreadsheet) {
+            fragment = SpreadSheetFragment.newInstance();
+            tag = SpreadSheetFragment.class.getSimpleName();
         }
-
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.container, fragment, tag).commit();
 
         // Highlight the selected item has been done by NavigationView
         item.setChecked(true);
@@ -101,7 +95,17 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void openPageFragment(SpreadSheet spreadSheet, String name) {
+        Fragment spreadSheetFragment = getSupportFragmentManager().findFragmentByTag(SpreadSheetFragment.class.getSimpleName());
+        if (spreadSheetFragment != null) {
+            Page page = ((SpreadSheetFragment) spreadSheetFragment).getPage(spreadSheet, name);
 
+            Fragment fragment = PageFragment.newInstance(spreadSheet, page);
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction
+                    .replace(R.id.container, fragment)
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 }
