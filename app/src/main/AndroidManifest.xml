@@ -11,8 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".NavigationActivity"
-            android:label="@string/title_activity_navigation"
+            android:name=".activity.NavigationActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

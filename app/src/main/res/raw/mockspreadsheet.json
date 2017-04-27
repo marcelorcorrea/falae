@@ -6,6 +6,24 @@
       {
         "items": [
           {
+            "category": "GREETINGS_SOCIAL_EXPRESSIONS",
+            "imgSrc": "http://2.bp.blogspot.com/-y2u_dCguCFY/Tjsi_14bDyI/AAAAAAAAAAs/MEO88PVvqQE/s1600/6536homer2.jpg",
+            "name": "Olá",
+            "nameToPronounce": "Olá"
+          },
+          {
+            "category": "GREETINGS_SOCIAL_EXPRESSIONS",
+            "imgSrc": "http://iphoneroot.com/wp-content/uploads/2009/12/TheSimpsonsArcade_iPhone-4.png",
+            "name": "Tchau",
+            "nameToPronounce": "Tchau"
+          },
+          {
+            "category": "SUBJECT",
+            "imgSrc": "http://newscrusher.com/wp-content/uploads/2016/11/homer-points.jpg",
+            "name": "Eu",
+            "nameToPronounce": "Eu"
+          },
+          {
             "category": "VERB",
             "imgSrc": "http://static.tudointeressante.com.br/uploads/2016/02/comidas-desenhos-2-.jpg",
             "linkTo": "FoodPage",
@@ -20,6 +38,25 @@
             "nameToPronounce": "Beber"
           },
           {
+            "category": "VERB",
+            "imgSrc": "https://i.ytimg.com/vi/DF_brfZPmjM/maxresdefault.jpg",
+            "linkTo": null,
+            "name": "Estudar",
+            "nameToPronounce": "Estudar"
+          },
+          {
+            "category": "GREETINGS_SOCIAL_EXPRESSIONS",
+            "imgSrc": "https://unseenflirtspoetry.files.wordpress.com/2012/05/homer-excited.png",
+            "name": "Estou bem",
+            "nameToPronounce": "Estou bem"
+          },
+          {
+            "category": "GREETINGS_SOCIAL_EXPRESSIONS",
+            "imgSrc": "https://s-media-cache-ak0.pinimg.com/originals/b8/21/81/b8218162cb089f85c8009fdb1d3a17ba.png",
+            "name": "Obrigado",
+            "nameToPronounce": "Obrigado"
+          },
+          {
             "category": "SUBJECT",
             "imgSrc": "https://s-media-cache-ak0.pinimg.com/736x/0b/0a/7c/0b0a7cf59a449faea80543721d17c09d.jpg",
             "linkTo": null,
@@ -27,22 +64,36 @@
             "nameToPronounce": "Você"
           },
           {
-            "category": "SUBJECT",
-            "imgSrc": "http://entretenimento.r7.com/blogs/keila-jimenez/files/2016/05/homer.jpg",
-            "name": "Homer",
-            "nameToPronounce": "Homer"
+            "category": "VERB",
+            "imgSrc": "https://chrissantosra.files.wordpress.com/2012/02/sleep-homer-simpson2.jpg",
+            "linkTo": null,
+            "name": "Dormir",
+            "nameToPronounce": "Dormir"
           },
           {
-            "category": "GREETINGS_SOCIAL_EXPRESSIONS",
-            "imgSrc": "http://2.bp.blogspot.com/-y2u_dCguCFY/Tjsi_14bDyI/AAAAAAAAAAs/MEO88PVvqQE/s1600/6536homer2.jpg",
-            "name": "Olá",
-            "nameToPronounce": "Olá"
+            "category": "VERB",
+            "imgSrc": "https://s-media-cache-ak0.pinimg.com/originals/33/58/18/335818b563208954ab8fc8896d2d3a18.png",
+            "linkTo": null,
+            "name": "Querer",
+            "nameToPronounce": "Querer"
           },
           {
             "category": "ADJECTIVE",
             "imgSrc": "http://38.media.tumblr.com/23e8c8f2fd524f82076f050415b4e5e9/tumblr_n26z0jKDer1qh59n0o2_500.png",
             "name": "Gordo",
             "nameToPronounce": "Gordo"
+          },
+          {
+            "category": "ADJECTIVE",
+            "imgSrc": "https://s-media-cache-ak0.pinimg.com/originals/43/3b/26/433b262db5d879a5d15138e11fa4795c.gif",
+            "name": "Irritado",
+            "nameToPronounce": "Irritado"
+          },
+          {
+            "category": "ADJECTIVE",
+            "imgSrc": "http://www.teambrott.com/Images/HomerTired.jpg",
+            "name": "Cansado",
+            "nameToPronounce": "Cansado"
           }
         ],
         "name": "Main"

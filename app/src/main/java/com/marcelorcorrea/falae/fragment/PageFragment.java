@@ -1,4 +1,4 @@
-package com.marcelorcorrea.falae;
+package com.marcelorcorrea.falae.fragment;
 
 import android.content.Context;
 import android.os.Build;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.adapter.ItemAdapter;
 import com.marcelorcorrea.falae.decoration.SpacesItemDecoration;
 import com.marcelorcorrea.falae.model.Item;
@@ -66,7 +67,9 @@ public class PageFragment extends Fragment {
                 }
             }
         });
-        recyclerView.setAdapter(new ItemAdapter(getContext(), page.getItems(), new ItemAdapter.OnItemClickListener() {
+        int spanCount = 6;
+        RecyclerView.LayoutManager layout = new GridLayoutManager(getContext(), spanCount, GridLayoutManager.VERTICAL, false);
+        recyclerView.setAdapter(new ItemAdapter(getContext(), spanCount, page.getItems(), new ItemAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Item item) {
                 Toast.makeText(getContext(), item.getName(), Toast.LENGTH_SHORT).show();
@@ -80,8 +83,7 @@ public class PageFragment extends Fragment {
                 }
             }
         }));
-        RecyclerView.LayoutManager layout = new GridLayoutManager(getContext(), 4, GridLayoutManager.VERTICAL, false);
-        recyclerView.addItemDecoration(new SpacesItemDecoration(5));
+        recyclerView.addItemDecoration(new SpacesItemDecoration(3, spanCount));
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layout);
         return view;

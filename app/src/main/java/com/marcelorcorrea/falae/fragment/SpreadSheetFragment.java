@@ -1,4 +1,4 @@
-package com.marcelorcorrea.falae;
+package com.marcelorcorrea.falae.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.adapter.SpreadSheetAdapter;
 import com.marcelorcorrea.falae.model.Category;
 import com.marcelorcorrea.falae.model.Item;
@@ -27,7 +28,6 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -58,7 +58,6 @@ public class SpreadSheetFragment extends Fragment {
         recyclerView.setAdapter(new SpreadSheetAdapter(getContext(), spreadsheets, new SpreadSheetAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(SpreadSheet spreadSheet) {
-                System.out.println("GOT HERE");
                 mListener.openPageFragment(spreadSheet, spreadSheet.getInitialPage());
             }
         }));

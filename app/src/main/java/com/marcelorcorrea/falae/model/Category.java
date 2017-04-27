@@ -7,9 +7,9 @@ import android.graphics.Color;
  */
 
 public enum Category {
-    GREETINGS_SOCIAL_EXPRESSIONS(Color.parseColor("#FFC0CB")),
-    SUBJECT(Color.YELLOW),
-    VERB(Color.GREEN),
+    GREETINGS_SOCIAL_EXPRESSIONS(Color.parseColor("#CC6699")),
+    SUBJECT(Color.parseColor("#E6E600")),
+    VERB(Color.parseColor("#009900")),
     NOUN(Color.parseColor("#FFA500")),
     ADJECTIVE(Color.BLUE),
     OTHER(Color.WHITE);
