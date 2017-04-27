@@ -77,8 +77,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
             DisplayMetrics metrics = new DisplayMetrics();
             ((Activity) mContext).getWindowManager().getDefaultDisplay().getMetrics(metrics);
             int widthPixels = metrics.widthPixels;
-            int totalItemDimension = (widthPixels / mSpanCount) - 3;
-            int imageDimension = totalItemDimension - 60;
+            int totalItemDimension = (widthPixels / mSpanCount) - 3; // 3px is the space for border
+            int imageDimension = (int) (totalItemDimension - Math.round(totalItemDimension * 0.3)); // image dimension is the totalDimension minus 30%
 
             layout.getLayoutParams().height = totalItemDimension;
             layout.getLayoutParams().width = totalItemDimension;
