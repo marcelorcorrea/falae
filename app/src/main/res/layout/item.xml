@@ -12,7 +12,7 @@
         android:text="Comer"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="18sp" />
+        android:textSize="12sp" />
 
     <ImageView
         android:id="@+id/item_image_view"
