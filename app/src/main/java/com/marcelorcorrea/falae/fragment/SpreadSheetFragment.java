@@ -32,8 +32,6 @@ import java.util.List;
 
 
 public class SpreadSheetFragment extends Fragment {
-    private TextToSpeech textToSpeech;
-
     private OnFragmentInteractionListener mListener;
 
     public SpreadSheetFragment() {

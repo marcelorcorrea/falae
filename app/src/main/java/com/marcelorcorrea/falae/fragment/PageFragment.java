@@ -1,43 +1,34 @@
 package com.marcelorcorrea.falae.fragment;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.marcelorcorrea.falae.R;
-import com.marcelorcorrea.falae.model.Category;
 import com.marcelorcorrea.falae.model.Item;
 import com.marcelorcorrea.falae.model.Page;
 import com.marcelorcorrea.falae.model.SpreadSheet;
-import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 
-public class PageFragment extends Fragment {
+public class PageFragment extends Fragment implements ItemFragment.OnFragmentInteractionListener {
     private static final String SPREADSHEET_PARAM = "spreadsheetParam";
     private static final String PAGE_PARAM = "pageParam";
 
-    private TextToSpeech textToSpeech;
     private Page page;
     private SpreadSheet spreadSheet;
     private OnFragmentInteractionListener mListener;
+    private ViewPager mPager;
+    private ItemPagerAdapter mPagerAdapter;
 
     public PageFragment() {
     }
@@ -65,80 +56,9 @@ public class PageFragment extends Fragment {
                              Bundle savedInstanceState) {
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         View view = inflater.inflate(R.layout.fragment_page, container, false);
-        GridLayout gridLayout = (GridLayout) view.findViewById(R.id.grid_layout);
-
-        textToSpeech = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status != TextToSpeech.ERROR) {
-                    textToSpeech.setLanguage(new Locale("pt", "BR"));
-                }
-            }
-        });
-
-        gridLayout.setAlignmentMode(GridLayout.ALIGN_BOUNDS);
-        int columns = 1;
-        int rows = 3;
-        gridLayout.setColumnCount(columns);
-        gridLayout.setRowCount(rows);
-        List<Item> items = page.getItems();
-        for (final Item item : items) {
-            LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.item, null, false);
-            layout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(getContext(), item.getName(), Toast.LENGTH_SHORT).show();
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        textToSpeech.speak(item.getNameToPronounce(), TextToSpeech.QUEUE_FLUSH, null, null);
-                    } else {
-                        textToSpeech.speak(item.getNameToPronounce(), TextToSpeech.QUEUE_FLUSH, null);
-                    }
-                    if (item.getLinkTo() != null) {
-                        mListener.openPageFragment(spreadSheet, item.getLinkTo());
-                    }
-                }
-            });
-
-            TextView name = (TextView) layout.findViewById(R.id.item_name);
-            ImageView imageView = (ImageView) layout.findViewById(R.id.item_image_view);
-            name.setText(item.getName());
-            if (item.getCategory() == Category.SUBJECT) {
-                name.setTextColor(Color.BLACK);
-            }
-            GradientDrawable drawable = new GradientDrawable();
-            drawable.setShape(GradientDrawable.RECTANGLE);
-            drawable.setStroke(1, Color.BLACK);
-            drawable.setCornerRadius(8);
-            drawable.setColor(item.getCategory().color());
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-                layout.setBackgroundDrawable(drawable);
-            } else {
-                layout.setBackground(drawable);
-            }
-
-            //TODO remove this logic from here
-            DisplayMetrics metrics = new DisplayMetrics();
-            getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-            int widthPixels = metrics.widthPixels;
-            int heightPixels = metrics.heightPixels;
-            int widthDimension = Math.round(widthPixels / columns);
-            int heightDimension = Math.round(heightPixels / rows);
-
-            int size = widthDimension > heightDimension ? widthDimension : heightDimension;
-            size = (size - (size * (columns * rows)));
-            layout.setLayoutParams(new LinearLayoutCompat.LayoutParams(widthDimension, heightDimension));
-            Picasso.with(getContext())
-                    .load(item.getImgSrc())
-                    .placeholder(R.drawable.ic_image_black_48dp)
-                    .error(R.drawable.ic_broken_image_black_48dp)
-                    .resize(size, size)
-                    .centerCrop()
-                    .into(imageView);
-
-
-            gridLayout.addView(layout);
-        }
-
+        mPager = (ViewPager) view.findViewById(R.id.pager);
+        mPagerAdapter = new ItemPagerAdapter(getChildFragmentManager(), page);
+        mPager.setAdapter(mPagerAdapter);
         return view;
     }
 
@@ -165,7 +85,40 @@ public class PageFragment extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
     }
 
+    @Override
+    public void openPageFragment(String linkTo) {
+        mListener.openPageFragment(spreadSheet, linkTo);
+    }
+
     public interface OnFragmentInteractionListener {
         void openPageFragment(SpreadSheet spreadSheet, String linkTo);
+    }
+
+    private class ItemPagerAdapter extends FragmentStatePagerAdapter {
+
+        private Page page;
+
+        public ItemPagerAdapter(FragmentManager fm, Page page) {
+            super(fm);
+            this.page = page;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            List<Item> items = page.getItems();
+            int itemsPerPage = page.getColumns() * page.getRows();
+            int fromIndex = position * itemsPerPage;
+            List<Item> subList = items.subList(fromIndex, Math.min(fromIndex + itemsPerPage, items.size()));
+            return ItemFragment.newInstance(new ArrayList<>(subList), page.getColumns(), page.getRows());
+        }
+
+        @Override
+        public int getCount() {
+            double numberOfPages = (double) page.getItems().size() / (page.getColumns() * page.getRows());
+            if (numberOfPages % 2 == 0) {
+                return (int) numberOfPages;
+            }
+            return (int) Math.round(numberOfPages + 0.5d);
+        }
     }
 }

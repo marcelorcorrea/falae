@@ -2,22 +2,24 @@
     android:id="@+id/item_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:ems="10"
         android:text="Comer"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="12sp" />
+        android:textSize="16sp" />
 
     <ImageView
         android:id="@+id/item_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:src="@drawable/ic_image_black_48dp" />
 </LinearLayout>

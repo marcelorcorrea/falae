@@ -96,7 +96,9 @@
             "nameToPronounce": "Cansado"
           }
         ],
-        "name": "Main"
+        "name": "Main",
+        "columns": 6,
+        "rows": 3
       },
       {
         "items": [
@@ -119,7 +121,9 @@
             "nameToPronounce": "Bolo"
           }
         ],
-        "name": "FoodPage"
+        "name": "FoodPage",
+        "columns": 2,
+        "rows": 2
       },
       {
         "items": [
@@ -136,7 +140,9 @@
             "nameToPronounce": "Água"
           }
         ],
-        "name": "DrinkPage"
+        "name": "DrinkPage",
+        "columns": 1,
+        "rows": 1
       }
     ]
   }
