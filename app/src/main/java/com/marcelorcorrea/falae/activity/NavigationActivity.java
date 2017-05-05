@@ -94,9 +94,10 @@ public class NavigationActivity extends AppCompatActivity
         Fragment spreadSheetFragment = getSupportFragmentManager().findFragmentByTag(SpreadSheetFragment.class.getSimpleName());
         if (spreadSheetFragment != null) {
             Page page = ((SpreadSheetFragment) spreadSheetFragment).getPage(spreadSheet, name);
-
             Fragment fragment = PageFragment.newInstance(spreadSheet, page);
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
+                    R.anim.enter_from_left, R.anim.exit_to_right);
             fragmentTransaction
                     .replace(R.id.container, fragment)
                     .addToBackStack(null)
