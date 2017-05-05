@@ -6,6 +6,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.DisplayMetrics;
@@ -14,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -83,7 +83,7 @@ public class ItemFragment extends Fragment {
         gridLayout.setRowCount(mRows);
 
         for (final Item item : mItems) {
-            LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.item, null, false);
+            ConstraintLayout layout = (ConstraintLayout) inflater.inflate(R.layout.item, null, false);
             layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -99,7 +99,7 @@ public class ItemFragment extends Fragment {
                 }
             });
 
-            TextView name = (TextView) layout.findViewById(R.id.item_name);
+            final TextView name = (TextView) layout.findViewById(R.id.item_name);
             ImageView imageView = (ImageView) layout.findViewById(R.id.item_image_view);
             name.setText(item.getName());
             if (item.getCategory() == Category.SUBJECT) {
@@ -118,8 +118,14 @@ public class ItemFragment extends Fragment {
             getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
             int widthDimension = Math.round(metrics.widthPixels / mColumns);
             int heightDimension = Math.round(metrics.heightPixels / mRows);
-            int size = Math.min(widthDimension, heightDimension);
-            size = (int) ((double) size - size * 25 / 100);
+            int nameTopMargin = ((ConstraintLayout.LayoutParams) name.getLayoutParams()).topMargin;
+            System.out.println(name.getLayoutParams());
+            int imageTopMargin = ((ConstraintLayout.LayoutParams) imageView.getLayoutParams()).topMargin;
+
+            int size = (int) Math.sqrt(((widthDimension * heightDimension) -
+                    (name.getLineHeight() * widthDimension) -
+                    ((nameTopMargin + imageTopMargin) * widthDimension)) * 0.5);
+
             layout.setLayoutParams(new LinearLayoutCompat.LayoutParams(widthDimension, heightDimension));
             Picasso.with(getContext())
                     .load(item.getImgSrc())
