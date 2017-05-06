@@ -116,6 +116,42 @@
           },
           {
             "category": "NOUN",
+            "imgSrc": "https://marquetteeducator.files.wordpress.com/2010/01/homer-simpson-eating.png",
+            "name": "Carne",
+            "nameToPronounce": "Carne"
+          },
+          {
+            "category": "NOUN",
+            "imgSrc": "https://foodandwineaesthetics.files.wordpress.com/2012/08/homersimpson.jpg",
+            "name": "Salsichão",
+            "nameToPronounce": "Salsichão"
+          },
+          {
+            "category": "NOUN",
+            "imgSrc": "http://del.h-cdn.co/assets/cm/15/10/54f941e525583_-_homer-simpson-food-critic.jpg",
+            "name": "Banquete",
+            "nameToPronounce": "Banquete"
+          },
+          {
+            "category": "NOUN",
+            "imgSrc": "http://willi.skater.pagesperso-orange.fr/homer/homerpizza.gif",
+            "name": "Pizza",
+            "nameToPronounce": "Pizza"
+          },
+          {
+            "category": "NOUN",
+            "imgSrc": "https://assets3.thrillist.com/v1/image/1350379/size/tmg-slideshow_l.jpg",
+            "name": "Milho e Frango",
+            "nameToPronounce": "Milho e Frango"
+          },
+          {
+            "category": "NOUN",
+            "imgSrc": "https://s-media-cache-ak0.pinimg.com/originals/d7/9c/4d/d79c4dd0a8127764a9e3e037d3bb532b.jpg",
+            "name": "Sorvete",
+            "nameToPronounce": "Sorvete"
+          },
+          {
+            "category": "NOUN",
             "imgSrc": "http://www.taurusarmed.net/forums/attachments/diner/68891d1385221291-pie-homer_drool.jpg",
             "name": "Bolo",
             "nameToPronounce": "Bolo"

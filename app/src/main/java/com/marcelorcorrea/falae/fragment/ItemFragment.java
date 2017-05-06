@@ -1,6 +1,7 @@
 package com.marcelorcorrea.falae.fragment;
 
 import android.graphics.Color;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
@@ -60,15 +61,6 @@ public class ItemFragment extends Fragment {
             mColumns = getArguments().getInt(COLUMNS_PARAM);
             mRows = getArguments().getInt(ROWS_PARAM);
         }
-        onAttachFragment(getParentFragment());
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_item, container, false);
-        GridLayout gridLayout = (GridLayout) view.findViewById(R.id.grid_layout);
-
         textToSpeech = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -77,70 +69,88 @@ public class ItemFragment extends Fragment {
                 }
             }
         });
+        onAttachFragment(getParentFragment());
+    }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_item, container, false);
+        GridLayout gridLayout = (GridLayout) view.findViewById(R.id.grid_layout);
         gridLayout.setAlignmentMode(GridLayout.ALIGN_BOUNDS);
         gridLayout.setColumnCount(mColumns);
         gridLayout.setRowCount(mRows);
 
         for (final Item item : mItems) {
-            ConstraintLayout layout = (ConstraintLayout) inflater.inflate(R.layout.item, null, false);
-            layout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(getContext(), item.getName(), Toast.LENGTH_SHORT).show();
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        textToSpeech.speak(item.getNameToPronounce(), TextToSpeech.QUEUE_FLUSH, null, null);
-                    } else {
-                        textToSpeech.speak(item.getNameToPronounce(), TextToSpeech.QUEUE_FLUSH, null);
-                    }
-                    if (item.getLinkTo() != null) {
-                        mListener.openPageFragment(item.getLinkTo());
-                    }
-                }
-            });
-
-            final TextView name = (TextView) layout.findViewById(R.id.item_name);
-            ImageView imageView = (ImageView) layout.findViewById(R.id.item_image_view);
-            name.setText(item.getName());
-            if (item.getCategory() == Category.SUBJECT) {
-                name.setTextColor(Color.BLACK);
-            }
-
-            Drawable drawable = createGradientDrawable(item);
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-                layout.setBackgroundDrawable(drawable);
-            } else {
-                layout.setBackground(drawable);
-            }
-
-            //TODO remove this logic from here
-            DisplayMetrics metrics = new DisplayMetrics();
-            getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-            int widthDimension = Math.round(metrics.widthPixels / mColumns);
-            int heightDimension = Math.round(metrics.heightPixels / mRows);
-            int nameTopMargin = ((ConstraintLayout.LayoutParams) name.getLayoutParams()).topMargin;
-            System.out.println(name.getLayoutParams());
-            int imageTopMargin = ((ConstraintLayout.LayoutParams) imageView.getLayoutParams()).topMargin;
-
-            int size = (int) Math.sqrt(((widthDimension * heightDimension) -
-                    (name.getLineHeight() * widthDimension) -
-                    ((nameTopMargin + imageTopMargin) * widthDimension)) * 0.5);
-
-            layout.setLayoutParams(new LinearLayoutCompat.LayoutParams(widthDimension, heightDimension));
-            Picasso.with(getContext())
-                    .load(item.getImgSrc())
-                    .placeholder(R.drawable.ic_image_black_48dp)
-                    .error(R.drawable.ic_broken_image_black_48dp)
-                    .resize(size, size)
-                    .centerCrop()
-                    .into(imageView);
-
+            ConstraintLayout layout = generateLayout(inflater, item);
             gridLayout.addView(layout);
         }
         return view;
     }
 
-    private Drawable createGradientDrawable(Item item) {
+    private ConstraintLayout generateLayout(LayoutInflater inflater, final Item item) {
+        final ConstraintLayout layout = (ConstraintLayout) inflater.inflate(R.layout.item, null, false);
+        final TextView name = (TextView) layout.findViewById(R.id.item_name);
+        final ImageView imageView = (ImageView) layout.findViewById(R.id.item_image_view);
+
+        name.setText(item.getName());
+        if (item.getCategory() == Category.SUBJECT) {
+            name.setTextColor(Color.BLACK);
+        }
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), item.getName(), Toast.LENGTH_SHORT).show();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    textToSpeech.speak(item.getNameToPronounce(), TextToSpeech.QUEUE_FLUSH, null, null);
+                } else {
+                    textToSpeech.speak(item.getNameToPronounce(), TextToSpeech.QUEUE_FLUSH, null);
+                }
+                if (item.getLinkTo() != null) {
+                    mListener.openPageFragment(item.getLinkTo());
+                }
+            }
+        });
+
+        Drawable drawable = createBackgroundDrawable(item);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+            layout.setBackgroundDrawable(drawable);
+        } else {
+            layout.setBackground(drawable);
+        }
+        Point layoutDimensions = calculateLayoutDimensions();
+        layout.setLayoutParams(new LinearLayoutCompat.LayoutParams(layoutDimensions.x, layoutDimensions.y));
+        int imageSize = calculateImageSize(layoutDimensions.x, layoutDimensions.y, name, imageView);
+
+        Picasso.with(getContext())
+                .load(item.getImgSrc())
+                .placeholder(R.drawable.ic_image_black_48dp)
+                .error(R.drawable.ic_broken_image_black_48dp)
+                .resize(imageSize, imageSize)
+                .centerCrop()
+                .into(imageView);
+
+        return layout;
+    }
+
+    private Point calculateLayoutDimensions() {
+        DisplayMetrics metrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int widthDimension = Math.round(metrics.widthPixels / mColumns);
+        int heightDimension = Math.round(metrics.heightPixels / mRows);
+        return new Point(widthDimension, heightDimension);
+    }
+
+    private int calculateImageSize(int width, int height, TextView name, ImageView imageView) {
+        int nameTopMargin = ((ConstraintLayout.LayoutParams) name.getLayoutParams()).topMargin;
+        int imageTopMargin = ((ConstraintLayout.LayoutParams) imageView.getLayoutParams()).topMargin;
+
+        return (int) Math.sqrt(((width * height) -
+                (name.getLineHeight() * width) -
+                ((nameTopMargin + imageTopMargin) * width)) * 0.5);
+    }
+
+    private Drawable createBackgroundDrawable(Item item) {
         GradientDrawable drawable = new GradientDrawable();
         drawable.setShape(GradientDrawable.RECTANGLE);
         drawable.setStroke(2, Color.BLACK);

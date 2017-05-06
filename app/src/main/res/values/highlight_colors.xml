@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="pressed_color">@color/gray_blue_transparent</drawable>
+    <drawable name="normal_color">@color/transparent</drawable>
+</resources>
