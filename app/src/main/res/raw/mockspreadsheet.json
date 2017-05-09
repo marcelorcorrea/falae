@@ -94,6 +94,12 @@
             "imgSrc": "http://www.teambrott.com/Images/HomerTired.jpg",
             "name": "Cansado",
             "nameToPronounce": "Cansado"
+          },
+          {
+            "category": "SUBJECT",
+            "imgSrc": "https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/4/005/03e/157/081a5d9.jpg",
+            "name": "Longaray",
+            "nameToPronounce": "Longaray"
           }
         ],
         "name": "Main",
