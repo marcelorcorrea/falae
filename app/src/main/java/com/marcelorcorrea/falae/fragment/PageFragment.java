@@ -2,10 +2,7 @@ package com.marcelorcorrea.falae.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -62,6 +59,13 @@ public class PageFragment extends Fragment implements ItemFragment.OnFragmentInt
         mPager = (ViewPager) view.findViewById(R.id.pager);
         mPagerAdapter = new ItemPagerAdapter(getChildFragmentManager(), page);
         mPager.setAdapter(mPagerAdapter);
+        mPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                enableNavButtons();
+                handleNavButtons();
+            }
+        });
 
         if (shouldEnableNavButtons()) {
             handleNavButtons();
@@ -70,8 +74,6 @@ public class PageFragment extends Fragment implements ItemFragment.OnFragmentInt
         leftNav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enableNavButtons();
-//                mPager.arrowScroll(View.FOCUS_LEFT);
                 int tab = mPager.getCurrentItem();
                 if (tab > 0) {
                     tab--;
@@ -79,18 +81,14 @@ public class PageFragment extends Fragment implements ItemFragment.OnFragmentInt
                 } else if (tab == 0) {
                     mPager.setCurrentItem(tab);
                 }
-                handleNavButtons();
             }
         });
         rightNav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                enableNavButtons();
-//                mPager.arrowScroll(View.FOCUS_RIGHT);
                 int tab = mPager.getCurrentItem();
                 tab++;
                 mPager.setCurrentItem(tab);
-                handleNavButtons();
             }
         });
 
