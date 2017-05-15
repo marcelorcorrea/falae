@@ -43,6 +43,10 @@ public class Item implements Parcelable {
         return linkTo;
     }
 
+    public void setImgSrc(String imgSrc) {
+        this.imgSrc = imgSrc;
+    }
+
     public void setLinkTo(String linkTo) {
         this.linkTo = linkTo;
     }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.model.SpreadSheet;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +30,11 @@ public class SpreadSheetAdapter extends RecyclerView.Adapter<SpreadSheetAdapter.
         this.spreadSheets = spreadSheets;
         this.context = context;
         this.listener = listener;
+    }
+
+    public void update(List<SpreadSheet> spreadSheets) {
+        this.spreadSheets = spreadSheets;
+        notifyDataSetChanged();
     }
 
     @Override
