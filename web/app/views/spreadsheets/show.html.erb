@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @spreadsheet.name %>
+</p>
+
+<p>
+  <strong>Initial page:</strong>
+  <%= @spreadsheet.initial_page %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @spreadsheet.user %>
+</p>
+
+<%= link_to 'Edit', edit_spreadsheet_path(@spreadsheet) %> |
+<%= link_to 'Back', spreadsheets_path %>
