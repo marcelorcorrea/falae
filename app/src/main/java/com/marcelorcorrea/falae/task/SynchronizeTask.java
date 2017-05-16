@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.webkit.MimeTypeMap;
 
 import com.google.gson.Gson;
@@ -29,11 +30,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -43,14 +42,22 @@ import java.util.concurrent.Future;
 public class SynchronizeTask extends AsyncTask<String, Void, List<SpreadSheet>> {
 
     private final Callback callback;
+    private final ThreadPoolExecutor executor;
+    private final int numberOfCores;
     private Context context;
     private ProgressDialog pDialog;
-    private ExecutorService executorService;
 
     public SynchronizeTask(Context context, SynchronizeTask.Callback callback) {
         this.context = context;
         this.callback = callback;
-        executorService = Executors.newCachedThreadPool();
+        numberOfCores = Runtime.getRuntime().availableProcessors();
+        executor = new ThreadPoolExecutor(
+                numberOfCores * 2,
+                numberOfCores * 2,
+                60L,
+                TimeUnit.SECONDS,
+                new LinkedBlockingQueue<Runnable>()
+        );
     }
 
     public interface Callback {
@@ -80,21 +87,22 @@ public class SynchronizeTask extends AsyncTask<String, Void, List<SpreadSheet>> 
         for (SpreadSheet spreadSheet : spreadSheets) {
             for (Page page : spreadSheet.getPages()) {
                 for (final Item item : page.getItems()) {
-                    try {
-                        Future<String> stringFuture = executorService.submit(new Callable<String>() {
-                            @Override
-                            public String call() throws Exception {
-                                System.out.println("Downloading item: " + item.getName());
-                                return download(item.getName(), item.getImgSrc());
-                            }
-                        });
-                        item.setImgSrc(stringFuture.get());
-                        System.out.println(item.getImgSrc());
-                    } catch (InterruptedException | ExecutionException e) {
-                        e.printStackTrace();
-                    }
+                    executor.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.d("DEBUG", "Downloading item: " + item.getName());
+                            String uri = download(item.getName(), item.getImgSrc());
+                            item.setImgSrc(uri);
+                        }
+                    });
                 }
             }
+        }
+        executor.shutdown();
+        try {
+            executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
         return spreadSheets;
     }
@@ -128,7 +136,6 @@ public class SynchronizeTask extends AsyncTask<String, Void, List<SpreadSheet>> 
         if (callback != null) {
             callback.onSyncComplete(spreadSheets);
         }
-        executorService.shutdown();
         if (pDialog != null && pDialog.isShowing()) {
             pDialog.dismiss();
         }
