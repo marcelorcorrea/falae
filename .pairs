@@ -1,0 +1,10 @@
+# .pairs - configuration for 'git pair'
+# place in project or home directory
+pairs:
+  lm: Leandro Manica; leandromanica
+  ml: Matheus Longaray; mlongaray
+  mc: Marcelo Correa; marcelorcorrea
+email:
+  prefix: pair
+  domain: hp.com
+  no_solo_prefix: true
