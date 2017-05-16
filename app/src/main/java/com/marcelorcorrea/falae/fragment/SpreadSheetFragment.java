@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -42,14 +45,7 @@ public class SpreadSheetFragment extends Fragment {
             mSpreadSheets = dbHelper.read();
         } else {
             System.out.println("SAVING DATA");
-            new SynchronizeTask(getContext(), new SynchronizeTask.Callback() {
-                @Override
-                public void onSyncComplete(List<SpreadSheet> spreadSheets) {
-                    mSpreadSheets = spreadSheets;
-                    dbHelper.insert(spreadSheets);
-                    spreadSheetAdapter.update(mSpreadSheets);
-                }
-            }).execute();
+            synchronize();
         }
     }
 
@@ -68,6 +64,7 @@ public class SpreadSheetFragment extends Fragment {
         recyclerView.setAdapter(spreadSheetAdapter);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -92,6 +89,32 @@ public class SpreadSheetFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.navigation, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.synchronize) {
+            synchronize();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void synchronize() {
+        new SynchronizeTask(getContext(), new SynchronizeTask.Callback() {
+            @Override
+            public void onSyncComplete(List<SpreadSheet> spreadSheets) {
+                mSpreadSheets = spreadSheets;
+                dbHelper.insert(spreadSheets);
+                spreadSheetAdapter.update(mSpreadSheets);
+            }
+        }).execute();
     }
 
     public Page getPage(SpreadSheet spreadSheet, String name) {
