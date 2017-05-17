@@ -13,6 +13,7 @@ import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.model.Item;
 import com.marcelorcorrea.falae.model.Page;
 import com.marcelorcorrea.falae.model.SpreadSheet;
+import com.marcelorcorrea.falae.model.User;
 
 import org.apache.commons.io.IOUtils;
 
@@ -39,7 +40,7 @@ import java.util.concurrent.TimeUnit;
  * Created by corream on 15/05/2017.
  */
 
-public class SynchronizeTask extends AsyncTask<String, Void, List<SpreadSheet>> {
+public class DownloadTask extends AsyncTask<User, Void, User> {
 
     private final Callback callback;
     private final ThreadPoolExecutor executor;
@@ -47,7 +48,7 @@ public class SynchronizeTask extends AsyncTask<String, Void, List<SpreadSheet>> 
     private Context context;
     private ProgressDialog pDialog;
 
-    public SynchronizeTask(Context context, SynchronizeTask.Callback callback) {
+    public DownloadTask(Context context, DownloadTask.Callback callback) {
         this.context = context;
         this.callback = callback;
         numberOfCores = Runtime.getRuntime().availableProcessors();
@@ -61,7 +62,7 @@ public class SynchronizeTask extends AsyncTask<String, Void, List<SpreadSheet>> 
     }
 
     public interface Callback {
-        void onSyncComplete(List<SpreadSheet> spreadSheets);
+        void onSyncComplete(User user);
     }
 
     @Override
@@ -81,10 +82,10 @@ public class SynchronizeTask extends AsyncTask<String, Void, List<SpreadSheet>> 
     }
 
     @Override
-    protected List<SpreadSheet> doInBackground(String... params) {
-        List<SpreadSheet> spreadSheets = createMockSpreadsheets(); //request web service.
+    protected User doInBackground(User... params) {
+        User user = params[0];
 
-        for (SpreadSheet spreadSheet : spreadSheets) {
+        for (SpreadSheet spreadSheet : user.getSpreadSheets()) {
             for (Page page : spreadSheet.getPages()) {
                 for (final Item item : page.getItems()) {
                     executor.execute(new Runnable() {
@@ -104,7 +105,7 @@ public class SynchronizeTask extends AsyncTask<String, Void, List<SpreadSheet>> 
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return spreadSheets;
+        return user;
     }
 
     private String download(String name, String imgSrc) {
@@ -132,9 +133,9 @@ public class SynchronizeTask extends AsyncTask<String, Void, List<SpreadSheet>> 
     }
 
     @Override
-    protected void onPostExecute(List<SpreadSheet> spreadSheets) {
+    protected void onPostExecute(User user) {
         if (callback != null) {
-            callback.onSyncComplete(spreadSheets);
+            callback.onSyncComplete(user);
         }
         if (pDialog != null && pDialog.isShowing()) {
             pDialog.dismiss();

@@ -14,38 +14,38 @@ import android.view.ViewGroup;
 
 import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.adapter.SpreadSheetAdapter;
-import com.marcelorcorrea.falae.database.SpreadSheetDbHelper;
+import com.marcelorcorrea.falae.database.UserDbHelper;
 import com.marcelorcorrea.falae.model.Page;
 import com.marcelorcorrea.falae.model.SpreadSheet;
-import com.marcelorcorrea.falae.task.SynchronizeTask;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.marcelorcorrea.falae.model.User;
+import com.marcelorcorrea.falae.task.DownloadTask;
 
 
 public class SpreadSheetFragment extends Fragment {
+
+    private static final String USER_PARAM = "userParam";
+
     private OnFragmentInteractionListener mListener;
-    private SpreadSheetDbHelper dbHelper;
-    private List<SpreadSheet> mSpreadSheets = new ArrayList<>();
+    private UserDbHelper dbHelper;
     private SpreadSheetAdapter spreadSheetAdapter;
+    private User user;
 
     public SpreadSheetFragment() {
     }
 
-    public static SpreadSheetFragment newInstance() {
-        return new SpreadSheetFragment();
+    public static SpreadSheetFragment newInstance(User user) {
+        SpreadSheetFragment fragment = new SpreadSheetFragment();
+        Bundle args = new Bundle();
+        args.putParcelable(USER_PARAM, user);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dbHelper = new SpreadSheetDbHelper(getContext());
-        if (dbHelper.isThereData()) {
-            System.out.println("LOADING DATA");
-            mSpreadSheets = dbHelper.read();
-        } else {
-            System.out.println("SAVING DATA");
-            synchronize();
+        if (getArguments() != null) {
+            user = getArguments().getParcelable(USER_PARAM);
         }
     }
 
@@ -55,7 +55,7 @@ public class SpreadSheetFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_spread_sheet, container, false);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.spreadsheet_recycler);
-        spreadSheetAdapter = new SpreadSheetAdapter(getContext(), mSpreadSheets, new SpreadSheetAdapter.OnItemClickListener() {
+        spreadSheetAdapter = new SpreadSheetAdapter(getContext(), user.getSpreadSheets(), new SpreadSheetAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(SpreadSheet spreadSheet) {
                 mListener.openPageFragment(spreadSheet, spreadSheet.getInitialPage());
@@ -81,7 +81,6 @@ public class SpreadSheetFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        dbHelper.close();
         super.onDestroy();
     }
 
@@ -107,12 +106,12 @@ public class SpreadSheetFragment extends Fragment {
     }
 
     public void synchronize() {
-        new SynchronizeTask(getContext(), new SynchronizeTask.Callback() {
+        new DownloadTask(getContext(), new DownloadTask.Callback() {
             @Override
-            public void onSyncComplete(List<SpreadSheet> spreadSheets) {
-                mSpreadSheets = spreadSheets;
-                dbHelper.insert(spreadSheets);
-                spreadSheetAdapter.update(mSpreadSheets);
+            public void onSyncComplete(User user) {
+//                mSpreadSheets = spreadSheets;
+//                dbHelper.insertOrUpdate(spreadSheets);
+//                spreadSheetAdapter.update(mSpreadSheets);
             }
         }).execute();
     }

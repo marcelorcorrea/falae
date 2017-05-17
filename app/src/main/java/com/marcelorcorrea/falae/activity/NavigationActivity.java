@@ -1,7 +1,6 @@
 package com.marcelorcorrea.falae.activity;
 
 import android.Manifest;
-import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,29 +9,35 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.marcelorcorrea.falae.R;
+import com.marcelorcorrea.falae.database.UserDbHelper;
+import com.marcelorcorrea.falae.fragment.AddUserFragment;
 import com.marcelorcorrea.falae.fragment.PageFragment;
 import com.marcelorcorrea.falae.fragment.SpreadSheetFragment;
 import com.marcelorcorrea.falae.model.Page;
 import com.marcelorcorrea.falae.model.SpreadSheet;
+import com.marcelorcorrea.falae.model.User;
+import com.marcelorcorrea.falae.task.DownloadTask;
+
+import java.util.List;
 
 public class NavigationActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, SpreadSheetFragment.OnFragmentInteractionListener, PageFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, SpreadSheetFragment.OnFragmentInteractionListener, PageFragment.OnFragmentInteractionListener, AddUserFragment.OnFragmentInteractionListener {
 
     private DrawerLayout drawer;
+    private NavigationView navigationView;
+    private User mUser;
+    private UserDbHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +59,28 @@ public class NavigationActivity extends AppCompatActivity
             drawer.addDrawerListener(toggle);
             toggle.syncState();
 
-            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            navigationView = (NavigationView) findViewById(R.id.nav_view);
             navigationView.setNavigationItemSelectedListener(this);
 
-            if (savedInstanceState == null) {
-                MenuItem item = navigationView.getMenu().getItem(0);
-                onNavigationItemSelected(item);
+            dbHelper = new UserDbHelper(this);
+            if (dbHelper.isThereData()) {
+                List<User> users = dbHelper.read();
+                for (final User u : users) {
+                    MenuItem userItem = navigationView.getMenu().add(u.getName());
+                    userItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            mUser = u;
+                            onNavigationItemSelected(item);
+                            return true;
+                        }
+                    });
+                }
             }
+//            if (savedInstanceState == null) {
+//                MenuItem item = navigationView.getMenu().getItem(0);
+//                onNavigationItemSelected(item);
+//            }
         }
     }
 
@@ -99,15 +119,21 @@ public class NavigationActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        Fragment fragment = null;
-        String tag = "";
+        Fragment fragment;
+        String tag;
         int id = item.getItemId();
-        if (id == R.id.nav_spreadsheet) {
-            fragment = SpreadSheetFragment.newInstance();
+        if (id == R.id.add_user) {
+            fragment = AddUserFragment.newInstance();
+            tag = AddUserFragment.class.getSimpleName();
+        } else {
+            fragment = SpreadSheetFragment.newInstance(mUser);
             tag = SpreadSheetFragment.class.getSimpleName();
         }
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container, fragment, tag).commit();
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
+                        R.anim.enter_from_left, R.anim.exit_to_right)
+                .replace(R.id.container, fragment, tag)
+                .commit();
 
         item.setChecked(true);
         setTitle(item.getTitle());
@@ -116,18 +142,38 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onDestroy() {
+        dbHelper.close();
+        super.onDestroy();
+    }
+
+    @Override
     public void openPageFragment(SpreadSheet spreadSheet, String name) {
         Fragment spreadSheetFragment = getSupportFragmentManager().findFragmentByTag(SpreadSheetFragment.class.getSimpleName());
         if (spreadSheetFragment != null) {
             Page page = ((SpreadSheetFragment) spreadSheetFragment).getPage(spreadSheet, name);
             Fragment fragment = PageFragment.newInstance(spreadSheet, page);
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
-                    R.anim.enter_from_left, R.anim.exit_to_right);
-            fragmentTransaction
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
+                            R.anim.enter_from_left, R.anim.exit_to_right)
                     .replace(R.id.container, fragment)
                     .addToBackStack(null)
                     .commit();
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(final User user) {
+        new DownloadTask(this, new DownloadTask.Callback() {
+            @Override
+            public void onSyncComplete(User u) {
+                if (!dbHelper.doesUserExists(u)) {
+                    navigationView.getMenu().add(user.getName());
+                }
+                dbHelper.insertOrUpdate(user);
+                mUser = u;
+            }
+        }).execute(user);
     }
 }
