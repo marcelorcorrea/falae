@@ -39,6 +39,7 @@ public class ItemFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private int mColumns;
     private int mRows;
+    private int mImageSize;
 
     public ItemFragment() {
     }
@@ -81,21 +82,26 @@ public class ItemFragment extends Fragment {
         gridLayout.setColumnCount(mColumns);
         gridLayout.setRowCount(mRows);
 
+        Point layoutDimensions = calculateLayoutDimensions();
+
         for (final Item item : mItems) {
-            ConstraintLayout layout = generateLayout(inflater, item);
+            ConstraintLayout layout = generateLayout(inflater, item, layoutDimensions);
             gridLayout.addView(layout);
         }
         return view;
     }
 
-    private ConstraintLayout generateLayout(LayoutInflater inflater, final Item item) {
+    private ConstraintLayout generateLayout(LayoutInflater inflater, final Item item, Point layoutDimensions) {
         final ConstraintLayout layout = (ConstraintLayout) inflater.inflate(R.layout.item, null, false);
         final TextView name = (TextView) layout.findViewById(R.id.item_name);
         final ImageView imageView = (ImageView) layout.findViewById(R.id.item_image_view);
 
-        name.setText(item.getName());
-        if (item.getCategory() == Category.SUBJECT) {
-            name.setTextColor(Color.BLACK);
+        layout.setLayoutParams(new LinearLayoutCompat.LayoutParams(layoutDimensions.x, layoutDimensions.y));
+        Drawable drawable = createBackgroundDrawable(item);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+            layout.setBackgroundDrawable(drawable);
+        } else {
+            layout.setBackground(drawable);
         }
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,21 +118,19 @@ public class ItemFragment extends Fragment {
             }
         });
 
-        Drawable drawable = createBackgroundDrawable(item);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-            layout.setBackgroundDrawable(drawable);
-        } else {
-            layout.setBackground(drawable);
+        name.setText(item.getName());
+        if (item.getCategory() == Category.SUBJECT) {
+            name.setTextColor(Color.BLACK);
         }
-        Point layoutDimensions = calculateLayoutDimensions();
-        layout.setLayoutParams(new LinearLayoutCompat.LayoutParams(layoutDimensions.x, layoutDimensions.y));
-        int imageSize = calculateImageSize(layoutDimensions.x, layoutDimensions.y, name, imageView);
 
+        if (mImageSize == 0) {
+            mImageSize = calculateImageSize(layoutDimensions.x, layoutDimensions.y, name, imageView);
+        }
         Picasso.with(getContext())
                 .load(item.getImgSrc())
                 .placeholder(R.drawable.ic_image_black_48dp)
                 .error(R.drawable.ic_broken_image_black_48dp)
-                .resize(imageSize, imageSize)
+                .resize(mImageSize, mImageSize)
                 .centerCrop()
                 .into(imageView);
 
@@ -142,12 +146,16 @@ public class ItemFragment extends Fragment {
     }
 
     private int calculateImageSize(int width, int height, TextView name, ImageView imageView) {
-        int nameTopMargin = ((ConstraintLayout.LayoutParams) name.getLayoutParams()).topMargin;
-        int imageTopMargin = ((ConstraintLayout.LayoutParams) imageView.getLayoutParams()).topMargin;
-
-        return (int) Math.sqrt(((width * height) -
-                (name.getLineHeight() * width) -
-                ((nameTopMargin + imageTopMargin) * width)) * 0.5);
+        if (height > width) {
+            int imageLeftMargin = ((ConstraintLayout.LayoutParams) imageView.getLayoutParams()).leftMargin;
+            int imageRightMargin = ((ConstraintLayout.LayoutParams) imageView.getLayoutParams()).rightMargin;
+            return width - (imageLeftMargin + imageRightMargin);
+        } else {
+            int nameTopMargin = ((ConstraintLayout.LayoutParams) name.getLayoutParams()).topMargin;
+            int imageTopMargin = ((ConstraintLayout.LayoutParams) imageView.getLayoutParams()).topMargin;
+            int imageBottomMargin = ((ConstraintLayout.LayoutParams) imageView.getLayoutParams()).bottomMargin;
+            return height - (name.getLineHeight() + nameTopMargin + imageTopMargin + imageBottomMargin);
+        }
     }
 
     private Drawable createBackgroundDrawable(Item item) {
@@ -171,6 +179,7 @@ public class ItemFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        textToSpeech.shutdown();
         mListener = null;
     }
 
