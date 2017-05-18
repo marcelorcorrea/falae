@@ -1,4 +1,4 @@
-<%= form_with(model: page, local: true) do |form| %>
+<%= form_with(model: [:user, :spreadsheet, page], local: true) do |form| %>
   <% if page.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(page.errors.count, "error") %> prohibited this page from being saved:</h2>
@@ -26,10 +26,10 @@
     <%= form.number_field :rows, id: :page_rows %>
   </div>
 
-  <div class="field">
-    <%= form.label :spreadsheet_id %>
-    <%= form.text_field :spreadsheet_id, id: :page_spreadsheet_id %>
-  </div>
+  <!--<div class="field">-->
+    <!--<%= form.label :spreadsheet_id %>-->
+    <!--<%= form.text_field :spreadsheet_id, id: :page_spreadsheet_id %>-->
+  <!--</div>-->
 
   <div class="actions">
     <%= form.submit %>

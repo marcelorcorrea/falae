@@ -2,5 +2,5 @@
 
 <%= render 'form', page: @page %>
 
-<%= link_to 'Show', @page %> |
-<%= link_to 'Back', pages_path %>
+<%= link_to 'Show', user_spreadsheet_path(@page.spreadsheet.user, @page.spreadsheet) %> |
+<%= link_to 'Back', user_spreadsheet_page_path(@page.spreadsheet.user, @page.spreadsheet, @page) %>

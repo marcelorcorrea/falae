@@ -2,5 +2,5 @@
 
 <%= render 'form', spreadsheet: @spreadsheet %>
 
-<%= link_to 'Show', @spreadsheet %> |
-<%= link_to 'Back', spreadsheets_path %>
+<%= link_to 'Show', user_spreadsheet_path(@spreadsheet.user, @spreadsheet) %> |
+<%= link_to 'Back', user_path(@spreadsheet.user) %>

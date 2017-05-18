@@ -2,32 +2,8 @@
 
 <h1>Pages</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Columns</th>
-      <th>Rows</th>
-      <th>Spreadsheet</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pages.each do |page| %>
-      <tr>
-        <td><%= page.name %></td>
-        <td><%= page.columns %></td>
-        <td><%= page.rows %></td>
-        <td><%= page.spreadsheet %></td>
-        <td><%= link_to 'Show', page %></td>
-        <td><%= link_to 'Edit', edit_page_path(page) %></td>
-        <td><%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'page' %>
 
 <br>
 
-<%= link_to 'New Page', new_page_path %>
+<%= link_to 'New Page', new_user_spreadsheet_page_path %>

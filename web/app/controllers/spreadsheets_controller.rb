@@ -10,6 +10,7 @@ class SpreadsheetsController < ApplicationController
   # GET /spreadsheets/1
   # GET /spreadsheets/1.json
   def show
+    @pages = @spreadsheet.pages
   end
 
   # GET /spreadsheets/new
@@ -24,11 +25,12 @@ class SpreadsheetsController < ApplicationController
   # POST /spreadsheets
   # POST /spreadsheets.json
   def create
-    @spreadsheet = Spreadsheet.new(spreadsheet_params)
+    user = User.find params[:user_id]
+    @spreadsheet = user.spreadsheets.build spreadsheet_params
 
     respond_to do |format|
       if @spreadsheet.save
-        format.html { redirect_to @spreadsheet, notice: 'Spreadsheet was successfully created.' }
+        format.html { redirect_to [user, @spreadsheet], notice: 'Spreadsheet was successfully created.' }
         format.json { render :show, status: :created, location: @spreadsheet }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class SpreadsheetsController < ApplicationController
   def update
     respond_to do |format|
       if @spreadsheet.update(spreadsheet_params)
-        format.html { redirect_to @spreadsheet, notice: 'Spreadsheet was successfully updated.' }
+        format.html { redirect_to [@spreadsheet.user, @spreadsheet], notice: 'Spreadsheet was successfully updated.' }
         format.json { render :show, status: :ok, location: @spreadsheet }
       else
         format.html { render :edit }
@@ -69,6 +71,6 @@ class SpreadsheetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def spreadsheet_params
-      params.require(:spreadsheet).permit(:name, :initial_page, :user_id)
+      params.require(:spreadsheet).permit(:name, :initial_page)
     end
 end
