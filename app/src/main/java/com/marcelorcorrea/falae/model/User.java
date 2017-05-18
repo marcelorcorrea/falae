@@ -15,6 +15,11 @@ public class User implements Parcelable {
     private String email;
     private List<SpreadSheet> spreadSheets;
 
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
     public User(String name, String email, List<SpreadSheet> spreadSheets) {
         this.name = name;
         this.email = email;

@@ -86,13 +86,45 @@ public class UserDbHelper extends SQLiteOpenHelper {
             SQLiteDatabase db = getReadableDatabase();
             String[] projection = {
                     UserEntry.COLUMN_NAME,
-                    UserEntry.COLUMN_EMAIL,
-                    UserEntry.COLUMN_SPREADSHEETS
             };
             String selection = UserEntry.COLUMN_EMAIL + " = ?";
             String[] selectionArgs = {user.getEmail()};
             cursor = db.query(UserEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
             return cursor.moveToFirst();
+        } finally {
+            if (cursor != null && !cursor.isClosed()) {
+                cursor.close();
+            }
+        }
+    }
+
+    public User findByEmail(String email) {
+        Cursor cursor = null;
+        try {
+            SQLiteDatabase db = getReadableDatabase();
+            String[] projection = {
+                    UserEntry.COLUMN_NAME,
+                    UserEntry.COLUMN_EMAIL,
+                    UserEntry.COLUMN_SPREADSHEETS
+            };
+            String selection = UserEntry.COLUMN_EMAIL + " = ?";
+            String[] selectionArgs = {email};
+            cursor = db.query(UserEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, null);
+            Type listType = new TypeToken<List<SpreadSheet>>() {
+            }.getType();
+            Gson gson = new Gson();
+            if (cursor.moveToFirst()) {
+                String name = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_NAME));
+                String e = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_EMAIL));
+                String spreadSheetsJson = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_SPREADSHEETS));
+                List<SpreadSheet> spreadSheets = gson.fromJson(spreadSheetsJson, listType);
+
+                return new User(name, e, spreadSheets);
+            }
+            if (!cursor.isClosed()) {
+                cursor.close();
+            }
+            return null;
         } finally {
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
@@ -106,22 +138,15 @@ public class UserDbHelper extends SQLiteOpenHelper {
         String[] projection = {
                 UserEntry.COLUMN_NAME,
                 UserEntry.COLUMN_EMAIL,
-                UserEntry.COLUMN_SPREADSHEETS
         };
 
         Cursor cursor = db.query(UserEntry.TABLE_NAME, projection, null, null, null, null, null);
 
         List<User> users = new ArrayList<>();
-        Type listType = new TypeToken<List<SpreadSheet>>() {
-        }.getType();
-        Gson gson = new Gson();
         while (cursor.moveToNext()) {
             String name = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_NAME));
             String email = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_EMAIL));
-            String spreadSheetsJson = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_SPREADSHEETS));
-            List<SpreadSheet> spreadSheets = gson.fromJson(spreadSheetsJson, listType);
-
-            User user = new User(name, email, spreadSheets);
+            User user = new User(name, email);
             users.add(user);
         }
         if (!cursor.isClosed()) {

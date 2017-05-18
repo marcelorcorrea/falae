@@ -53,10 +53,8 @@ public class NavigationActivity extends AppCompatActivity
                 this, mDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawer.addDrawerListener(toggle);
         toggle.syncState();
-
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
-
         textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
@@ -70,28 +68,22 @@ public class NavigationActivity extends AppCompatActivity
         if (dbHelper.isThereData()) {
             List<User> users = dbHelper.read();
             for (final User u : users) {
-                addUserToMenu(u, true);
+                addUserToMenu(u);
             }
         }
-//            if (savedInstanceState == null) {
-//                MenuItem item = mNavigationView.getMenu().getItem(0);
-//                onNavigationItemSelected(item);
-//            }
     }
 
-    private void addUserToMenu(final User user, boolean shouldAppendListener) {
+    private void addUserToMenu(final User user) {
         MenuItem userItem = mNavigationView.getMenu().add(R.id.users_group, Menu.NONE, 0, user.getName());
         userItem.setIcon(R.drawable.ic_person_black_24dp);
-        if (shouldAppendListener) {
-            userItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    mUser = user;
-                    onNavigationItemSelected(item);
-                    return true;
-                }
-            });
-        }
+        userItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                mUser = dbHelper.findByEmail(user.getEmail());
+                onNavigationItemSelected(item);
+                return true;
+            }
+        });
     }
 
     @Override
@@ -166,10 +158,9 @@ public class NavigationActivity extends AppCompatActivity
             @Override
             public void onSyncComplete(User u) {
                 if (!dbHelper.doesUserExists(u)) {
-                    addUserToMenu(u, false);
+                    addUserToMenu(u);
                 }
-                dbHelper.insertOrUpdate(user);
-                mUser = u;
+                dbHelper.insertOrUpdate(u);
             }
         }).execute(user);
     }

@@ -190,6 +190,242 @@
           "rows": 1
         }
       ]
+    },
+    {
+      "initialPage": "Main",
+      "name": "Prancha Secundária",
+      "pages": [
+        {
+          "items": [
+            {
+              "category": "SUBJECT",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/ioyKXP8HtSray0m/eu.png",
+              "name": "Eu",
+              "nameToPronounce": "Eu"
+            },
+            {
+              "category": "VERB",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/FkMgsJdoRwn9Dpt/comer.png",
+              "linkTo": "PaginaComida",
+              "name": "Comer",
+              "nameToPronounce": "Comer"
+            },
+            {
+              "category": "VERB",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/3sgJhfNJFxMCRYV/beber.png",
+              "linkTo": "PaginaBebida",
+              "name": "Beber",
+              "nameToPronounce": "Beber"
+            },
+            {
+              "category": "VERB",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/DSaxmeJPrflTsvL/eu_quero.png",
+              "linkTo": "PaginaQuerer",
+              "name": "Eu quero",
+              "nameToPronounce": "Eu quero"
+            },
+            {
+              "category": "VERB",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/XRh6Qr12iu4Z8ys/brincar.png",
+              "name": "Brincar",
+              "nameToPronounce": "Brincar",
+              "linkTo": "PaginaBrincar"
+            },
+            {
+              "category": "NOUN",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/SNgBJDpcjgghwH0/cuidados_pessoais.png",
+              "name": "Cuidados Pessoais",
+              "nameToPronounce": "Cuidados Pessoais",
+              "linkTo": "PaginaCuidadosPessoais"
+            },
+            {
+              "category": "NOUN",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/xi7rwGRMNhCIFFf/outra_coisa.png",
+              "name": "Outra Coisa",
+              "nameToPronounce": "Outra Coisa",
+              "linkTo": null
+            },
+            {
+              "category": "GREETINGS_SOCIAL_EXPRESSIONS",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/kb341i7naBNmVRD/legal.png",
+              "name": "Sim",
+              "nameToPronounce": "Sim",
+              "linkTo": null
+            }
+          ],
+          "name": "Main",
+          "columns": 3,
+          "rows": 2
+        },
+        {
+          "items": [
+            {
+              "category": "NOUN",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/hfJK7aXGv4YektT/comida.png",
+              "name": "Comida",
+              "nameToPronounce": "Comida"
+            },
+            {
+              "category": "NOUN",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/Orud5zC1ER2hHV0/lanche.png",
+              "name": "Lanche",
+              "nameToPronounce": "Lanche"
+            },
+            {
+              "category": "NOUN",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/N3oyDiLYZp1pwec/sobremesa.png",
+              "name": "Sobremesa",
+              "nameToPronounce": "Sobremesa"
+            }
+          ],
+          "name": "PaginaComida",
+          "columns": 2,
+          "rows": 1
+        },
+        {
+          "items": [
+            {
+              "category": "NOUN",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/W82d6uORiN3CLz4/bebida.png",
+              "name": "Bebida",
+              "nameToPronounce": "Bebida"
+            }
+          ],
+          "name": "PaginaBebida",
+          "columns": 1,
+          "rows": 1
+        },
+        {
+          "items": [
+            {
+              "category": "NOUN",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/2M1mps7acL3A7rY/zangado.png",
+              "name": "Zangado",
+              "nameToPronounce": "Zangado"
+            },
+            {
+              "category": "NOUN",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/yZYXVz79lMugBpI/triste.png",
+              "name": "Triste",
+              "nameToPronounce": "Triste"
+            },
+            {
+              "category": "NOUN",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/josASNJAxyqmx5i/perguica.png",
+              "name": "Preguiça",
+              "nameToPronounce": "Preguiça"
+            },
+            {
+              "category": "NOUN",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/e3pVvXbCEnoLKMT/feliz.png",
+              "name": "Feliz",
+              "nameToPronounce": "Feliz"
+            }
+          ],
+          "name": "PaginaEmoções",
+          "columns": 2,
+          "rows": 2
+        },
+        {
+          "items": [
+            {
+              "category": "VERB",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/hod3eR55iBYF8Db/ver_tv.png",
+              "name": "Ver Televisão",
+              "nameToPronounce": "Ver Televisão"
+            },
+            {
+              "category": "VERB",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/XOwGo7Q08rrQNWX/quero_ouvir_musica.png",
+              "name": "Ouvir Musica",
+              "nameToPronounce": "Ouvir Música"
+            },
+            {
+              "category": "VERB",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/rlEGuxY2Taemh8P/ouvir_historia.png",
+              "name": "Ouvir História",
+              "nameToPronounce": "Ouvir História"
+            },
+            {
+              "category": "VERB",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/cAlAJe9gPlVEHhS/dormir.png",
+              "name": "Dormir",
+              "nameToPronounce": "Dormir"
+            },
+            {
+              "category": "VERB",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/7rZitFSOHbCrUOt/quero_ficar_em_casa.png",
+              "name": "Ficar em casa",
+              "nameToPronounce": "Ficar em casa"
+            },
+            {
+              "category": "VERB",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/B2DmuoJbJlKlHVa/contar_algo.png",
+              "name": "Contar algo",
+              "nameToPronounce": "Contar algo"
+            }
+          ],
+          "name": "PaginaQuerer",
+          "columns": 3,
+          "rows": 2
+        },
+        {
+          "items": [
+            {
+              "category": "VERB",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/Djbg1HgEHHCjjCQ/lavar_cabelo.png",
+              "name": "Lavar o Cabelo",
+              "nameToPronounce": "Lavar o Cabelo"
+            },
+            {
+              "category": "VERB",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/ei50Crs9tmbdhnP/vestir.png",
+              "name": "Trocar de Roupa",
+              "nameToPronounce": "Trocar de Roupa"
+            },
+            {
+              "category": "VERB",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/8yjb4XzqahgfQFd/fazer_cama.png",
+              "name": "Fazer a cama",
+              "nameToPronounce": "Fazer a cama"
+            },
+            {
+              "category": "VERB",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/FkL1jbWbUqdJWYb/cortar_unhas.png",
+              "name": "Cortar as unhas",
+              "nameToPronounce": "Cortar as unhas"
+            }
+          ],
+          "name": "PaginaCuidadosPessoais",
+          "columns": 2,
+          "rows": 2
+        },
+        {
+          "items": [
+            {
+              "category": "NOUN",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/nJOJiy0N37hrHv5/carros.png",
+              "name": "Carros",
+              "nameToPronounce": "Carros"
+            },
+            {
+              "category": "NOUN",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/7dUYRaUBdsZhR4O/bicicleta.png",
+              "name": "Bicicleta",
+              "nameToPronounce": "Bicicleta"
+            },
+            {
+              "category": "NOUN",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/4zfngwBt1OK7gNI/gameboy.png",
+              "name": "Video game",
+              "nameToPronounce": "Video game"
+            }
+          ],
+          "name": "PaginaBrincar",
+          "columns": 3,
+          "rows": 1
+        }
+      ]
     }
   ]
 }
