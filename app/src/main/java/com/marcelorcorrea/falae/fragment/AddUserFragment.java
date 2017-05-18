@@ -26,9 +26,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AddUserFragment extends Fragment {
 
+    private static final Pattern VALID_EMAIL_REGEX = Pattern.compile("\\A[\\w+\\-.]+@[a-z\\d\\-.]+\\.[a-z]+\\z", Pattern.CASE_INSENSITIVE);
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "mlongaray@hp.com:123456", "marcelorcorrea@hp.com:123456"
     };
@@ -145,7 +148,8 @@ public class AddUserFragment extends Fragment {
     }
 
     private boolean isEmailValid(String email) {
-        return email.contains("@");
+        Matcher m = VALID_EMAIL_REGEX.matcher(email);
+        return m.matches();
     }
 
     private boolean isPasswordValid(String password) {

@@ -3,16 +3,13 @@
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
+    <string name="prompt_password">Senha</string>
     <string name="action_sign_in">Adicionar Usuário</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="action_sign_in_short">Adicionar</string>
+    <string name="error_invalid_email">Este email não é válido.</string>
+    <string name="error_invalid_password">Senha muito curta</string>
+    <string name="error_incorrect_password">Senha inválida</string>
+    <string name="error_field_required">Este campo é obrigatório</string>
     <string name="title_activity_navigation">NavigationActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -20,8 +17,6 @@
 
     <string name="synchronize">Sincronizar</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_login">Baixar Prancha</string>
     <string name="spreadsheets">Pranchas</string>
     <string name="users">Usuários</string>

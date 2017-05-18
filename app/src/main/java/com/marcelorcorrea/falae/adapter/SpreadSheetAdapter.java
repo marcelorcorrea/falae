@@ -32,11 +32,6 @@ public class SpreadSheetAdapter extends RecyclerView.Adapter<SpreadSheetAdapter.
         this.listener = listener;
     }
 
-    public void update(List<SpreadSheet> spreadSheets) {
-        this.spreadSheets = spreadSheets;
-        notifyDataSetChanged();
-    }
-
     @Override
     public SpreadSheetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.spreadsheet_item, parent, false);
