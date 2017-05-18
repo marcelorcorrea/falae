@@ -30,7 +30,7 @@ import java.io.Reader;
 public class AddUserFragment extends Fragment {
 
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world", "marcelorcorrea@hp.com:123456"
+            "foo@example.com:hello", "mlongaray@hp.com:123456", "marcelorcorrea@hp.com:123456"
     };
 
     private UserLoginTask mAuthTask = null;
@@ -191,7 +191,10 @@ public class AddUserFragment extends Fragment {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(mEmail)) {
                     if (pieces[1].equals(mPassword)) {
-                        return createMockSpreadsheets();
+                        if (mEmail.equals("mlongaray@hp.com")) {
+                            return createMockSpreadsheets(R.raw.mockspreadsheet2);
+                        }
+                        return createMockSpreadsheets(R.raw.mockspreadsheet);
                     }
                 }
             }
@@ -222,9 +225,9 @@ public class AddUserFragment extends Fragment {
         void onFragmentInteraction(User user);
     }
 
-    private User createMockSpreadsheets() {
+    private User createMockSpreadsheets(int id) {
         try {
-            InputStream raw = getContext().getResources().openRawResource(R.raw.mockspreadsheet);
+            InputStream raw = getContext().getResources().openRawResource(id);
             Reader is = new BufferedReader(new InputStreamReader(raw, "UTF8"));
             String json = IOUtils.toString(is);
             return new Gson().fromJson(json, User.class);

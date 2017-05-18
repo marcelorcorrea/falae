@@ -14,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
@@ -45,7 +46,7 @@ public class NavigationActivity extends AppCompatActivity
         requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M && hasReadPermission()) {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M && !hasReadPermission()) {
             requestReadPermission();
         } else {
             setContentView(R.layout.activity_navigation);
@@ -66,7 +67,8 @@ public class NavigationActivity extends AppCompatActivity
             if (dbHelper.isThereData()) {
                 List<User> users = dbHelper.read();
                 for (final User u : users) {
-                    MenuItem userItem = navigationView.getMenu().add(u.getName());
+                    MenuItem userItem = navigationView.getMenu().add(R.id.users_group, Menu.NONE, 0, u.getName());
+                    userItem.setIcon(R.drawable.ic_person_black_24dp);
                     userItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
@@ -86,7 +88,7 @@ public class NavigationActivity extends AppCompatActivity
 
     @RequiresApi(Build.VERSION_CODES.M)
     public boolean hasReadPermission() {
-        return ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED;
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -169,7 +171,8 @@ public class NavigationActivity extends AppCompatActivity
             @Override
             public void onSyncComplete(User u) {
                 if (!dbHelper.doesUserExists(u)) {
-                    navigationView.getMenu().add(user.getName());
+                    MenuItem add = navigationView.getMenu().add(Menu.NONE, Menu.NONE, 0, user.getName());
+                    add.setIcon(R.drawable.ic_person_black_24dp);
                 }
                 dbHelper.insertOrUpdate(user);
                 mUser = u;

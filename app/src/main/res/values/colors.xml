@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="black">#000000</color>
     <color name="pink">#FAAFBE</color>
     <color name="blue" type="color">#FF33B5E5</color>
     <color name="purple" type="color">#FFAA66CC</color>
