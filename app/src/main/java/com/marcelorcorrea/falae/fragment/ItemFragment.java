@@ -62,15 +62,8 @@ public class ItemFragment extends Fragment {
             mColumns = getArguments().getInt(COLUMNS_PARAM);
             mRows = getArguments().getInt(ROWS_PARAM);
         }
-        textToSpeech = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status != TextToSpeech.ERROR) {
-                    textToSpeech.setLanguage(new Locale("pt", "BR"));
-                }
-            }
-        });
         onAttachFragment(getParentFragment());
+        textToSpeech = mListener.getTextToSpeech();
     }
 
     @Override
@@ -179,11 +172,12 @@ public class ItemFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        textToSpeech.shutdown();
         mListener = null;
     }
 
     public interface OnFragmentInteractionListener {
         void openPageFragment(String linkTo);
+
+        TextToSpeech getTextToSpeech();
     }
 }

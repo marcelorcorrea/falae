@@ -2,6 +2,7 @@ package com.marcelorcorrea.falae.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -162,7 +163,14 @@ public class PageFragment extends Fragment implements ItemFragment.OnFragmentInt
         mListener.openPageFragment(spreadSheet, linkTo);
     }
 
+    @Override
+    public TextToSpeech getTextToSpeech() {
+        return mListener.getTextToSpeech();
+    }
+
     public interface OnFragmentInteractionListener {
         void openPageFragment(SpreadSheet spreadSheet, String linkTo);
+
+        TextToSpeech getTextToSpeech();
     }
 }

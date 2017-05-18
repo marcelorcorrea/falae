@@ -1,6 +1,8 @@
 package com.marcelorcorrea.falae.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -24,6 +26,7 @@ import com.marcelorcorrea.falae.model.User;
 import com.marcelorcorrea.falae.task.DownloadTask;
 
 import java.util.List;
+import java.util.Locale;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, SpreadSheetFragment.OnFragmentInteractionListener, PageFragment.OnFragmentInteractionListener, AddUserFragment.OnFragmentInteractionListener {
@@ -32,6 +35,7 @@ public class NavigationActivity extends AppCompatActivity
     private NavigationView mNavigationView;
     private User mUser;
     private UserDbHelper dbHelper;
+    private TextToSpeech textToSpeech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,15 @@ public class NavigationActivity extends AppCompatActivity
 
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
+
+        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status != TextToSpeech.ERROR) {
+                    textToSpeech.setLanguage(new Locale("pt", "BR"));
+                }
+            }
+        }, "com.google.android.tts");
 
         dbHelper = new UserDbHelper(this);
         if (dbHelper.isThereData()) {
@@ -100,6 +113,9 @@ public class NavigationActivity extends AppCompatActivity
         if (id == R.id.add_user) {
             fragment = AddUserFragment.newInstance();
             tag = AddUserFragment.class.getSimpleName();
+        } else if (id == R.id.voice_item) {
+            openTTSLanguageSettings();
+            return false;
         } else {
             fragment = SpreadSheetFragment.newInstance(mUser);
             tag = SpreadSheetFragment.class.getSimpleName();
@@ -118,6 +134,7 @@ public class NavigationActivity extends AppCompatActivity
 
     @Override
     protected void onDestroy() {
+        textToSpeech.shutdown();
         dbHelper.close();
         super.onDestroy();
     }
@@ -139,6 +156,11 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     @Override
+    public TextToSpeech getTextToSpeech() {
+        return textToSpeech;
+    }
+
+    @Override
     public void onFragmentInteraction(final User user) {
         new DownloadTask(this, new DownloadTask.Callback() {
             @Override
@@ -150,5 +172,11 @@ public class NavigationActivity extends AppCompatActivity
                 mUser = u;
             }
         }).execute(user);
+    }
+
+    private void openTTSLanguageSettings() {
+        Intent installTts = new Intent();
+        installTts.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
+        startActivity(installTts);
     }
 }
