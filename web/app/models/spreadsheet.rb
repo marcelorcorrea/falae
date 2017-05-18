@@ -1,6 +1,6 @@
 class Spreadsheet < ApplicationRecord
-  belongs_to :user, dependent: :destroy
-  has_many :pages
+  belongs_to :user
+  has_many :pages, dependent: :destroy
 
   before_save do
     if self.pages.empty?
@@ -10,7 +10,11 @@ class Spreadsheet < ApplicationRecord
     end
   end
 
-  validates_associated :user
+  #validates_associated :user
   validates :name, presence: true, uniqueness: { scope: :user }
   #TODO: validate existence of referenced initial_page when assign new value
+
+  def Spreadsheet.default
+    Spreadsheet.new name: 'Principal'
+  end
 end
