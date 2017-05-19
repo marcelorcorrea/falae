@@ -1,6 +1,7 @@
 package com.marcelorcorrea.falae.fragment;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
@@ -10,12 +11,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.adapter.ItemPagerAdapter;
 import com.marcelorcorrea.falae.model.Page;
 import com.marcelorcorrea.falae.model.SpreadSheet;
+
+import static com.marcelorcorrea.falae.R.id.pager;
 
 
 public class PageFragment extends Fragment implements ItemFragment.OnFragmentInteractionListener {
@@ -29,6 +34,8 @@ public class PageFragment extends Fragment implements ItemFragment.OnFragmentInt
     private ItemPagerAdapter mPagerAdapter;
     private ImageView leftNav;
     private ImageView rightNav;
+    private FrameLayout leftNavHolder;
+    private FrameLayout rightNavHolder;
 
     public PageFragment() {
     }
@@ -54,42 +61,63 @@ public class PageFragment extends Fragment implements ItemFragment.OnFragmentInt
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_page, container, false);
+        final View view = inflater.inflate(R.layout.fragment_page, container, false);
         leftNav = (ImageView) view.findViewById(R.id.left_nav);
         rightNav = (ImageView) view.findViewById(R.id.right_nav);
-        mPager = (ViewPager) view.findViewById(R.id.pager);
-        mPagerAdapter = new ItemPagerAdapter(getChildFragmentManager(), page);
-        mPager.setAdapter(mPagerAdapter);
-        mPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                enableNavButtons();
-                handleNavButtons();
-            }
-        });
 
-        if (shouldEnableNavButtons()) {
-            handleNavButtons();
-        }
+        leftNavHolder = (FrameLayout) view.findViewById(R.id.left_nav_holder);
+        rightNavHolder = (FrameLayout) view.findViewById(R.id.right_nav_holder);
 
-        leftNav.setOnClickListener(new View.OnClickListener() {
+        ViewTreeObserver vto = view.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
-            public void onClick(View v) {
-                int tab = mPager.getCurrentItem();
-                if (tab > 0) {
-                    tab--;
-                    mPager.setCurrentItem(tab);
-                } else if (tab == 0) {
-                    mPager.setCurrentItem(tab);
+            public void onGlobalLayout() {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+                    view.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                } else {
+                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 }
-            }
-        });
-        rightNav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int tab = mPager.getCurrentItem();
-                tab++;
-                mPager.setCurrentItem(tab);
+                int leftNavMeasuredWidth = leftNavHolder.getMeasuredWidth();
+                int rightNavMeasureWidth = rightNavHolder.getMeasuredWidth();
+
+                mPager = (ViewPager) view.findViewById(pager);
+                mPagerAdapter = new ItemPagerAdapter(getChildFragmentManager(), page, leftNavMeasuredWidth + rightNavMeasureWidth);
+                mPager.setAdapter(mPagerAdapter);
+
+                ViewGroup.MarginLayoutParams pagerLayoutParams = (ViewGroup.MarginLayoutParams) mPager.getLayoutParams();
+                pagerLayoutParams.leftMargin += leftNavMeasuredWidth;
+                pagerLayoutParams.rightMargin += rightNavMeasureWidth;
+
+                mPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+                    @Override
+                    public void onPageSelected(int position) {
+                        handleNavButtons();
+                    }
+                });
+
+                if (shouldEnableNavButtons()) {
+                    handleNavButtons();
+                }
+                leftNavHolder.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int tab = mPager.getCurrentItem();
+                        if (tab > 0) {
+                            tab--;
+                            mPager.setCurrentItem(tab);
+                        } else if (tab == 0) {
+                            mPager.setCurrentItem(tab);
+                        }
+                    }
+                });
+                rightNavHolder.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int tab = mPager.getCurrentItem();
+                        tab++;
+                        mPager.setCurrentItem(tab);
+                    }
+                });
             }
         });
 
@@ -160,7 +188,8 @@ public class PageFragment extends Fragment implements ItemFragment.OnFragmentInt
 
     @Override
     public void openPageFragment(String linkTo) {
-        mListener.openPageFragment(spreadSheet, linkTo);
+        boolean addToBackStack = !spreadSheet.getInitialPage().equals(linkTo);
+        mListener.openPageFragment(spreadSheet, linkTo, addToBackStack);
     }
 
     @Override
@@ -169,7 +198,7 @@ public class PageFragment extends Fragment implements ItemFragment.OnFragmentInt
     }
 
     public interface OnFragmentInteractionListener {
-        void openPageFragment(SpreadSheet spreadSheet, String linkTo);
+        void openPageFragment(SpreadSheet spreadSheet, String linkTo, boolean addToBackStack);
 
         TextToSpeech getTextToSpeech();
     }

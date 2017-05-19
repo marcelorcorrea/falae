@@ -13,12 +13,14 @@ import java.util.List;
 
 public class ItemPagerAdapter extends FragmentStatePagerAdapter {
 
+    private final int marginWidth;
     private Page page;
     private int pageCount;
 
-    public ItemPagerAdapter(FragmentManager fm, Page page) {
+    public ItemPagerAdapter(FragmentManager fm, Page page, int marginWidth) {
         super(fm);
         this.page = page;
+        this.marginWidth = marginWidth;
         pageCount = calculatePageCount();
     }
 
@@ -28,7 +30,7 @@ public class ItemPagerAdapter extends FragmentStatePagerAdapter {
         int itemsPerPage = page.getColumns() * page.getRows();
         int fromIndex = position * itemsPerPage;
         List<Item> subList = items.subList(fromIndex, Math.min(fromIndex + itemsPerPage, items.size()));
-        return ItemFragment.newInstance(new ArrayList<>(subList), page.getColumns(), page.getRows());
+        return ItemFragment.newInstance(new ArrayList<>(subList), page.getColumns(), page.getRows(), marginWidth);
     }
 
     @Override

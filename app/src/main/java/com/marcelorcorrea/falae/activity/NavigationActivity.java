@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -132,19 +133,26 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     @Override
-    public void openPageFragment(SpreadSheet spreadSheet, String name) {
+    public void openPageFragment(SpreadSheet spreadSheet, String name, boolean addToBackStack) {
         Fragment spreadSheetFragment = getSupportFragmentManager().findFragmentByTag(SpreadSheetFragment.class.getSimpleName());
         if (spreadSheetFragment != null) {
             Page page = ((SpreadSheetFragment) spreadSheetFragment).getPage(spreadSheet, name);
             Fragment fragment = PageFragment.newInstance(spreadSheet, page);
-            getSupportFragmentManager()
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager()
                     .beginTransaction()
                     .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
                             R.anim.enter_from_left, R.anim.exit_to_right)
-                    .replace(R.id.container, fragment)
-                    .addToBackStack(null)
-                    .commit();
+                    .replace(R.id.container, fragment);
+            if (addToBackStack) {
+                fragmentTransaction.addToBackStack(null);
+            }
+            fragmentTransaction.commit();
         }
+    }
+
+    @Override
+    public void openPageFragment(SpreadSheet spreadSheet, String linkTo) {
+        openPageFragment(spreadSheet, linkTo, true);
     }
 
     @Override

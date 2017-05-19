@@ -2,29 +2,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <FrameLayout
+        android:id="@+id/left_nav_holder"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical|start"
+        android:background="@color/black">
+
+        <ImageView
+            android:id="@+id/left_nav"
+            android:layout_width="30dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_vertical|start"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_chevron_left_red_48px"
+            android:visibility="invisible" />
+    </FrameLayout>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <ImageView
-        android:id="@+id/left_nav"
+    <FrameLayout
+        android:id="@+id/right_nav_holder"
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:layout_gravity="center_vertical|start"
-        android:alpha="0.5"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_chevron_left_white_48dp"
-        android:visibility="invisible" />
-
-    <ImageView
-        android:id="@+id/right_nav"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
+        android:layout_height="match_parent"
         android:layout_gravity="center_vertical|end"
-        android:alpha="0.5"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_chevron_right_white_48dp"
-        android:visibility="invisible" />
+        android:background="@color/black">
+
+        <ImageView
+            android:id="@+id/right_nav"
+            android:layout_width="30dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_vertical|end"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_chevron_right_red_48px"
+            android:visibility="invisible" />
+    </FrameLayout>
 
 </FrameLayout>

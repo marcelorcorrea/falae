@@ -17,7 +17,6 @@ import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.model.Category;
@@ -26,12 +25,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class ItemFragment extends Fragment {
     private static final String ITEMS_PARAM = "items";
     private static final String COLUMNS_PARAM = "columns";
     private static final String ROWS_PARAM = "rows";
+    private static final String MARGIN_WIDTH = "marginWidth";
 
     private List<Item> mItems;
 
@@ -40,16 +39,18 @@ public class ItemFragment extends Fragment {
     private int mColumns;
     private int mRows;
     private int mImageSize;
+    private int mMarginWidth;
 
     public ItemFragment() {
     }
 
-    public static ItemFragment newInstance(ArrayList<Item> items, int columns, int rows) {
+    public static ItemFragment newInstance(ArrayList<Item> items, int columns, int rows, int width) {
         ItemFragment fragment = new ItemFragment();
         Bundle args = new Bundle();
         args.putParcelableArrayList(ITEMS_PARAM, items);
         args.putInt(COLUMNS_PARAM, columns);
         args.putInt(ROWS_PARAM, rows);
+        args.putInt(MARGIN_WIDTH, width);
         fragment.setArguments(args);
         return fragment;
     }
@@ -61,6 +62,7 @@ public class ItemFragment extends Fragment {
             mItems = getArguments().getParcelableArrayList(ITEMS_PARAM);
             mColumns = getArguments().getInt(COLUMNS_PARAM);
             mRows = getArguments().getInt(ROWS_PARAM);
+            mMarginWidth = getArguments().getInt(MARGIN_WIDTH);
         }
         onAttachFragment(getParentFragment());
         textToSpeech = mListener.getTextToSpeech();
@@ -116,7 +118,9 @@ public class ItemFragment extends Fragment {
         }
 
         if (mImageSize == 0) {
+            System.out.println(" ------------------> mMarginWidth:  " + mMarginWidth);
             mImageSize = calculateImageSize(layoutDimensions.x, layoutDimensions.y, name, imageView);
+            System.out.println("------------------> mImageSize: " + mImageSize);
         }
         Picasso.with(getContext())
                 .load(item.getImgSrc())
@@ -132,21 +136,23 @@ public class ItemFragment extends Fragment {
     private Point calculateLayoutDimensions() {
         DisplayMetrics metrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int widthDimension = Math.round(metrics.widthPixels / mColumns);
+        int widthDimension = Math.round((metrics.widthPixels - mMarginWidth) / mColumns);
         int heightDimension = Math.round(metrics.heightPixels / mRows);
         return new Point(widthDimension, heightDimension);
     }
 
-    private int calculateImageSize(int width, int height, TextView name, ImageView imageView) {
-        if (height > width) {
+    private int calculateImageSize(int layoutWidth, int layoutHeight, TextView name, ImageView imageView) {
+        int nameTopMargin = ((ConstraintLayout.LayoutParams) name.getLayoutParams()).topMargin;
+        int nameBoxHeight = nameTopMargin + name.getLineHeight();
+        int availableHeight = layoutHeight - nameBoxHeight;
+        if (availableHeight > layoutWidth) {
             int imageLeftMargin = ((ConstraintLayout.LayoutParams) imageView.getLayoutParams()).leftMargin;
             int imageRightMargin = ((ConstraintLayout.LayoutParams) imageView.getLayoutParams()).rightMargin;
-            return width - (imageLeftMargin + imageRightMargin);
+            return layoutWidth - (imageLeftMargin + imageRightMargin);
         } else {
-            int nameTopMargin = ((ConstraintLayout.LayoutParams) name.getLayoutParams()).topMargin;
             int imageTopMargin = ((ConstraintLayout.LayoutParams) imageView.getLayoutParams()).topMargin;
             int imageBottomMargin = ((ConstraintLayout.LayoutParams) imageView.getLayoutParams()).bottomMargin;
-            return height - (name.getLineHeight() + nameTopMargin + imageTopMargin + imageBottomMargin);
+            return availableHeight - (imageTopMargin + imageBottomMargin);
         }
     }
 
@@ -178,5 +184,7 @@ public class ItemFragment extends Fragment {
         void openPageFragment(String linkTo);
 
         TextToSpeech getTextToSpeech();
+
+
     }
 }
