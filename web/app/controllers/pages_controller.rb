@@ -4,12 +4,18 @@ class PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    @pages = Page.all
+    user = User.find_by id: params[:user_id]
+    spreadsheet = user.spreadsheets.find_by id: params[:spreadsheet_id]
+    @pages = spreadsheet.pages
   end
 
   # GET /pages/1
   # GET /pages/1.json
   def show
+    user = User.find_by id: params[:user_id]
+    spreadsheet = user.spreadsheets.find_by id: params[:spreadsheet_id]
+    @page = spreadsheet.pages.find_by id: params[:id]
+    @items = @page.items
   end
 
   # GET /pages/new
@@ -24,11 +30,13 @@ class PagesController < ApplicationController
   # POST /pages
   # POST /pages.json
   def create
-    @page = Page.new(page_params)
+    user = User.find_by id: params[:user_id]
+    spreadsheet = user.spreadsheets.find_by id: params[:spreadsheet_id]
+    @page = spreadsheet.pages.build page_params
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to @page, notice: 'Page was successfully created.' }
+        format.html { redirect_to [@page.spreadsheet.user, @page.spreadsheet, @page], notice: 'Page was successfully created.' }
         format.json { render :show, status: :created, location: @page }
       else
         format.html { render :new }
@@ -42,7 +50,7 @@ class PagesController < ApplicationController
   def update
     respond_to do |format|
       if @page.update(page_params)
-        format.html { redirect_to @page, notice: 'Page was successfully updated.' }
+        format.html { redirect_to [@page.spreadsheet.user, @page.spreadsheet, @page], notice: 'Page was successfully updated.' }
         format.json { render :show, status: :ok, location: @page }
       else
         format.html { render :edit }

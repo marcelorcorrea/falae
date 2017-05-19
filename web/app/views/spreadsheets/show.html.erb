@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+<%= link_to 'Edit', edit_user_spreadsheet_path(@spreadsheet.user, @spreadsheet) %> |
+<%= link_to 'Back', user_path(@spreadsheet.user) %>
+
 <p>
   <strong>Name:</strong>
   <%= @spreadsheet.name %>
@@ -10,10 +13,11 @@
   <%= @spreadsheet.initial_page %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @spreadsheet.user %>
-</p>
+<!--<p>-->
+  <!--<strong>User:</strong>-->
+  <!--<%= @spreadsheet.user %>-->
+<!--</p>-->
 
-<%= link_to 'Edit', edit_spreadsheet_path(@spreadsheet) %> |
-<%= link_to 'Back', spreadsheets_path %>
+<h3>Pages:</h3>
+
+<%= render 'pages/page' %>

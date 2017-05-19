@@ -3,10 +3,22 @@ class User < ApplicationRecord
 
   has_one :role_user, dependent: :destroy
   has_one :role, through: :role_user
-  has_many :spreadsheets
+  has_many :spreadsheets, dependent: :destroy
+  has_many :item_user, dependent: :destroy
+  has_many :items, through: :item_user
 
-  before_validation { self.role ||= Role.default }
-  before_save { self.email = email.downcase }
+  before_validation do
+    if self.role.blank?
+      self.role = Role.default
+    end
+  end
+  before_save do
+    self.email = email.downcase
+    if self.spreadsheets.empty?
+      self.spreadsheets << Spreadsheet.default
+    end
+  end
+  before_destroy { self.items.each { |item| item.destroy unless item.default }  }
 
   validates_associated :role
   validates :name, :last_name, presence: true, length: { maximum: 50 }
@@ -16,4 +28,8 @@ class User < ApplicationRecord
             length: { minimum: 6 }
 
   has_secure_password
+
+  def User.admin?
+    false
+  end
 end

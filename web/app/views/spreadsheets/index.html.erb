@@ -2,30 +2,8 @@
 
 <h1>Spreadsheets</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Initial page</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @spreadsheets.each do |spreadsheet| %>
-      <tr>
-        <td><%= spreadsheet.name %></td>
-        <td><%= spreadsheet.initial_page %></td>
-        <td><%= spreadsheet.user %></td>
-        <td><%= link_to 'Show', spreadsheet %></td>
-        <td><%= link_to 'Edit', edit_spreadsheet_path(spreadsheet) %></td>
-        <td><%= link_to 'Destroy', spreadsheet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render 'spreadsheets/spreadsheet' %>
 
 <br>
 
-<%= link_to 'New Spreadsheet', new_spreadsheet_path %>
+<%= link_to 'New Spreadsheet', new_user_spreadsheet_path %>

@@ -1,2 +1,5 @@
-json.extract! spreadsheet, :id, :name, :initial_page, :user_id, :created_at, :updated_at
-json.url spreadsheet_url(spreadsheet, format: :json)
+json.extract! spreadsheet, :name, :initial_page
+
+json.pages spreadsheet.pages do |page|
+  json.partial! 'pages/page', page: page
+end

@@ -1,4 +1,4 @@
-<%= form_with(model: spreadsheet, local: true) do |form| %>
+<%= form_with(model: [:user, spreadsheet], local: true) do |form| %>
   <% if spreadsheet.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(spreadsheet.errors.count, "error") %> prohibited this spreadsheet from being saved:</h2>
@@ -18,13 +18,13 @@
 
   <div class="field">
     <%= form.label :initial_page %>
-    <%= form.text_field :initial_page, id: :spreadsheet_initial_page %>
+    <%= select_tag(:initial_page, options_for_select(spreadsheet.pages.map(&:name), spreadsheet.initial_page)) %>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :spreadsheet_user_id %>
-  </div>
+  <!--<div class="field">-->
+    <!--<%= form.label :user_id %>-->
+    <!--<%= form.text_field :user_id, id: :spreadsheet_user_id %>-->
+  <!--</div>-->
 
   <div class="actions">
     <%= form.submit %>

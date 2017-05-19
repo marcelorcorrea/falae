@@ -1,6 +1,7 @@
 class Page < ApplicationRecord
-  belongs_to :spreadsheet, dependent: :destroy
-  has_many :items
+  belongs_to :spreadsheet
+  has_many :item_page, dependent: :destroy
+  has_many :items, through: :item_page
 
   validates_associated :spreadsheet
   validates :name, presence: true, uniqueness: { scope: :spreadsheet }
@@ -8,6 +9,6 @@ class Page < ApplicationRecord
             numericality: { only_integer: true }
 
   def Page.default
-    @default_page ||= Page.new name: :page, columns: 4, rows: 3
+    Page.new name: 'Initial', columns: 4, rows: 3
   end
 end

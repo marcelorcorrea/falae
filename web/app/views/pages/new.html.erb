@@ -2,4 +2,4 @@
 
 <%= render 'form', page: @page %>
 
-<%= link_to 'Back', pages_path %>
+<%= link_to 'Back', user_spreadsheet_path(@page.spreadsheet.user, @page.spreadsheet) %>
