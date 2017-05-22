@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Falae</string>
+
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Add User</string>
+    <string name="action_sign_in_short">Add</string>
+    <string name="error_invalid_email">Invalid password.</string>
+    <string name="error_invalid_password">Password too short.</string>
+    <string name="error_incorrect_password">Email or Password incorrect.</string>
+    <string name="error_field_required">This field is required.</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="synchronize">Synchronize</string>
+
+    <string name="title_activity_login">Download Spreadsheet</string>
+    <string name="spreadsheets">Spreadsheets</string>
+    <string name="users">Users</string>
+    <string name="add_user">Add User</string>
+    <string name="voice">Voice</string>
+    <string name="previous">Back</string>
+    <string name="next">Next</string>
+    <string name="image_view_descriptor">Image</string>
+</resources>

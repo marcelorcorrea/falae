@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutCompat;
@@ -34,7 +33,6 @@ public class ItemFragment extends Fragment {
 
     private List<Item> mItems;
 
-    private TextToSpeech textToSpeech;
     private OnFragmentInteractionListener mListener;
     private int mColumns;
     private int mRows;
@@ -65,7 +63,6 @@ public class ItemFragment extends Fragment {
             mMarginWidth = getArguments().getInt(MARGIN_WIDTH);
         }
         onAttachFragment(getParentFragment());
-        textToSpeech = mListener.getTextToSpeech();
     }
 
     @Override
@@ -101,11 +98,7 @@ public class ItemFragment extends Fragment {
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    textToSpeech.speak(item.getNameToPronounce(), TextToSpeech.QUEUE_FLUSH, null, null);
-                } else {
-                    textToSpeech.speak(item.getNameToPronounce(), TextToSpeech.QUEUE_FLUSH, null);
-                }
+                mListener.speak(item.getNameToPronounce());
                 if (item.getLinkTo() != null) {
                     mListener.openPageFragment(item.getLinkTo());
                 }
@@ -118,9 +111,7 @@ public class ItemFragment extends Fragment {
         }
 
         if (mImageSize == 0) {
-            System.out.println(" ------------------> mMarginWidth:  " + mMarginWidth);
             mImageSize = calculateImageSize(layoutDimensions.x, layoutDimensions.y, name, imageView);
-            System.out.println("------------------> mImageSize: " + mImageSize);
         }
         Picasso.with(getContext())
                 .load(item.getImgSrc())
@@ -183,8 +174,6 @@ public class ItemFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         void openPageFragment(String linkTo);
 
-        TextToSpeech getTextToSpeech();
-
-
+        void speak(String msg);
     }
 }

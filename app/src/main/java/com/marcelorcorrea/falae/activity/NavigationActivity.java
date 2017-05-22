@@ -1,6 +1,7 @@
 package com.marcelorcorrea.falae.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.design.widget.NavigationView;
@@ -156,8 +157,12 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     @Override
-    public TextToSpeech getTextToSpeech() {
-        return textToSpeech;
+    public void speak(String msg) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            textToSpeech.speak(msg, TextToSpeech.QUEUE_FLUSH, null, null);
+        } else {
+            textToSpeech.speak(msg, TextToSpeech.QUEUE_FLUSH, null);
+        }
     }
 
     @Override

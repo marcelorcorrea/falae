@@ -3,7 +3,6 @@ package com.marcelorcorrea.falae.fragment;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -104,6 +103,7 @@ public class PageFragment extends Fragment implements ItemFragment.OnFragmentInt
                         int tab = mPager.getCurrentItem();
                         if (tab > 0) {
                             tab--;
+                            speak(getString(R.string.previous));
                             mPager.setCurrentItem(tab);
                         } else if (tab == 0) {
                             mPager.setCurrentItem(tab);
@@ -115,6 +115,7 @@ public class PageFragment extends Fragment implements ItemFragment.OnFragmentInt
                     public void onClick(View v) {
                         int tab = mPager.getCurrentItem();
                         tab++;
+                        speak(getString(R.string.next));
                         mPager.setCurrentItem(tab);
                     }
                 });
@@ -193,13 +194,13 @@ public class PageFragment extends Fragment implements ItemFragment.OnFragmentInt
     }
 
     @Override
-    public TextToSpeech getTextToSpeech() {
-        return mListener.getTextToSpeech();
+    public void speak(String msg) {
+        mListener.speak(msg);
     }
 
     public interface OnFragmentInteractionListener {
         void openPageFragment(SpreadSheet spreadSheet, String linkTo, boolean addToBackStack);
 
-        TextToSpeech getTextToSpeech();
+        void speak(String msg);
     }
 }
