@@ -1,0 +1,31 @@
+<div class="nav-bar">
+  <div class="logo">
+    <span><%= fa_icon 'assistive-listening-systems' %>   Falae</span>
+  </div>
+
+  <div class="links">
+    <%= link_to home_path, class: ('active' if current_page?(root_path) || current_page?(home_path)) do %>
+      <%= fa_icon 'home' %> Home
+    <% end %>
+    <%= link_to about_path, class: ('active' if current_page?(about_path)) do %>
+      <%= fa_icon 'info-circle' %> About
+    <% end %>
+    <%= link_to contact_path, class: ('active' if current_page?(contact_path)) do %>
+      <%= fa_icon 'envelope' %> Contact
+    <% end %>
+  </div>
+
+  <div class="session">
+    <% unless @current_user %>
+      <%= link_to login_path, class: ('active' if current_page?(login_path)) do %>
+        <%= fa_icon 'sign-in' %> Log in
+      <% end %>
+      <%= link_to register_path, class: ('active' if current_page?(register_path)) do %>
+        <%= fa_icon 'user-plus' %> Register
+      <% end %>
+    <% else %>
+      <span class="welcome">Welcome, <%= @current_user.name %></span>
+      <span class="logout">Log out</span>
+    <% end %>
+  </div>
+</div>

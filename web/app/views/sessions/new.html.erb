@@ -1,0 +1,22 @@
+<div class="login">
+  <div class="login-box">
+    <div class="welcome">Welcome!</div>
+    <%= form_with scope: :user do |form| %>
+      <div class="field">
+        <%= form.label :email %>
+        <span class="off-set"><%= fa_icon 'user' %></span>
+        <%= form.text_field :email, placeholder: :email  %>
+      </div>
+
+      <div class="field">
+        <%= form.label :password %>
+        <span class="off-set"><%= fa_icon 'lock' %></span>
+        <%= form.password_field :password, placeholder: :password %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit 'Log in' %>
+      </div>
+    <% end %>
+  </div>
+</div>
