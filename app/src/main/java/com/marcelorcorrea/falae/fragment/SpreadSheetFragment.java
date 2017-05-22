@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 
 import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.adapter.SpreadSheetAdapter;
-import com.marcelorcorrea.falae.model.Page;
 import com.marcelorcorrea.falae.model.SpreadSheet;
 import com.marcelorcorrea.falae.model.User;
 
@@ -43,7 +42,6 @@ public class SpreadSheetFragment extends Fragment {
         }
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,7 +50,7 @@ public class SpreadSheetFragment extends Fragment {
         spreadSheetAdapter = new SpreadSheetAdapter(getContext(), user.getSpreadSheets(), new SpreadSheetAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(SpreadSheet spreadSheet) {
-                mListener.openPageFragment(spreadSheet, spreadSheet.getInitialPage());
+                mListener.displayActivity(spreadSheet);
             }
         });
         recyclerView.setAdapter(spreadSheetAdapter);
@@ -83,16 +81,7 @@ public class SpreadSheetFragment extends Fragment {
         mListener = null;
     }
 
-    public Page getPage(SpreadSheet spreadSheet, String name) {
-        for (Page page : spreadSheet.getPages()) {
-            if (page.getName().equals(name)) {
-                return page;
-            }
-        }
-        return null;
-    }
-
     public interface OnFragmentInteractionListener {
-        void openPageFragment(SpreadSheet spreadSheet, String linkTo);
+        void displayActivity(SpreadSheet spreadSheet);
     }
 }

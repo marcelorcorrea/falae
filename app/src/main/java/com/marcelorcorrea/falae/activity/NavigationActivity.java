@@ -1,12 +1,11 @@
 package com.marcelorcorrea.falae.activity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,28 +15,28 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.database.UserDbHelper;
 import com.marcelorcorrea.falae.fragment.AddUserFragment;
-import com.marcelorcorrea.falae.fragment.PageFragment;
 import com.marcelorcorrea.falae.fragment.SpreadSheetFragment;
-import com.marcelorcorrea.falae.model.Page;
 import com.marcelorcorrea.falae.model.SpreadSheet;
 import com.marcelorcorrea.falae.model.User;
 import com.marcelorcorrea.falae.task.DownloadTask;
 
 import java.util.List;
-import java.util.Locale;
 
 public class NavigationActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, SpreadSheetFragment.OnFragmentInteractionListener, PageFragment.OnFragmentInteractionListener, AddUserFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+        SpreadSheetFragment.OnFragmentInteractionListener,
+        AddUserFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawer;
     private NavigationView mNavigationView;
     private User mUser;
     private UserDbHelper dbHelper;
-    private TextToSpeech textToSpeech;
+    private boolean doubleBackToExitPressedOnce;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,21 +56,12 @@ public class NavigationActivity extends AppCompatActivity
         toggle.syncState();
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
-        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status != TextToSpeech.ERROR) {
-                    textToSpeech.setLanguage(new Locale("pt", "BR"));
-                }
-            }
-        }, "com.google.android.tts");
+
 
         dbHelper = new UserDbHelper(this);
-        if (dbHelper.isThereData()) {
-            List<User> users = dbHelper.read();
-            for (final User u : users) {
-                addUserToMenu(u);
-            }
+        List<User> users = dbHelper.read();
+        for (final User u : users) {
+            addUserToMenu(u);
         }
     }
 
@@ -94,7 +84,18 @@ public class NavigationActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed();
+            } else {
+                this.doubleBackToExitPressedOnce = true;
+                Toast.makeText(this, R.string.exit_app_msg, Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        doubleBackToExitPressedOnce = false;
+                    }
+                }, 2000);
+            }
         }
     }
 
@@ -128,41 +129,8 @@ public class NavigationActivity extends AppCompatActivity
 
     @Override
     protected void onDestroy() {
-        textToSpeech.shutdown();
         dbHelper.close();
         super.onDestroy();
-    }
-
-    @Override
-    public void openPageFragment(SpreadSheet spreadSheet, String name, boolean addToBackStack) {
-        Fragment spreadSheetFragment = getSupportFragmentManager().findFragmentByTag(SpreadSheetFragment.class.getSimpleName());
-        if (spreadSheetFragment != null) {
-            Page page = ((SpreadSheetFragment) spreadSheetFragment).getPage(spreadSheet, name);
-            Fragment fragment = PageFragment.newInstance(spreadSheet, page);
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager()
-                    .beginTransaction()
-                    .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
-                            R.anim.enter_from_left, R.anim.exit_to_right)
-                    .replace(R.id.container, fragment);
-            if (addToBackStack) {
-                fragmentTransaction.addToBackStack(null);
-            }
-            fragmentTransaction.commit();
-        }
-    }
-
-    @Override
-    public void openPageFragment(SpreadSheet spreadSheet, String linkTo) {
-        openPageFragment(spreadSheet, linkTo, true);
-    }
-
-    @Override
-    public void speak(String msg) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            textToSpeech.speak(msg, TextToSpeech.QUEUE_FLUSH, null, null);
-        } else {
-            textToSpeech.speak(msg, TextToSpeech.QUEUE_FLUSH, null);
-        }
     }
 
     @Override
@@ -182,5 +150,13 @@ public class NavigationActivity extends AppCompatActivity
         Intent installTts = new Intent();
         installTts.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
         startActivity(installTts);
+    }
+
+    @Override
+    public void displayActivity(SpreadSheet spreadSheet) {
+        Intent intent = new Intent(this, DisplayActivity.class);
+        intent.putExtra(DisplayActivity.SPREADSHEET, spreadSheet);
+        startActivity(intent);
+        overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
     }
 }

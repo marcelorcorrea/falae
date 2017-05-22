@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.marcelorcorrea.falae.fragment.ItemFragment;
+import com.marcelorcorrea.falae.fragment.ViewPagerItemFragment;
 import com.marcelorcorrea.falae.model.Item;
 import com.marcelorcorrea.falae.model.Page;
 
@@ -30,7 +30,7 @@ public class ItemPagerAdapter extends FragmentStatePagerAdapter {
         int itemsPerPage = page.getColumns() * page.getRows();
         int fromIndex = position * itemsPerPage;
         List<Item> subList = items.subList(fromIndex, Math.min(fromIndex + itemsPerPage, items.size()));
-        return ItemFragment.newInstance(new ArrayList<>(subList), page.getColumns(), page.getRows(), marginWidth);
+        return ViewPagerItemFragment.newInstance(new ArrayList<>(subList), page.getColumns(), page.getRows(), marginWidth);
     }
 
     @Override

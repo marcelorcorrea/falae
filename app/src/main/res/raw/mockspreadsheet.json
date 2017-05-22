@@ -164,6 +164,13 @@
               "imgSrc": "http://www.taurusarmed.net/forums/attachments/diner/68891d1385221291-pie-homer_drool.jpg",
               "name": "Bolo",
               "nameToPronounce": "Bolo"
+            },
+            {
+              "category": "OTHER",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/WZXtPuwKgBclNcl/inicio.png",
+              "name": "Inicio",
+              "nameToPronounce": "Inicio",
+              "linkTo": "Main"
             }
           ],
           "name": "FoodPage",
@@ -226,6 +233,13 @@
             },
             {
               "category": "VERB",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/cpcXW3llIqHdIAs/eu_estou.png",
+              "linkTo": "PaginaEmoções",
+              "name": "Eu estou",
+              "nameToPronounce": "Eu estou"
+            },
+            {
+              "category": "VERB",
               "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/XRh6Qr12iu4Z8ys/brincar.png",
               "name": "Brincar",
               "nameToPronounce": "Brincar",
@@ -276,6 +290,13 @@
               "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/N3oyDiLYZp1pwec/sobremesa.png",
               "name": "Sobremesa",
               "nameToPronounce": "Sobremesa"
+            },
+            {
+              "category": "OTHER",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/WZXtPuwKgBclNcl/inicio.png",
+              "name": "Inicio",
+              "nameToPronounce": "Inicio",
+              "linkTo": "Main"
             }
           ],
           "name": "PaginaComida",
@@ -289,6 +310,13 @@
               "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/W82d6uORiN3CLz4/bebida.png",
               "name": "Bebida",
               "nameToPronounce": "Bebida"
+            },
+            {
+              "category": "OTHER",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/WZXtPuwKgBclNcl/inicio.png",
+              "name": "Inicio",
+              "nameToPronounce": "Inicio",
+              "linkTo": "Main"
             }
           ],
           "name": "PaginaBebida",
@@ -320,6 +348,13 @@
               "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/e3pVvXbCEnoLKMT/feliz.png",
               "name": "Feliz",
               "nameToPronounce": "Feliz"
+            },
+            {
+              "category": "OTHER",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/WZXtPuwKgBclNcl/inicio.png",
+              "name": "Inicio",
+              "nameToPronounce": "Inicio",
+              "linkTo": "Main"
             }
           ],
           "name": "PaginaEmoções",
@@ -363,6 +398,13 @@
               "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/B2DmuoJbJlKlHVa/contar_algo.png",
               "name": "Contar algo",
               "nameToPronounce": "Contar algo"
+            },
+            {
+              "category": "OTHER",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/WZXtPuwKgBclNcl/inicio.png",
+              "name": "Inicio",
+              "nameToPronounce": "Inicio",
+              "linkTo": "Main"
             }
           ],
           "name": "PaginaQuerer",
@@ -394,6 +436,13 @@
               "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/FkL1jbWbUqdJWYb/cortar_unhas.png",
               "name": "Cortar as unhas",
               "nameToPronounce": "Cortar as unhas"
+            },
+            {
+              "category": "OTHER",
+              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/WZXtPuwKgBclNcl/inicio.png",
+              "name": "Inicio",
+              "nameToPronounce": "Inicio",
+              "linkTo": "Main"
             }
           ],
           "name": "PaginaCuidadosPessoais",

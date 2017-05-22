@@ -1,5 +1,6 @@
 package com.marcelorcorrea.falae.fragment;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
@@ -25,7 +26,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemFragment extends Fragment {
+public class ViewPagerItemFragment extends Fragment {
     private static final String ITEMS_PARAM = "items";
     private static final String COLUMNS_PARAM = "columns";
     private static final String ROWS_PARAM = "rows";
@@ -39,11 +40,11 @@ public class ItemFragment extends Fragment {
     private int mImageSize;
     private int mMarginWidth;
 
-    public ItemFragment() {
+    public ViewPagerItemFragment() {
     }
 
-    public static ItemFragment newInstance(ArrayList<Item> items, int columns, int rows, int width) {
-        ItemFragment fragment = new ItemFragment();
+    public static ViewPagerItemFragment newInstance(ArrayList<Item> items, int columns, int rows, int width) {
+        ViewPagerItemFragment fragment = new ViewPagerItemFragment();
         Bundle args = new Bundle();
         args.putParcelableArrayList(ITEMS_PARAM, items);
         args.putInt(COLUMNS_PARAM, columns);
@@ -62,13 +63,12 @@ public class ItemFragment extends Fragment {
             mRows = getArguments().getInt(ROWS_PARAM);
             mMarginWidth = getArguments().getInt(MARGIN_WIDTH);
         }
-        onAttachFragment(getParentFragment());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_item, container, false);
+        View view = inflater.inflate(R.layout.fragment_view_pager_item, container, false);
         GridLayout gridLayout = (GridLayout) view.findViewById(R.id.grid_layout);
         gridLayout.setAlignmentMode(GridLayout.ALIGN_BOUNDS);
         gridLayout.setColumnCount(mColumns);
@@ -100,7 +100,7 @@ public class ItemFragment extends Fragment {
             public void onClick(View v) {
                 mListener.speak(item.getNameToPronounce());
                 if (item.getLinkTo() != null) {
-                    mListener.openPageFragment(item.getLinkTo());
+                    mListener.openPage(item.getLinkTo());
                 }
             }
         });
@@ -156,11 +156,13 @@ public class ItemFragment extends Fragment {
         return drawable;
     }
 
-    public void onAttachFragment(Fragment fragment) {
-        if (fragment instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) fragment;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException(fragment.toString()
+            throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
     }
@@ -172,7 +174,7 @@ public class ItemFragment extends Fragment {
     }
 
     public interface OnFragmentInteractionListener {
-        void openPageFragment(String linkTo);
+        void openPage(String linkTo);
 
         void speak(String msg);
     }
