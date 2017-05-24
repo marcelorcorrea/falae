@@ -87,6 +87,7 @@ public class ViewPagerItemFragment extends Fragment {
         final ConstraintLayout layout = (ConstraintLayout) inflater.inflate(R.layout.item, null, false);
         final TextView name = (TextView) layout.findViewById(R.id.item_name);
         final ImageView imageView = (ImageView) layout.findViewById(R.id.item_image_view);
+        final ImageView linkPage = (ImageView) layout.findViewById(R.id.link_page);
 
         layout.setLayoutParams(new LinearLayoutCompat.LayoutParams(layoutDimensions.x, layoutDimensions.y));
         Drawable drawable = createBackgroundDrawable(item);
@@ -120,6 +121,10 @@ public class ViewPagerItemFragment extends Fragment {
                 .resize(mImageSize, mImageSize)
                 .centerCrop()
                 .into(imageView);
+
+        if (item.getLinkTo() != null) {
+            linkPage.setVisibility(View.VISIBLE);
+        }
 
         return layout;
     }
