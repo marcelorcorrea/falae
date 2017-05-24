@@ -175,7 +175,7 @@ public class AddUserFragment extends Fragment {
                     pDialog = null;
                 }
                 pDialog = new ProgressDialog(getContext());
-                pDialog.setMessage("Autenticando ...");
+                pDialog.setMessage(getContext().getString(R.string.authenticate_message));
                 pDialog.setIndeterminate(false);
                 pDialog.setCancelable(false);
                 pDialog.show();

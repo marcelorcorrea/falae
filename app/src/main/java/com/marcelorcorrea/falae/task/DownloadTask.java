@@ -72,7 +72,7 @@ public class DownloadTask extends AsyncTask<User, Void, User> {
                 pDialog = null;
             }
             pDialog = new ProgressDialog(context);
-            pDialog.setMessage("Sincronizando ...");
+            pDialog.setMessage(context.getString(R.string.synchronize_message));
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
             pDialog.show();
@@ -140,20 +140,5 @@ public class DownloadTask extends AsyncTask<User, Void, User> {
         if (pDialog != null && pDialog.isShowing()) {
             pDialog.dismiss();
         }
-    }
-
-    private List<SpreadSheet> createMockSpreadsheets() {
-        try {
-            InputStream raw = context.getResources().openRawResource(R.raw.mockspreadsheet);
-            Reader is = new BufferedReader(new InputStreamReader(raw, "UTF8"));
-            String json = IOUtils.toString(is);
-
-            Type listType = new TypeToken<List<SpreadSheet>>() {
-            }.getType();
-            return new Gson().fromJson(json, listType);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return Collections.emptyList();
     }
 }

@@ -26,4 +26,6 @@
     <string name="next">Next</string>
     <string name="image_view_descriptor">Image</string>
     <string name="exit_app_msg">Please click BACK again to exit</string>
+    <string name="synchronize_message">Synchronizing</string>
+    <string name="authenticate_message">Authorizing</string>
 </resources>

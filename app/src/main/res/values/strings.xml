@@ -25,4 +25,6 @@
     <string name="next">Avançar</string>
     <string name="image_view_descriptor">imagem</string>
     <string name="exit_app_msg">Por favor pressione VOLTAR novamente para sair</string>
+    <string name="synchronize_message">Sincronizando</string>
+    <string name="authenticate_message">Autenticando</string>
 </resources>

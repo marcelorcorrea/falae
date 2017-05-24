@@ -14,6 +14,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -77,26 +78,26 @@ public class ViewPagerItemFragment extends Fragment {
         Point layoutDimensions = calculateLayoutDimensions();
 
         for (final Item item : mItems) {
-            ConstraintLayout layout = generateLayout(inflater, item, layoutDimensions);
+            FrameLayout layout = generateLayout(inflater, item, layoutDimensions);
             gridLayout.addView(layout);
         }
         return view;
     }
 
-    private ConstraintLayout generateLayout(LayoutInflater inflater, final Item item, Point layoutDimensions) {
-        final ConstraintLayout layout = (ConstraintLayout) inflater.inflate(R.layout.item, null, false);
-        final TextView name = (TextView) layout.findViewById(R.id.item_name);
-        final ImageView imageView = (ImageView) layout.findViewById(R.id.item_image_view);
-        final ImageView linkPage = (ImageView) layout.findViewById(R.id.link_page);
+    private FrameLayout generateLayout(LayoutInflater inflater, final Item item, Point layoutDimensions) {
+        final FrameLayout frameLayout = (FrameLayout) inflater.inflate(R.layout.item, null, false);
+        final TextView name = (TextView) frameLayout.findViewById(R.id.item_name);
+        final ImageView imageView = (ImageView) frameLayout.findViewById(R.id.item_image_view);
+        final ImageView linkPage = (ImageView) frameLayout.findViewById(R.id.link_page);
 
-        layout.setLayoutParams(new LinearLayoutCompat.LayoutParams(layoutDimensions.x, layoutDimensions.y));
+        frameLayout.setLayoutParams(new FrameLayout.LayoutParams(layoutDimensions.x, layoutDimensions.y));
         Drawable drawable = createBackgroundDrawable(item);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-            layout.setBackgroundDrawable(drawable);
+            frameLayout.setBackgroundDrawable(drawable);
         } else {
-            layout.setBackground(drawable);
+            frameLayout.setBackground(drawable);
         }
-        layout.setOnClickListener(new View.OnClickListener() {
+        frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mListener.speak(item.getNameToPronounce());
@@ -131,7 +132,7 @@ public class ViewPagerItemFragment extends Fragment {
             linkPage.setVisibility(View.VISIBLE);
         }
 
-        return layout;
+        return frameLayout;
     }
 
     private Point calculateLayoutDimensions() {
