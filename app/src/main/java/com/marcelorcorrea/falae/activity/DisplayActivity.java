@@ -50,8 +50,8 @@ public class DisplayActivity extends AppCompatActivity implements PageFragment.O
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager
                 .beginTransaction()
-                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
-                        R.anim.enter_from_left, R.anim.exit_to_right)
+                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out,
+                        android.R.anim.fade_in, android.R.anim.fade_out)
                 .replace(R.id.page_container, fragment);
         if (!currentSpreadSheet.getInitialPage().equals(linkTo)) {
             fragmentTransaction.addToBackStack(null);

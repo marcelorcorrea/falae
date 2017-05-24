@@ -36,7 +36,7 @@ public class UserDbHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + UserEntry.TABLE_NAME + " (" +
                     UserEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                    UserEntry.COLUMN_NAME + " TEXT NOT NULL UNIQUE," +
+                    UserEntry.COLUMN_NAME + " TEXT NOT NULL," +
                     UserEntry.COLUMN_EMAIL + " TEXT NOT NULL UNIQUE," +
                     UserEntry.COLUMN_SPREADSHEETS + " TEXT)";
 
@@ -72,12 +72,6 @@ public class UserDbHelper extends SQLiteOpenHelper {
             Log.d("FALAE", "Inserting entry...");
             db.insert(UserEntry.TABLE_NAME, null, contentValues);
         }
-    }
-
-    public boolean isThereData() {
-        SQLiteDatabase db = getReadableDatabase();
-        long count = DatabaseUtils.queryNumEntries(db, UserEntry.TABLE_NAME);
-        return count > 0;
     }
 
     public boolean doesUserExists(User user) {
