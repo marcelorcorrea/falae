@@ -109,6 +109,11 @@ public class ViewPagerItemFragment extends Fragment {
         name.setText(item.getName());
         if (item.getCategory() == Category.SUBJECT) {
             name.setTextColor(Color.BLACK);
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                linkPage.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_launch_black_48dp));
+            } else {
+                linkPage.setImageDrawable(getContext().getDrawable(R.drawable.ic_launch_black_48dp));
+            }
         }
 
         if (mImageSize == 0) {

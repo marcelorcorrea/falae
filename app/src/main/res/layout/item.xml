@@ -43,7 +43,7 @@
         android:id="@+id/link_page"
         android:layout_width="18dp"
         android:layout_height="19dp"
-        app:srcCompat="@drawable/ic_launch_black_48dp"
+        app:srcCompat="@drawable/ic_launch_white_48dp"
         android:visibility="invisible"
         android:layout_marginRight="6dp"
         app:layout_constraintRight_toRightOf="parent"
