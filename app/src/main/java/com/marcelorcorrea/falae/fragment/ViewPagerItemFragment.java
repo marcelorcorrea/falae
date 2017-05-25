@@ -1,21 +1,22 @@
 package com.marcelorcorrea.falae.fragment;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutCompat;
+import android.support.v7.widget.GridLayout;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -120,10 +121,22 @@ public class ViewPagerItemFragment extends Fragment {
         if (mImageSize == 0) {
             mImageSize = calculateImageSize(layoutDimensions.x, layoutDimensions.y, name, imageView);
         }
+
+        Drawable brokenImage;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            brokenImage = getContext().getResources().getDrawable(R.drawable.ic_broken_image_black_48dp);
+        } else {
+            brokenImage = getContext().getDrawable(R.drawable.ic_broken_image_black_48dp);
+        }
+
+        Bitmap bitmap = ((BitmapDrawable) brokenImage).getBitmap();
+        Drawable resizedBrokenImage = new BitmapDrawable(getResources(),
+                Bitmap.createScaledBitmap(bitmap, mImageSize, mImageSize, true));
+
         Picasso.with(getContext())
                 .load(item.getImgSrc())
                 .placeholder(R.drawable.ic_image_black_48dp)
-                .error(R.drawable.ic_broken_image_black_48dp)
+                .error(resizedBrokenImage)
                 .resize(mImageSize, mImageSize)
                 .centerCrop()
                 .into(imageView);
