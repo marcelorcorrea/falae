@@ -122,21 +122,13 @@ public class ViewPagerItemFragment extends Fragment {
             mImageSize = calculateImageSize(layoutDimensions.x, layoutDimensions.y, name, imageView);
         }
 
-        Drawable brokenImage;
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            brokenImage = getContext().getResources().getDrawable(R.drawable.ic_broken_image_black_48dp);
-        } else {
-            brokenImage = getContext().getDrawable(R.drawable.ic_broken_image_black_48dp);
-        }
-
-        Bitmap bitmap = ((BitmapDrawable) brokenImage).getBitmap();
-        Drawable resizedBrokenImage = new BitmapDrawable(getResources(),
-                Bitmap.createScaledBitmap(bitmap, mImageSize, mImageSize, true));
+        Drawable brokenImage = getResizedDrawable(R.drawable.ic_broken_image_black_48dp);
+        Drawable placeHolderImage = getResizedDrawable(R.drawable.ic_image_black_48dp);
 
         Picasso.with(getContext())
                 .load(item.getImgSrc())
-                .placeholder(R.drawable.ic_image_black_48dp)
-                .error(resizedBrokenImage)
+                .placeholder(placeHolderImage)
+                .error(brokenImage)
                 .resize(mImageSize, mImageSize)
                 .centerCrop()
                 .into(imageView);
@@ -178,6 +170,19 @@ public class ViewPagerItemFragment extends Fragment {
         drawable.setCornerRadius(8);
         drawable.setColor(item.getCategory().color());
         return drawable;
+    }
+
+    private Drawable getResizedDrawable(int drawableId) {
+        Drawable drawable;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            drawable = getContext().getResources().getDrawable(drawableId);
+        } else {
+            drawable = getContext().getDrawable(drawableId);
+        }
+
+        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+        return new BitmapDrawable(getResources(),
+                Bitmap.createScaledBitmap(bitmap, mImageSize, mImageSize, true));
     }
 
     @Override
