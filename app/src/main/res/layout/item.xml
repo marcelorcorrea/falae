@@ -1,6 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:foreground="@drawable/highlight_fg_selector">
@@ -18,6 +17,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="2dp"
+            android:gravity="center"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"

@@ -39,7 +39,6 @@ public class ViewPagerItemFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     private int mColumns;
     private int mRows;
-    private int mImageSize;
     private int mMarginWidth;
 
     public ViewPagerItemFragment() {
@@ -85,7 +84,7 @@ public class ViewPagerItemFragment extends Fragment {
         return view;
     }
 
-    private FrameLayout generateLayout(LayoutInflater inflater, final Item item, Point layoutDimensions) {
+    private FrameLayout generateLayout(LayoutInflater inflater, final Item item, final Point layoutDimensions) {
         final FrameLayout frameLayout = (FrameLayout) inflater.inflate(R.layout.item, null, false);
         final TextView name = (TextView) frameLayout.findViewById(R.id.item_name);
         final ImageView imageView = (ImageView) frameLayout.findViewById(R.id.item_image_view);
@@ -108,35 +107,35 @@ public class ViewPagerItemFragment extends Fragment {
             }
         });
 
-        name.setText(item.getName());
-        if (item.getCategory() == Category.SUBJECT) {
-            name.setTextColor(Color.BLACK);
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                linkPage.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_launch_black_48dp));
-            } else {
-                linkPage.setImageDrawable(getContext().getDrawable(R.drawable.ic_launch_black_48dp));
+        name.post(new Runnable() {
+            @Override
+            public void run() {
+                int imageSize = calculateImageSize(layoutDimensions.x, layoutDimensions.y, name, imageView);
+
+                if (item.getCategory() == Category.SUBJECT) {
+                    name.setTextColor(Color.BLACK);
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                        linkPage.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_launch_black_48dp));
+                    } else {
+                        linkPage.setImageDrawable(getContext().getDrawable(R.drawable.ic_launch_black_48dp));
+                    }
+                }
+                Drawable brokenImage = getResizedDrawable(R.drawable.ic_broken_image_black_48dp, imageSize);
+                Drawable placeHolderImage = getResizedDrawable(R.drawable.ic_image_black_48dp, imageSize);
+
+                Picasso.with(getContext())
+                        .load(item.getImgSrc())
+                        .placeholder(placeHolderImage)
+                        .error(brokenImage)
+                        .resize(imageSize, imageSize)
+                        .centerCrop()
+                        .into(imageView);
+
+                if (item.getLinkTo() != null) {
+                    linkPage.setVisibility(View.VISIBLE);
+                }
             }
-        }
-
-        if (mImageSize == 0) {
-            mImageSize = calculateImageSize(layoutDimensions.x, layoutDimensions.y, name, imageView);
-        }
-
-        Drawable brokenImage = getResizedDrawable(R.drawable.ic_broken_image_black_48dp);
-        Drawable placeHolderImage = getResizedDrawable(R.drawable.ic_image_black_48dp);
-
-        Picasso.with(getContext())
-                .load(item.getImgSrc())
-                .placeholder(placeHolderImage)
-                .error(brokenImage)
-                .resize(mImageSize, mImageSize)
-                .centerCrop()
-                .into(imageView);
-
-        if (item.getLinkTo() != null) {
-            linkPage.setVisibility(View.VISIBLE);
-        }
-
+        });
         return frameLayout;
     }
 
@@ -150,7 +149,7 @@ public class ViewPagerItemFragment extends Fragment {
 
     private int calculateImageSize(int layoutWidth, int layoutHeight, TextView name, ImageView imageView) {
         int nameTopMargin = ((ConstraintLayout.LayoutParams) name.getLayoutParams()).topMargin;
-        int nameBoxHeight = nameTopMargin + name.getLineHeight();
+        int nameBoxHeight = nameTopMargin + (name.getLineHeight() * name.getLineCount());
         int availableHeight = layoutHeight - nameBoxHeight;
         if (availableHeight > layoutWidth) {
             int imageLeftMargin = ((ConstraintLayout.LayoutParams) imageView.getLayoutParams()).leftMargin;
@@ -172,7 +171,7 @@ public class ViewPagerItemFragment extends Fragment {
         return drawable;
     }
 
-    private Drawable getResizedDrawable(int drawableId) {
+    private Drawable getResizedDrawable(int drawableId, int size) {
         Drawable drawable;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             drawable = getContext().getResources().getDrawable(drawableId);
@@ -182,7 +181,7 @@ public class ViewPagerItemFragment extends Fragment {
 
         Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
         return new BitmapDrawable(getResources(),
-                Bitmap.createScaledBitmap(bitmap, mImageSize, mImageSize, true));
+                Bitmap.createScaledBitmap(bitmap, size, size, true));
     }
 
     @Override
