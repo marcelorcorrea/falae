@@ -1,9 +1,11 @@
+<% if notice %>
 <p id="notice"><%= notice %></p>
-
-<h1>Spreadsheets</h1>
-
-<%= render 'spreadsheets/spreadsheet' %>
-
-<br>
-
-<%= link_to 'New Spreadsheet', new_user_spreadsheet_path %>
+<% end %>
+<div class="new-spreadsheet">
+  <%= link_to new_user_spreadsheet_path, class: 'new-spreadsheet-button' do %>
+    <%= fa_icon 'plus-circle' %>New Spreadsheet
+  <% end %>
+</div>
+<%= render 'layouts/mobile' do %>
+  <%= render 'spreadsheets/spreadsheet' %>
+<% end %>

@@ -1,0 +1,12 @@
+<% if errors.any? %>
+  <div class="user-error" xmlns="http://www.w3.org/1999/html">
+    <div class="error-wrapper">
+      <span class="message"><%= pluralize(errors.count, 'error') %> prohibited this user from being saved:</span>
+      <ul>
+      <% errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

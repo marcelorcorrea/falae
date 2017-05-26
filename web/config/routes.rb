@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'home#home'
   get '/home', to: 'home#home'
   get '/about', to: 'home#about'
   get '/contact', to: 'home#contact'
   get '/login', to: 'sessions#new'
-  get '/register', to: 'sessions#register'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
 
   resources :items
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :roles
 
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
     resources :spreadsheets do
       resources :pages
     end
+    resources :items
   end
 
   resources :categories

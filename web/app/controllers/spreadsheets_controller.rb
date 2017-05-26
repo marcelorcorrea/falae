@@ -1,10 +1,14 @@
 class SpreadsheetsController < ApplicationController
+  before_action :authenticate!
+  before_action :correct_user, only: [:show, :edit, :update]
   before_action :set_spreadsheet, only: [:show, :edit, :update, :destroy]
 
   # GET /spreadsheets
   # GET /spreadsheets.json
   def index
-    @spreadsheets = Spreadsheet.all
+    #@spreadsheets = Spreadsheet.all
+    @user = current_user
+    @spreadsheets = @user.spreadsheets
   end
 
   # GET /spreadsheets/1

@@ -1,17 +1,20 @@
 <div class="login">
-  <div class="login-box">
-    <div class="welcome">Welcome!</div>
+  <div class="login-error <%='visible' if alert%>" >
+  <%= alert ? alert : '&nbsp;'%>
+  </div>
+  <div class="form-box">
+    <div class="label">Welcome!</div>
     <%= form_with scope: :user do |form| %>
       <div class="field">
         <%= form.label :email %>
-        <span class="off-set"><%= fa_icon 'user' %></span>
-        <%= form.text_field :email, placeholder: :email  %>
+        <span class="input-icon"><%= fa_icon 'user' %></span>
+        <%= form.text_field :email, class: 'offset-for-icon', placeholder: :email %>
       </div>
 
       <div class="field">
         <%= form.label :password %>
-        <span class="off-set"><%= fa_icon 'lock' %></span>
-        <%= form.password_field :password, placeholder: :password %>
+        <span class="input-icon"><%= fa_icon 'lock' %></span>
+        <%= form.password_field :password, class: 'offset-for-icon', placeholder: :password %>
       </div>
 
       <div class="actions">

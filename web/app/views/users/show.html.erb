@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<% puts current_user %>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
 
@@ -17,12 +17,6 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
-
-<!--<p>-->
-  <%# TODO: show it for admin  %>
-  <!--<strong>Role:</strong>-->
-  <!--<%= @user.role %>-->
-<!--</p>-->
 
 <h3>Spreadsheets</h3>
 <%= render partial: 'spreadsheets/spreadsheet' %>

@@ -29,7 +29,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  def User.admin?
+  def admin?
     false
   end
+
 end

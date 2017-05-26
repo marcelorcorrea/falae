@@ -1,3 +1,49 @@
 // Place all the styles related to the Spreadsheets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'defaults';
+
+.view {
+  color: $medium-sea-green;
+  .new-spreadsheet {
+    padding: 0 0.5em;
+    overflow: auto;
+    .new-spreadsheet-button {
+      color: $medium-sea-green;
+      float: right;
+      $padding: 0.5em;
+      padding: $padding;
+      border: 0.125em solid $medium-sea-green;
+      border-radius: 0.5em;
+      display: inline-block;
+      text-decoration: none;
+      &:hover {
+        color: #FFF;
+        background-color: $medium-sea-green;
+      }
+      i {
+        padding-right: $padding;
+      }
+    }
+  }
+
+  .spreadsheet-list {
+    text-align: center;
+    font-size: 1.25em;
+    font-style: italic;
+    color: $default-font-color;
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+        padding: 0.5em 0;
+        border-bottom: 0.125em solid $default-bg-color;
+      }
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+}

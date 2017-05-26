@@ -4,80 +4,81 @@
 
 @import 'defaults';
 
-.login-box {
-  box-shadow: 0 0 0.25em 0 #AAA;
-  width: 20em;
-  margin: 5em auto 0;
-  border-radius: 0.25em;
-  padding: 1em;
+.login {
 
-  .welcome {
-    font-size: 2em;
-    font-style: italic;
-    font-weight: 700;
-    text-align: center;
-    color: $medium-sea-green;
-    margin-bottom: 0.5em;
-  }
-
-  .field {
-    position: relative;
-    margin: 1em auto;
-    width: 80%;
-  }
-
-  .off-set {
-    position: absolute;
-    top: 50%;
-    padding: 0 0.75em;
-    color: #b7b7b7;
-    color: #AAA;
-  }
-
-  input[type='text'], input[type='password'] {
-    margin: 0.25em 0;
-    border: none;
-    border: 0.125em solid #AAA;
+  .login-error {
+    visibility: hidden;
+    border: 0.125em solid red;
     border-radius: 0.25em;
+    background-color: lightpink;
     padding: 0.5em;
-    padding-left: 2.5em;
-    background-color: white;
-    outline: none;
-    box-sizing: border-box;
-    width: 100%;
-    &:focus {
-      box-shadow: 0 0 0.25em 0.125px $medium-sea-green;
-    }
+    text-align: center;
   }
 
-  input[type='submit'] {
-    display: block;
-    color: white;
-    background-color: $medium-sea-green;
-    margin: 0 auto;
-    border: none;
-    border-radius: 0.25em;
-    padding: 0.5em 2em;;
-    box-shadow: 0 0 0.25em 0.125px $medium-sea-green;
+  .visible {
+    visibility: visible;
+  }
 
-    &:hover {
-      opacity: 0.9;
+  .login-box {
+    box-shadow: 0 0 0.25em 0 #AAA;
+    width: 20em;
+    margin: 4em auto 0;
+    border-radius: 0.25em;
+    padding: 1em;
+
+    .welcome {
+      font-size: 2em;
+      font-style: italic;
+      font-weight: 700;
+      text-align: center;
+      color: $medium-sea-green;
+      margin-bottom: 0.5em;
+    }
+
+    .field {
+      position: relative;
+      margin: 1em auto;
+      width: 80%;
+    }
+
+    .off-set {
+      position: absolute;
+      top: 50%;
+      padding: 0 0.75em;
+      color: #b7b7b7;
+      color: #AAA;
+    }
+
+    input[type='text'], input[type='password'] {
+      margin: 0.25em 0;
+      border: none;
+      border: 0.125em solid #AAA;
+      border-radius: 0.25em;
+      padding: 0.5em;
+      padding-left: 2.5em;
+      background-color: white;
+      outline: none;
+      box-sizing: border-box;
+      width: 100%;
+      &:focus {
+        box-shadow: 0 0 0.25em 0.125px $medium-sea-green;
+      }
+    }
+
+    input[type='submit'] {
+      display: block;
+      color: white;
+      background-color: $medium-sea-green;
+      margin: 0 auto;
+      border: none;
+      border-radius: 0.25em;
+      padding: 0.5em 2em;;
+      box-shadow: 0 0 0.25em 0.125px $medium-sea-green;
+
+      &:hover {
+        opacity: 0.9;
+        cursor: pointer;
+      }
     }
   }
 }
-
-// .before_method:before{
-//   display:block;
-//   content:" ";
-//   position:absolute;
-//   z-index:-1;
-//   background:rgb(18, 176, 41);
-//   top:0;
-//   left:0;
-//   right:0;
-//   bottom:0;
-//   opacity:0.5;
-// }
-// .before_method:hover:before{
-//   opacity:1;
-// }

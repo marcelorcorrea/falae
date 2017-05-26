@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  befroe_action authenticate!
   before_action :set_page, only: [:show, :edit, :update, :destroy]
 
   # GET /pages

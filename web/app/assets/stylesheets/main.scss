@@ -1,7 +1,7 @@
 @import 'defaults';
 
 html {
-    height: 100%;
+  height: 100%;
 }
 
 body {
@@ -30,7 +30,7 @@ body {
       color: $default-font-color;
       text-decoration: none;
       font-weight: 500;
-      padding: 1.8em 1em ;
+      padding: 1.8em 1em;
 
       &:hover {
         color: $medium-sea-green;
@@ -44,7 +44,7 @@ body {
       .logo, .links, .session {
         display: table-cell;
         vertical-align: middle;
-        white-space:nowrap;
+        white-space: nowrap;
       }
       .logo {
         font-size: 2em;
@@ -56,6 +56,12 @@ body {
       .session {
         text-align: right;
         width: 80%;
+        .welcome {
+          .user-name {
+            padding: 0;
+            font-style: italic;
+          }
+        }
       }
 
       .active {
@@ -67,34 +73,176 @@ body {
 
   #container {
     padding: 0.5em;
+    box-sizing: border-box;
+    width: 100%;
+
+    .nav-bar {
+      width: 20%;
+      display: inline-block;
+      box-sizing: border-box;
+      border-right: 0.25em solid transparent;
+
+      .active {
+        color: $medium-sea-green;
+        font-style: italic;
+        border-right: 0.25em solid $medium-sea-green;
+      }
+      .nav-item {
+        display: block;
+        padding: 4px;
+        font-weight: 600;
+        li {
+          margin: 0;
+        }
+        a {
+          text-decoration: none;
+          color: inherit;
+          &:hover {
+            color: inherit;
+          }
+          &:visited {
+            color: inherit;
+          }
+        }
+      }
+    }
+
+    .form-box {
+      box-shadow: 0 0 0.25em 0 #AAA;
+      width: 20em;
+      margin: 4em auto 0;
+      border-radius: 0.25em;
+      padding: 1em;
+
+      .label {
+        font-size: 2em;
+        font-style: italic;
+        font-weight: 700;
+        text-align: center;
+        color: $medium-sea-green;
+        margin-bottom: 0.5em;
+      }
+
+      .field {
+        position: relative;
+        margin: 1em auto;
+        width: 80%;
+
+        .field_with_errors {
+          display: block;
+          background: none;
+
+          input[type='text'], input[type='password'] {
+            border: 1px solid red;
+            box-shadow: 0 0 0.25em 0.125px red;
+          }
+        }
+      }
+
+      .input-icon {
+        position: absolute;
+        top: 50%;
+        padding: 0 0.75em;
+        color: #b7b7b7;
+        color: #AAA;
+      }
+
+      input[type='text'], input[type='password'] {
+        margin: 0.25em 0;
+        border: 0.125em solid #AAA;
+        border-radius: 0.25em;
+        padding: 0.5em;
+        background-color: white;
+        outline: none;
+        box-sizing: border-box;
+        width: 100%;
+        &:focus {
+          box-shadow: 0 0 0.25em 0.125px $medium-sea-green;
+        }
+      }
+      input.offset-for-icon {
+        padding-left: 2.5em;
+      }
+
+      input[type='submit'] {
+        display: block;
+        color: white;
+        background-color: $medium-sea-green;
+        margin: 0 auto;
+        border: none;
+        border-radius: 0.25em;
+        padding: 0.5em 2em;;
+        box-shadow: 0 0 0.25em 0.125px $medium-sea-green;
+
+        &:hover {
+          opacity: 0.9;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .view {
+      width: 80%;
+      display: inline-block;
+      vertical-align: top;
+
+      .mobile {
+        display: table;
+        margin: 0.5em auto;
+        width: 45em;
+        height: 28em;
+        background-color: black;
+        border-radius: 10px;
+        .speaker {
+          display: table-cell;
+          vertical-align: middle;
+          div {
+            margin: 0 1em;
+            background-color: gray;
+            width: 0.25em;
+            height: 4em;
+            border-radius: 2px;
+          }
+        }
+        .screen {
+          display: table-cell;
+          vertical-align: middle;
+          width: 90%;
+          height: 100%;
+          div {
+            margin: 50px 0;
+            width: 100%;
+            height: 90%;
+            border-radius: 2px;
+            background-color: white;
+          }
+        }
+        .button {
+          display: table-cell;
+          vertical-align: middle;
+          div {
+            margin: 0 0.75em;
+            $button-width: 2em;
+            background-color: gray;
+            width: $button-width;
+            height: $button-width;
+            border-radius: $button-width;
+          }
+        }
+      }
+    }
   }
 }
-
 
 /// default scaffold
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
 }
 
 pre {
   background-color: #eee;
   padding: 10px;
   font-size: 11px;
-}
-
-a {
-  color: #000;
-
-  &:visited {
-    color: #666;
-  }
-
-  &:hover {
-    color: #fff;
-    // background-color: #000;
-  }
 }
 
 th {
@@ -136,11 +284,6 @@ div {
     margin: -7px -7px 0;
     background-color: #c00;
     color: #fff;
-  }
-
-  ul li {
-    font-size: 12px;
-    list-style: square;
   }
 }
 

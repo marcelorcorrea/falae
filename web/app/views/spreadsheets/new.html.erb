@@ -1,5 +1,8 @@
-<h1>New Spreadsheet</h1>
 
-<%= render 'form', spreadsheet: @spreadsheet %>
-
-<%= link_to 'Back', user_spreadsheets_path %>
+<div class="spreadsheet">
+  <%= render 'shared/error', errors: @spreadsheet.errors %>
+  <div class="form-box">
+    <div class="label">New Spreadsheet</div>
+    <%= render 'form', spreadsheet: @spreadsheet %>
+  </div>
+</div>

@@ -1,22 +1,33 @@
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Initial page</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="spreadsheet-list">
+  <ul>
+    <% puts @spreadsheets.count %>
+  <% @spreadsheets.each do |spreadsheet| %>
+    <li><%= link_to spreadsheet.name, user_spreadsheet_path(@user, spreadsheet) %></li>
+  <% end %>
+  </ul>
+</div>
 
-  <tbody>
-    <% @spreadsheets.each do |spreadsheet| %>
-      <tr>
-        <% user = spreadsheet.user %>
-        <td><%= spreadsheet.name %></td>
-        <td><%= spreadsheet.initial_page %></td>
-        <td><%= link_to 'Show', user_spreadsheet_path(user, spreadsheet) %></td>
-        <td><%= link_to 'Edit', edit_user_spreadsheet_path(user, spreadsheet) %></td>
-        <td><%= link_to 'Destroy', user_spreadsheet_path(user, spreadsheet), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+
+
+<!--<table>-->
+  <!--<thead>-->
+    <!--<tr>-->
+      <!--<th>Name</th>-->
+      <!--<th>Initial page</th>-->
+      <!--<th colspan="3"></th>-->
+    <!--</tr>-->
+  <!--</thead>-->
+
+  <!--<tbody>-->
+    <!--<% @spreadsheets.each do |spreadsheet| %>-->
+      <!--<tr>-->
+        <!--<% user = spreadsheet.user %>-->
+        <!--<td><%= spreadsheet.name %></td>-->
+        <!--<td><%= spreadsheet.initial_page %></td>-->
+        <!--<td><%= link_to 'Show', user_spreadsheet_path(user, spreadsheet) %></td>-->
+        <!--<td><%= link_to 'Edit', edit_user_spreadsheet_path(user, spreadsheet) %></td>-->
+        <!--<td><%= link_to 'Destroy', user_spreadsheet_path(user, spreadsheet), method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+      <!--</tr>-->
+    <!--<% end %>-->
+  <!--</tbody>-->
+<!--</table>-->

@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate!, only: [:index, :show, :edit, :update, :home]
+  before_action :correct_user, only: [:show, :edit, :update, :home]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :home]
 
   # GET /users
   # GET /users.json
@@ -16,10 +18,15 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    #h = User.new
   end
 
   # GET /users/1/edit
   def edit
+  end
+
+  # /GET /user/1/home
+  def home
   end
 
   # POST /users
@@ -29,7 +36,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        log_in @user
+        #format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to user_home_path, status: :ok }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -65,11 +74,12 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      puts "current user in user controller #{current_user}"
+      #@user = User.find(params[:id])
+      @user = current_user
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :last_name, :email, :password, :password_confirmation, :role)
+      params.require(:user).permit(:name, :last_name, :email, :password, :password_confirmation)
     end
 end
