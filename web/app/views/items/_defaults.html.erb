@@ -1,0 +1,16 @@
+<div class="list">
+  <div>Default Items:</div>
+  <!-- <ul> -->
+  <div class="cards">
+    <div class="card-list">
+    <% Item.defaults.each do |item| %>
+      <!-- <li><%= link_to item.name, item %></li> -->
+      <div class="card">
+        <div class="name"><%= item.name %></div>
+        <img src="<%= item.img_src%>" />
+      </div>
+    <% end %>
+    </div>
+  </div>
+  <!-- </ul> -->
+</div>

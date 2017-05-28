@@ -1,5 +1,8 @@
 <div class="nav-menu">
   <ul>
+    <%= content_tag :li, class: "menu-item #{:active if current_page?(user_path(current_user))}" do %>
+      <%= link_to 'Profile', user_path(current_user) %>
+    <% end %>
     <%= content_tag :li, class: "menu-item #{:active if current_page?(user_spreadsheets_path(current_user))}" do %>
       <%= link_to 'Spreadsheets', user_spreadsheets_path(current_user) %>
     <% end %>
@@ -7,4 +10,11 @@
       <%= link_to 'Items', user_items_path(current_user) %>
     <% end %>
   </ul>
+</div><!--
+<%#
+  nav-menu and view are a inline-block elements, this html comment is to avoid
+  the blank space between this two elements, what would break the layout
+%>
+--><div class="view">
+  <%= yield %>
 </div>

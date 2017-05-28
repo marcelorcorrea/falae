@@ -14,4 +14,8 @@ class Item < ApplicationRecord
       self.update user: self.pages.first.spreadsheet.user
     end
   end
+
+  def Item.defaults
+    @default_items ||= Item.where default: true
+  end
 end

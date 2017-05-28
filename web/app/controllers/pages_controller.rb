@@ -1,21 +1,18 @@
 class PagesController < ApplicationController
-  befroe_action authenticate!
-  before_action :set_page, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate!
+  before_action :set_page, only: [:edit, :update, :destroy]
+  before_action :set_vars, only: [:index, :new, :show, :edit, :create]
 
   # GET /pages
   # GET /pages.json
   def index
-    user = User.find_by id: params[:user_id]
-    spreadsheet = user.spreadsheets.find_by id: params[:spreadsheet_id]
-    @pages = spreadsheet.pages
+    @pages = @spreadsheet.pages
   end
 
   # GET /pages/1
   # GET /pages/1.json
   def show
-    user = User.find_by id: params[:user_id]
-    spreadsheet = user.spreadsheets.find_by id: params[:spreadsheet_id]
-    @page = spreadsheet.pages.find_by id: params[:id]
+    @page = @spreadsheet.pages.find_by id: params[:id]
     @items = @page.items
   end
 
@@ -31,13 +28,11 @@ class PagesController < ApplicationController
   # POST /pages
   # POST /pages.json
   def create
-    user = User.find_by id: params[:user_id]
-    spreadsheet = user.spreadsheets.find_by id: params[:spreadsheet_id]
-    @page = spreadsheet.pages.build page_params
+    @page = @spreadsheet.pages.build page_params
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to [@page.spreadsheet.user, @page.spreadsheet, @page], notice: 'Page was successfully created.' }
+        format.html { redirect_to [@spreadsheet.user, @spreadsheet, @page], notice: 'Page was successfully created.' }
         format.json { render :show, status: :created, location: @page }
       else
         format.html { render :new }
@@ -74,6 +69,11 @@ class PagesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_page
       @page = Page.find(params[:id])
+    end
+
+    def set_vars
+      @user = current_user
+      @spreadsheet = @user.spreadsheets.find_by id: params[:spreadsheet_id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

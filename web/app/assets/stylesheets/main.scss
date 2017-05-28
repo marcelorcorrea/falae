@@ -72,22 +72,26 @@ body {
   }
 
   #container {
+    color: $default-font-color;
     padding: 0.5em;
     box-sizing: border-box;
     width: 100%;
 
-    .nav-bar {
+    .nav-menu {
       width: 20%;
       display: inline-block;
       box-sizing: border-box;
-      border-right: 0.25em solid transparent;
+
+      li {
+        border-right: 0.0625em solid $medium-sea-green;
+      }
 
       .active {
         color: $medium-sea-green;
         font-style: italic;
         border-right: 0.25em solid $medium-sea-green;
       }
-      .nav-item {
+      .menu-item {
         display: block;
         padding: 4px;
         font-weight: 600;
@@ -104,6 +108,62 @@ body {
             color: inherit;
           }
         }
+      }
+    }
+
+    .view {
+      width: 80%;
+      display: inline-block;
+      box-sizing: border-box;
+      padding-left: 0.5em;
+      vertical-align: top;
+
+      .list {
+        // text-align: center;
+        // font-size: 1.25em;
+        // font-style: italic;
+        color: $default-font-color;
+        ul {
+          list-style: none;
+          padding: 0 1em;
+        }
+        li {
+          padding: 0.25em;
+        }
+        a {
+          color: inherit;
+          text-decoration: none;
+          &:visited {
+            color: inherit;
+          }
+          &:hover {
+            color: $medium-sea-green;
+          }
+        }
+      }
+    }
+
+    .button-bar {
+      // padding: 0 0.5em;
+      overflow: auto;
+      margin: 1em 0;
+    }
+    .button-box {
+      color: $medium-sea-green;
+      float: right;
+      margin: 0 0.5em;
+      $padding: 0.5em;
+      padding: $padding;
+      border: 0.125em solid $medium-sea-green;
+      border-radius: 0.5em;
+      display: inline-block;
+      text-decoration: none;
+      &:hover {
+        color: #FFF;
+        background-color: $medium-sea-green;
+      }
+      i {
+        padding-right: $padding;
       }
     }
 
@@ -147,7 +207,9 @@ body {
         color: #AAA;
       }
 
-      input[type='text'], input[type='password'] {
+      input[type='text'], input[type='password'],
+      input[type='number'], select {
+        color: $medium-sea-green;
         margin: 0.25em 0;
         border: 0.125em solid #AAA;
         border-radius: 0.25em;
@@ -163,7 +225,6 @@ body {
       input.offset-for-icon {
         padding-left: 2.5em;
       }
-
       input[type='submit'] {
         display: block;
         color: white;
@@ -173,7 +234,6 @@ body {
         border-radius: 0.25em;
         padding: 0.5em 2em;;
         box-shadow: 0 0 0.25em 0.125px $medium-sea-green;
-
         &:hover {
           opacity: 0.9;
           cursor: pointer;
@@ -181,53 +241,47 @@ body {
       }
     }
 
-    .view {
-      width: 80%;
-      display: inline-block;
-      vertical-align: top;
-
-      .mobile {
-        display: table;
-        margin: 0.5em auto;
-        width: 45em;
-        height: 28em;
-        background-color: black;
-        border-radius: 10px;
-        .speaker {
-          display: table-cell;
-          vertical-align: middle;
-          div {
-            margin: 0 1em;
-            background-color: gray;
-            width: 0.25em;
-            height: 4em;
-            border-radius: 2px;
-          }
+    .mobile {
+      display: table;
+      margin: 0.5em auto;
+      width: 45em;
+      height: 28em;
+      background-color: black;
+      border-radius: 10px;
+      .speaker {
+        display: table-cell;
+        vertical-align: middle;
+        div {
+          margin: 0 1em;
+          background-color: gray;
+          width: 0.25em;
+          height: 4em;
+          border-radius: 2px;
         }
-        .screen {
-          display: table-cell;
-          vertical-align: middle;
-          width: 90%;
-          height: 100%;
-          div {
-            margin: 50px 0;
-            width: 100%;
-            height: 90%;
-            border-radius: 2px;
-            background-color: white;
-          }
+      }
+      .screen {
+        display: table-cell;
+        vertical-align: middle;
+        width: 90%;
+        height: 100%;
+        div {
+          margin: 50px 0;
+          width: 100%;
+          height: 90%;
+          border-radius: 2px;
+          background-color: white;
         }
-        .button {
-          display: table-cell;
-          vertical-align: middle;
-          div {
-            margin: 0 0.75em;
-            $button-width: 2em;
-            background-color: gray;
-            width: $button-width;
-            height: $button-width;
-            border-radius: $button-width;
-          }
+      }
+      .button {
+        display: table-cell;
+        vertical-align: middle;
+        div {
+          margin: 0 0.75em;
+          $button-width: 2em;
+          background-color: gray;
+          width: $button-width;
+          height: $button-width;
+          border-radius: $button-width;
         }
       }
     }
@@ -275,16 +329,6 @@ div {
   padding: 7px 7px 0;
   margin-bottom: 20px;
   background-color: #f0f0f0;
-
-  h2 {
-    text-align: left;
-    font-weight: bold;
-    padding: 5px 5px 5px 15px;
-    font-size: 12px;
-    margin: -7px -7px 0;
-    background-color: #c00;
-    color: #fff;
-  }
 }
 
 label {

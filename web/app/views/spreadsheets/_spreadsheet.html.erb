@@ -1,6 +1,5 @@
-<div class="spreadsheet-list">
+<div class="list">
   <ul>
-    <% puts @spreadsheets.count %>
   <% @spreadsheets.each do |spreadsheet| %>
     <li><%= link_to spreadsheet.name, user_spreadsheet_path(@user, spreadsheet) %></li>
   <% end %>

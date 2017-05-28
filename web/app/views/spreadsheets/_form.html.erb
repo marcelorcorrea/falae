@@ -1,29 +1,16 @@
-<% if spreadsheet.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(spreadsheet.errors.count, "error") %> prohibited this spreadsheet from being saved:</h2>
-
-    <ul>
-      <% spreadsheet.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
 <%= form_with(model: [:user, spreadsheet], local: true) do |form| %>
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name, id: :spreadsheet_name %>
   </div>
 
+  <% unless spreadsheet.new_record? %>
   <div class="field">
     <%= form.label :initial_page %>
-    <%= select_tag(:initial_page, options_for_select(spreadsheet.pages.map(&:name), spreadsheet.initial_page)) %>
+    <%= select_tag(:initial_page, options_for_select(spreadsheet.pages.map(&:name),
+                    spreadsheet.initial_page)) %>
   </div>
-
-  <!--<div class="field">-->
-  <!--<%= form.label :user_id %>-->
-  <!--<%= form.text_field :user_id, id: :spreadsheet_user_id %>-->
-  <!--</div>-->
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>

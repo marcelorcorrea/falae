@@ -1,22 +1,28 @@
-<p id="notice"><%= notice %></p>
-<% puts current_user %>
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= render 'layouts/nav_menu_and_view' do %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+<div class="user">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
+  <%= link_to edit_user_path(@user), class: 'button-box' do %>
+    <%= fa_icon 'edit' %>Edit
+  <% end %>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+  User:
 
-<h3>Spreadsheets</h3>
-<%= render partial: 'spreadsheets/spreadsheet' %>
+  <p>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </p>
+
+  <p>
+    <strong>Last name:</strong>
+    <%= @user.last_name %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+</div>
+
+<% end %>

@@ -1,11 +1,15 @@
-<% if notice %>
-<p id="notice"><%= notice %></p>
-<% end %>
-<div class="new-spreadsheet">
-  <%= link_to new_user_spreadsheet_path, class: 'new-spreadsheet-button' do %>
-    <%= fa_icon 'plus-circle' %>New Spreadsheet
-  <% end %>
-</div>
-<%= render 'layouts/mobile' do %>
-  <%= render 'spreadsheets/spreadsheet' %>
+<%= render 'layouts/nav_menu_and_view' do %>
+  <div class="spreadsheet">
+    <% if notice %>
+    <p id="notice"><%= notice %></p>
+    <% end %>
+    <div class="button-bar">
+      <%= link_to new_user_spreadsheet_path, class: 'button-box' do %>
+        <%= fa_icon 'plus-circle' %>New Spreadsheet
+      <% end %>
+    </div>
+    <%#= render 'shared/mobile' do %>
+      <%= render 'spreadsheets/spreadsheet' %>
+    <%# end %>
+  </div>
 <% end %>

@@ -9,6 +9,8 @@ class Page < ApplicationRecord
             numericality: { only_integer: true }
 
   def Page.default
-    Page.new name: 'Initial', columns: 4, rows: 3
+    page = Page.new name: 'Initial', columns: 6, rows: 3
+    page.items << Item.defaults
+    page
   end
 end

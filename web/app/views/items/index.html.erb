@@ -1,4 +1,16 @@
-<p id="notice"><%= notice %></p>
-<%= link_to 'New Item', new_item_path %>
-<h1>Items</h1>
-<%= render 'item' %>
+<%= render 'layouts/nav_menu_and_view' do %>
+  <div class="item">
+    <% if notice %>
+    <p id="notice"><%= notice %></p>
+    <% end %>
+    <div class="button-bar">
+      <%= link_to new_item_path, class: 'button-box' do %>
+        <%= fa_icon 'plus-circle' %>New Item
+      <% end %>
+    </div>
+    <%#= render 'shared/mobile' do %>
+    <%= render 'items/item' %>
+    <%= render 'items/defaults' %>
+    <%# end %>
+  </div>
+<% end %>

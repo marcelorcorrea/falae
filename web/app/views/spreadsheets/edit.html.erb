@@ -1,6 +1,14 @@
-<h1>Editing Spreadsheet</h1>
-
-<%= render 'form', spreadsheet: @spreadsheet %>
-
-<%= link_to 'Show', user_spreadsheet_path(@spreadsheet.user, @spreadsheet) %> |
-<%= link_to 'Back', user_path(@spreadsheet.user) %>
+<%= render 'layouts/nav_menu_and_view' do %>
+  <div class="spreadsheet">
+    <%= render 'shared/error', errors: @spreadsheet.errors %>
+    <div class="button-bar">
+      <%= link_to user_spreadsheet_path(@spreadsheet), class: 'button-box' do %>
+        <%= fa_icon 'times' %>Cancel
+      <% end %>
+    </div>
+    <div class="form-box">
+      <div class="label">Editing</div>
+      <%= render 'form', spreadsheet: @spreadsheet %>
+    </div>
+  </div>
+<% end %>

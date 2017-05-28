@@ -1,3 +1,29 @@
 // Place all the styles related to the Items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.item {
+  .cards {
+    margin: 0 auto;
+    .card-list {
+      padding: 0.5em 0;
+      // text-align: center;
+      .card {
+        margin: 0.5em 0.25em;
+        text-align: center;
+        display: inline-block;
+        width: 5em;
+        height: 8em;
+        vertical-align: top;
+        border: 0.0625em solid black;
+        border-radius: 0.125em;
+        .name {
+          padding: 0.25em;
+        }
+        img {
+          width: 90%;
+        }
+      }
+    }
+  }
+}

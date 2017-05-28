@@ -8,7 +8,8 @@ class SessionsController < ApplicationController
       log_in user
       redirect_to user_spreadsheets_path(user) #, notice: 'You have successfully logged in.'
     else
-      redirect_to login_path, alert: 'There is no match for this email and password.'
+      flash.now[:alert] = 'There is no match for this email and password.'
+      render :new
     end
   end
 

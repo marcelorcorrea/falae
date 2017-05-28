@@ -1,23 +1,27 @@
-<p id="notice"><%= notice %></p>
+<%= render 'layouts/nav_menu_and_view' do %>
 
-<%= link_to 'Edit', edit_user_spreadsheet_path(@spreadsheet.user, @spreadsheet) %> |
-<%= link_to 'Back', user_path(@spreadsheet.user) %>
+<div class="spreadsheet">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @spreadsheet.name %>
-</p>
+  <%= link_to edit_user_spreadsheet_path(@user, @spreadsheet), class: 'button-box' do %>
+    <%= fa_icon 'edit' %>Edit
+  <% end %>
 
-<p>
-  <strong>Initial page:</strong>
-  <%= @spreadsheet.initial_page %>
-</p>
+  Spreadsheet:
+  <p>
+    <strong>Name:</strong>
+    <%= @spreadsheet.name %>
+  </p>
 
-<!--<p>-->
-  <!--<strong>User:</strong>-->
-  <!--<%= @spreadsheet.user %>-->
-<!--</p>-->
+  <p>
+    <strong>Initial page:</strong>
+    <%= @spreadsheet.initial_page %>
+  </p>
 
-<h3>Pages:</h3>
+  <%= link_to new_user_spreadsheet_page_path(@user, @spreadsheet), class: 'button-box' do %>
+    <%= fa_icon 'plus-cirlce' %>New Page
+  <% end %>
+  <%= render 'pages/page' %>
+</div>
 
-<%= render 'pages/page' %>
+<% end %>

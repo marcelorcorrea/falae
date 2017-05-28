@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authenticate!, only: [:index, :show, :edit, :update, :home]
-  before_action :correct_user, only: [:show, :edit, :update, :home]
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :home]
+  before_action :authenticate!, only: [:index, :show, :edit, :update]
+  before_action :authorized?, only: [:index, :show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -12,21 +12,15 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @spreadsheets = @user.spreadsheets
   end
 
   # GET /users/new
   def new
     @user = User.new
-    #h = User.new
   end
 
   # GET /users/1/edit
   def edit
-  end
-
-  # /GET /user/1/home
-  def home
   end
 
   # POST /users
@@ -38,7 +32,7 @@ class UsersController < ApplicationController
       if @user.save
         log_in @user
         #format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.html { redirect_to user_home_path, status: :ok }
+        format.html { redirect_to user_spreadsheets_path(@user), status: :ok }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }

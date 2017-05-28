@@ -1,9 +1,15 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Pages</h1>
-
-<%= render 'page' %>
-
-<br>
-
-<%= link_to 'New Page', new_user_spreadsheet_page_path %>
+<%= render 'layouts/nav_menu_and_view' do %>
+  <div class="page">
+    <% if notice %>
+    <p id="notice"><%= notice %></p>
+    <% end %>
+    <div class="button-bar">
+      <%= link_to new_user_spreadsheet_page_path(@user), class: 'button-box' do %>
+        <%= fa_icon 'plus-circle' %>New Page
+      <% end %>
+    </div>
+    <%#= render 'shared/mobile' do %>
+      <%= render 'page' %>
+    <%# end %>
+  </div>
+<% end %>

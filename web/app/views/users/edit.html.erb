@@ -1,6 +1,15 @@
-<h1>Editing User</h1>
+<%= render 'layouts/nav_menu_and_view' do %>
+<div class="user">
+  <div class="button-bar">
+    <%= link_to user_path(@user), class: 'button-box' do %>
+      <%= fa_icon 'times' %>Cancel
+    <% end %>
+  </div>
 
-<%= render 'form', user: @user %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+  <%= render 'shared/error', errors: @user.errors %>
+  <div class="form-box">
+    <div class="label">Editing </div>
+    <%= render 'form', user: @user %>
+  </div>
+</div>
+<% end %>

@@ -1,5 +1,14 @@
-<h1>New Page</h1>
-
-<%= render 'form', page: @page %>
-
-<%= link_to 'Back', user_spreadsheet_path(@page.spreadsheet.user, @page.spreadsheet) %>
+<%= render 'layouts/nav_menu_and_view' do %>
+  <div class="page">
+    <%= render 'shared/error', errors: @page.errors %>
+    <div class="button-bar">
+      <%= link_to user_spreadsheet_path(@user, @spreadsheet), class: 'button-box' do %>
+        <%= fa_icon 'times' %>Cancel
+      <% end %>
+    </div>
+    <div class="form-box">
+      <div class="label">New page</div>
+      <%= render 'form', page: @page %>
+    </div>
+  </div>
+<% end %>

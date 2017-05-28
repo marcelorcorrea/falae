@@ -9,9 +9,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # Ensure correct user
-  def correct_user
+  # Ensure authorized user
+  def authorized?
     #NOTE: is it necessary to hit database (use id directly) ?
-    redirect_to root_path unless current_user?(User.find(params[:user_id] || params[:id]))
+    id = params[:user_id] || params[:id]
+    redirect_to root_path unless current_user?(User.find_by(id: id))
   end
 end

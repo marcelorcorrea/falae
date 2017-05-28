@@ -24,7 +24,8 @@
         <%= fa_icon 'user-plus' %> Register
       <% end %>
     <% else %>
-      <span class="welcome">Welcome, <%= link_to current_user.name, current_user, class: 'user-name' %>!</span>
+      <span class="welcome">Welcome, <%= link_to current_user.name,
+            user_spreadsheets_path(current_user), class: 'user-name' %>!</span>
       <span class="logout"><%= link_to logout_path, method: :delete do %>
               <%= fa_icon 'sign-out' %> Log out
             <% end %>

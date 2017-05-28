@@ -1,6 +1,6 @@
 class SpreadsheetsController < ApplicationController
   before_action :authenticate!
-  before_action :correct_user, only: [:show, :edit, :update]
+  before_action :authorized?, only: [ :show, :edit, :update]
   before_action :set_spreadsheet, only: [:show, :edit, :update, :destroy]
 
   # GET /spreadsheets
@@ -14,6 +14,7 @@ class SpreadsheetsController < ApplicationController
   # GET /spreadsheets/1
   # GET /spreadsheets/1.json
   def show
+    @user = current_user
     @pages = @spreadsheet.pages
   end
 
@@ -29,8 +30,7 @@ class SpreadsheetsController < ApplicationController
   # POST /spreadsheets
   # POST /spreadsheets.json
   def create
-    user = User.find params[:user_id]
-    @spreadsheet = user.spreadsheets.build spreadsheet_params
+    @spreadsheet = current_user.spreadsheets.build spreadsheet_params
 
     respond_to do |format|
       if @spreadsheet.save

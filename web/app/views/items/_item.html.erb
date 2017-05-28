@@ -1,30 +1,8 @@
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Speech</th>
-      <th>Source</th>
-      <!--<th>Category</th>-->
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.name %></td>
-        <td><%= item.speech %></td>
-        <td><%= item.img_src %></td>
-        <!--<td><%= item.category %></td>-->
-        <td><%= link_to 'Show', item %></td>
-        <% if item.default? %>
-          <td></td>
-          <td></td>
-        <% else %>
-          <td><%= link_to 'Edit', edit_item_path(item) %></td>
-          <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="list">
+  <div>Items:</div>
+  <ul>
+  <% @items.each do |item| %>
+    <li><%= link_to item.name, item %></li>
+  <% end %>
+  </ul>
+</div>
