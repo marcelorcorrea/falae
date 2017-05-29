@@ -142,6 +142,7 @@ public class NavigationActivity extends AppCompatActivity
                     addUserToMenu(u);
                 }
                 dbHelper.insertOrUpdate(u);
+                Toast.makeText(NavigationActivity.this, R.string.success_user_added, Toast.LENGTH_SHORT).show();
             }
         }).execute(user);
     }

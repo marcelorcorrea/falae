@@ -42,6 +42,7 @@ import java.util.concurrent.TimeUnit;
 
 public class DownloadTask extends AsyncTask<User, Void, User> {
 
+    private static final int TIME_OUT = 6000;
     private final Callback callback;
     private final ThreadPoolExecutor executor;
     private final int numberOfCores;
@@ -115,6 +116,8 @@ public class DownloadTask extends AsyncTask<User, Void, User> {
             int read;
             URL url = new URL(imgSrc);
             URLConnection connection = url.openConnection();
+            connection.setConnectTimeout(TIME_OUT);
+            connection.setReadTimeout(TIME_OUT);
             connection.connect();
             InputStream input = new BufferedInputStream(url.openStream(), 8192);
             OutputStream output = new FileOutputStream(filename);
