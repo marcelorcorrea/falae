@@ -37,7 +37,11 @@ public class DisplayActivity extends AppCompatActivity implements PageFragment.O
             @Override
             public void onInit(int status) {
                 if (status != TextToSpeech.ERROR) {
-                    textToSpeech.setLanguage(new Locale("pt", "BR"));
+                    Locale currentLocation = Locale.getDefault();
+                    if (currentLocation == null) {
+                        currentLocation = new Locale("pt", "BR");
+                    }
+                    textToSpeech.setLanguage(currentLocation);
                 }
             }
         }, "com.google.android.tts");
@@ -73,10 +77,12 @@ public class DisplayActivity extends AppCompatActivity implements PageFragment.O
 
     @Override
     public void speak(String msg) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            textToSpeech.speak(msg, TextToSpeech.QUEUE_FLUSH, null, null);
-        } else {
-            textToSpeech.speak(msg, TextToSpeech.QUEUE_FLUSH, null);
+        if (textToSpeech != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                textToSpeech.speak(msg, TextToSpeech.QUEUE_FLUSH, null, null);
+            } else {
+                textToSpeech.speak(msg, TextToSpeech.QUEUE_FLUSH, null);
+            }
         }
     }
 
@@ -88,7 +94,9 @@ public class DisplayActivity extends AppCompatActivity implements PageFragment.O
 
     @Override
     protected void onDestroy() {
-        textToSpeech.shutdown();
+        if (textToSpeech != null) {
+            textToSpeech.shutdown();
+        }
         super.onDestroy();
     }
 }

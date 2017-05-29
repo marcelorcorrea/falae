@@ -107,8 +107,10 @@ public class PageFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         int tab = mPager.getCurrentItem();
+                        if (mPagerAdapter.getCount() > 1 && tab != mPagerAdapter.getCount() - 1) {
+                            speak(getString(R.string.next));
+                        }
                         tab++;
-                        speak(getString(R.string.next));
                         mPager.setCurrentItem(tab);
                     }
                 });
