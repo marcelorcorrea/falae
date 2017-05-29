@@ -1,6 +1,8 @@
 package com.marcelorcorrea.falae.activity;
 
 import android.content.Intent;
+import android.media.audiofx.BassBoost;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.database.UserDbHelper;
 import com.marcelorcorrea.falae.fragment.AddUserFragment;
+import com.marcelorcorrea.falae.fragment.SettingsFragment;
 import com.marcelorcorrea.falae.fragment.SpreadSheetFragment;
 import com.marcelorcorrea.falae.model.SpreadSheet;
 import com.marcelorcorrea.falae.model.User;
@@ -30,7 +33,8 @@ import java.util.List;
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         SpreadSheetFragment.OnFragmentInteractionListener,
-        AddUserFragment.OnFragmentInteractionListener {
+        AddUserFragment.OnFragmentInteractionListener,
+        SettingsFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawer;
     private NavigationView mNavigationView;
@@ -111,6 +115,9 @@ public class NavigationActivity extends AppCompatActivity
         } else if (id == R.id.voice_item) {
             openTTSLanguageSettings();
             return false;
+        } else if (id == R.id.settings) {
+            fragment = SettingsFragment.newInstance();
+            tag = SettingsFragment.class.getSimpleName();
         } else {
             fragment = SpreadSheetFragment.newInstance(mUser);
             tag = SpreadSheetFragment.class.getSimpleName();
@@ -158,5 +165,10 @@ public class NavigationActivity extends AppCompatActivity
         intent.putExtra(DisplayActivity.SPREADSHEET, spreadSheet);
         startActivity(intent);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
