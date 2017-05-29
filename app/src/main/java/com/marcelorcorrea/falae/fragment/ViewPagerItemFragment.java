@@ -106,7 +106,7 @@ public class ViewPagerItemFragment extends Fragment {
                 }
             }
         });
-
+        name.setText(item.getName());
         name.post(new Runnable() {
             @Override
             public void run() {
