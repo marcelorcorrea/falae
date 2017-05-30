@@ -28,4 +28,8 @@
     <string name="synchronize_message">Sincronizando</string>
     <string name="authenticate_message">Autenticando</string>
     <string name="success_user_added">Usuário adicionado com sucesso!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user_info">Perfil</string>
 </resources>

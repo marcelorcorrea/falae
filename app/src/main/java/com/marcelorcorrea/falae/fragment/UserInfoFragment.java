@@ -1,33 +1,28 @@
 package com.marcelorcorrea.falae.fragment;
 
-import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.marcelorcorrea.falae.R;
-import com.marcelorcorrea.falae.adapter.SpreadSheetAdapter;
-import com.marcelorcorrea.falae.model.SpreadSheet;
 import com.marcelorcorrea.falae.model.User;
 
-
-public class SpreadSheetFragment extends Fragment {
+public class UserInfoFragment extends Fragment {
 
     private static final String USER_PARAM = "userParam";
 
     private OnFragmentInteractionListener mListener;
-    private SpreadSheetAdapter spreadSheetAdapter;
     private User user;
 
-    public SpreadSheetFragment() {
+    public UserInfoFragment() {
+        // Required empty public constructor
     }
 
-    public static SpreadSheetFragment newInstance(User user) {
-        SpreadSheetFragment fragment = new SpreadSheetFragment();
+    public static UserInfoFragment newInstance(User user) {
+        UserInfoFragment fragment = new UserInfoFragment();
         Bundle args = new Bundle();
         args.putParcelable(USER_PARAM, user);
         fragment.setArguments(args);
@@ -46,18 +41,8 @@ public class SpreadSheetFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_spread_sheet, container, false);
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.spreadsheet_recycler);
-        spreadSheetAdapter = new SpreadSheetAdapter(getContext(), user.getSpreadSheets(), new SpreadSheetAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(SpreadSheet spreadSheet) {
-                mListener.displayActivity(spreadSheet);
-            }
-        });
-        recyclerView.setAdapter(spreadSheetAdapter);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-        return view;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_user_info, container, false);
     }
 
     public void onAttachFragment(Fragment fragment) {
@@ -70,17 +55,13 @@ public class SpreadSheetFragment extends Fragment {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
 
     public interface OnFragmentInteractionListener {
-        void displayActivity(SpreadSheet spreadSheet);
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
     }
 }

@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.database.UserDbHelper;
 import com.marcelorcorrea.falae.fragment.AddUserFragment;
-import com.marcelorcorrea.falae.fragment.SpreadSheetFragment;
+import com.marcelorcorrea.falae.fragment.TabPagerFragment;
 import com.marcelorcorrea.falae.model.SpreadSheet;
 import com.marcelorcorrea.falae.model.User;
 import com.marcelorcorrea.falae.task.DownloadTask;
@@ -29,7 +29,7 @@ import java.util.List;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        SpreadSheetFragment.OnFragmentInteractionListener,
+        TabPagerFragment.OnFragmentInteractionListener,
         AddUserFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawer;
@@ -112,8 +112,8 @@ public class NavigationActivity extends AppCompatActivity
             openTTSLanguageSettings();
             return false;
         } else {
-            fragment = SpreadSheetFragment.newInstance(mUser);
-            tag = SpreadSheetFragment.class.getSimpleName();
+            fragment = TabPagerFragment.newInstance(mUser);
+            tag = TabPagerFragment.class.getSimpleName();
         }
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left,
