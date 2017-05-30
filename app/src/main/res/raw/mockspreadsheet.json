@@ -1,6 +1,8 @@
 {
   "name": "Marcelo",
   "email": "marcelorcorrea@hp.com",
+  "info": "I'm cool",
+  "photoSrc": "https://scontent-dft4-2.xx.fbcdn.net/v/t31.0-8/16487142_589726681221214_5192091310323862589_o.jpg?oh=ca13ca7e3210738dc4c9564fdf28539c&oe=59B28A18",
   "spreadSheets": [
     {
       "initialPage": "Main",

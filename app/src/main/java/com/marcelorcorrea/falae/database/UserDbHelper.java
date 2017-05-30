@@ -31,6 +31,8 @@ public class UserDbHelper extends SQLiteOpenHelper {
         public static final String COLUMN_SPREADSHEETS = "spreadsheets";
         public static final String COLUMN_NAME = "name";
         public static final String COLUMN_EMAIL = "email";
+        public static final String COLUMN_INFO = "info";
+        public static final String COLUMN_PHOTO = "photoSrc";
     }
 
     private static final String SQL_CREATE_ENTRIES =
@@ -38,6 +40,8 @@ public class UserDbHelper extends SQLiteOpenHelper {
                     UserEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                     UserEntry.COLUMN_NAME + " TEXT NOT NULL," +
                     UserEntry.COLUMN_EMAIL + " TEXT NOT NULL UNIQUE," +
+                    UserEntry.COLUMN_INFO + " TEXT," +
+                    UserEntry.COLUMN_PHOTO + " TEXT," +
                     UserEntry.COLUMN_SPREADSHEETS + " TEXT)";
 
     private static final String SQL_DELETE_ENTRIES =
@@ -63,9 +67,11 @@ public class UserDbHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(UserEntry.COLUMN_NAME, user.getName());
         contentValues.put(UserEntry.COLUMN_EMAIL, user.getEmail());
+        contentValues.put(UserEntry.COLUMN_INFO, user.getInfo());
+        contentValues.put(UserEntry.COLUMN_PHOTO, user.getPhotoSrc());
         contentValues.put(UserEntry.COLUMN_SPREADSHEETS, new Gson().toJson(user.getSpreadSheets()));
         SQLiteDatabase db = getWritableDatabase();
-        if (doesUserExists(user)) {
+        if (doesUserExist(user)) {
             Log.d("FALAE", "Updating entry...");
             db.update(UserEntry.TABLE_NAME, contentValues, UserEntry.COLUMN_EMAIL + "= ? ", new String[]{user.getEmail()});
         } else {
@@ -74,7 +80,7 @@ public class UserDbHelper extends SQLiteOpenHelper {
         }
     }
 
-    public boolean doesUserExists(User user) {
+    public boolean doesUserExist(User user) {
         Cursor cursor = null;
         try {
             SQLiteDatabase db = getReadableDatabase();
@@ -99,6 +105,8 @@ public class UserDbHelper extends SQLiteOpenHelper {
             String[] projection = {
                     UserEntry.COLUMN_NAME,
                     UserEntry.COLUMN_EMAIL,
+                    UserEntry.COLUMN_INFO,
+                    UserEntry.COLUMN_PHOTO,
                     UserEntry.COLUMN_SPREADSHEETS
             };
             String selection = UserEntry.COLUMN_EMAIL + " = ?";
@@ -111,9 +119,11 @@ public class UserDbHelper extends SQLiteOpenHelper {
                 String name = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_NAME));
                 String e = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_EMAIL));
                 String spreadSheetsJson = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_SPREADSHEETS));
+                String info = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_INFO));
+                String photoSrc = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_PHOTO));
                 List<SpreadSheet> spreadSheets = gson.fromJson(spreadSheetsJson, listType);
 
-                return new User(name, e, spreadSheets);
+                return new User(name, e, spreadSheets, info, photoSrc);
             }
             if (!cursor.isClosed()) {
                 cursor.close();
