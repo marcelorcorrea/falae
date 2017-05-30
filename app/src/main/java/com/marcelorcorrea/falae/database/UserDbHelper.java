@@ -105,9 +105,9 @@ public class UserDbHelper extends SQLiteOpenHelper {
             String[] projection = {
                     UserEntry.COLUMN_NAME,
                     UserEntry.COLUMN_EMAIL,
-                    UserEntry.COLUMN_SPREADSHEETS,
                     UserEntry.COLUMN_INFO,
-                    UserEntry.COLUMN_PHOTO
+                    UserEntry.COLUMN_PHOTO,
+                    UserEntry.COLUMN_SPREADSHEETS
             };
             String selection = UserEntry.COLUMN_EMAIL + " = ?";
             String[] selectionArgs = {email};
