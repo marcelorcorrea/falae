@@ -14,16 +14,20 @@ public class User implements Parcelable {
     private String name;
     private String email;
     private List<SpreadSheet> spreadSheets;
+    private String info;
+    private String photoSrc;
 
     public User(String name, String email) {
         this.name = name;
         this.email = email;
     }
 
-    public User(String name, String email, List<SpreadSheet> spreadSheets) {
+    public User(String name, String email, List<SpreadSheet> spreadSheets, String info, String photoSrc) {
         this.name = name;
         this.email = email;
         this.spreadSheets = spreadSheets;
+        this.info = info;
+        this.photoSrc = photoSrc;
     }
 
     public String getName() {
@@ -50,12 +54,30 @@ public class User implements Parcelable {
         this.spreadSheets = spreadSheets;
     }
 
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public String getPhotoSrc() {
+        return photoSrc;
+    }
+
+    public void setPhotoSrc(String photoSrc) {
+        this.photoSrc = photoSrc;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", spreadSheets=" + spreadSheets +
+                ", info=" + info +
+                ", photoSrc=" + photoSrc +
                 '}';
     }
 
@@ -69,6 +91,8 @@ public class User implements Parcelable {
         dest.writeString(this.name);
         dest.writeString(this.email);
         dest.writeTypedList(this.spreadSheets);
+        dest.writeString(this.info);
+        dest.writeString(this.photoSrc);
     }
 
     public User() {
@@ -78,6 +102,8 @@ public class User implements Parcelable {
         this.name = in.readString();
         this.email = in.readString();
         this.spreadSheets = in.createTypedArrayList(SpreadSheet.CREATOR);
+        this.info = in.readString();
+        this.photoSrc = in.readString();
     }
 
     public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {

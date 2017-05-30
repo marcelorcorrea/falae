@@ -64,6 +64,8 @@ public class NavigationActivity extends AppCompatActivity
         for (final User u : users) {
             addUserToMenu(u);
         }
+
+
     }
 
     private void addUserToMenu(final User user) {
@@ -138,7 +140,7 @@ public class NavigationActivity extends AppCompatActivity
         new DownloadTask(this, new DownloadTask.Callback() {
             @Override
             public void onSyncComplete(User u) {
-                if (!dbHelper.doesUserExists(u)) {
+                if (!dbHelper.doesUserExist(u)) {
                     addUserToMenu(u);
                 }
                 dbHelper.insertOrUpdate(u);
