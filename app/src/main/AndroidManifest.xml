@@ -7,7 +7,7 @@
     <application
         android:name=".FalaeApplication"
         android:allowBackup="true"
-        android:icon="@drawable/hp_logo"
+        android:icon="@drawable/icone_falae_128x128"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

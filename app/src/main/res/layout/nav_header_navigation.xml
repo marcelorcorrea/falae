@@ -25,32 +25,19 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/hp_logo" />
+        app:srcCompat="@drawable/falaelogotipo_64" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="177dp"
         android:layout_height="17dp"
-        android:layout_marginTop="0dp"
-        android:text="marcelorcorrea@hp.com"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.502" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        app:layout_constraintHorizontal_bias="0.502"
         android:layout_marginTop="8dp"
-        android:text="Falae"
-        app:layout_constraintTop_toBottomOf="@+id/item_image_view"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/item_image_view" />
 
 </android.support.constraint.ConstraintLayout>

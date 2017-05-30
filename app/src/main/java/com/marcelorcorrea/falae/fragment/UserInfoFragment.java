@@ -63,9 +63,6 @@ public class UserInfoFragment extends Fragment {
             placeHolderImage = getContext().getDrawable(R.drawable.ic_person_black_24dp);
         }
 
-        System.out.println(user.getPhotoSrc());
-        System.out.println(user.getName());
-
         Picasso.with(getContext())
                 .load(user.getPhotoSrc())
                 .placeholder(placeHolderImage)
