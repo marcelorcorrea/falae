@@ -123,7 +123,6 @@ public class UserDbHelper extends SQLiteOpenHelper {
                 String photoSrc = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_PHOTO));
                 List<SpreadSheet> spreadSheets = gson.fromJson(spreadSheetsJson, listType);
 
-
                 return new User(name, e, spreadSheets, info, photoSrc);
             }
             if (!cursor.isClosed()) {

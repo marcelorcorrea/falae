@@ -64,8 +64,6 @@ public class NavigationActivity extends AppCompatActivity
         for (final User u : users) {
             addUserToMenu(u);
         }
-
-
     }
 
     private void addUserToMenu(final User user) {

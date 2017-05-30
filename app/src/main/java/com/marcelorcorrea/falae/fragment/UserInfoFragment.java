@@ -15,11 +15,6 @@ import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.model.User;
 import com.squareup.picasso.Picasso;
 
-import org.w3c.dom.Text;
-
-import static android.R.attr.name;
-import static com.marcelorcorrea.falae.R.layout.item;
-
 public class UserInfoFragment extends Fragment {
 
     private static final String USER_PARAM = "userParam";
