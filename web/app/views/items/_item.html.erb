@@ -1,8 +1,11 @@
-<div class="list">
-  <div>Items:</div>
-  <ul>
-  <% @items.each do |item| %>
-    <li><%= link_to item.name, item %></li>
-  <% end %>
-  </ul>
+<div class="cards">
+  <div class="card-list">
+    <% items.each do |item| %>
+      <%= link_to item, class: ['card', css_class_name(item.category)] do %>
+        <div class="name"><%= item.name %></div>
+        <img src="<%= item.img_src %>"/>
+      <% end %>
+    <% end %>
+  </div>
 </div>
+

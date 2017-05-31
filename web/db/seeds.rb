@@ -7,11 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Category.destroy_all
-social_ctgy = Category.create! name: 'social', color: '#FC9A9C' #pink
-person_ctgy = Category.create! name: 'person', color: '#FCFE04' #yellow
-verbs_ctgy = Category.create! name: 'verbs', color: '#34CE34' #green
-nouns_ctgy = Category.create! name: 'nouns', color: '#FC9A04' #orange
-adjetives_ctgy = Category.create! name: 'adjetives', color: '#049AFC' #blue
+social_ctgy = Category.create! name: 'GREETINGS_SOCIAL_EXPRESSIONS', color: '#CC6699'
+subject_ctgy = Category.create! name: 'SUBJECT', color: '#E6E600'
+verbs_ctgy = Category.create! name: 'VERB', color: '#009900'
+nouns_ctgy = Category.create! name: 'NOUN', color: '#FFA500'
+adjetives_ctgy = Category.create! name: 'ADJECTIVE', color: '#0000FF'
+Category.create! name: 'OTHER', color: '#FFFFFF'
 
 
 Item.destroy_all
@@ -23,11 +24,11 @@ Item.create! [
   { name: 'obrigado', speech: 'obrigado', img_src: 'http://www.arasaac.org/repositorio/thumbs/10/200/8/8129.png',
     category: social_ctgy, default: true },
   { name: 'eu', speech: 'eu', img_src: 'http://www.arasaac.org/repositorio/thumbs/10/200/6/6632.png',
-    category: person_ctgy, default: true },
+    category: subject_ctgy, default: true },
   { name: 'você', speech: 'você', img_src: 'http://www.arasaac.org/repositorio/thumbs/10/200/6/6625.png',
-    category: person_ctgy, default: true },
+    category: subject_ctgy, default: true },
   { name: 'nós', speech: 'nós', img_src: 'http://www.arasaac.org/repositorio/thumbs/10/200/7/7186.png',
-    category: person_ctgy, default: true },
+    category: subject_ctgy, default: true },
   { name: 'querer', speech: 'querer', img_src: 'http://www.arasaac.org/repositorio/thumbs/10/200/3/31141.png',
     category: verbs_ctgy, default: true },
   { name: 'comer', speech: 'comer', img_src: 'http://www.arasaac.org/repositorio/thumbs/10/200/2/28413.png',

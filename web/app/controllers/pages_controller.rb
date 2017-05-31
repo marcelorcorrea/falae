@@ -1,7 +1,8 @@
 class PagesController < ApplicationController
   before_action :authenticate!
-  before_action :set_page, only: [:edit, :update, :destroy]
-  before_action :set_vars, only: [:index, :new, :show, :edit, :create]
+  before_action :authorized?
+  before_action :set_vars
+  before_action :set_page, only: [:show, :edit, :update, :destroy]
 
   # GET /pages
   # GET /pages.json
@@ -12,13 +13,13 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
-    @page = @spreadsheet.pages.find_by id: params[:id]
     @items = @page.items
   end
 
   # GET /pages/new
   def new
-    @page = Page.new
+    #@page = Page.new
+    @page = @spreadsheet.pages.new
   end
 
   # GET /pages/1/edit
@@ -68,7 +69,8 @@ class PagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page
-      @page = Page.find(params[:id])
+      #@page = Page.find(params[:id])
+      @page = @spreadsheet.pages.find_by id: params[:id]
     end
 
     def set_vars

@@ -3,14 +3,25 @@
     <% if notice %>
     <p id="notice"><%= notice %></p>
     <% end %>
+
     <div class="button-bar">
-      <%= link_to new_item_path, class: 'button-box' do %>
+      <%= link_to new_user_item_path(current_user), class: 'button-box' do %>
         <%= fa_icon 'plus-circle' %>New Item
       <% end %>
     </div>
-    <%#= render 'shared/mobile' do %>
-    <%= render 'items/item' %>
-    <%= render 'items/defaults' %>
-    <%# end %>
+    <div class="tab-bar">
+      <div class="tab user-items-tab active">My Items</div>
+      <div class="tab search-items-tab">Search Item</div>
+    </div>
+    <div class='item-lists'>
+      <div class="user-items-list active">
+        <%= render 'items/item', items: @items %>
+      </div>
+      <div class="search-items-list">
+        <%= render 'items/search' %>
+        <div id="search-results">
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>

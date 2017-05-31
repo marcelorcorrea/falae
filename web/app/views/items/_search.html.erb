@@ -1,0 +1,11 @@
+<div class="form-box">
+  <%= form_with scope: :item, method: :get do |form| %>
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name, id: :item_name %>
+    </div>
+    <div class="actions">
+      <%= form.submit 'Search', name: :search %>
+    </div>
+  <% end %>
+</div>

@@ -10,7 +10,8 @@ class Item < ApplicationRecord
   validates :name, :speech, :img_src, presence: true
 
   after_save do
-    if not self.user and not self.default
+    puts "########### #{self.pages.count}"
+    if not self.user and self.pages.count > 0
       self.update user: self.pages.first.spreadsheet.user
     end
   end
@@ -18,4 +19,5 @@ class Item < ApplicationRecord
   def Item.defaults
     @default_items ||= Item.where default: true
   end
+
 end

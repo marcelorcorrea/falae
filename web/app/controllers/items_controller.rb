@@ -1,11 +1,26 @@
 class ItemsController < ApplicationController
+  before_action :authenticate!
+  before_action :authorized?
+  before_action :set_vars
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   # GET /items
   # GET /items.json
   def index
     # @items = Item.all
-    @items = current_user.items
+    @items = if params[:search]
+      Item.defaults.where('name LIKE ?', "%#{item_params[:name]}%")
+    else
+      @user.items
+    end
+
+    #respond_to do |format|
+    #  format.html
+    #  format.json
+    #  format.js
+    #end
+
+    #@item = @user.items.build
   end
 
   # GET /items/1
@@ -15,7 +30,8 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @item = Item.new
+    #@item = Item.new
+    @item = @user.items.new
   end
 
   # GET /items/1/edit
@@ -25,7 +41,9 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(item_params)
+    #@item = Item.new(item_params)
+    @item = @user.items.build item_params
+    @item.category = Category.find_by(id: params[:category_id])
 
     respond_to do |format|
       if @item.save
@@ -65,11 +83,20 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Item.find(params[:id])
+      #@item = Item.find(params[:id])
+      @item = @user.items.find_by id: params[:id]
+    end
+
+    def set_vars
+      @user = current_user
+      #if params[:spreadsheet_id] and params[:page_id]
+        #@spreadsheet = @user.spreadsheets.find_by id: params[:spreadsheet_id]
+        #@page = @spreadsheet.pages.find_by id: params[:page_id]
+      #end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :img_src, :speech, :category_id)
+      params.require(:item).permit(:name, :img_src, :speech)
     end
 end

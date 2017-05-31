@@ -10,14 +10,16 @@ Rails.application.routes.draw do
 
   resources :items
 
-  resources :roles
+  #resources :roles
 
   resources :users do
     resources :spreadsheets do
-      resources :pages
+      resources :pages do
+        resources :items
+      end
     end
     resources :items
   end
 
-  resources :categories
+  #resources :categories
 end

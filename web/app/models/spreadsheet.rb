@@ -4,9 +4,9 @@ class Spreadsheet < ApplicationRecord
 
   before_save do
     if self.pages.empty?
-      default_page = Page.default
-      self.pages << default_page
-      self.initial_page = default_page.name
+      default_blank_page = Page.default_blank
+      self.pages << default_blank_page
+      self.initial_page = default_blank_page.name
     end
   end
 

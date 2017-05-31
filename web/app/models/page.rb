@@ -8,9 +8,7 @@ class Page < ApplicationRecord
   validates :columns, :rows, presence: true,
             numericality: { only_integer: true }
 
-  def Page.default
-    page = Page.new name: 'Initial', columns: 6, rows: 3
-    page.items << Item.defaults
-    page
+  def Page.default_blank
+    Page.new name: 'Initial', columns: 6, rows: 3
   end
 end

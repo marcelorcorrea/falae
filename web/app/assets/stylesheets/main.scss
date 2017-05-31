@@ -7,9 +7,8 @@ html {
 body {
   background-color: $default-bg-color;
   width: 100vw;
-  height: 100vh;
   margin: 0px;
-  font-family: verdana, arial, helvetica, sans-serif;
+  font-family: verdana, helvetica, arial, sans-serif;
   font-size: 16px;
   color: $default-font-color;
 }
@@ -17,9 +16,9 @@ body {
 #wrapper {
   position: relative;
   max-width: 1000px;
-  height: 100%;;
   margin: 0 auto;
   background-color: #FFF;
+  border-top: 1em solid $default-bg-color;
 
   header {
     width: 100%;
@@ -71,11 +70,17 @@ body {
     }
   }
 
+  .wrapper-bar {
+    height: 2em;
+    background-color: $default-bg-color;
+  }
+
   #container {
     color: $default-font-color;
     padding: 0.5em;
     box-sizing: border-box;
     width: 100%;
+    min-height: 45em;
 
     .nav-menu {
       width: 20%;

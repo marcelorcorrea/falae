@@ -1,29 +1,45 @@
 <%= render 'layouts/nav_menu_and_view' do %>
 
-<div class="page">
-  <p id="notice"><%= notice %></p>
+  <div class="page">
+    <p id="notice"><%= notice %></p>
 
-  <%= link_to edit_user_spreadsheet_page_path(@user, @spreadsheet, @page), class: 'button-box' do %>
-    <%= fa_icon 'edit' %>Edit
-  <% end %>
+    <%= link_to edit_user_spreadsheet_page_path(@user, @spreadsheet, @page), class: 'button-box' do %>
+      <%= fa_icon 'edit' %>Edit
+    <% end %>
 
-  Page:
-  <p>
-    <strong>Name:</strong>
-    <%= @page.name %>
-  </p>
+    <%= link_to new_user_item_path(@user), class: 'button-box' do %>
+      <%= fa_icon 'plus' %>Add Item
+    <% end %>
 
-  <p>
-    <strong>Columns:</strong>
-    <%= @page.columns %>
-  </p>
+    Page:
+    <p>
+      <strong>Name:</strong>
+      <%= @page.name %>
+    </p>
 
-  <p>
-    <strong>Rows:</strong>
-    <%= @page.rows %>
-  </p>
+    <p>
+      <strong>Columns:</strong>
+      <%= @page.columns %>
+    </p>
 
-  <%= render 'items/item' %>
-</div>
+    <p>
+      <strong>Rows:</strong>
+      <%= @page.rows %>
+    </p>
+
+    <div class="tab-bar">
+      <div class="tab page-items-tab active">Items List</div>
+      <div class="tab page-mobile-tab">Mobile View</div>
+    </div>
+
+    <div class='item-lists'>
+      <div class="page-items-list active">
+        <%= render 'items/item', items: @items %>
+      </div>
+      <div class="page-mobile-view">
+        <%= render 'items/item', items: @items %>
+      </div>
+    </div>
+  </div>
 
 <% end %>

@@ -1,0 +1,26 @@
+<% items.each do |item| %>
+  <div class="item-result">
+    <div class="item-result-img">
+      <img src="<%=  %>" />
+    </div>
+    <p>
+      <strong>Name:</strong>
+      <%= @item.name %>
+    </p>
+    <p>
+      <strong>Speech:</strong>
+      <%= @item.speech %>
+    </p>
+    <p>
+      <strong>Source:</strong>
+      <%= @item.img_src %>
+    </p>
+    <p>
+      <strong>Category:</strong>
+      <%= @item.category.name %>
+    </p>
+
+    <%= link_to 'Edit', edit_item_path(@item) %> |
+    <%= link_to 'Back', items_path %>
+  </div>
+<% end %>

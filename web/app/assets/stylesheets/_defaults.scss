@@ -1,3 +1,13 @@
-$default-font-color: #606060;
-$default-bg-color: #F5F5F5;
-$medium-sea-green: #3CB371;
+$dark-purple: #591E58;
+$light-purple: #7A2B7C;
+$dark-sea-green: #11626B;
+$medium-sea-green: #008383;
+$dark-orange: #EF4E22;
+$light-orange: #F68A1E;
+$yellow: #FFD41B;
+$dark-gray: #606060;
+
+$default-font-color: $dark-gray;
+$default-bg-color: $dark-purple;
+
+$tab-border: 0.125em solid $dark-sea-green;

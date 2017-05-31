@@ -1,3 +1,83 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import 'defaults';
+
+.page {
+  .tab-bar {
+    position: relative;
+    width: 100%;
+    height: 1.8em;
+    border-bottom: $tab-border;
+    .tab {
+      position: absolute;
+      width: 50%;
+      border: 0.125em solid transparent;
+      border-bottom: $tab-border;
+      padding: 4px 8px;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+    .tab.active {
+      border: $tab-border;
+      border-bottom: 0.125em solid white;
+      border-top-left-radius: 0.25em;
+      border-top-right-radius: 0.25em;
+    }
+    .tab.page-mobile-tab {
+      left: 50%;
+    }
+  }
+
+  .item-lists {
+    position: relative;
+
+    .page-items-list, .page-mobile-view {
+      float: left;
+      display: none;
+    }
+
+    .page-items-list { background-color: red; }
+    .page-mobile-view { background-color: blue; }
+
+    .active {
+      visibility: visible;
+      display: block;
+    }
+  }
+
+  .cards {
+    margin: 0 auto;
+    .card-list {
+      padding: 0.5em 0;
+      font-size: 0;
+      // remove blank space between inline-block elements
+      width: 100%;
+      margin: 0.28%;
+      // 7 spaces 6 cards = 100%
+      .card {
+        font-size: 16px;
+        margin: 0.125em 0.28%;
+        text-align: center;
+        display: inline-block;
+        width: 16%;
+        height: 12em;
+        vertical-align: top;
+        border: 0.0625em solid black;
+        border-radius: 0.125em;
+        box-sizing: border-box;
+        text-decoration: none;
+        color: inherit;
+
+        .name {
+          padding: 0.25em;
+        }
+        img {
+          margin-top: 1em;
+          width: 90%;
+        }
+      }
+    }
+  }
+}
