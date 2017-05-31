@@ -15,6 +15,8 @@ import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.model.User;
 import com.squareup.picasso.Picasso;
 
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
+
 public class UserInfoFragment extends Fragment {
 
     private static final String USER_PARAM = "userParam";
@@ -67,6 +69,7 @@ public class UserInfoFragment extends Fragment {
                 .load(user.getPhotoSrc())
                 .placeholder(placeHolderImage)
                 .error(brokenImage)
+                .transform(new CropCircleTransformation())
                 .into(imageView);
 
         userName.setText(user.getName());
