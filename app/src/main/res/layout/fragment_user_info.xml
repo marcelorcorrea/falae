@@ -2,7 +2,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/small_vertical_margin"
-    android:orientation="vertical">
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/default_horizontal_margin"
+        android:layout_marginLeft="@dimen/small_horizontal_margin"
+        android:layout_marginRight="@dimen/default_horizontal_margin"
+        android:layout_marginStart="@dimen/small_horizontal_margin"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/user_name"
@@ -18,18 +27,25 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/default_horizontal_margin"
-            android:layout_marginBottom="@dimen/default_horizontal_margin"
+            android:layout_marginTop="@dimen/small_vertical_margin"
             android:src="@drawable/hp_logo" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/very_big_vertical_margin"
+        android:background="@color/purple" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/default_vertical_margin"
-        android:layout_marginEnd="@dimen/big_horizontal_margin"
-        android:layout_marginLeft="@dimen/big_horizontal_margin"
-        android:layout_marginRight="@dimen/big_horizontal_margin"
-        android:layout_marginStart="@dimen/big_horizontal_margin">
+        android:layout_marginEnd="@dimen/default_horizontal_margin"
+        android:layout_marginLeft="@dimen/default_horizontal_margin"
+        android:layout_marginRight="@dimen/default_horizontal_margin"
+        android:layout_marginStart="@dimen/default_horizontal_margin">
 
         <TextView
             android:id="@+id/user_information"
@@ -39,5 +55,4 @@
             android:text="Description"
             android:textSize="@dimen/default_text_size" />
     </ScrollView>
-
 </LinearLayout>
