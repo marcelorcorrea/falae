@@ -11,7 +11,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
@@ -23,6 +22,7 @@ import com.marcelorcorrea.falae.fragment.AddUserFragment;
 import com.marcelorcorrea.falae.fragment.TabPagerFragment;
 import com.marcelorcorrea.falae.model.SpreadSheet;
 import com.marcelorcorrea.falae.model.User;
+import com.marcelorcorrea.falae.storage.SharedPreferencesUtils;
 import com.marcelorcorrea.falae.task.DownloadTask;
 
 import java.util.List;
@@ -32,6 +32,7 @@ public class NavigationActivity extends AppCompatActivity
         TabPagerFragment.OnFragmentInteractionListener,
         AddUserFragment.OnFragmentInteractionListener {
 
+    private static final String USER_EMAIL = "email";
     private DrawerLayout mDrawer;
     private NavigationView mNavigationView;
     private User mUser;
@@ -58,16 +59,27 @@ public class NavigationActivity extends AppCompatActivity
         mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
 
-
         dbHelper = new UserDbHelper(this);
         List<User> users = dbHelper.read();
         for (final User u : users) {
             addUserToMenu(u);
         }
+        getLastConnectedUser();
+    }
+
+    private void getLastConnectedUser() {
+        String email = SharedPreferencesUtils.getStringPreferences(USER_EMAIL, this);
+        if (!email.isEmpty()) {
+            mUser = dbHelper.findByEmail(email);
+            MenuItem item = mNavigationView.getMenu().findItem(mUser.getId());
+            if (item != null) {
+                onNavigationItemSelected(item);
+            }
+        }
     }
 
     private void addUserToMenu(final User user) {
-        MenuItem userItem = mNavigationView.getMenu().add(R.id.users_group, Menu.NONE, 0, user.getName());
+        MenuItem userItem = mNavigationView.getMenu().add(R.id.users_group, user.getId(), 0, user.getName());
         userItem.setIcon(R.drawable.ic_person_black_24dp);
         userItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
@@ -130,6 +142,9 @@ public class NavigationActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         dbHelper.close();
+        if (mUser != null) {
+            SharedPreferencesUtils.storeStringPreferences(USER_EMAIL, mUser.getEmail(), this);
+        }
         super.onDestroy();
     }
 
@@ -139,9 +154,13 @@ public class NavigationActivity extends AppCompatActivity
             @Override
             public void onSyncComplete(User u) {
                 if (!dbHelper.doesUserExist(u)) {
+                    Long id = dbHelper.insert(u);
+                    System.out.println(id.intValue());
+                    u.setId(id.intValue());
                     addUserToMenu(u);
+                } else {
+                    dbHelper.update(u);
                 }
-                dbHelper.insertOrUpdate(u);
                 Toast.makeText(NavigationActivity.this, R.string.success_user_added, Toast.LENGTH_SHORT).show();
             }
         }).execute(user);

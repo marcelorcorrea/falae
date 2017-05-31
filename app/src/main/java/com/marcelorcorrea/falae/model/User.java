@@ -11,23 +11,34 @@ import java.util.List;
 
 public class User implements Parcelable {
 
+    private int id;
     private String name;
     private String email;
     private List<SpreadSheet> spreadSheets;
     private String info;
     private String photoSrc;
 
-    public User(String name, String email) {
+    public User(int id, String name, String email) {
+        this.id = id;
         this.name = name;
         this.email = email;
     }
 
-    public User(String name, String email, List<SpreadSheet> spreadSheets, String info, String photoSrc) {
+    public User(int id, String name, String email, List<SpreadSheet> spreadSheets, String info, String photoSrc) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.spreadSheets = spreadSheets;
         this.info = info;
         this.photoSrc = photoSrc;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -73,11 +84,12 @@ public class User implements Parcelable {
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", spreadSheets=" + spreadSheets +
-                ", info=" + info +
-                ", photoSrc=" + photoSrc +
+                ", info='" + info + '\'' +
+                ", photoSrc='" + photoSrc + '\'' +
                 '}';
     }
 
@@ -88,6 +100,7 @@ public class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(this.id);
         dest.writeString(this.name);
         dest.writeString(this.email);
         dest.writeTypedList(this.spreadSheets);
@@ -95,10 +108,8 @@ public class User implements Parcelable {
         dest.writeString(this.photoSrc);
     }
 
-    public User() {
-    }
-
     protected User(Parcel in) {
+        this.id = in.readInt();
         this.name = in.readString();
         this.email = in.readString();
         this.spreadSheets = in.createTypedArrayList(SpreadSheet.CREATOR);
@@ -106,7 +117,7 @@ public class User implements Parcelable {
         this.photoSrc = in.readString();
     }
 
-    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
+    public static final Creator<User> CREATOR = new Creator<User>() {
         @Override
         public User createFromParcel(Parcel source) {
             return new User(source);
