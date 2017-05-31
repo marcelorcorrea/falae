@@ -5,6 +5,7 @@
     <color name="colorAccent">#7a2b7c</color>
 
     <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
     <color name="pink">#FAAFBE</color>
     <color name="blue" type="color">#FF33B5E5</color>
     <color name="lightpurple" type="color">#FFAA66CC</color>
