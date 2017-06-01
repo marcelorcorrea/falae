@@ -3,7 +3,6 @@ package com.marcelorcorrea.falae.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
@@ -63,21 +62,28 @@ public class UserDbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void insertOrUpdate(User user) {
+    private ContentValues createUserContentValues(User user) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(UserEntry.COLUMN_NAME, user.getName());
         contentValues.put(UserEntry.COLUMN_EMAIL, user.getEmail());
         contentValues.put(UserEntry.COLUMN_INFO, user.getInfo());
         contentValues.put(UserEntry.COLUMN_PHOTO, user.getPhotoSrc());
         contentValues.put(UserEntry.COLUMN_SPREADSHEETS, new Gson().toJson(user.getSpreadSheets()));
+        return contentValues;
+    }
+
+    public long insert(User user) {
+        ContentValues userContentValues = createUserContentValues(user);
         SQLiteDatabase db = getWritableDatabase();
-        if (doesUserExist(user)) {
-            Log.d("FALAE", "Updating entry...");
-            db.update(UserEntry.TABLE_NAME, contentValues, UserEntry.COLUMN_EMAIL + "= ? ", new String[]{user.getEmail()});
-        } else {
-            Log.d("FALAE", "Inserting entry...");
-            db.insert(UserEntry.TABLE_NAME, null, contentValues);
-        }
+        Log.d("FALAE", "Inserting entry...");
+        return db.insert(UserEntry.TABLE_NAME, null, userContentValues);
+    }
+
+    public void update(User user) {
+        ContentValues userContentValues = createUserContentValues(user);
+        SQLiteDatabase db = getWritableDatabase();
+        Log.d("FALAE", "Updating entry...");
+        db.update(UserEntry.TABLE_NAME, userContentValues, UserEntry.COLUMN_EMAIL + "= ? ", new String[]{user.getEmail()});
     }
 
     public boolean doesUserExist(User user) {
@@ -103,6 +109,7 @@ public class UserDbHelper extends SQLiteOpenHelper {
         try {
             SQLiteDatabase db = getReadableDatabase();
             String[] projection = {
+                    UserEntry._ID,
                     UserEntry.COLUMN_NAME,
                     UserEntry.COLUMN_EMAIL,
                     UserEntry.COLUMN_INFO,
@@ -116,6 +123,7 @@ public class UserDbHelper extends SQLiteOpenHelper {
             }.getType();
             Gson gson = new Gson();
             if (cursor.moveToFirst()) {
+                Long id = cursor.getLong(cursor.getColumnIndex(UserEntry._ID));
                 String name = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_NAME));
                 String e = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_EMAIL));
                 String spreadSheetsJson = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_SPREADSHEETS));
@@ -123,7 +131,7 @@ public class UserDbHelper extends SQLiteOpenHelper {
                 String photoSrc = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_PHOTO));
                 List<SpreadSheet> spreadSheets = gson.fromJson(spreadSheetsJson, listType);
 
-                return new User(name, e, spreadSheets, info, photoSrc);
+                return new User(id.intValue(), name, e, spreadSheets, info, photoSrc);
             }
             if (!cursor.isClosed()) {
                 cursor.close();
@@ -140,6 +148,7 @@ public class UserDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
         String[] projection = {
+                UserEntry._ID,
                 UserEntry.COLUMN_NAME,
                 UserEntry.COLUMN_EMAIL,
         };
@@ -148,9 +157,10 @@ public class UserDbHelper extends SQLiteOpenHelper {
 
         List<User> users = new ArrayList<>();
         while (cursor.moveToNext()) {
+            Long id = cursor.getLong(cursor.getColumnIndex(UserEntry._ID));
             String name = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_NAME));
             String email = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_EMAIL));
-            User user = new User(name, email);
+            User user = new User(id.intValue(),name, email);
             users.add(user);
         }
         if (!cursor.isClosed()) {

@@ -1,55 +1,58 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.marcelorcorrea.falae.fragment.UserInfoFragment">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/small_vertical_margin"
+    android:orientation="horizontal">
 
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/user_photo"
-            android:layout_width="91dp"
-            android:layout_height="88dp"
-            app:srcCompat="@drawable/hp_logo"
-            android:layout_marginLeft="8dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginRight="8dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="29dp"
-            app:layout_constraintHorizontal_bias="0.501" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/default_horizontal_margin"
+        android:layout_marginLeft="@dimen/small_horizontal_margin"
+        android:layout_marginRight="@dimen/default_horizontal_margin"
+        android:layout_marginStart="@dimen/small_horizontal_margin"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
             android:text="UserName"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_photo" />
+            android:textSize="@dimen/big_text_size"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/user_photo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/small_vertical_margin"
+            android:src="@drawable/hp_logo" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/very_big_vertical_margin"
+        android:background="@color/purple" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/default_vertical_margin"
+        android:layout_marginEnd="@dimen/default_horizontal_margin"
+        android:layout_marginLeft="@dimen/default_horizontal_margin"
+        android:layout_marginRight="@dimen/default_horizontal_margin"
+        android:layout_marginStart="@dimen/default_horizontal_margin">
 
         <TextView
             android:id="@+id/user_information"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="18dp"
+            android:gravity="start"
             android:text="Description"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_name"
-            app:layout_constraintHorizontal_bias="0.501" />
-
-    </android.support.constraint.ConstraintLayout>
-
-</FrameLayout>
+            android:textSize="@dimen/default_text_size" />
+    </ScrollView>
+</LinearLayout>
