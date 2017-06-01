@@ -28,6 +28,13 @@ public class SharedPreferencesUtils {
         editor.apply();
     }
 
+    public static void storeIntPreferences(String key, int value, Context context) {
+        sharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putInt(key, value);
+        editor.apply();
+    }
+
     public static boolean getBooleanPreferences(String key, Context context) {
         sharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
         return sharedPreferences.getBoolean(key, false);
@@ -36,5 +43,10 @@ public class SharedPreferencesUtils {
     public static String getStringPreferences(String key, Context context) {
         sharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
         return sharedPreferences.getString(key, "");
+    }
+
+    public static int getIntPreferences(String key, Context context) {
+        sharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
+        return sharedPreferences.getInt(key, 0);
     }
 }

@@ -96,12 +96,13 @@ public class ViewPagerItemFragment extends Fragment {
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
 
-        if(SharedPreferencesUtils.getBooleanPreferences("scan_mode",getContext())){
+        if (SharedPreferencesUtils.getBooleanPreferences(SettingsFragment.SCAN_MODE, getContext())) {
             currentItemSelectedFromScan = -1;
-            doSpreadsheetScan(1000);
+            int scanModeDuration = SharedPreferencesUtils.getIntPreferences(SettingsFragment.SCAN_MODE_DURATION, getContext());
+            doSpreadsheetScan(scanModeDuration);
         }
     }
 
@@ -109,7 +110,7 @@ public class ViewPagerItemFragment extends Fragment {
     public void onPause() {
         super.onPause();
 
-        if(mTimer != null) {
+        if (mTimer != null) {
             mTimer.purge();
             mTimer.cancel();
             mTimer = null;
@@ -134,11 +135,9 @@ public class ViewPagerItemFragment extends Fragment {
             public void onClick(View v) {
 
                 Item itemSelected = item;
-
-                if(SharedPreferencesUtils.getBooleanPreferences("scan_mode",getContext())) {
+                if (SharedPreferencesUtils.getBooleanPreferences(SettingsFragment.SCAN_MODE, getContext())) {
                     itemSelected = mItems.get(currentItemSelectedFromScan);
                 }
-
                 onItemClicked(itemSelected);
             }
         });
@@ -175,8 +174,7 @@ public class ViewPagerItemFragment extends Fragment {
         return frameLayout;
     }
 
-    private void onItemClicked(Item item){
-
+    private void onItemClicked(Item item) {
         mListener.speak(item.getNameToPronounce());
         if (item.getLinkTo() != null) {
             mListener.openPage(item.getLinkTo());
@@ -233,43 +231,43 @@ public class ViewPagerItemFragment extends Fragment {
 
         mTimer = new Timer();
         mTimer.schedule(new TimerTask() {
-             @Override
-             public void run() {
+            @Override
+            public void run() {
 
-                 try {
-                     currentItemSelectedFromScan++;
+                try {
+                    currentItemSelectedFromScan++;
 
-                     if (currentItemSelectedFromScan > mItemsLayout.size() - 1) {
-                         currentItemSelectedFromScan = 0;
-                     }
+                    if (currentItemSelectedFromScan > mItemsLayout.size() - 1) {
+                        currentItemSelectedFromScan = 0;
+                    }
 
-                     getActivity().runOnUiThread(new Runnable() {
-                         @Override
-                         public void run() {
-                             //Highlight current selected item
-                             if (getContext() != null && mItemsLayout != null && currentItemSelectedFromScan < mItemsLayout.size()) {
-                                 Log.d("Test", "hightlight current item: " + currentItemSelectedFromScan);
-                                 mItemsLayout.get(currentItemSelectedFromScan).setForeground(getContext().getResources().getDrawable(R.drawable.pressed_color));
-                             }
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            //Highlight current selected item
+                            if (getContext() != null && mItemsLayout != null && currentItemSelectedFromScan < mItemsLayout.size()) {
+                                Log.d("Test", "hightlight current item: " + currentItemSelectedFromScan);
+                                mItemsLayout.get(currentItemSelectedFromScan).setForeground(getContext().getResources().getDrawable(R.drawable.pressed_color));
+                            }
 
-                             int previousItem = currentItemSelectedFromScan - 1;
+                            int previousItem = currentItemSelectedFromScan - 1;
 
-                             if (previousItem < 0) {
-                                 previousItem = mItemsLayout.size() - 1;
-                             }
+                            if (previousItem < 0) {
+                                previousItem = mItemsLayout.size() - 1;
+                            }
 
-                             //remove highlight from previus item
-                             if (getContext() != null && mItemsLayout != null && previousItem < mItemsLayout.size()) {
-                                 Log.d("Test", "remove hightlight current item: " + previousItem);
-                                 mItemsLayout.get(previousItem).setForeground(getContext().getResources().getDrawable(R.drawable.normal_color));
-                             }
-                         }
-                     });
-                 } catch (Exception e) {
-                     Log.e("Error", "ViewPagerItemFragment:run:256 ");
-                 }
-             }
-         },0, delay);
+                            //remove highlight from previus item
+                            if (getContext() != null && mItemsLayout != null && previousItem < mItemsLayout.size()) {
+                                Log.d("Test", "remove hightlight current item: " + previousItem);
+                                mItemsLayout.get(previousItem).setForeground(getContext().getResources().getDrawable(R.drawable.normal_color));
+                            }
+                        }
+                    });
+                } catch (Exception e) {
+                    Log.e("Error", "ViewPagerItemFragment:run:256 ");
+                }
+            }
+        }, 0, delay);
     }
 
     @Override

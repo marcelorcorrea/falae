@@ -1,7 +1,6 @@
 package com.marcelorcorrea.falae.activity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
@@ -32,8 +31,7 @@ import java.util.List;
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         TabPagerFragment.OnFragmentInteractionListener,
-        AddUserFragment.OnFragmentInteractionListener,
-        SettingsFragment.OnFragmentInteractionListener {
+        AddUserFragment.OnFragmentInteractionListener {
 
     private static final String USER_EMAIL = "email";
     private DrawerLayout mDrawer;
@@ -184,10 +182,5 @@ public class NavigationActivity extends AppCompatActivity
         intent.putExtra(DisplayActivity.SPREADSHEET, spreadSheet);
         startActivity(intent);
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 }
