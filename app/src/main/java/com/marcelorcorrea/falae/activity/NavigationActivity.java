@@ -21,7 +21,6 @@ import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.database.UserDbHelper;
 import com.marcelorcorrea.falae.fragment.AddUserFragment;
 import com.marcelorcorrea.falae.fragment.SettingsFragment;
-import com.marcelorcorrea.falae.fragment.SpreadSheetFragment;
 import com.marcelorcorrea.falae.fragment.TabPagerFragment;
 import com.marcelorcorrea.falae.model.SpreadSheet;
 import com.marcelorcorrea.falae.model.User;
@@ -32,7 +31,7 @@ import java.util.List;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        SpreadSheetFragment.OnFragmentInteractionListener,
+        TabPagerFragment.OnFragmentInteractionListener,
         AddUserFragment.OnFragmentInteractionListener,
         SettingsFragment.OnFragmentInteractionListener {
 
