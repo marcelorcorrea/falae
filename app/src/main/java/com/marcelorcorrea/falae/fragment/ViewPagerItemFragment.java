@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.model.Category;
 import com.marcelorcorrea.falae.model.Item;
+import com.marcelorcorrea.falae.storage.SharedPreferencesUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -43,7 +44,6 @@ public class ViewPagerItemFragment extends Fragment {
     private int mColumns;
     private int mRows;
     private int mMarginWidth;
-    private boolean isScanMode = false;
     private int currentItemSelectedFromScan = -1;
     private GridLayout mGridLayout = null;
     private Timer mTimer;
@@ -99,7 +99,7 @@ public class ViewPagerItemFragment extends Fragment {
     public void onResume(){
         super.onResume();
 
-        if(isScanMode){
+        if(SharedPreferencesUtils.getBooleanPreferences("scan_mode",getContext())){
             currentItemSelectedFromScan = -1;
             doSpreadsheetScan(1000);
         }
@@ -135,7 +135,7 @@ public class ViewPagerItemFragment extends Fragment {
 
                 Item itemSelected = item;
 
-                if(isScanMode) {
+                if(SharedPreferencesUtils.getBooleanPreferences("scan_mode",getContext())) {
                     itemSelected = mItems.get(currentItemSelectedFromScan);
                 }
 
