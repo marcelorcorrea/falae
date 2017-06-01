@@ -28,6 +28,9 @@
     <string name="exit_app_msg">Please click BACK again to exit</string>
     <string name="synchronize_message">Synchronizing</string>
     <string name="authenticate_message">Authorizing</string>
+    <string name="settings">Settings</string>
+    <string name="scan_mode">Scan Mode</string>
     <string name="success_user_added">User successfully added !</string>
     <string name="user_info">Profile</string>
+
 </resources>

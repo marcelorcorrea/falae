@@ -13,6 +13,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayout;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +24,13 @@ import android.widget.TextView;
 import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.model.Category;
 import com.marcelorcorrea.falae.model.Item;
+import com.marcelorcorrea.falae.storage.SharedPreferencesUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ViewPagerItemFragment extends Fragment {
     private static final String ITEMS_PARAM = "items";
@@ -35,11 +39,14 @@ public class ViewPagerItemFragment extends Fragment {
     private static final String MARGIN_WIDTH = "marginWidth";
 
     private List<Item> mItems;
-
+    private List<FrameLayout> mItemsLayout;
     private OnFragmentInteractionListener mListener;
     private int mColumns;
     private int mRows;
     private int mMarginWidth;
+    private int currentItemSelectedFromScan = -1;
+    private GridLayout mGridLayout = null;
+    private Timer mTimer;
 
     public ViewPagerItemFragment() {
     }
@@ -70,18 +77,43 @@ public class ViewPagerItemFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view_pager_item, container, false);
-        GridLayout gridLayout = (GridLayout) view.findViewById(R.id.grid_layout);
-        gridLayout.setAlignmentMode(GridLayout.ALIGN_BOUNDS);
-        gridLayout.setColumnCount(mColumns);
-        gridLayout.setRowCount(mRows);
+        mGridLayout = (GridLayout) view.findViewById(R.id.grid_layout);
+        mGridLayout.setAlignmentMode(GridLayout.ALIGN_BOUNDS);
+        mGridLayout.setColumnCount(mColumns);
+        mGridLayout.setRowCount(mRows);
 
         Point layoutDimensions = calculateLayoutDimensions();
 
+        mItemsLayout = new ArrayList<>();
+
         for (final Item item : mItems) {
             FrameLayout layout = generateLayout(inflater, item, layoutDimensions);
-            gridLayout.addView(layout);
+            mItemsLayout.add(layout);
+            mGridLayout.addView(layout);
         }
+
         return view;
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        if(SharedPreferencesUtils.getBooleanPreferences("scan_mode",getContext())){
+            currentItemSelectedFromScan = -1;
+            doSpreadsheetScan(1000);
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        if(mTimer != null) {
+            mTimer.purge();
+            mTimer.cancel();
+            mTimer = null;
+        }
     }
 
     private FrameLayout generateLayout(LayoutInflater inflater, final Item item, final Point layoutDimensions) {
@@ -100,10 +132,14 @@ public class ViewPagerItemFragment extends Fragment {
         frameLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.speak(item.getNameToPronounce());
-                if (item.getLinkTo() != null) {
-                    mListener.openPage(item.getLinkTo());
+
+                Item itemSelected = item;
+
+                if(SharedPreferencesUtils.getBooleanPreferences("scan_mode",getContext())) {
+                    itemSelected = mItems.get(currentItemSelectedFromScan);
                 }
+
+                onItemClicked(itemSelected);
             }
         });
         name.setText(item.getName());
@@ -137,6 +173,14 @@ public class ViewPagerItemFragment extends Fragment {
             }
         });
         return frameLayout;
+    }
+
+    private void onItemClicked(Item item){
+
+        mListener.speak(item.getNameToPronounce());
+        if (item.getLinkTo() != null) {
+            mListener.openPage(item.getLinkTo());
+        }
     }
 
     private Point calculateLayoutDimensions() {
@@ -182,6 +226,50 @@ public class ViewPagerItemFragment extends Fragment {
         Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
         return new BitmapDrawable(getResources(),
                 Bitmap.createScaledBitmap(bitmap, size, size, true));
+    }
+
+
+    private void doSpreadsheetScan(final int delay) {
+
+        mTimer = new Timer();
+        mTimer.schedule(new TimerTask() {
+             @Override
+             public void run() {
+
+                 try {
+                     currentItemSelectedFromScan++;
+
+                     if (currentItemSelectedFromScan > mItemsLayout.size() - 1) {
+                         currentItemSelectedFromScan = 0;
+                     }
+
+                     getActivity().runOnUiThread(new Runnable() {
+                         @Override
+                         public void run() {
+                             //Highlight current selected item
+                             if (getContext() != null && mItemsLayout != null && currentItemSelectedFromScan < mItemsLayout.size()) {
+                                 Log.d("Test", "hightlight current item: " + currentItemSelectedFromScan);
+                                 mItemsLayout.get(currentItemSelectedFromScan).setForeground(getContext().getResources().getDrawable(R.drawable.pressed_color));
+                             }
+
+                             int previousItem = currentItemSelectedFromScan - 1;
+
+                             if (previousItem < 0) {
+                                 previousItem = mItemsLayout.size() - 1;
+                             }
+
+                             //remove highlight from previus item
+                             if (getContext() != null && mItemsLayout != null && previousItem < mItemsLayout.size()) {
+                                 Log.d("Test", "remove hightlight current item: " + previousItem);
+                                 mItemsLayout.get(previousItem).setForeground(getContext().getResources().getDrawable(R.drawable.normal_color));
+                             }
+                         }
+                     });
+                 } catch (Exception e) {
+                     Log.e("Error", "ViewPagerItemFragment:run:256 ");
+                 }
+             }
+         },0, delay);
     }
 
     @Override

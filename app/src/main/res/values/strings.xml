@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Falaê</string>
+    <string name="app_name">Falae</string>
 
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Senha</string>
@@ -27,9 +27,10 @@
     <string name="exit_app_msg">Por favor pressione VOLTAR novamente para sair</string>
     <string name="synchronize_message">Sincronizando</string>
     <string name="authenticate_message">Autenticando</string>
+    <string name="settings">Configurações</string>
+    <string name="scan_mode">Modo Varredura</string>
     <string name="success_user_added">Usuário adicionado com sucesso!</string>
-
+    <string name="user_info">Perfil</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="user_info">Perfil</string>
 </resources>
