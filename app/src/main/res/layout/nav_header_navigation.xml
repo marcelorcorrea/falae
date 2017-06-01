@@ -13,6 +13,6 @@
         android:layout_gravity="center"
         android:layout_marginBottom="12dp"
         android:layout_marginTop="12dp"
-        android:src="@drawable/falaelogotiponegativo_64" />
+        android:src="@drawable/falaelogotiponegativo_500" />
 
 </LinearLayout>
