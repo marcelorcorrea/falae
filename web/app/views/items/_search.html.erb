@@ -5,7 +5,9 @@
       <%= form.text_field :name, id: :item_name %>
     </div>
     <div class="actions">
-      <%= form.submit 'Search', name: :search %>
+      <%= form.button :submit, name: :search do %>
+        <%= fa_icon 'search' %>Search
+      <% end %>
     </div>
   <% end %>
 </div>

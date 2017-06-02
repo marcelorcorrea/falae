@@ -1,0 +1,6 @@
+formButton = $("form[action$='id=<%= @item.id %>']");
+itemList = formButton.parent();
+formButton.remove();
+$(itemList).append($('<span></span>').addClass('already').text('Added to page'));
+
+$("<%= escape_javascript(render 'items/page_card', item: @item) %>").appendTo(".page-card-list");

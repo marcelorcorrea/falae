@@ -16,10 +16,14 @@ Rails.application.routes.draw do
     resources :spreadsheets do
       resources :pages do
         resources :items
+        post 'items/add_to_page', to: 'items#add_to_page'
       end
     end
     resources :items
+    post 'items/add_to', to: 'items#add_to'
   end
+
+  #post 'users/:id/items/add_to' => 'items#add_to', as: :add_to_my_items
 
   #resources :categories
 end

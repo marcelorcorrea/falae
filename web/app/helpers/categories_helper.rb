@@ -1,7 +1,12 @@
 module CategoriesHelper
 
+  def display_name(category)
+    category.name.downcase.humanize
+  end
+
+
   def select_options_helper
-    Category.all.map { |ctgy| [ctgy.name.downcase.humanize, ctgy.id] }
+    Category.all.map { |ctgy| [display_name(ctgy), ctgy.id] }
   end
 
   def ItemsHelper.css_class_name(category)

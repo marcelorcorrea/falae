@@ -9,18 +9,14 @@ class ItemsController < ApplicationController
   def index
     # @items = Item.all
     @items = if params[:search]
-      Item.defaults.where('name LIKE ?', "%#{item_params[:name]}%")
+      if item_params[:name].blank?
+        []
+      else
+       Item.defaults.where('name LIKE ?', "%#{item_params[:name]}%")
+      end
     else
       @user.items
     end
-
-    #respond_to do |format|
-    #  format.html
-    #  format.json
-    #  format.js
-    #end
-
-    #@item = @user.items.build
   end
 
   # GET /items/1
@@ -80,6 +76,20 @@ class ItemsController < ApplicationController
     end
   end
 
+  def add_to
+    @item = Item.defaults.find_by id: params[:id]
+    if @item and not @item.has?(@user)
+      @user.items << @item
+    end
+  end
+
+  def add_to_page
+    @item = Item.defaults.find_by id: params[:id]
+    if @item and not @item.in_page?(@page)
+      @page.items << @item
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
@@ -89,10 +99,10 @@ class ItemsController < ApplicationController
 
     def set_vars
       @user = current_user
-      #if params[:spreadsheet_id] and params[:page_id]
-        #@spreadsheet = @user.spreadsheets.find_by id: params[:spreadsheet_id]
-        #@page = @spreadsheet.pages.find_by id: params[:page_id]
-      #end
+      if params[:spreadsheet_id] and params[:page_id]
+        @spreadsheet = @user.spreadsheets.find_by id: params[:spreadsheet_id]
+        @page = @spreadsheet.pages.find_by id: params[:page_id]
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :exception # if: Proc.new { |r| r.format.json? } (something like this...)
   include ApplicationHelper
   include SessionsHelper
 

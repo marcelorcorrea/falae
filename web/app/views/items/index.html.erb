@@ -10,12 +10,16 @@
       <% end %>
     </div>
     <div class="tab-bar">
-      <div class="tab user-items-tab active">My Items</div>
+      <div class="tab user-items-tab active">Items</div>
       <div class="tab search-items-tab">Search Item</div>
     </div>
     <div class='item-lists'>
       <div class="user-items-list active">
-        <%= render 'items/item', items: @items %>
+        <% if current_page? user_items_path %>
+          <%= render 'items/item', items: @items %>
+        <% else %>
+          <%= render 'items/page_items', items: @items %>
+        <% end %>
       </div>
       <div class="search-items-list">
         <%= render 'items/search' %>

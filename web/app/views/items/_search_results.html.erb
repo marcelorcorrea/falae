@@ -1,26 +1,37 @@
 <% items.each do |item| %>
   <div class="item-result">
-    <div class="item-result-img">
-      <img src="<%=  %>" />
+    <div class="item-result-img <%= css_class_name(item.category) %>">
+      <img src="<%= item.img_src %>"/>
     </div>
+
     <p>
       <strong>Name:</strong>
-      <%= @item.name %>
+      <%= item.name %>
     </p>
+
     <p>
       <strong>Speech:</strong>
-      <%= @item.speech %>
-    </p>
-    <p>
-      <strong>Source:</strong>
-      <%= @item.img_src %>
+      <%= item.speech %>
     </p>
     <p>
       <strong>Category:</strong>
-      <%= @item.category.name %>
+      <%= display_name item.category %>
     </p>
 
-    <%= link_to 'Edit', edit_item_path(@item) %> |
-    <%= link_to 'Back', items_path %>
+    <%# TODO: refactoing %>
+    <% if item.in_page? @page %>
+      <span class="already">Already in this page</span>
+    <% elsif item.has? current_user %>
+      <span class="already">Already in My Items</span>
+    <% elsif @page %>
+      <%= button_to({action: 'add_to_page', id: item.id}, method: :post, remote: true, class: 'button-box') do %>
+        <%= fa_icon 'plus-circle' %>Add to page
+      <% end %>
+    <% else %>
+      <%= button_to({action: 'add_to', id: item.id}, method: :post, remote: true, class: 'button-box') do %>
+        <%= fa_icon 'plus-circle' %>Add to My Items
+      <% end %>
+    <% end %>
+
   </div>
 <% end %>

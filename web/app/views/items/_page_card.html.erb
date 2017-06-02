@@ -1,0 +1,28 @@
+<div class="item-result">
+  <div class="item-result-img <%= css_class_name(item.category) %>">
+    <img src="<%= item.img_src %>"/>
+  </div>
+
+  <p>
+    <strong>Name:</strong>
+    <%= item.name %>
+  </p>
+
+  <p>
+    <strong>Speech:</strong>
+    <%= item.speech %>
+  </p>
+
+  <p>
+    <strong>Category:</strong>
+    <%= display_name item.category %>
+  </p>
+
+  <% if item.in_page?(@page) %>
+    <span class="already">Already in this page</span>
+  <% else %>
+    <%= button_to({action: 'add_to_page', id: item.id}, method: :post, remote: true, class: 'button-box') do %>
+      <%= fa_icon 'plus-circle' %>Add to Page
+    <% end %>
+  <% end %>
+</div>

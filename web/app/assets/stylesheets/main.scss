@@ -13,7 +13,7 @@ body {
   color: $default-font-color;
 }
 
-#wrapper {
+.wrapper {
   position: relative;
   max-width: 1000px;
   margin: 0 auto;
@@ -75,7 +75,7 @@ body {
     background-color: $default-bg-color;
   }
 
-  #container {
+  .container {
     color: $default-font-color;
     padding: 0.5em;
     box-sizing: border-box;
@@ -154,6 +154,7 @@ body {
       margin: 1em 0;
     }
     .button-box {
+      font-size: inherit;
       color: $medium-sea-green;
       float: right;
       margin: 0 0.5em;
@@ -163,9 +164,11 @@ body {
       border-radius: 0.5em;
       display: inline-block;
       text-decoration: none;
+      background-color: white;
       &:hover {
         color: #FFF;
         background-color: $medium-sea-green;
+        cursor: pointer;
       }
       i {
         padding-right: $padding;
@@ -230,7 +233,7 @@ body {
       input.offset-for-icon {
         padding-left: 2.5em;
       }
-      input[type='submit'] {
+      input[type='submit'], button[type='submit'] {
         display: block;
         color: white;
         background-color: $medium-sea-green;
@@ -242,6 +245,9 @@ body {
         &:hover {
           opacity: 0.9;
           cursor: pointer;
+        }
+        i {
+          padding-right: 0.5em;
         }
       }
     }

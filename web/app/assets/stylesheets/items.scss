@@ -34,7 +34,7 @@
     position: relative;
 
     .user-items-list {
-      float: left;
+      //float: left;
       display: none;
     }
 
@@ -42,44 +42,98 @@
       display: none;
 
       .form-box {
-        margin-top: 1em  !important;
+        margin-top: 1em;
       }
     }
 
     .active {
-      visibility: visible;
       display: block;
     }
   }
 
-  .cards {
-    margin: 0 auto;
-    .card-list {
-      padding: 0.5em 0;
-      font-size: 0; // remove blank space between inline-block elements
-      width: 100%;
-      margin: 0.28%; // 7 spaces 6 cards = 100%
-      .card {
-        font-size: 16px;
-        margin: 0.125em 0.28%;
-        text-align: center;
-        display: inline-block;
-        width: 16%;
-        height: 12em;
-        vertical-align: top;
-        border: 0.0625em solid black;
-        border-radius: 0.125em;
-        box-sizing: border-box;
-        text-decoration: none;
-        color: inherit;
+  .card-list {
+    padding: 0.5em 0;
+    // remove blank space between inline-block elements
+    font-size: 0;
+    width: 100%;
+    // 7 spaces 6 cards = 100%
+    margin: 0.28%;
+    .card {
+      font-size: 16px;
+      margin: 0.125em 0.28%;
+      text-align: center;
+      display: inline-block;
+      width: 16%;
+      height: 12em;
+      vertical-align: top;
+      border: 0.0625em solid black;
+      border-radius: 0.125em;
+      box-sizing: border-box;
+      text-decoration: none;
+      color: inherit;
 
-        .name {
-          padding: 0.25em;
-        }
-        img {
-          margin-top: 1em;
-          width: 90%;
-        }
+      .name {
+        padding: 0.25em;
+      }
+      img {
+        margin-top: 1em;
+        width: 90%;
+      }
+    }
+  }
+
+  .item-result {
+    overflow: auto;
+    margin: 1em 0;
+
+    .item-result-img {
+      float: left;
+      width: 3em;
+      width: 10em;
+      height: 12em;
+      margin-right: 1em;
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      img {
+        margin-top: 1.5em;
+        width: 80%;
+        vertical-align: middle;
+      }
+    }
+    .already {
+      color: $medium-sea-green;
+      font-style: italic;
+    }
+    .button-box {
+      margin: 0 !important;
+      float: left !important;
+    }
+  }
+  .page-card-list {
+    padding: 0.5em 0;
+    width: 100%;
+    // 7 spaces 6 cards = 100%
+    margin: 0.28%;
+    .card {
+      display: block;
+      margin: 1em 0;
+      text-align: center;
+      width: 10em;
+      height: 13em;
+      vertical-align: top;
+      border: 0.0625em solid black;
+      border-radius: 0.125em;
+      box-sizing: border-box;
+      text-decoration: none;
+      color: inherit;
+
+      .name {
+        padding: 0.25em;
+      }
+      img {
+        margin-top: 1em;
+        width: 90%;
       }
     }
   }
