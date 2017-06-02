@@ -18,9 +18,11 @@
     <%= display_name item.category %>
   </p>
 
-  <% if item.in_page?(@page) %>
+  <% if item.in_page?(Page.find(@page.id)) %>
+    <% puts @page.items.count %>
     <span class="already">Already in this page</span>
   <% else %>
+    <% puts item.name, @page.items.count %>
     <%= button_to({action: 'add_to_page', id: item.id}, method: :post, remote: true, class: 'button-box') do %>
       <%= fa_icon 'plus-circle' %>Add to Page
     <% end %>

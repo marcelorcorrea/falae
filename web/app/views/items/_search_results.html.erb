@@ -28,7 +28,7 @@
         <%= fa_icon 'plus-circle' %>Add to page
       <% end %>
     <% else %>
-      <%= button_to({action: 'add_to', id: item.id}, method: :post, remote: true, class: 'button-box') do %>
+      <%= button_to({action: 'add_to_user', id: item.id}, method: :post, remote: true, class: 'button-box') do %>
         <%= fa_icon 'plus-circle' %>Add to My Items
       <% end %>
     <% end %>
