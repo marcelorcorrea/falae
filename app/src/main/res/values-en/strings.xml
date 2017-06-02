@@ -33,5 +33,7 @@
     <string name="success_user_added">User successfully added!</string>
     <string name="user_info">Profile</string>
     <string name="scan_mode_duration">Duration (seconds)</string>
+    <string name="page_not_found">This board does not have the selected page.</string>
+    <string name="download_failed">An error occurred while trying to download images. Please check your internet connection.</string>
 
 </resources>

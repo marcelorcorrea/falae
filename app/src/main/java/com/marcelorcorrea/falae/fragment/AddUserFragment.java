@@ -33,7 +33,7 @@ public class AddUserFragment extends Fragment {
 
     private static final Pattern VALID_EMAIL_REGEX = Pattern.compile("\\A[\\w+\\-.]+@[a-z\\d\\-.]+\\.[a-z]+\\z", Pattern.CASE_INSENSITIVE);
     private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "mlongaray@hp.com:123456", "marcelorcorrea@hp.com:123456"
+            "foo@example.com:hello", "mlongaray@hp.com:123456", "marcelorcorrea@hp.com:123456","amostra@falae.com:"
     };
 
     private UserLoginTask mAuthTask = null;
@@ -72,9 +72,6 @@ public class AddUserFragment extends Fragment {
                 return false;
             }
         });
-
-        mEmailView.setText("marcelorcorrea@hp.com");
-        mPasswordView.setText("123456");
 
         Button mEmailSignInButton = (Button) view.findViewById(R.id.email_sign_in_button);
         mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
@@ -193,6 +190,9 @@ public class AddUserFragment extends Fragment {
             }
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
+                if (pieces[0].equals("amostra@falae.com")) {
+                    return createMockSpreadsheets(R.raw.sampleboard);
+                }
                 if (pieces[0].equals(mEmail)) {
                     if (pieces[1].equals(mPassword)) {
                         if (mEmail.equals("mlongaray@hp.com")) {

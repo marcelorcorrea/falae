@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.fragment.PageFragment;
@@ -50,20 +51,24 @@ public class DisplayActivity extends AppCompatActivity implements PageFragment.O
     @Override
     public void openPage(String linkTo) {
         Page page = getPage(linkTo);
-        Fragment fragment = PageFragment.newInstance(page);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager
-                .beginTransaction()
-                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out,
-                        android.R.anim.fade_in, android.R.anim.fade_out)
-                .replace(R.id.page_container, fragment);
-        if (!currentSpreadSheet.getInitialPage().equals(linkTo)) {
-            fragmentTransaction.addToBackStack(null);
-        } else if (fragmentManager.getBackStackEntryCount() > 0) {
-            fragmentManager.popBackStackImmediate();
+        if (page != null) {
+            Fragment fragment = PageFragment.newInstance(page);
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager
+                    .beginTransaction()
+                    .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out,
+                            android.R.anim.fade_in, android.R.anim.fade_out)
+                    .replace(R.id.page_container, fragment);
+            if (!currentSpreadSheet.getInitialPage().equals(linkTo)) {
+                fragmentTransaction.addToBackStack(null);
+            } else if (fragmentManager.getBackStackEntryCount() > 0) {
+                fragmentManager.popBackStackImmediate();
+            }
+            fragmentTransaction.commit();
+            fragmentManager.executePendingTransactions();
+        } else {
+            Toast.makeText(this, getString(R.string.page_not_found), Toast.LENGTH_SHORT).show();
         }
-        fragmentTransaction.commit();
-        fragmentManager.executePendingTransactions();
     }
 
     public Page getPage(String name) {

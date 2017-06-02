@@ -2,35 +2,30 @@ package com.marcelorcorrea.falae.task;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
+import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.model.Item;
 import com.marcelorcorrea.falae.model.Page;
 import com.marcelorcorrea.falae.model.SpreadSheet;
 import com.marcelorcorrea.falae.model.User;
 
-import org.apache.commons.io.IOUtils;
-
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.Reader;
-import java.lang.reflect.Type;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -84,8 +79,16 @@ public class DownloadTask extends AsyncTask<User, Void, User> {
 
     @Override
     protected User doInBackground(User... params) {
-        User user = params[0];
+        if (!haveNetworkConnection()) {
+            return null;
+        }
 
+        final User user = params[0];
+
+        final File folder = new File(context.getFilesDir(), user.getEmail());
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
         for (SpreadSheet spreadSheet : user.getSpreadSheets()) {
             for (Page page : spreadSheet.getPages()) {
                 for (final Item item : page.getItems()) {
@@ -93,7 +96,7 @@ public class DownloadTask extends AsyncTask<User, Void, User> {
                         @Override
                         public void run() {
                             Log.d("DEBUG", "Downloading item: " + item.getName());
-                            String uri = download(item.getName(), item.getImgSrc());
+                            String uri = download(folder, item.getName(), item.getImgSrc());
                             item.setImgSrc(uri);
                         }
                     });
@@ -109,9 +112,9 @@ public class DownloadTask extends AsyncTask<User, Void, User> {
         return user;
     }
 
-    private String download(String name, String imgSrc) {
+    private String download(File folder, String name, String imgSrc) {
         String extension = MimeTypeMap.getFileExtensionFromUrl(imgSrc);
-        File filename = new File(context.getFilesDir(), name + "." + extension);
+        File filename = new File(folder, name + "." + extension);
         try {
             int read;
             URL url = new URL(imgSrc);
@@ -137,11 +140,40 @@ public class DownloadTask extends AsyncTask<User, Void, User> {
 
     @Override
     protected void onPostExecute(User user) {
-        if (callback != null) {
+        if (callback != null && user != null) {
             callback.onSyncComplete(user);
+        } else {
+            Toast.makeText(context, context.getString(R.string.download_failed), Toast.LENGTH_LONG).show();
         }
         if (pDialog != null && pDialog.isShowing()) {
             pDialog.dismiss();
         }
+    }
+
+    private boolean haveNetworkConnection() {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Network[] allNetworks = cm.getAllNetworks();
+            for (Network network : allNetworks) {
+                NetworkInfo networkInfo = cm.getNetworkInfo(network);
+                if (isConnected(networkInfo)) {
+                    return true;
+                }
+            }
+        } else {
+            NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+            for (NetworkInfo networkInfo : netInfo) {
+                if (isConnected(networkInfo)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean isConnected(NetworkInfo networkInfo) {
+        return (networkInfo.getType() == ConnectivityManager.TYPE_WIFI ||
+                networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) &&
+                networkInfo.isConnected();
     }
 }

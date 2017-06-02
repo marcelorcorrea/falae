@@ -33,4 +33,6 @@
     <string name="user_info">Perfil</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="scan_mode_duration">Tempo de varredura (segundos) </string>
+    <string name="page_not_found">A prancha não contém a página selecionada.</string>
+    <string name="download_failed">Um erro ocorreu ao baixar as imagens. Por favor verifique sua conexão com a internet.</string>
 </resources>
