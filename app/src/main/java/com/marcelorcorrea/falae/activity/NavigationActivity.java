@@ -71,11 +71,15 @@ public class NavigationActivity extends AppCompatActivity
     private void getLastConnectedUser() {
         String email = SharedPreferencesUtils.getStringPreferences(USER_EMAIL, this);
         if (!email.isEmpty()) {
-            mUser = dbHelper.findByEmail(email);
-            MenuItem item = mNavigationView.getMenu().findItem(mUser.getId());
-            if (item != null) {
-                onNavigationItemSelected(item);
-            }
+            openUserMenuItem(email);
+        }
+    }
+
+    private void openUserMenuItem(String email) {
+        mUser = dbHelper.findByEmail(email);
+        MenuItem item = mNavigationView.getMenu().findItem(mUser.getId());
+        if (item != null) {
+            onNavigationItemSelected(item);
         }
     }
 
@@ -159,13 +163,13 @@ public class NavigationActivity extends AppCompatActivity
             public void onSyncComplete(User u) {
                 if (!dbHelper.doesUserExist(u)) {
                     Long id = dbHelper.insert(u);
-                    System.out.println(id.intValue());
                     u.setId(id.intValue());
                     addUserToMenu(u);
                 } else {
                     dbHelper.update(u);
                 }
                 Toast.makeText(NavigationActivity.this, R.string.success_user_added, Toast.LENGTH_SHORT).show();
+                openUserMenuItem(u.getEmail());
             }
         }).execute(user);
     }
