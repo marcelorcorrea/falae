@@ -31,3 +31,13 @@
 
 en:
   hello: "Hello world"
+  home: Home
+  about: About
+  contact: Contact
+  log_in: Log in
+  register: Register
+  log_out: Log out
+  welcome: Welcome
+  flash:
+    error:
+      wrong_email_password: 'There is no match for this email and password.'
