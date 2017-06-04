@@ -5,29 +5,29 @@
 
   <div class="links">
     <%= link_to home_path, class: ('active' if current_page?(root_path) || current_page?(home_path)) do %>
-      <%= fa_icon 'home' %> Home
+      <%= fa_icon 'home' %> <%= t :home %>
     <% end %>
     <%= link_to about_path, class: ('active' if current_page?(about_path)) do %>
-      <%= fa_icon 'info-circle' %> About
+      <%= fa_icon 'info-circle' %> <%= t :about %>
     <% end %>
     <%= link_to contact_path, class: ('active' if current_page?(contact_path)) do %>
-      <%= fa_icon 'envelope' %> Contact
+      <%= fa_icon 'envelope' %> <%= t :contact %>
     <% end %>
   </div>
 
   <div class="session">
     <% unless logged_in? %>
       <%= link_to login_path, class: ('active' if current_page?(login_path)) do %>
-        <%= fa_icon 'sign-in' %> Log in
+        <%= fa_icon 'sign-in' %> <%= t :log_in %>
       <% end %>
       <%= link_to new_user_path, class: ('active' if current_page?(new_user_path)) do %>
-        <%= fa_icon 'user-plus' %> Register
+        <%= fa_icon 'user-plus' %> <%= t :register %>
       <% end %>
     <% else %>
-      <span class="welcome">Welcome, <%= link_to current_user.name,
+      <span class="welcome"><%= t :welcome %>, <%= link_to current_user.name,
             user_spreadsheets_path(current_user), class: 'user-name' %>!</span>
       <span class="logout"><%= link_to logout_path, method: :delete do %>
-              <%= fa_icon 'sign-out' %> Log out
+              <%= fa_icon 'sign-out' %> <%= t :log_out %>
             <% end %>
     <% end %></span>
   </div>

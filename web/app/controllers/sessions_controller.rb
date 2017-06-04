@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
         }
       end
     else
-      flash.now[:alert] = 'There is no match for this email and password.'
+      flash.now[:alert] = t('flash.error.wrong_email_password')
       respond_to do |format|
         format.html { render :new }
         format.json { render json: {error: 'Unauthorized'}, status: :unauthorized }

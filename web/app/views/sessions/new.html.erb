@@ -5,7 +5,7 @@
   </div>
   <% end %>
   <div class="form-box">
-    <div class="label">Welcome!</div>
+    <div class="label"><%= t :welcome %>!</div>
     <%= form_with scope: :user, local: true do |form| %>
       <div class="field">
         <%= form.label :email %>
@@ -20,7 +20,7 @@
       </div>
 
       <div class="actions">
-        <%= form.submit 'Log in' %>
+        <%= form.submit t :log_in %>
       </div>
     <% end %>
   </div>
