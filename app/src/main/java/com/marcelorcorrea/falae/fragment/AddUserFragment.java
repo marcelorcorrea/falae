@@ -91,8 +91,6 @@ public class AddUserFragment extends Fragment implements Response.Listener<User>
                 attemptLogin();
             }
         });
-        mEmailView.setText("tobias@miau.com");
-        mPasswordView.setText("miaumiau");
         return view;
     }
 
