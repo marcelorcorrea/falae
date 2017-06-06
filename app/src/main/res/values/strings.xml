@@ -35,4 +35,5 @@
     <string name="scan_mode_duration">Tempo de varredura (segundos) </string>
     <string name="page_not_found">A prancha não contém a página selecionada.</string>
     <string name="download_failed">Um erro ocorreu ao baixar as imagens. Por favor verifique sua conexão com a internet.</string>
+    <string name="error_internet_access">Um erro ocorreu ao tentar conectar-se com o servidor. Por favor verifique sua conexão com a internet.</string>
 </resources>

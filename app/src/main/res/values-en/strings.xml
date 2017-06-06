@@ -35,5 +35,6 @@
     <string name="scan_mode_duration">Duration (seconds)</string>
     <string name="page_not_found">This board does not have the selected page.</string>
     <string name="download_failed">An error occurred while trying to download images. Please check your internet connection.</string>
+    <string name="error_internet_access">An error occurred while trying to connect to the server. Please check your internet connection.</string>
 
 </resources>

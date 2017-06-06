@@ -68,7 +68,7 @@ public class UserDbHelper extends SQLiteOpenHelper {
         contentValues.put(UserEntry.COLUMN_EMAIL, user.getEmail());
         contentValues.put(UserEntry.COLUMN_INFO, user.getInfo());
         contentValues.put(UserEntry.COLUMN_PHOTO, user.getPhotoSrc());
-        contentValues.put(UserEntry.COLUMN_SPREADSHEETS, new Gson().toJson(user.getSpreadSheets()));
+        contentValues.put(UserEntry.COLUMN_SPREADSHEETS, new Gson().toJson(user.getSpreadsheets()));
         return contentValues;
     }
 

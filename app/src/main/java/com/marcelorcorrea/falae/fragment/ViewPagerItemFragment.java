@@ -98,7 +98,6 @@ public class ViewPagerItemFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
         if (SharedPreferencesUtils.getBooleanPreferences(SettingsFragment.SCAN_MODE, getContext())) {
             currentItemSelectedFromScan = -1;
             int scanModeDuration = SharedPreferencesUtils.getIntPreferences(SettingsFragment.SCAN_MODE_DURATION, getContext());
@@ -166,7 +165,7 @@ public class ViewPagerItemFragment extends Fragment {
                         .centerCrop()
                         .into(imageView);
 
-                if (item.getLinkTo() != null) {
+                if (item.getLinkTo() != null && !item.getLinkTo().isEmpty()) {
                     linkPage.setVisibility(View.VISIBLE);
                 }
             }
@@ -175,8 +174,8 @@ public class ViewPagerItemFragment extends Fragment {
     }
 
     private void onItemClicked(Item item) {
-        mListener.speak(item.getNameToPronounce());
-        if (item.getLinkTo() != null) {
+        mListener.speak(item.getSpeech());
+        if (item.getLinkTo() != null && !item.getLinkTo().isEmpty()) {
             mListener.openPage(item.getLinkTo());
         }
     }

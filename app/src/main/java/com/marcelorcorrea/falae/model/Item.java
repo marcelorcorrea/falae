@@ -11,17 +11,9 @@ public class Item implements Parcelable {
 
     private String name;
     private String imgSrc;
-    private String nameToPronounce;
+    private String speech;
     private Category category;
     private String linkTo;
-
-    public Item(String name, String imgSrc, String nameToPronounce, Category category, String linkTo) {
-        this.name = name;
-        this.imgSrc = imgSrc;
-        this.nameToPronounce = nameToPronounce;
-        this.category = category;
-        this.linkTo = linkTo;
-    }
 
     public String getName() {
         return name;
@@ -31,8 +23,8 @@ public class Item implements Parcelable {
         return imgSrc;
     }
 
-    public String getNameToPronounce() {
-        return nameToPronounce;
+    public String getSpeech() {
+        return speech;
     }
 
     public Category getCategory() {
@@ -51,14 +43,6 @@ public class Item implements Parcelable {
         this.linkTo = linkTo;
     }
 
-    public static Item of(String name, String imgSrc, String nameToPronounce, Category type) {
-        return new Item(name, imgSrc, nameToPronounce, type, null);
-    }
-
-    public static Item of(String name, String imgSrc, String nameToPronounce, Category type, String linktTo) {
-        return new Item(name, imgSrc, nameToPronounce, type, linktTo);
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -68,7 +52,7 @@ public class Item implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.name);
         dest.writeString(this.imgSrc);
-        dest.writeString(this.nameToPronounce);
+        dest.writeString(this.speech);
         dest.writeInt(this.category == null ? -1 : this.category.ordinal());
         dest.writeString(this.linkTo);
     }
@@ -76,7 +60,7 @@ public class Item implements Parcelable {
     protected Item(Parcel in) {
         this.name = in.readString();
         this.imgSrc = in.readString();
-        this.nameToPronounce = in.readString();
+        this.speech = in.readString();
         int tmpCategory = in.readInt();
         this.category = tmpCategory == -1 ? null : Category.values()[tmpCategory];
         this.linkTo = in.readString();

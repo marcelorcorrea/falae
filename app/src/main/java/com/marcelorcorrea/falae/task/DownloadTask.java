@@ -89,7 +89,7 @@ public class DownloadTask extends AsyncTask<User, Void, User> {
         if (!folder.exists()) {
             folder.mkdirs();
         }
-        for (SpreadSheet spreadSheet : user.getSpreadSheets()) {
+        for (SpreadSheet spreadSheet : user.getSpreadsheets()) {
             for (Page page : spreadSheet.getPages()) {
                 for (final Item item : page.getItems()) {
                     executor.execute(new Runnable() {

@@ -41,14 +41,6 @@ public class SpreadSheet implements Parcelable {
         this.initialPage = initialPage;
     }
 
-    public void addPage(Page page) {
-        pages.add(page);
-    }
-
-    public void addPages(Page... pages) {
-        this.pages.addAll(Arrays.asList(pages));
-    }
-
     @Override
     public int describeContents() {
         return 0;

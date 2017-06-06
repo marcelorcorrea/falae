@@ -14,7 +14,7 @@ public class User implements Parcelable {
     private int id;
     private String name;
     private String email;
-    private List<SpreadSheet> spreadSheets;
+    private List<SpreadSheet> spreadsheets;
     private String info;
     private String photoSrc;
 
@@ -24,11 +24,11 @@ public class User implements Parcelable {
         this.email = email;
     }
 
-    public User(int id, String name, String email, List<SpreadSheet> spreadSheets, String info, String photoSrc) {
+    public User(int id, String name, String email, List<SpreadSheet> spreadsheets, String info, String photoSrc) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.spreadSheets = spreadSheets;
+        this.spreadsheets = spreadsheets;
         this.info = info;
         this.photoSrc = photoSrc;
     }
@@ -57,12 +57,12 @@ public class User implements Parcelable {
         this.email = email;
     }
 
-    public List<SpreadSheet> getSpreadSheets() {
-        return spreadSheets;
+    public List<SpreadSheet> getSpreadsheets() {
+        return spreadsheets;
     }
 
-    public void setSpreadSheets(List<SpreadSheet> spreadSheets) {
-        this.spreadSheets = spreadSheets;
+    public void setSpreadsheets(List<SpreadSheet> spreadsheets) {
+        this.spreadsheets = spreadsheets;
     }
 
     public String getInfo() {
@@ -87,7 +87,7 @@ public class User implements Parcelable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", spreadSheets=" + spreadSheets +
+                ", spreadsheets=" + spreadsheets +
                 ", info='" + info + '\'' +
                 ", photoSrc='" + photoSrc + '\'' +
                 '}';
@@ -103,7 +103,7 @@ public class User implements Parcelable {
         dest.writeLong(this.id);
         dest.writeString(this.name);
         dest.writeString(this.email);
-        dest.writeTypedList(this.spreadSheets);
+        dest.writeTypedList(this.spreadsheets);
         dest.writeString(this.info);
         dest.writeString(this.photoSrc);
     }
@@ -112,7 +112,7 @@ public class User implements Parcelable {
         this.id = in.readInt();
         this.name = in.readString();
         this.email = in.readString();
-        this.spreadSheets = in.createTypedArrayList(SpreadSheet.CREATOR);
+        this.spreadsheets = in.createTypedArrayList(SpreadSheet.CREATOR);
         this.info = in.readString();
         this.photoSrc = in.readString();
     }

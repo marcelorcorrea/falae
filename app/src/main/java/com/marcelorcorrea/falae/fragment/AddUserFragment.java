@@ -2,7 +2,6 @@ package com.marcelorcorrea.falae.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -14,12 +13,21 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.model.User;
+import com.marcelorcorrea.falae.task.GsonRequest;
 
 import org.apache.commons.io.IOUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,19 +37,22 @@ import java.io.Reader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AddUserFragment extends Fragment {
+public class AddUserFragment extends Fragment implements Response.Listener<User>, Response.ErrorListener {
 
+    private static final String URL = "http://10.28.0.64:3000/login.json";
+    private static final String EMAIL_CREDENTIAL_FIELD = "email";
+    private static final String PASSWORD_CREDENTIAL_FIELD = "password";
+    private static final String USER_CREDENTIAL_FIELD = "user";
     private static final Pattern VALID_EMAIL_REGEX = Pattern.compile("\\A[\\w+\\-.]+@[a-z\\d\\-.]+\\.[a-z]+\\z", Pattern.CASE_INSENSITIVE);
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "mlongaray@hp.com:123456", "marcelorcorrea@hp.com:123456","amostra@falae.com:"
-    };
 
-    private UserLoginTask mAuthTask = null;
+    private static final String[] DUMMY_CREDENTIALS = new String[]{
+            "mlongaray@hp.com:123456", "marcelorcorrea@hp.com:123456", "amostra@falae.com:"
+    };
     private OnFragmentInteractionListener mListener;
 
     private EditText mEmailView;
     private EditText mPasswordView;
-    private View mLoginFormView;
+    private ProgressDialog pDialog;
 
     public AddUserFragment() {
     }
@@ -80,8 +91,8 @@ public class AddUserFragment extends Fragment {
                 attemptLogin();
             }
         });
-
-        mLoginFormView = view.findViewById(R.id.login_form);
+        mEmailView.setText("tobias@miau.com");
+        mPasswordView.setText("miaumiau");
         return view;
     }
 
@@ -103,10 +114,6 @@ public class AddUserFragment extends Fragment {
     }
 
     private void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
-
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
@@ -139,8 +146,9 @@ public class AddUserFragment extends Fragment {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute();
+            if (loginMock(email, password) == null) { //remove this if when mock method is removed.
+                loginIn(email, password);
+            }
         }
     }
 
@@ -153,77 +161,75 @@ public class AddUserFragment extends Fragment {
         return password.length() > 4;
     }
 
+    private void loginIn(String email, String password) {
+        RequestQueue queue = Volley.newRequestQueue(getContext());
+        try {
+            JSONObject credentials = new JSONObject();
+            credentials.put(EMAIL_CREDENTIAL_FIELD, email);
+            credentials.put(PASSWORD_CREDENTIAL_FIELD, password);
 
-    public class UserLoginTask extends AsyncTask<Void, Void, User> {
+            JSONObject jsonRequest = new JSONObject();
+            jsonRequest.put(USER_CREDENTIAL_FIELD, credentials);
 
-        private final String mEmail;
-        private final String mPassword;
-        private ProgressDialog pDialog;
-
-        UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
+            GsonRequest<User> jsObjRequest = new GsonRequest<>(URL, User.class, null, jsonRequest, this, this);
+            queue.add(jsObjRequest);
+            pDialog = new ProgressDialog(getContext());
+            pDialog.setMessage(getContext().getString(R.string.authenticate_message));
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+    }
 
-        @Override
-        protected void onPreExecute() {
-            try {
-                if (pDialog != null) {
-                    pDialog = null;
-                }
-                pDialog = new ProgressDialog(getContext());
-                pDialog.setMessage(getContext().getString(R.string.authenticate_message));
-                pDialog.setIndeterminate(false);
-                pDialog.setCancelable(false);
-                pDialog.show();
-            } catch (Exception e) {
-                e.printStackTrace();
+    private User loginMock(String email, String password) {
+        User user = null;
+        for (String credential : DUMMY_CREDENTIALS) {
+            String[] pieces = credential.split(":");
+            if (email.equals("amostra@falae.com")) {
+                user = createMockSpreadsheets(R.raw.sampleboard);
             }
-        }
-
-        @Override
-        protected User doInBackground(Void... params) {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-
-            }
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals("amostra@falae.com")) {
-                    return createMockSpreadsheets(R.raw.sampleboard);
-                }
-                if (pieces[0].equals(mEmail)) {
-                    if (pieces[1].equals(mPassword)) {
-                        if (mEmail.equals("mlongaray@hp.com")) {
-                            return createMockSpreadsheets(R.raw.mockspreadsheet2);
-                        }
-                        return createMockSpreadsheets(R.raw.mockspreadsheet);
+            if (pieces[0].equals(email)) {
+                if (pieces[1].equals(password)) {
+                    user = createMockSpreadsheets(R.raw.mockspreadsheet);
+                    if (email.equals("mlongaray@hp.com")) {
+                        user = createMockSpreadsheets(R.raw.mockspreadsheet2);
                     }
                 }
             }
-            return null;
         }
-
-        @Override
-        protected void onPostExecute(final User user) {
-            mAuthTask = null;
-            if (pDialog != null && pDialog.isShowing()) {
-                pDialog.dismiss();
-            }
-            if (user != null) {
-                mListener.onFragmentInteraction(user);
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
+        if (pDialog != null && pDialog.isShowing()) {
+            pDialog.dismiss();
         }
+        if (user != null) {
+            mListener.onFragmentInteraction(user);
+        }
+        return user;
+    }
 
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
+    @Override
+    public void onResponse(User response) {
+        mListener.onFragmentInteraction(response);
+        if (pDialog != null && pDialog.isShowing()) {
+            pDialog.dismiss();
         }
     }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        if (pDialog != null && pDialog.isShowing()) {
+            pDialog.dismiss();
+        }
+        if (error instanceof AuthFailureError) {
+            mPasswordView.setError(getString(R.string.error_incorrect_password));
+            mPasswordView.requestFocus();
+        } else {
+            Toast.makeText(getContext(), getString(R.string.error_internet_access), Toast.LENGTH_LONG).show();
+            error.printStackTrace();
+        }
+    }
+
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(User user);

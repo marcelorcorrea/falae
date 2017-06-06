@@ -1,6 +1,5 @@
 package com.marcelorcorrea.falae.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -48,7 +47,7 @@ public class SpreadSheetFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_spread_sheet, container, false);
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.spreadsheet_recycler);
-        spreadSheetAdapter = new SpreadSheetAdapter(getContext(), user.getSpreadSheets(), new SpreadSheetAdapter.OnItemClickListener() {
+        spreadSheetAdapter = new SpreadSheetAdapter(getContext(), user.getSpreadsheets(), new SpreadSheetAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(SpreadSheet spreadSheet) {
                 mListener.displayActivity(spreadSheet);
