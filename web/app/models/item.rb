@@ -1,8 +1,8 @@
 class Item < ApplicationRecord
   has_one :item_user, dependent: :destroy
   has_one :user, through: :item_user
-  has_many :item_page, dependent: :destroy
-  has_many :pages, through: :item_page
+  has_many :item_pages, dependent: :destroy
+  has_many :pages, through: :item_pages
   has_one :category_item, dependent: :destroy
   has_one :category, through: :category_item
 
@@ -26,5 +26,4 @@ class Item < ApplicationRecord
   def in_page?(page)
     self.pages.present? and self.pages.include?(page)
   end
-
 end
