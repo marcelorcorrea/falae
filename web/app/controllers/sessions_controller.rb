@@ -18,7 +18,10 @@ class SessionsController < ApplicationController
       flash.now[:alert] = t('flash.error.wrong_email_password')
       respond_to do |format|
         format.html { render :new }
-        format.json { render json: {error: 'Unauthorized'}, status: :unauthorized }
+        format.json {
+          response['WWW-Authenticate'] = 'Body realm="Access for Android app"'
+          render json: {error: 'Access Denied'}, status: :unauthorized
+        }
       end
     end
   end
@@ -30,8 +33,6 @@ class SessionsController < ApplicationController
 
   private
     def session_params
-      puts '*'*500
-      puts params.inspect
       params.require(:user).permit(:email, :password)
     end
 end
