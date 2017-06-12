@@ -10,6 +10,9 @@ pt-BR:
   flash:
     error:
       wrong_email_password: 'Email e/ou senha inválidos.'
+  user_mailer:
+    account_activation:
+      subject: 'Ativação de Conta'
 
   activerecord:
     models:
