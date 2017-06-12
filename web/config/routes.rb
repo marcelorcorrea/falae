@@ -28,6 +28,8 @@ Rails.application.routes.draw do
     post 'items/add_to_user', to: 'items#add_to_user'
   end
 
+  resources :account_activations, only: [:edit]
+
   #post 'users/:id/items/add_to' => 'items#add_to', as: :add_to_my_items
 
   #resources :categories
