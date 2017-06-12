@@ -83,10 +83,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  # TODO: obsolete?
   def add_to_page
     @item = Item.defaults.find_by id: params[:id]
     if @item and not @item.in_page?(@page)
-      puts '>'*10
       @page.items << @item
       @user.items << @item unless @item.has?(@user)
       @item.reload

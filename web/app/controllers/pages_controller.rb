@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   before_action :authenticate!
   before_action :authorized?
   before_action :set_vars
-  before_action :set_page, only: [:show, :edit, :update, :destroy]
+  before_action :set_page, only: [:show, :edit, :update, :destroy, :add_item, :search_item]
 
   # GET /pages
   # GET /pages.json
@@ -64,6 +64,27 @@ class PagesController < ApplicationController
       format.html { redirect_to pages_url, notice: 'Page was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def search_item
+    puts "search_item params: #{params.inspect}"
+    items = if params[:search] and params[:name].present?
+      query = ['name LIKE ?', "%#{params[:name]}%"]
+      Item.defaults.where(query) + @user.items.where(query) - @page.items.where(query)
+    else
+      []
+    end
+    puts "Items count #{items.count}"
+    render locals: {items: items, position: params[:position]}
+  end
+
+  def add_to_page
+    puts "add to page params: #{params.inspect}"
+  end
+
+  def add_item
+    puts "add_item params: #{params.inspect}"
+    render locals: {position: params[:position]}
   end
 
   private

@@ -21,32 +21,3 @@ document.addEventListener 'turbolinks:load', ->
       userItemList.classList.remove 'active'
       searchItemsTab.classList.add 'active'
       searchItemsList.classList.add 'active'
-
-
-#  searchResultDiv = document.getElementsByClassName('search-results')[0]
-
-#  list.forEach (result) ->
-#    itemResult = document.createElement 'div'
-#    itemResult.className = 'item-result'
-#
-#    img = document.createElement 'img'
-#    img.className = 'item-result-img'
-#    img.setAttribute 'src', result.img_src
-#
-#    name = document.createElement 'p'
-#    name.className = 'item-result-text'
-#    name.innerHTML = '<strong>Name:</strong>' + result.name
-#
-#    speech = document.createElement 'p'
-#    speech.className = 'item-result-text'
-#    speech.innerHTML = '<strong>Speech:</strong>' + result.speech
-#
-#    img_src = document.createElement 'p'
-#    img_src.className = 'item-result-text'
-#    img_src.innerHTML = '<strong>Image Source:</strong>' + result.img_src
-#
-#    ctgy = document.createElement 'p'
-#    ctgy.className = 'item-result-text'
-#    ctgy.innerHTML = '<strong>Category:</strong>' + result.category.name
-#
-#    searchResultDiv.append itemResult

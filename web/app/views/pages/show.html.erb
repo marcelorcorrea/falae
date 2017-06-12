@@ -7,9 +7,9 @@
       <%= fa_icon 'edit' %>Edit
     <% end %>
 
-    <%= link_to user_spreadsheet_page_items_path(@user, @spreadsheet, @page), class: 'button-box' do %>
-      <%= fa_icon 'plus' %>Add Item
-    <% end %>
+    <%#= link_to user_spreadsheet_page_items_path(@user, @spreadsheet, @page), class: 'button-box' do %>
+      <%#= fa_icon 'plus' %>Add Item
+    <%# end %>
 
     Page:
     <p>
@@ -34,8 +34,42 @@
 
     <div class='item-lists'>
       <div class="page-items-list active">
-        <%= render 'items/item', items: @items %>
+        <% cols = @page.columns %>
+        <% rows = @page.rows %>
+        <% x = cols*rows * ( 1 + @items.count/(cols*rows) ) %>
+
+        <% 1.upto(x).each_slice(cols*rows).each_with_index do |slice, i| %>
+        <span class="sliced-page">
+          <% slice.each_with_index do |_, j| %>
+          <% item_in_position = @page.item_in_position(i * cols + j) %>
+
+          <% if item_in_position %>
+            <% item = @page.items.find_by id: item_in_position.item_id %>
+            <div class="item-place columns-<%= cols %>">
+              <div class='card <%= css_class_name(item.category) %>'>
+                <div class="name"><%= item.name %></div>
+                <div>
+                  <img src="<%= item.img_src %>"/>
+                </div>
+              </div>
+            </div>
+          <% else %>
+            <%= button_to(user_spreadsheet_page_add_item_path(@user, @spreadsheet, @page),
+                {method: :get, form_class: "item-place columns-#{cols}",
+                class: :add, params: {position: cols*i + j }, remote: true }) do %>
+              <% fa_icon 'plus-circle', class: 'add' %>
+            <% end %>
+          <% end %>
+
+          <% if ((j + 1) % cols).zero?  %>
+            <br />
+          <% end %>
+          <% end %>
+        </span>
+        <hr />
+        <% end %>
       </div>
+
       <div class="page-mobile-view">
         <%= render 'items/item', items: @items %>
       </div>

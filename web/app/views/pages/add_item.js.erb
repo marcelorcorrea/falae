@@ -1,0 +1,9 @@
+$('body').css('overflow', 'hidden');
+$("<%= escape_javascript(render 'pages/add_item', position: position) %>").appendTo(".container");
+
+$('#item_name').focus();
+
+$('.close').on('click', function() {
+  $('.add-item-to-page-layer').remove();
+  $('body').css('overflow', 'initial');
+});

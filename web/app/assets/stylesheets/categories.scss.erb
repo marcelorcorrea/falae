@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 <% Category.all.each do |ctgy| %>
-.<%= ItemsHelper::css_class_name ctgy %> {
+.<%= CategoriesHelper::css_class_name ctgy %> {
   background-color: <%= ctgy.color %>;
 }
 <% end %>

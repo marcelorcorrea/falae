@@ -9,12 +9,12 @@ module CategoriesHelper
     Category.all.map { |ctgy| [display_name(ctgy), ctgy.id] }
   end
 
-  def ItemsHelper.css_class_name(category)
+  def CategoriesHelper.css_class_name(category)
     category.name.downcase.dasherize
   end
 
   def css_class_name(category)
-    ItemsHelper.css_class_name(category)
+    CategoriesHelper.css_class_name(category)
   end
 
 end
