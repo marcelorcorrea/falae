@@ -45,3 +45,5 @@ en:
     account_activation:
       subject: 'Account activation'
       verification: 'Please check your email to activate your account.'
+      activation: 'Account activated!'
+      invalid: 'Invalid activation link'
