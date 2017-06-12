@@ -30,9 +30,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        log_in @user
-        #format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.html { redirect_to user_spreadsheets_path(@user), status: :ok }
+        UserMailer.account_activation(@user).deliver_now
+        format.html {
+          redirect_to root_url, notice: t('user_mailer.account_activation.verification')
+        }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
