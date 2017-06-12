@@ -47,3 +47,4 @@ en:
       verification: 'Please check your email to activate your account.'
       activation: 'Account activated!'
       invalid: 'Invalid activation link'
+      notactivated: 'Account not activated. Check your email for the activation link.'
