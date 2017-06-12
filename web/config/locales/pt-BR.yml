@@ -13,6 +13,7 @@ pt-BR:
   user_mailer:
     account_activation:
       subject: 'Ativação de Conta'
+      verification: 'Por favor, verifique seu e-mail para ativar sua conta.'
 
   activerecord:
     models:
