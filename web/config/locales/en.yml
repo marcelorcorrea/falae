@@ -41,3 +41,6 @@ en:
   flash:
     error:
       wrong_email_password: 'There is no match for this email and password.'
+  user_mailer:
+    account_activation:
+      subject: 'Account activation'
