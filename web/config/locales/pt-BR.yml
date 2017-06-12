@@ -16,6 +16,8 @@ pt-BR:
       verification: 'Por favor, verifique seu e-mail para ativar sua conta.'
       activation: 'Conta ativada!'
       invalid: 'Link de ativação inválido'
+      notactivated: 'Conta não foi ativada. Procure link de ativação em seu e-mail.'
+
 
   activerecord:
     models:
