@@ -1,0 +1,27 @@
+<% items = @page.items %>
+<% cols = @page.columns %>
+<% rows = @page.rows %>
+
+<% items.each_slice(cols*rows).each_with_index do |slice, i| %>
+  <div class="sliced-page columns-<%= cols %>">
+    <% slice.each_with_index do |item, j| %>
+      <div class="card card-<%= cols %> <%= css_class_name(item.category) %>">
+        <div class="name"><%= item.name %></div>
+        <div>
+          <img src="<%= item.img_src %>"/>
+        </div>
+      </div>
+      <% if i * cols * rows + j == items.count - 1 %>
+        <% if ( items.count % (cols * rows) ).zero? %>
+        <hr />
+        <% end %>
+        <%= button_to(user_spreadsheet_page_add_item_path(@user, @spreadsheet, @page),
+            {method: :get, form_class: "add card card-#{cols}", class: 'add-button',
+            remote: true }) do %>
+          <% fa_icon 'plus-circle' %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+  <hr />
+<% end %>

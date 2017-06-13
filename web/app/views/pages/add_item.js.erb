@@ -1,9 +1,10 @@
 $('body').css('overflow', 'hidden');
-$("<%= escape_javascript(render 'pages/add_item', position: position) %>").appendTo(".container");
+$("<%= escape_javascript(render 'pages/add_item') %>").appendTo(".container");
 
 $('#item_name').focus();
 
-$('.close').on('click', function() {
-  $('.add-item-to-page-layer').remove();
+$('.close').on('click', function(e) {
+  e.preventDefault();
+  $('.overlay').remove();
   $('body').css('overflow', 'initial');
 });

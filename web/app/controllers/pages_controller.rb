@@ -2,7 +2,8 @@ class PagesController < ApplicationController
   before_action :authenticate!
   before_action :authorized?
   before_action :set_vars
-  before_action :set_page, only: [:show, :edit, :update, :destroy, :add_item, :search_item]
+  # before_action :set_page, only: [:show, :edit, :update, :destroy, :add_item, :search_item, :add_to_page]
+  before_action :set_page, except: [:index, :new, :create]
 
   # GET /pages
   # GET /pages.json
@@ -13,7 +14,6 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
-    @items = @page.items
   end
 
   # GET /pages/new
@@ -67,24 +67,21 @@ class PagesController < ApplicationController
   end
 
   def search_item
-    puts "search_item params: #{params.inspect}"
     items = if params[:search] and params[:name].present?
       query = ['name LIKE ?', "%#{params[:name]}%"]
-      Item.defaults.where(query) + @user.items.where(query) - @page.items.where(query)
+      Item.defaults.where(query) + @user.items.where(query)
     else
       []
     end
-    puts "Items count #{items.count}"
-    render locals: {items: items, position: params[:position]}
+    render locals: { items: items }
   end
 
   def add_to_page
-    puts "add to page params: #{params.inspect}"
+    item = Item.find_by id: params[:item_id]
+    @page.items << item if item
   end
 
   def add_item
-    puts "add_item params: #{params.inspect}"
-    render locals: {position: params[:position]}
   end
 
   private

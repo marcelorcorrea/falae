@@ -1,12 +1,10 @@
-<div class="add-item-to-page-layer">
+<div class="overlay">
 
   <div class="search-item">
-    <%#= button_tag type: :reset, class: :close, onclick: 'removeAddItemToPageLayer();' do %>
     <a class="close">
       <%= fa_icon 'times-circle-o', class: :default %>
       <%= fa_icon 'times-circle', class: :hover %>
-      </a>
-    <%# end %>
+    </a>
     <div class="form-box">
       <%= form_with url: user_spreadsheet_page_search_item_path(@user, @spreadsheet, @page),
           method: :get do |form| %>
@@ -14,7 +12,6 @@
           <%= form.label :name %>
           <%= form.text_field :name, id: :item_name %>
         </div>
-        <%= form.hidden_field :position, value: params[:position] %>
         <div class="actions">
           <%= form.button :submit, name: :search do %>
             <%= fa_icon 'search' %>Search

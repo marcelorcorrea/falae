@@ -11,13 +11,4 @@ class Page < ApplicationRecord
   def Page.default_blank
     Page.new name: 'Initial', columns: 6, rows: 3
   end
-
-  def item_position(item)
-    item_page = self.item_pages.find_by item_id: item.id
-    item_page ? item_page.position : -1
-  end
-
-  def item_in_position(position)
-    self.item_pages.find_by position: position
-  end
 end
