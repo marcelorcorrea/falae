@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get 'pages/:id/add_item', to: 'pages#add_item', as: :page_add_item
       get 'pages/:id/search_item', to: 'pages#search_item', as: :page_search_item
       post 'pages/:id/add_to_page', to: 'pages#add_to_page', as: :add_to_page
+      delete 'pages/:id/remove_item', to: 'pages#remove_item', as: :page_remove_item
     end
     resources :items
     post 'items/add_to_user', to: 'items#add_to_user'

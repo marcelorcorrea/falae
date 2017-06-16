@@ -84,6 +84,11 @@ class PagesController < ApplicationController
   def add_item
   end
 
+  def remove_item
+    item = @page.items.find_by id: params[:item_id]
+    @page.items.delete item if item
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page
