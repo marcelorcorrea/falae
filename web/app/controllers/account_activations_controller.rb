@@ -8,7 +8,7 @@ class AccountActivationsController < ApplicationController
       flash[:success] = t('user_mailer.account_activation.activation')
       redirect_to user_spreadsheets_path(user)
     else
-      flash[:danger] = t('user_mailer.account_activation.invalid')
+      flash[:alert] = t('user_mailer.account_activation.invalid')
       redirect_to root_url
     end
   end
