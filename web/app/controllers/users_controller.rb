@@ -32,7 +32,7 @@ class UsersController < ApplicationController
       if @user.save
         @user.send_activation_email
         format.html {
-          flash[:info] = t('user_mailer.account_activation.verification')
+          flash[:warning] = t('user_mailer.account_activation.verification')
           redirect_to root_url
         }
         format.json { render :show, status: :created, location: @user }

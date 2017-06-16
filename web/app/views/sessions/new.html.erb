@@ -1,9 +1,5 @@
 <div class="login">
-  <% if alert %>
-  <div class="errors" >
-    <%= alert %>
-  </div>
-  <% end %>
+  <%= render :partial => 'shared/flash'%>
   <div class="form-box">
     <div class="label"><%= t :welcome %>!</div>
     <%= form_with scope: :user, local: true do |form| %>
