@@ -1,7 +1,5 @@
-<% if !flash.empty? %>
-  <div class="flash">
-    <% flash.each do |key, value| %>
-      <%= content_tag :div, value, class: "flash #{key}" %>
-    <% end %>
-  </div>
+<% if flash.present? %>
+  <% flash.each do |key, value| %>
+    <%= content_tag :div, value, class: "flash #{key}" %>
+  <% end %>
 <% end %>
