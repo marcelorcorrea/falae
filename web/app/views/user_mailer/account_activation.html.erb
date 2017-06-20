@@ -1,9 +1,7 @@
-<h1>Falaê</h1>
-
-<p>Hello <%= @user.name %>,</p>
+<p><%= t('hello') %> <%= @user.name %>,</p>
 
 <p>
-Welcome to Falaê! Click on the link below to activate your account:
+<%= t('user_mailer.account_activation.body') %>
 </p>
 
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email) %>
+<%= link_to t('activate'), edit_account_activation_url(@user.activation_token, email: @user.email) %>

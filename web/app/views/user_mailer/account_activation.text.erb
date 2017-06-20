@@ -1,5 +1,5 @@
-Hello <%= @user.name %>,
+<%= t('hello') %> <%= @user.name %>,
 
-Welcome to Falaê! Click on the link below to activate your account:
+<%= t('user_mailer.account_activation.body') %>
 
 <%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
