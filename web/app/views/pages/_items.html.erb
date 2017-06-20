@@ -5,15 +5,17 @@
 <% items.each_slice(cols*rows).each_with_index do |slice, i| %>
   <div class="sliced-page columns-<%= cols %>">
     <% slice.each_with_index do |item, j| %>
-      <div id="<%= item.id %>" class="card card-<%= cols %> <%= css_class_name(item.category) %>">
-        <%= button_to(user_spreadsheet_page_remove_item_path(@user, @spreadsheet, @page),
-            {method: :delete, class: :remove, remote: true, params: { item_id: item.id}}) do %>
-          <%= fa_icon 'trash-o', class: :default %>
-          <%= fa_icon 'trash', class: :hover %>
-        <% end %>
-        <div class="name"><%= item.name %></div>
-        <div>
-          <img src="<%= item.img_src %>"/>
+      <div id="<%= item.id %>" class="card card-<%= cols %>" draggable=true>
+        <div class="content <%= css_class_name(item.category) %>">
+          <%= button_to(user_spreadsheet_page_remove_item_path(@user, @spreadsheet, @page),
+              {method: :delete, class: :remove, remote: true, params: { item_id: item.id}}) do %>
+            <%= fa_icon 'trash-o', class: :default %>
+            <%= fa_icon 'trash', class: :hover %>
+          <% end %>
+          <div class="name"><%= item.name %></div>
+          <div class="img-wrapper">
+            <img src="<%= item.img_src %>" draggable="false" />
+          </div>
         </div>
       </div>
       <% if i * cols * rows + j == items.count - 1 %>

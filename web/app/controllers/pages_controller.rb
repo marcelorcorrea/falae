@@ -89,6 +89,12 @@ class PagesController < ApplicationController
     @page.items.delete item if item
   end
 
+  def swap_items
+    if (@page.items.find [params[:id1], params[:id2]] rescue nil)
+      Item.swap params[:id1], params[:id2]
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page

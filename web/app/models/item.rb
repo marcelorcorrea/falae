@@ -19,6 +19,19 @@ class Item < ApplicationRecord
     @default_items ||= Item.where default: true
   end
 
+  def Item.swap(id1, id2)
+    item_1, item_2 = Item.find [id1, id2]
+    tmp = item_1
+    item_1.attibutes = item_2.attributes.except('id')
+    item_2.attibutes = tmp.attributes.except('id')
+    ActiveRecord::Base.transaction do
+      i1.save!
+      i2.save!
+    end
+  rescue
+    nil
+  end
+
   def has?(user)
     user.items.include? self
   end

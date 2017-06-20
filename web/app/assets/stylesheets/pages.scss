@@ -53,6 +53,9 @@
       .columns-3 {
         width: 30em;
       }
+      .card.over {
+        border: 0.125em dashed black;
+      }
       .card {
         position: relative;
         float: left;
@@ -61,14 +64,25 @@
         border: 0.125em solid $medium-sea-green;
         border-radius: 0.25em;
         margin: 0.75em 0.5em 0.25em;
+        // &:active {
+        //   border-color: $light-orange;
+        //   cursor: move;
+        // }
+        // &:active .remove {
+        //   display: none
+        // }
+        .content {
+          height: 100%;
+        }
         .remove {
           font-size: 1em;
+          line-height: 1.2;
           position: absolute;
           right: -0.5em;
           top: -0.75em;
           cursor: pointer;
           color: $dark-orange;
-          padding: 0 0.125em;
+          padding: 0 (3em/16);
           border: 0.125em solid $dark-orange;
           border-radius: 1em;
           background-color: white;
@@ -91,9 +105,11 @@
         height: 12em;
         .name {
           padding: 0.5em;
+          pointer-events: none;
         }
-        div {
+        .img-wrapper {
           padding-top: 0.5em;
+          pointer-events: none;
           img {
             width: 90%;
           }
