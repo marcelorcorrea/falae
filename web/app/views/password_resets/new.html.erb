@@ -1,0 +1,16 @@
+<div class="reset-password">
+  <%= render :partial => 'shared/flash'%>
+  <div class="form-box">
+    <div class="label"><%= t :reset_password %></div>
+    <%= form_for :password_reset, url: password_resets_path do |form| %>
+      <div class="field">
+        <%= form.label :email %>
+        <span class="input-icon"><%= fa_icon 'user' %></span>
+        <%= form.text_field :email, class: 'offset-for-icon', placeholder: :email %>
+      </div>
+      <div class="actions">
+        <%= form.submit t :submit %>
+      </div>
+    <% end %>
+  </div>
+</div>

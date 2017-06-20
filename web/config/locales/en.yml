@@ -39,6 +39,9 @@ en:
   log_out: Log out
   welcome: Welcome
   activate: Activate
+  forgot_password: 'Forgot password?'
+  reset_password: 'Reset password'
+  submit: 'Submit'
   flash:
     error:
       wrong_email_password: 'There is no match for this email and password.'
@@ -50,3 +53,10 @@ en:
       activation: 'Account activated!'
       invalid: 'Invalid activation link.'
       notactivated: 'Account not activated. Check your email for the activation link.'
+    password_reset:
+      subject: 'Password reset'
+      body_begin: 'To reset your password click the link below:'
+      body_expire: 'This link will expire in two hours.'
+      body_end: 'If you did not request your password to be reset, please ignore this
+                 email and your password will stay as it is.'
+      verification: 'Please check your email for password reset instructions.'
