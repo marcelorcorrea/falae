@@ -1,5 +1,6 @@
 ---
 pt-BR:
+  hello: Olá
   home: Início
   about: Sobre
   contact: Contato
@@ -7,18 +8,18 @@ pt-BR:
   register: Cadastrar
   log_out: Sair
   welcome: Bem-vindo
+  activate: Ativar
   flash:
     error:
       wrong_email_password: 'Email e/ou senha inválidos.'
   user_mailer:
     account_activation:
       subject: 'Ativação de Conta'
+      body: 'Bem-vindo ao Falaê! Clique no link abaixo para ativar sua conta:'
       verification: 'Por favor, verifique seu e-mail para ativar sua conta.'
       activation: 'Conta ativada!'
-      invalid: 'Link de ativação inválido'
+      invalid: 'Link de ativação inválido.'
       notactivated: 'Conta não foi ativada. Procure link de ativação em seu e-mail.'
-
-
   activerecord:
     models:
       category: Categoria

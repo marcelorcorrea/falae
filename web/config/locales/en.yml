@@ -30,7 +30,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: Hello
   home: Home
   about: About
   contact: Contact
@@ -38,13 +38,15 @@ en:
   register: Register
   log_out: Log out
   welcome: Welcome
+  activate: Activate
   flash:
     error:
       wrong_email_password: 'There is no match for this email and password.'
   user_mailer:
     account_activation:
       subject: 'Account activation'
+      body: 'Welcome to Falaê! Click on the link below to activate your account:'
       verification: 'Please check your email to activate your account.'
       activation: 'Account activated!'
-      invalid: 'Invalid activation link'
+      invalid: 'Invalid activation link.'
       notactivated: 'Account not activated. Check your email for the activation link.'
