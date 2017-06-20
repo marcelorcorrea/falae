@@ -9,6 +9,9 @@ pt-BR:
   log_out: Sair
   welcome: Bem-vindo
   activate: Ativar
+  forgot_password: 'Esqueceu sua senha?'
+  reset_password: 'Alterar senha'
+  submit: 'Enviar'
   flash:
     error:
       wrong_email_password: 'Email e/ou senha inválidos.'
@@ -20,6 +23,13 @@ pt-BR:
       activation: 'Conta ativada!'
       invalid: 'Link de ativação inválido.'
       notactivated: 'Conta não foi ativada. Procure link de ativação em seu e-mail.'
+    password_reset:
+      subject: 'Alteração de senha'
+      body_begin: 'Para alterar sua senha, clique no link abaixo:'
+      body_expire: 'Este link irá expirar dentro de 2 horas.'
+      body_end: 'Se você não solicitou alteração de senha, por favor ignore esse email
+                e sua senha continuará a mesma.'
+      verification: 'Por favor, verifique seu e-mail e siga instruções para alteração de senha.'
   activerecord:
     models:
       category: Categoria

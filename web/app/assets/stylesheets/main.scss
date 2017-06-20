@@ -210,6 +210,25 @@ body {
         }
       }
 
+      .forgot {
+        padding-right: 0.125em;
+        margin-top: -1em;
+        font-size: 0.8em;
+        overflow: hidden;
+        color: $dark-purple;
+        a {
+          float: right;
+          &:link, &:visited, &:hover, &:active {
+            color: $dark-purple;
+            text-decoration: none;
+          }
+          &:hover, &:active {
+            font-style: italic;
+            text-decoration: underline;
+          }
+        }
+      }
+
       .input-icon {
         position: absolute;
         top: 50%;
