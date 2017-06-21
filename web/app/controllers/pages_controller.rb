@@ -67,7 +67,7 @@ class PagesController < ApplicationController
   end
 
   # TODO: Notify on error
-  # GET 
+  # GET
   def add_item
   end
 
@@ -94,7 +94,7 @@ class PagesController < ApplicationController
     @page.items.delete item if item
   end
 
-  # PUT 
+  # PUT
   def swap_items
     @page.swap_items params[:id_1], params[:id_2]
   end

@@ -34,7 +34,7 @@ class SpreadsheetsController < ApplicationController
 
     respond_to do |format|
       if @spreadsheet.save
-        format.html { redirect_to [user, @spreadsheet], notice: 'Spreadsheet was successfully created.' }
+        format.html { redirect_to [@user, @spreadsheet], notice: 'Spreadsheet was successfully created.' }
         format.json { render :show, status: :created, location: @spreadsheet }
       else
         format.html { render :new }
