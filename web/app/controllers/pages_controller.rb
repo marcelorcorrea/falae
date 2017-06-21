@@ -66,6 +66,12 @@ class PagesController < ApplicationController
     end
   end
 
+  # TODO: Notify on error
+  # GET 
+  def add_item
+  end
+
+  # GET
   def search_item
     items = if params[:search] and params[:name].present?
       query = ['name LIKE ?', "%#{params[:name]}%"]
@@ -76,25 +82,23 @@ class PagesController < ApplicationController
     render locals: { items: items }
   end
 
+  # POST
   def add_to_page
     item = Item.find_by id: params[:item_id]
     @page.items << item if item
   end
 
-  def add_item
-  end
-
+  # DELETE
   def remove_item
     item = @page.items.find_by id: params[:item_id]
     @page.items.delete item if item
   end
 
+  # PUT 
   def swap_items
-    # NOTE: That's not how it should work!
-    # if (@page.items.find [params[:id_1], params[:id_2]] rescue nil)
-    #   ret = Item.swap params[:id_1], params[:id_2]
-    # end
+    @page.swap_items params[:id_1], params[:id_2]
   end
+  # END TODO: Notify on error
 
   private
     # Use callbacks to share common setup or constraints between actions.

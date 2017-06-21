@@ -24,7 +24,7 @@
       </div>
       <% if i * cols * rows + j == items.count - 1 %>
         <% if ( items.count % (cols * rows) ).zero? %>
-      <hr />
+          <hr />
         <% end %>
       <div class="card-<%= cols %> card-wrapper">
         <%= button_to(user_spreadsheet_page_add_item_path(@user, @spreadsheet, @page),

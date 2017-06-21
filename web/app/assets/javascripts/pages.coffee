@@ -44,17 +44,14 @@ document.addEventListener 'turbolinks:load', ->
       card.addEventListener 'drop', (e) ->
         e.stopPropagation()
         if srcEl != this
-          srcEl.innerHTML = this.innerHTML
-          this.innerHTML = e.dataTransfer.getData 'text/html'
-          # $.ajax {
-          #   type: "PUT",
-          #   url: window.location.href + '/swap_items',
-          #   data: { id_1: srcEl.id, id_2: this.id }
-          # }
-        this.classList.remove 'over'
+          $.ajax {
+            type: "PUT",
+            url: window.location.href + '/swap_items',
+            data: { id_1: srcEl.id, id_2: this.id }
+          }
         return false
-      card.addEventListener 'dragend', (e) ->
-        this.style.opacity = '1'
+      # card.addEventListener 'dragend', (e) ->
+      #   this.style.opacity = '1'
 
   if pageItemList
     addDragAndDropEventListeners()
