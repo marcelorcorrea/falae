@@ -57,63 +57,67 @@
         border: 0.125em dashed black;
       }
       .card {
-        position: relative;
-        float: left;
+        height: 100%;
         text-align: center;
         box-sizing: border-box;
         border: 0.125em solid $medium-sea-green;
         border-radius: 0.25em;
-        margin: 0.75em 0.5em 0.25em;
-        // &:active {
-        //   border-color: $light-orange;
-        //   cursor: move;
-        // }
-        // &:active .remove {
-        //   display: none
-        // }
         .content {
           height: 100%;
+          pointer-events: none;
+          .name {
+            padding: 0.5em;
+          }
+          .img-wrapper {
+            padding-top: 0.5em;
+            img {
+              width: 90%;
+            }
+          }
         }
-        .remove {
-          font-size: 1em;
-          line-height: 1.2;
-          position: absolute;
-          right: -0.5em;
-          top: -0.75em;
-          cursor: pointer;
-          color: $dark-orange;
-          padding: 0 (3em/16);
-          border: 0.125em solid $dark-orange;
-          border-radius: 1em;
-          background-color: white;
-          .hover {
-            display: none;
-          }
-          &:focus {
-            outline: none;
-          }
-          &:hover .default {
-            display: none;
-          }
-          &:hover .hover {
-            display: inline-block;
+      }
+      .remove {
+        display: none;
+        font-size: 1em;
+        line-height: 1.2;
+        position: absolute;
+        right: 0.125em;
+        top: 0.125em;
+        cursor: pointer;
+        color: $dark-orange;
+        padding: 0 (3em/16);
+        border: 0.125em solid $dark-orange;
+        border-radius: 50%;
+        background-color: white;
+        &:hover {
+          box-shadow: 0 0 0.25em;
+        }
+        .hover {
+          display: none;
+        }
+        &:focus {
+          outline: none;
+        }
+        &:hover .default {
+          display: none;
+        }
+        &:hover .hover {
+          display: inline-block;
+        }
+      }
+      .card-wrapper {
+        float: left;
+        &:hover {
+          .remove {
+            display: block;
           }
         }
       }
       .card-3 {
+        position: relative;
         width: 9em;
         height: 12em;
-        .name {
-          padding: 0.5em;
-          pointer-events: none;
-        }
-        .img-wrapper {
-          padding-top: 0.5em;
-          pointer-events: none;
-          img {
-            width: 90%;
-          }
-        }
+        padding: 0.75em 0.5em 0.25em;
       }
       .add-button {
         display: table-cell;

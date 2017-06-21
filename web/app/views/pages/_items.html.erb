@@ -2,33 +2,50 @@
 <% cols = @page.columns %>
 <% rows = @page.rows %>
 
-<% items.each_slice(cols*rows).each_with_index do |slice, i| %>
-  <div class="sliced-page columns-<%= cols %>">
+<% if items.any? %>
+  <% items.each_slice(cols*rows).each_with_index do |slice, i| %>
+    <div class="sliced-page columns-<%= cols %>">
     <% slice.each_with_index do |item, j| %>
-      <div id="<%= item.id %>" class="card card-<%= cols %>" draggable=true>
-        <div class="content <%= css_class_name(item.category) %>">
-          <%= button_to(user_spreadsheet_page_remove_item_path(@user, @spreadsheet, @page),
-              {method: :delete, class: :remove, remote: true, params: { item_id: item.id}}) do %>
-            <%= fa_icon 'trash-o', class: :default %>
-            <%= fa_icon 'trash', class: :hover %>
-          <% end %>
-          <div class="name"><%= item.name %></div>
-          <div class="img-wrapper">
-            <img src="<%= item.img_src %>" draggable="false" />
+      <div class="card-<%= cols %> card-wrapper">
+        <%= button_to(user_spreadsheet_page_remove_item_path(@user, @spreadsheet, @page),
+              {method: :delete, class: :remove, data: {confirm: 'Are you sure?'},
+              remote: true, params: { item_id: item.id}}) do %>
+          <%= fa_icon 'trash-o', class: :default %>
+          <%= fa_icon 'trash', class: :hover %>
+        <% end %>
+        <div id="<%= item.id %>" class="card" draggable=true>
+          <div class="content <%= css_class_name(item.category) %>">
+            <div class="name"><%= item.name %></div>
+            <div class="img-wrapper">
+              <img src="<%= item.img_src %>" draggable="false" />
+            </div>
           </div>
         </div>
       </div>
       <% if i * cols * rows + j == items.count - 1 %>
         <% if ( items.count % (cols * rows) ).zero? %>
-        <hr />
+      <hr />
         <% end %>
+      <div class="card-<%= cols %> card-wrapper">
         <%= button_to(user_spreadsheet_page_add_item_path(@user, @spreadsheet, @page),
-            {method: :get, form_class: "add card card-#{cols}", class: 'add-button',
+            {method: :get, form_class: "add card", class: 'add-button',
             remote: true }) do %>
           <% fa_icon 'plus-circle' %>
         <% end %>
+      </div>
       <% end %>
     <% end %>
+    </div>
+    <hr />
+  <% end %>
+<% else %>
+  <div class="sliced-page columns-<%= cols %>">
+    <div class="card-<%= cols %> card-wrapper">
+      <%= button_to(user_spreadsheet_page_add_item_path(@user, @spreadsheet, @page),
+          {method: :get, form_class: "add card", class: 'add-button',
+          remote: true }) do %>
+        <% fa_icon 'plus-circle' %>
+      <% end %>
+    </div>
   </div>
-  <hr />
 <% end %>

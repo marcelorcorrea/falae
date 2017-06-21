@@ -22,7 +22,7 @@ document.addEventListener 'turbolinks:load', ->
       pageMobileTab.classList.add 'active'
       pageMobileView.classList.add 'active'
 
-  if pageItemList
+  addDragAndDropEventListeners = () ->
     cards = pageItemList.querySelectorAll 'div.card'
     srcEl = null
     for card in cards
@@ -32,10 +32,12 @@ document.addEventListener 'turbolinks:load', ->
         e.dataTransfer.effectAllowed = 'move'
         e.dataTransfer.setData 'text/html', this.innerHTML
       card.addEventListener 'dragenter', (e) ->
-        this.classList.add 'over'
+        if srcEl != this
+          this.classList.add 'over'
       card.addEventListener 'dragover', (e) ->
-        e.preventDefault
-        e.dataTransfer.dropEffect = 'move'
+        if srcEl != this
+          e.preventDefault()
+          e.dataTransfer.dropEffect = 'move'
         return false
       card.addEventListener 'dragleave', (e) ->
         this.classList.remove 'over'
@@ -44,7 +46,21 @@ document.addEventListener 'turbolinks:load', ->
         if srcEl != this
           srcEl.innerHTML = this.innerHTML
           this.innerHTML = e.dataTransfer.getData 'text/html'
+          # $.ajax {
+          #   type: "PUT",
+          #   url: window.location.href + '/swap_items',
+          #   data: { id_1: srcEl.id, id_2: this.id }
+          # }
         this.classList.remove 'over'
         return false
       card.addEventListener 'dragend', (e) ->
         this.style.opacity = '1'
+
+  if pageItemList
+    addDragAndDropEventListeners()
+    observer = new MutationObserver (mutations) ->
+      mutations.forEach (mutation) ->
+        if mutation.addedNodes.length > 0
+          addDragAndDropEventListeners()
+    observer.observe pageItemList, {childList: true}
+

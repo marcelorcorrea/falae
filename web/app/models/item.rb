@@ -19,18 +19,23 @@ class Item < ApplicationRecord
     @default_items ||= Item.where default: true
   end
 
-  def Item.swap(id1, id2)
-    item_1, item_2 = Item.find [id1, id2]
-    tmp = item_1
-    item_1.attibutes = item_2.attributes.except('id')
-    item_2.attibutes = tmp.attributes.except('id')
-    ActiveRecord::Base.transaction do
-      i1.save!
-      i2.save!
-    end
-  rescue
-    nil
-  end
+  # def Item.swap(id1, id2)
+  #   item_1, item_2 = Item.find [id1, id2]
+  #   puts "#{item_1.id} #{item_1.name}"
+  #   puts "#{item_2.id} #{item_2.name}"
+  #   tmp = item_1
+  #   item_1.attributes = item_2.attributes.except('id')
+  #   puts "item 1: #{item_1.attributes}"
+  #   item_2.attributes = tmp.attributes.except('id')
+  #   puts "item 2: #{item_2.attributes}"
+  #   # ActiveRecord::Base.transaction do
+  #   #   item_1.save!
+  #   #   item_2.save!
+  #   # end
+  # rescue => e
+  #   puts e.message
+  #   # nil
+  # end
 
   def has?(user)
     user.items.include? self

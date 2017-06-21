@@ -90,9 +90,10 @@ class PagesController < ApplicationController
   end
 
   def swap_items
-    if (@page.items.find [params[:id1], params[:id2]] rescue nil)
-      Item.swap params[:id1], params[:id2]
-    end
+    # NOTE: That's not how it should work!
+    # if (@page.items.find [params[:id_1], params[:id_2]] rescue nil)
+    #   ret = Item.swap params[:id_1], params[:id_2]
+    # end
   end
 
   private
