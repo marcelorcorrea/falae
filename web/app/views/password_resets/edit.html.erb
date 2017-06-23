@@ -1,2 +1,24 @@
-<h1>PasswordResets#edit</h1>
-<p>Find me in app/views/password_resets/edit.html.erb</p>
+<div class="reset-password">
+  <%= render :partial => 'shared/flash'%>
+  <%= render 'shared/error', errors: @user.errors %>
+  <div class="form-box">
+    <div class="label"><%= t :reset_password %></div>
+    <%= form_for @user, url: password_reset_path(params[:id]) do |form| %>
+      <%= hidden_field_tag :email, @user.email %>
+      <div class="field">
+        <%= form.label :password %>
+        <span class="input-icon"><%= fa_icon 'lock' %></span>
+        <%= form.password_field :password, id: :user_password, class: 'offset-for-icon', placeholder: :password %>
+      </div>
+      <div class="field">
+        <%= form.label :password_confirmation %>
+        <span class="input-icon"><%= fa_icon 'lock' %></span>
+        <%= form.password_field :password_confirmation, id: :user_password_confirmation,
+                                class: 'offset-for-icon', placeholder: :confirmation %>
+      </div>
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+    <% end %>
+  </div>
+</div>

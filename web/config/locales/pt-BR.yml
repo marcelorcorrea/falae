@@ -30,6 +30,9 @@ pt-BR:
       body_end: 'Se você não solicitou alteração de senha, por favor ignore esse email
                 e sua senha continuará a mesma.'
       verification: 'Por favor, verifique seu e-mail e siga instruções para alteração de senha.'
+      valid_reset: 'Senha alterada com sucesso.'
+      invalid: 'Link de alteração de senha inválido.'
+      expired_token: 'Link de alteração de senha expirou.'
   activerecord:
     models:
       category: Categoria
