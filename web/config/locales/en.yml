@@ -60,3 +60,6 @@ en:
       body_end: 'If you did not request your password to be reset, please ignore this
                  email and your password will stay as it is.'
       verification: 'Please check your email for password reset instructions.'
+      valid_reset: 'Password has been reset.'
+      invalid: 'Invalid reset password link.'
+      expired_token: 'Password reset link has expired.'
