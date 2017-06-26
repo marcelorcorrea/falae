@@ -50,8 +50,8 @@ document.addEventListener 'turbolinks:load', ->
             data: { id_1: srcEl.id, id_2: this.id }
           }
         return false
-      # card.addEventListener 'dragend', (e) ->
-      #   this.style.opacity = '1'
+      card.addEventListener 'dragend', (e) ->
+        this.style.opacity = '1'
 
   if pageItemList
     addDragAndDropEventListeners()

@@ -15,7 +15,8 @@ body {
 
 .wrapper {
   position: relative;
-  max-width: 1000px;
+  width: 1000px;
+  min-width: 1000px;
   margin: 0 auto;
   background-color: #FFF;
   border-top: 1em solid $default-bg-color;
@@ -310,14 +311,6 @@ pre {
   background-color: #eee;
   padding: 10px;
   font-size: 11px;
-}
-
-th {
-  padding-bottom: 5px;
-}
-
-td {
-  padding: 0 5px 7px;
 }
 
 div {

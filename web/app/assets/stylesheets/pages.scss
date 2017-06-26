@@ -49,27 +49,66 @@
       .sliced-page {
         overflow: hidden;
         margin: 0 auto;
+        table-layout: fixed;
+      }
+      .columns-1 {
+        width: 16em;
+      }
+      .columns-2 {
+        width: 26em;
       }
       .columns-3 {
         width: 30em;
+      }
+      .columns-4 {
+        width: 40em;
+      }
+      .columns-x {
+        width: 48em;
+      }
+      .row {
+        display: table-row;
+      }
+      .cell {
+        width: 100%;
+        height: 100%;
+      }
+      .card-wrapper {
+        position: relative;
+        height: 100%;
+        padding: 7.5% 5% 2.5%;
+        &:hover {
+          .remove {
+            display: block;
+          }
+        }
       }
       .card.over {
         border: 0.125em dashed black;
       }
       .card {
-        height: 100%;
+        position: relative;
+        width: 100%;
+        padding-top: 133%;
         text-align: center;
         box-sizing: border-box;
         border: 0.125em solid $medium-sea-green;
         border-radius: 0.25em;
         .content {
-          height: 100%;
-          pointer-events: none;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          overflow: hidden;
+          // TODO: font size
           .name {
-            padding: 0.5em;
+            pointer-events: none;
+            padding: 5% 0;
           }
           .img-wrapper {
-            padding-top: 0.5em;
+            pointer-events: none;
+            padding-top: 5%;
             img {
               width: 90%;
             }
@@ -81,8 +120,9 @@
         font-size: 1em;
         line-height: 1.2;
         position: absolute;
-        right: 0.125em;
-        top: 0.125em;
+        z-index: 999999;
+        right: 2.5%;
+        top: 3.5%;
         cursor: pointer;
         color: $dark-orange;
         padding: 0 (3em/16);
@@ -105,26 +145,10 @@
           display: inline-block;
         }
       }
-      .card-wrapper {
-        float: left;
-        &:hover {
-          .remove {
-            display: block;
-          }
-        }
-      }
-      .card-3 {
-        position: relative;
-        width: 9em;
-        height: 12em;
-        padding: 0.75em 0.5em 0.25em;
-      }
       .add-button {
-        display: table-cell;
-        width: 100%;
-        height: 100%;
         font-size: 48px;
         color: inherit;
+        height: 100%;
         background: none;
         border: none;
         &:hover {

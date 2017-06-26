@@ -3,49 +3,100 @@
 <% rows = @page.rows %>
 
 <% if items.any? %>
-  <% items.each_slice(cols*rows).each_with_index do |slice, i| %>
-    <div class="sliced-page columns-<%= cols %>">
-    <% slice.each_with_index do |item, j| %>
-      <div class="card-<%= cols %> card-wrapper">
-        <%= button_to(user_spreadsheet_page_remove_item_path(@user, @spreadsheet, @page),
-              {method: :delete, class: :remove, data: {confirm: 'Are you sure?'},
-              remote: true, params: { item_id: item.id}}) do %>
-          <%= fa_icon 'trash-o', class: :default %>
-          <%= fa_icon 'trash', class: :hover %>
-        <% end %>
-        <div id="<%= item.id %>" class="card" draggable=true>
-          <div class="content <%= css_class_name(item.category) %>">
-            <div class="name"><%= item.name %></div>
-            <div class="img-wrapper">
-              <img src="<%= item.img_src %>" draggable="false" />
+
+  <% items.each_slice(cols*rows).each do |page| %>
+  <table class="sliced-page columns-<%= cols < 5 ? cols : 'x' %>" cellspacing="0" cellpadding="0">
+    <% page.each_slice(cols).each do |row| %>
+    <tr class="row">
+      <% row.each do |item| %>
+      <td class="cell">
+        <div class="card-wrapper">
+          <%= remove_item_button item.id %>
+          <div id="<%= item.id %>" class="card" draggable=true>
+            <div class="content <%= css_class_name(item.category) %>">
+              <div class="name"><%= item.name %></div>
+              <div class="img-wrapper">
+                <img src="<%= item.img_src %>" draggable="false" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <% if i * cols * rows + j == items.count - 1 %>
-        <% if ( items.count % (cols * rows) ).zero? %>
-          <hr />
-        <% end %>
-      <div class="card-<%= cols %> card-wrapper">
-        <%= button_to(user_spreadsheet_page_add_item_path(@user, @spreadsheet, @page),
-            {method: :get, form_class: "add card", class: 'add-button',
-            remote: true }) do %>
-          <% fa_icon 'plus-circle' %>
-        <% end %>
-      </div>
+      </td>
       <% end %>
+      <% if row.count != cols %>
+      <td class="cell">
+        <div class="card-wrapper">
+          <div class="card">
+            <%= add_item_button %>
+          </div>
+        </div>
+      </td>
+        <% 1.upto(cols - row.count - 1).each do %>
+      <td class="cell">
+        <div class="card-wrapper">
+        </div>
+      </td>
+        <% end %>
+      <% end %>
+    </tr>
     <% end %>
-    </div>
-    <hr />
+    <% if items.count % cols == 0 and items.count % (cols*rows) != 0 %>
+      <tr class="row">
+        <td class="cell">
+          <div class="card-wrapper">
+            <%= add_item_button %>
+          </div>
+        </td>
+        <% 1.upto(cols - 1).each do %>
+        <td class="cell">
+          <div class="card-wrapper">
+          </div>
+        </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+  <hr />
   <% end %>
-<% else %>
-  <div class="sliced-page columns-<%= cols %>">
-    <div class="card-<%= cols %> card-wrapper">
-      <%= button_to(user_spreadsheet_page_add_item_path(@user, @spreadsheet, @page),
-          {method: :get, form_class: "add card", class: 'add-button',
-          remote: true }) do %>
-        <% fa_icon 'plus-circle' %>
+  <% if items.count % (cols*rows) == 0 %>
+  <table class="sliced-page columns-<%= cols %>" cellspacing="0" cellpadding="0">
+    <tr class="row">
+      <td class="cell">
+        <div class="card-wrapper">
+          <div class="card">
+            <%= add_item_button %>
+          </div>
+        </div>
+      </td>
+      <% 1.upto(cols - 1).each do %>
+      <td class="cell">
+        <div class="card-wrapper">
+        </div>
+      </td>
       <% end %>
-    </div>
-  </div>
+    </tr>
+  </table>
+  <hr />
+  <% end %>
+
+<% else %>
+
+  <table class="sliced-page columns-<%= cols %>" cellspacing="0" cellpadding="0">
+    <tr class="row">
+      <td class="cell">
+        <div class="card-wrapper">
+          <div class="card">
+            <%= add_item_button %>
+          </div>
+        </div>
+      </td>
+      <% 1.upto(cols - 1).each do %>
+      <td class="cell">
+        <div class="card-wrapper">
+        </div>
+      </td>
+      <% end %>
+    </tr>
+  </table>
+
 <% end %>
