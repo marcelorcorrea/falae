@@ -10,10 +10,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        app:tabSelectedTextColor="@color/darkgreen"
-        app:tabTextColor="@color/green"
         android:layout_marginBottom="@dimen/default_vertical_margin"
-        app:tabMode="scrollable" />
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/darkgreen"
+        app:tabTextAppearance="@style/TabTextStyle"
+        app:tabTextColor="@color/green" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"

@@ -25,4 +25,9 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="TabTextStyle" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textSize">@dimen/big_text_size</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
 </resources>

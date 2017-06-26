@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="UserName"
-            android:textSize="@dimen/big_text_size"
+            android:textSize="@dimen/huge_text_size"
             android:textStyle="bold" />
 
         <ImageView
@@ -53,6 +53,6 @@
             android:layout_height="wrap_content"
             android:gravity="start"
             android:text="Description"
-            android:textSize="@dimen/default_text_size" />
+            android:textSize="@dimen/huge_text_size" />
     </ScrollView>
 </LinearLayout>

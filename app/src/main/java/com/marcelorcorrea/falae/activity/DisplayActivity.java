@@ -1,8 +1,7 @@
 package com.marcelorcorrea.falae.activity;
 
-import android.os.Build;
+import android.content.Intent;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,15 +13,13 @@ import com.marcelorcorrea.falae.fragment.PageFragment;
 import com.marcelorcorrea.falae.fragment.ViewPagerItemFragment;
 import com.marcelorcorrea.falae.model.Page;
 import com.marcelorcorrea.falae.model.SpreadSheet;
-
-import java.util.Locale;
+import com.marcelorcorrea.falae.service.TextToSpeechService;
 
 public class DisplayActivity extends AppCompatActivity implements PageFragment.OnFragmentInteractionListener, ViewPagerItemFragment.OnFragmentInteractionListener {
 
     public static final String SPREADSHEET = "SpreadSheet";
 
     private SpreadSheet currentSpreadSheet;
-    private TextToSpeech textToSpeech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,19 +30,6 @@ public class DisplayActivity extends AppCompatActivity implements PageFragment.O
         if (currentSpreadSheet != null) {
             openPage(currentSpreadSheet.getInitialPage());
         }
-
-        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status != TextToSpeech.ERROR) {
-                    Locale currentLocation = Locale.getDefault();
-                    if (currentLocation == null) {
-                        currentLocation = new Locale("pt", "BR");
-                    }
-                    textToSpeech.setLanguage(currentLocation);
-                }
-            }
-        }, "com.google.android.tts");
     }
 
     @Override
@@ -82,26 +66,14 @@ public class DisplayActivity extends AppCompatActivity implements PageFragment.O
 
     @Override
     public void speak(String msg) {
-        if (textToSpeech != null) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                textToSpeech.speak(msg, TextToSpeech.QUEUE_FLUSH, null, null);
-            } else {
-                textToSpeech.speak(msg, TextToSpeech.QUEUE_FLUSH, null);
-            }
-        }
+        Intent intent = new Intent(this, TextToSpeechService.class);
+        intent.putExtra(TextToSpeechService.TEXT_TO_SPEECH_MESSAGE, msg);
+        startService(intent);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (textToSpeech != null) {
-            textToSpeech.shutdown();
-        }
-        super.onDestroy();
     }
 }
