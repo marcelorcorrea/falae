@@ -5,10 +5,20 @@
     <% end %>
 
     <div class="button-bar">
-      <%= link_to new_user_item_path(current_user), class: 'button-box' do %>
-        <%= fa_icon 'plus-circle' %>New Item
+      <% if current_page? user_items_path %>
+        <%= link_to new_user_item_path(@user), class: 'button-box' do %>
+          <%= fa_icon 'plus-circle' %>New Item
+        <% end %>
+      <% else %>
+        <%= link_to new_user_spreadsheet_page_item_path(@user, @spreadsheet, @page), class: 'button-box' do %>
+          <%= fa_icon 'plus-circle' %>New Item
+        <% end %>
+        <%= link_to user_spreadsheet_page_path(@user, @spreadsheet, @page), class: 'button-box' do %>
+          <%= fa_icon 'arrow-left' %>Back
+        <% end %>
       <% end %>
     </div>
+
     <div class="tab-bar">
       <div class="tab user-items-tab active">Items</div>
       <div class="tab search-items-tab">Search Item</div>
