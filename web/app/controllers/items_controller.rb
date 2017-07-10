@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
       if item_params[:name].blank?
         []
       else
-       Item.defaults.where('name LIKE ?', "%#{item_params[:name]}%")
+       Item.defaults.where('name LIKE ?', "#{item_params[:name]}%")
       end
     else
       @user.items
