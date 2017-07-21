@@ -4,9 +4,9 @@ class Page < ApplicationRecord
   has_many :items, through: :item_pages
 
   validates_associated :spreadsheet
-  validates :name, presence: true, uniqueness: { scope: :spreadsheet }
+  validates :name, presence: true, uniqueness: {scope: :spreadsheet}
   validates :columns, :rows, presence: true,
-            numericality: { only_integer: true }
+            numericality: {only_integer: true}
 
   def Page.default_blank
     Page.new name: 'Initial', columns: 6, rows: 3
@@ -22,5 +22,10 @@ class Page < ApplicationRecord
   rescue => e
     puts e.message
     false
+  end
+
+  def get_linked_page_id(item_id)
+    ip = ItemPage.find_by page_id: self.id, item_id: item_id
+    self.spreadsheet.pages.find_by(name: ip.link_to).id if ip
   end
 end

@@ -11,6 +11,7 @@
       <% row.each do |item| %>
       <td class="cell">
         <div class="card-wrapper">
+          <%= edit_item_button item.id %>
           <%= remove_item_button item.id %>
           <div id="<%= item.id %>" class="card" draggable=true>
             <div class="content <%= css_class_name(item.category) %>">
@@ -80,7 +81,6 @@
   <% end %>
 
 <% else %>
-
   <table class="sliced-page columns-<%= cols %>" cellspacing="0" cellpadding="0">
     <tr class="row">
       <td class="cell">

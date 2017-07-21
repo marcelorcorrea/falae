@@ -1,0 +1,10 @@
+$('body').css('overflow', 'hidden');
+$("<%= escape_javascript(render 'pages/edit_item', item: @item) %>").appendTo(".container");
+
+$('#item_page_link_to').focus();
+
+$('.close').on('click', function(e) {
+  e.preventDefault();
+  $('.overlay').remove();
+  $('body').css('overflow', 'initial');
+});

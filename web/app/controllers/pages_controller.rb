@@ -88,6 +88,20 @@ class PagesController < ApplicationController
     @page.items << item if item
   end
 
+  # GET
+  def edit_item
+    @item = @page.items.find_by id: params[:item_id]
+  end
+
+  # PUT
+  def update_item
+    ip = ItemPage.find_by page_id: @page.id, item_id: params[:item_id]
+    page = @spreadsheet.pages.find_by id: params[:page_id]
+    # TODO error message when there no such objects
+    ip.link_to = page.name if ip and page
+    ip.save
+  end
+
   # DELETE
   def remove_item
     item = @page.items.find_by id: params[:item_id]

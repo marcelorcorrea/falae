@@ -12,6 +12,7 @@ pt-BR:
   forgot_password: 'Esqueceu sua senha?'
   reset_password: 'Alterar senha'
   submit: 'Enviar'
+  save: 'Salvar'
   flash:
     error:
       wrong_email_password: 'Email e/ou senha inválidos.'

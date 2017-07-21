@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170620035343) do
+ActiveRecord::Schema.define(version: 20170721135855) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20170620035343) do
     t.integer "page_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "link_to"
     t.index ["item_id"], name: "index_item_pages_on_item_id"
     t.index ["page_id"], name: "index_item_pages_on_page_id"
   end
