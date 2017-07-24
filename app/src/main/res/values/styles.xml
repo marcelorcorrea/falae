@@ -8,7 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:textColor">@color/darkgreen</item>
+        <item name="android:textColor">@color/darkGreen</item>
+        <item name="buttonStyle">@style/orangeButton</item>
     </style>
 
     <!-- Splash Screen theme. -->
@@ -30,4 +31,11 @@
         <item name="android:textAllCaps">true</item>
     </style>
 
+    <style name="orangeButton" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/button_selector</item>
+        <item name="android:paddingLeft">@dimen/default_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/default_horizontal_margin</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

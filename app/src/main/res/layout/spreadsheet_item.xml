@@ -15,7 +15,7 @@
         android:layout_marginBottom="@dimen/tiny_horizontal_margin"
         android:background="@drawable/spreadsheet_item_selector"
         android:gravity="center"
-        android:textColor="@color/darkpurple"
+        android:textColor="@color/darkPurple"
         android:text="Text"
         android:textSize="@dimen/huge_text_size" />
 </LinearLayout>

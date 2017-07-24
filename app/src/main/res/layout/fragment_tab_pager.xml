@@ -12,7 +12,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/default_vertical_margin"
         app:tabMode="scrollable"
-        app:tabSelectedTextColor="@color/darkgreen"
+        app:tabSelectedTextColor="@color/darkGreen"
         app:tabTextAppearance="@style/TabTextStyle"
         app:tabTextColor="@color/green" />
 
