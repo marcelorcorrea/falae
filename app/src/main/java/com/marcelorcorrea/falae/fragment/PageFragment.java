@@ -56,7 +56,6 @@ public class PageFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_page, container, false);
         leftNav = (ImageView) view.findViewById(R.id.left_nav);
         rightNav = (ImageView) view.findViewById(R.id.right_nav);
-
         leftNavHolder = (FrameLayout) view.findViewById(R.id.left_nav_holder);
         rightNavHolder = (FrameLayout) view.findViewById(R.id.right_nav_holder);
 
@@ -69,17 +68,21 @@ public class PageFragment extends Fragment {
                 } else {
                     view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                 }
-                int leftNavMeasuredWidth = leftNavHolder.getMeasuredWidth();
-                int rightNavMeasureWidth = rightNavHolder.getMeasuredWidth();
-
                 mPager = (ViewPager) view.findViewById(pager);
-                mPagerAdapter = new ItemPagerAdapter(getChildFragmentManager(), page, leftNavMeasuredWidth + rightNavMeasureWidth);
+                int navHoldersSize = Double.valueOf(mPager.getMeasuredWidth() * 0.065).intValue();
+                leftNav.getLayoutParams().width = navHoldersSize;
+                leftNav.getLayoutParams().height = navHoldersSize;
+                rightNav.getLayoutParams().width = navHoldersSize;
+                rightNav.getLayoutParams().height = navHoldersSize;
+                leftNavHolder.getLayoutParams().width = navHoldersSize;
+                rightNavHolder.getLayoutParams().width = navHoldersSize;
+
+                mPagerAdapter = new ItemPagerAdapter(getChildFragmentManager(), page, navHoldersSize * 2);
                 mPager.setAdapter(mPagerAdapter);
 
                 ViewGroup.MarginLayoutParams pagerLayoutParams = (ViewGroup.MarginLayoutParams) mPager.getLayoutParams();
-                pagerLayoutParams.leftMargin += leftNavMeasuredWidth;
-                pagerLayoutParams.rightMargin += rightNavMeasureWidth;
-
+                pagerLayoutParams.leftMargin += navHoldersSize;
+                pagerLayoutParams.rightMargin += navHoldersSize;
                 mPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
                     @Override
                     public void onPageSelected(int position) {

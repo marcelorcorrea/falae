@@ -11,11 +11,11 @@
 
         <ImageView
             android:id="@+id/left_nav"
-            android:layout_width="30dp"
-            android:layout_height="150dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_gravity="center_vertical|start"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_chevron_left_red_48px"
+            android:src="@drawable/ic_arrow_back_red_48px"
             android:visibility="invisible" />
     </FrameLayout>
 
@@ -33,11 +33,11 @@
 
         <ImageView
             android:id="@+id/right_nav"
-            android:layout_width="30dp"
-            android:layout_height="150dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_gravity="center_vertical|end"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_chevron_right_red_48px"
+            android:src="@drawable/ic_arrow_forward_red_48px"
             android:visibility="invisible" />
     </FrameLayout>
 
