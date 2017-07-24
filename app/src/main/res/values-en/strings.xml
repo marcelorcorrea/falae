@@ -6,7 +6,7 @@
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Synchronize User</string>
     <string name="action_sign_in_short">Sync</string>
-    <string name="error_invalid_email">Invalid password.</string>
+    <string name="error_invalid_email">Invalid email format.</string>
     <string name="error_invalid_password">Password too short.</string>
     <string name="error_incorrect_password">Email or Password incorrect.</string>
     <string name="error_field_required">This field is required.</string>
