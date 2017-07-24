@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.marcelorcorrea.falae.R;
 import com.marcelorcorrea.falae.database.UserDbHelper;
-import com.marcelorcorrea.falae.fragment.AddUserFragment;
+import com.marcelorcorrea.falae.fragment.SyncUserFragment;
 import com.marcelorcorrea.falae.fragment.SettingsFragment;
 import com.marcelorcorrea.falae.fragment.TabPagerFragment;
 import com.marcelorcorrea.falae.model.SpreadSheet;
@@ -31,7 +31,7 @@ import java.util.List;
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         TabPagerFragment.OnFragmentInteractionListener,
-        AddUserFragment.OnFragmentInteractionListener {
+        SyncUserFragment.OnFragmentInteractionListener {
 
     private static final String USER_EMAIL = "email";
     private DrawerLayout mDrawer;
@@ -123,8 +123,8 @@ public class NavigationActivity extends AppCompatActivity
         String tag;
         int id = item.getItemId();
         if (id == R.id.add_user) {
-            fragment = AddUserFragment.newInstance();
-            tag = AddUserFragment.class.getSimpleName();
+            fragment = SyncUserFragment.newInstance();
+            tag = SyncUserFragment.class.getSimpleName();
         } else if (id == R.id.voice_item) {
             openTTSLanguageSettings();
             return false;

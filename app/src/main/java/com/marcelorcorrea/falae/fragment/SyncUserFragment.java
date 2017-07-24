@@ -37,7 +37,7 @@ import java.io.Reader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class AddUserFragment extends Fragment implements Response.Listener<User>, Response.ErrorListener {
+public class SyncUserFragment extends Fragment implements Response.Listener<User>, Response.ErrorListener {
 
     private static final String URL = "http://10.28.0.64:3000/login.json";
     private static final String EMAIL_CREDENTIAL_FIELD = "email";
@@ -54,11 +54,11 @@ public class AddUserFragment extends Fragment implements Response.Listener<User>
     private EditText mPasswordView;
     private ProgressDialog pDialog;
 
-    public AddUserFragment() {
+    public SyncUserFragment() {
     }
 
-    public static AddUserFragment newInstance() {
-        return new AddUserFragment();
+    public static SyncUserFragment newInstance() {
+        return new SyncUserFragment();
     }
 
     @Override
@@ -70,7 +70,7 @@ public class AddUserFragment extends Fragment implements Response.Listener<User>
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_add_user, container, false);
+        View view = inflater.inflate(R.layout.fragment_sync_user, container, false);
         mEmailView = (EditText) view.findViewById(R.id.email);
         mPasswordView = (EditText) view.findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {

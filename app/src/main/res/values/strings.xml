@@ -3,8 +3,8 @@
 
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Senha</string>
-    <string name="action_sign_in">Adicionar Usuário</string>
-    <string name="action_sign_in_short">Adicionar</string>
+    <string name="action_sign_in">Sincronizar Usuário</string>
+    <string name="action_sign_in_short">Sincronizar</string>
     <string name="error_invalid_email">Este email não é válido.</string>
     <string name="error_invalid_password">Senha muito curta</string>
     <string name="error_incorrect_password">Senha inválida</string>
@@ -19,7 +19,7 @@
     <string name="title_activity_login">Baixar Prancha</string>
     <string name="spreadsheets">Pranchas</string>
     <string name="users">Usuários</string>
-    <string name="add_user">Adicionar Usuário</string>
+    <string name="sync_user">Sincronizar Usuário</string>
     <string name="voice">Voz</string>
     <string name="previous">Voltar</string>
     <string name="next">Avançar</string>
@@ -29,9 +29,8 @@
     <string name="authenticate_message">Autenticando</string>
     <string name="settings">Configurações</string>
     <string name="scan_mode">Modo Varredura</string>
-    <string name="success_user_added">Usuário adicionado com sucesso!</string>
+    <string name="success_user_added">Usuário sincronizado com sucesso!</string>
     <string name="user_info">Perfil</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="scan_mode_duration">Tempo de varredura (segundos) </string>
     <string name="page_not_found">A prancha não contém a página selecionada.</string>
     <string name="download_failed">Um erro ocorreu ao baixar as imagens. Por favor verifique sua conexão com a internet.</string>
