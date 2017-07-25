@@ -36,6 +36,7 @@
     .page-items-list, .page-mobile-view {
       display: none;
     }
+
     .active {
       display: block;
     }
@@ -49,6 +50,7 @@
         overflow: hidden;
         margin: 0 auto;
         table-layout: fixed;
+        width: 100%;
       }
       .columns-1 {
         width: 16em;
