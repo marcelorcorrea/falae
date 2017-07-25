@@ -11,8 +11,6 @@
       <% row.each do |item| %>
       <td class="cell">
         <div class="card-wrapper">
-          <%= edit_item_button item.id %>
-          <%= remove_item_button item.id %>
           <div id="<%= item.id %>" class="card" draggable=true>
             <div class="content <%= css_class_name(item.category) %>">
               <div class="name"><%= item.name %></div>
@@ -21,6 +19,8 @@
               </div>
             </div>
           </div>
+          <%= edit_item_button item.id %>
+          <%= remove_item_button item.id %>
         </div>
       </td>
       <% end %>
