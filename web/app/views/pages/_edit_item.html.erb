@@ -5,21 +5,20 @@
       <%= fa_icon 'times-circle-o', class: :default %>
       <%= fa_icon 'times-circle', class: :hover %>
     </a>
-
     <div class="form-box">
       <%= form_with url: user_spreadsheet_page_update_item_path(@user, @spreadsheet, @page),
                     method: :put do |form| %>
         <%= form.hidden_field :item_id, value: item.id %>
         <div class="field">
           <%= form.label :page_id %>
-          <%= select_tag :page_id, options_for_select(select_pages_options_helper, @page.get_linked_page_id(item.id) ) %>
+          <%= select_tag :page_id,
+                options_for_select(select_pages_options_helper, @page.get_linked_page_id(item.id) ) %>
         </div>
         <div class="actions">
           <%= form.button :submit, name: :save do %>
             <%= fa_icon 'floppy-o' %><%= t :save %>
           <% end %>
         </div>
-
       <% end %>
     </div>
   </div>

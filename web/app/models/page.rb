@@ -25,7 +25,9 @@ class Page < ApplicationRecord
   end
 
   def get_linked_page_id(item_id)
-    ip = ItemPage.find_by page_id: self.id, item_id: item_id
-    self.spreadsheet.pages.find_by(name: ip.link_to).id if ip
+    item_page = ItemPage.find_by page_id: self.id, item_id: item_id
+    return nil unless item_page
+    linked_page = self.spreadsheet.pages.find_by name: item_page.link_to
+    linked_page ? linked_page.id : nil
   end
 end

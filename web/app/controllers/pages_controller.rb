@@ -90,7 +90,8 @@ class PagesController < ApplicationController
 
   # GET
   def edit_item
-    @item = @page.items.find_by id: params[:item_id]
+    item = @page.items.find_by id: params[:item_id]
+    render locals: { item: item }
   end
 
   # PUT
