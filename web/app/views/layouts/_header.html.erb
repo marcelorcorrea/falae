@@ -4,7 +4,13 @@
   </div>
 
   <div class="links">
-    <%= link_to home_path, class: ('active' if current_page?(root_path) || current_page?(home_path)) do %>
+    <% home  = home_path %>
+    <% if request.path.start_with? user_path(current_user) %>
+      <% home = request.path %>
+    <% elsif current_user %>
+      <% home = user_spreadsheets_path(current_user) %>
+    <% end %>
+    <%= link_to home, class: ('active' if current_page?(root_path) || current_page?(home)) do %>
       <%= fa_icon 'home' %> <%= t :home %>
     <% end %>
     <%= link_to about_path, class: ('active' if current_page?(about_path)) do %>

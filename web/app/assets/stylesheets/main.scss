@@ -89,11 +89,9 @@ body {
       width: 20%;
       display: inline-block;
       box-sizing: border-box;
-
       li {
         border-right: 0.0625em solid $medium-sea-green;
       }
-
       .active {
         color: $medium-sea-green;
         font-style: italic;
@@ -101,19 +99,22 @@ body {
       }
       .menu-item {
         display: block;
-        padding: 4px;
+        padding: 0 4px;
         font-weight: 600;
         li {
           margin: 0;
         }
         a {
+          display: inline-block;
+          width: 100%;
           text-decoration: none;
           color: inherit;
-          &:hover {
-            color: inherit;
-          }
+          padding: 4px 0;
           &:visited {
             color: inherit;
+          }
+          &:hover {
+            color: $medium-sea-green;
           }
         }
       }
