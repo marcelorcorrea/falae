@@ -74,7 +74,7 @@ class PagesController < ApplicationController
   # GET
   def search_item
     items = if params[:search] and params[:name].present?
-      query = ['name LIKE ?', "%#{params[:name]}%"]
+      query = ['name LIKE ?', "#{params[:name]}%"]
       Item.defaults.where(query) + @user.items.where(query)
     else
       []
