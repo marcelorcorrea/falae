@@ -2,7 +2,7 @@ module SessionsHelper
   # Logs in the given user.
   def log_in(user)
     reset_session
-    session[:expires_after] = 1.hour.from_now.to_i
+    renew_session
     session[:user_id] = user.id
   end
 
@@ -16,7 +16,7 @@ module SessionsHelper
   end
 
   def logged_in?
-    current_user.present? && check_session_validity
+    current_user.present? && session_valid?
   end
 
   def log_out
@@ -24,10 +24,15 @@ module SessionsHelper
     @current_user = nil
   end
 
-  def check_session_validity
-    if session[:expires_after] && session[:expires_after] > Time.now.to_i
-      return true
-    end
-    false
+  def renew_session
+    session[:expires_after] = 30.minute.from_now.to_i
+  end
+
+  def session_valid?
+    !session_expired? && !!renew_session
+  end
+
+  def session_expired?
+    session[:expires_after] && session[:expires_after] < Time.now.to_i
   end
 end
