@@ -4,21 +4,21 @@
   <p id="notice"><%= notice %></p>
 
   <%= link_to edit_user_spreadsheet_path(@user, @spreadsheet), class: 'button-box' do %>
-    <%= fa_icon 'edit' %>Edit
+    <%= fa_icon 'edit' %><%= t 'views.edit' %>
   <% end %>
 
   <p>
-    <strong>Name:</strong>
+    <strong><%= t Spreadsheet.human_attribute_name :name %>:</strong>
     <%= @spreadsheet.name %>
   </p>
 
   <p>
-    <strong>Initial page:</strong>
+    <strong><%= t Spreadsheet.human_attribute_name :initial_page %>:</strong>
     <%= @spreadsheet.initial_page %>
   </p>
 
   <%= link_to new_user_spreadsheet_page_path(@user, @spreadsheet), class: 'button-box' do %>
-    <%= fa_icon 'plus-cirlce' %>New Page
+    <%= fa_icon 'plus-cirlce' %><%= t 'views.new_page' %>
   <% end %>
   <%= render 'pages/page' %>
 </div>

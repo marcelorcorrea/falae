@@ -2,13 +2,13 @@
 <div class="user">
   <div class="button-bar">
     <%= link_to user_path(@user), class: 'button-box' do %>
-      <%= fa_icon 'times' %>Cancel
+      <%= fa_icon 'times' %><%= t 'views.cancel' %>
     <% end %>
   </div>
 
   <%= render 'shared/error', errors: @user.errors %>
   <div class="form-box">
-    <div class="label">Editing </div>
+    <div class="label"><%= t 'views.edit'  %> </div>
     <%= render 'form', user: @user %>
   </div>
 </div>

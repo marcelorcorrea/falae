@@ -16,24 +16,6 @@ pt-BR:
   flash:
     error:
       wrong_email_password: 'Email e/ou senha inválidos.'
-  user_mailer:
-    account_activation:
-      subject: 'Ativação de Conta'
-      body: 'Bem-vindo ao Falaê! Clique no link abaixo para ativar sua conta:'
-      verification: 'Por favor, verifique seu e-mail para ativar sua conta.'
-      activation: 'Conta ativada!'
-      invalid: 'Link de ativação inválido.'
-      notactivated: 'Conta não foi ativada. Procure link de ativação em seu e-mail.'
-    password_reset:
-      subject: 'Alteração de senha'
-      body_begin: 'Para alterar sua senha, clique no link abaixo:'
-      body_expire: 'Este link irá expirar dentro de 2 horas.'
-      body_end: 'Se você não solicitou alteração de senha, por favor ignore esse email
-                e sua senha continuará a mesma.'
-      verification: 'Por favor, verifique seu e-mail e siga instruções para alteração de senha.'
-      valid_reset: 'Senha alterada com sucesso.'
-      invalid: 'Link de alteração de senha inválido.'
-      expired_token: 'Link de alteração de senha expirou.'
   activerecord:
     models:
       category: Categoria
@@ -48,8 +30,8 @@ pt-BR:
         color: Cor
       item:
         name: Nome
-        speech: Pronúncia
         img_src: Url da imagem
+        speech: Pronúncia
       page:
         name: Nome
         columns: Colunas
@@ -211,12 +193,16 @@ pt-BR:
     label:
       user:
         password: Senha
+    placeholder:
+      user:
+        email: 'Email'
+        password: 'Senha'
     select:
       prompt: Por favor selecione
     submit:
-      create: Criar %{model}
-      submit: Salvar %{model}
-      update: Atualizar %{model}
+      create: Criar
+      submit: Salvar
+      update: Atualizar
   number:
     currency:
       format:
@@ -285,3 +271,35 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: ''
+  user_mailer:
+    account_activation:
+      subject: 'Ativação de Conta'
+      body: 'Bem-vindo ao Falaê! Clique no link abaixo para ativar sua conta:'
+      verification: 'Por favor, verifique seu e-mail para ativar sua conta.'
+      activation: 'Conta ativada!'
+      invalid: 'Link de ativação inválido.'
+      notactivated: 'Conta não foi ativada. Procure link de ativação em seu e-mail.'
+    password_reset:
+      subject: 'Alteração de senha'
+      body_begin: 'Para alterar sua senha, clique no link abaixo:'
+      body_expire: 'Este link irá expirar dentro de 2 horas.'
+      body_end: 'Se você não solicitou alteração de senha, por favor ignore esse email
+                e sua senha continuará a mesma.'
+      verification: 'Por favor, verifique seu e-mail e siga instruções para alteração de senha.'
+      valid_reset: 'Senha alterada com sucesso.'
+      invalid: 'Link de alteração de senha inválido.'
+      expired_token: 'Link de alteração de senha expirou.'
+  views:
+    back: Voltar
+    cancel: Cancelar
+    edit: Editar
+    initial_page: Página inicial
+    name: Nome
+    new_item: Criar item
+    new_page: Criar página
+    new_spreadsheet: Criar Prancha
+    profile: Perfil
+    register: Cadastrar
+    save: Salvar
+    search: Procurar
+    submit: Enviar

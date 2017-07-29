@@ -7,21 +7,21 @@
     <div class="button-bar">
       <% if current_page? user_items_path %>
         <%= link_to new_user_item_path(@user), class: 'button-box' do %>
-          <%= fa_icon 'plus-circle' %>New Item
+          <%= fa_icon 'plus-circle' %><%= t 'views.new_item' %>
         <% end %>
       <% else %>
         <%= link_to new_user_spreadsheet_page_item_path(@user, @spreadsheet, @page), class: 'button-box' do %>
-          <%= fa_icon 'plus-circle' %>New Item
+          <%= fa_icon 'plus-circle' %><%= t 'views.new_item' %>
         <% end %>
         <%= link_to user_spreadsheet_page_path(@user, @spreadsheet, @page), class: 'button-box' do %>
-          <%= fa_icon 'arrow-left' %>Back
+          <%= fa_icon 'arrow-left' %><%= t :back %>
         <% end %>
       <% end %>
     </div>
 
     <div class="tab-bar">
-      <div class="tab user-items-tab active">Items</div>
-      <div class="tab search-items-tab">Search Item</div>
+      <div class="tab user-items-tab active"><%= Item.model_name.human.pluralize %></div>
+      <div class="tab search-items-tab"><%= t 'views.search' %></div>
     </div>
     <div class='item-lists'>
       <div class="user-items-list active">

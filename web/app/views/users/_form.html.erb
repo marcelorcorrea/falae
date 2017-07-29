@@ -2,32 +2,32 @@
   <div class="field">
     <%= form.label :name %>
     <span class="input-icon"><%= fa_icon 'user' %></span>
-    <%= form.text_field :name, id: :user_name, class: 'offset-for-icon', placeholder: :name %>
+    <%= form.text_field :name, id: :user_name, class: 'offset-for-icon', placeholder: true %>
   </div>
 
   <div class="field">
     <%= form.label :last_name %>
     <span class="input-icon"><%= fa_icon 'user' %></span>
-    <%= form.text_field :last_name, id: :user_last_name, class: 'offset-for-icon', placeholder: :last_name %>
+    <%= form.text_field :last_name, id: :user_last_name, class: 'offset-for-icon', placeholder: true %>
   </div>
 
   <div class="field">
     <%= form.label :email %>
     <span class="input-icon"><%= fa_icon 'envelope-square' %></span>
-    <%= form.text_field :email, id: :user_email, class: 'offset-for-icon', placeholder: :email %>
+    <%= form.text_field :email, id: :user_email, class: 'offset-for-icon', placeholder: true %>
   </div>
 
   <div class="field">
     <%= form.label :password %>
     <span class="input-icon"><%= fa_icon 'lock' %></span>
-    <%= form.password_field :password, id: :user_password, class: 'offset-for-icon', placeholder: :password %>
+    <%= form.password_field :password, id: :user_password, class: 'offset-for-icon', placeholder: true %>
   </div>
 
   <div class="field">
     <%= form.label :password_confirmation %>
     <span class="input-icon"><%= fa_icon 'lock' %></span>
     <%= form.password_field :password_confirmation, id: :user_password_confirmation,
-                            class: 'offset-for-icon', placeholder: :confirmation %>
+                            class: 'offset-for-icon', placeholder: true %>
   </div>
 
   <div class="actions">

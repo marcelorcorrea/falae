@@ -4,21 +4,21 @@
   <p id="notice"><%= notice %></p>
 
   <%= link_to edit_user_path(@user), class: 'button-box' do %>
-    <%= fa_icon 'edit' %>Edit
+    <%= fa_icon 'edit' %><%= t 'views.edit' %>
   <% end %>
 
   <p>
-    <strong>Name:</strong>
+    <strong><%= t User.human_attribute_name :name %>:</strong>
     <%= @user.name %>
   </p>
 
   <p>
-    <strong>Last name:</strong>
+    <strong><%= t User.human_attribute_name :last_name %>:</strong>
     <%= @user.last_name %>
   </p>
 
   <p>
-    <strong>Email:</strong>
+    <strong><%= t User.human_attribute_name :email %>:</strong>
     <%= @user.email %>
   </p>
 </div>

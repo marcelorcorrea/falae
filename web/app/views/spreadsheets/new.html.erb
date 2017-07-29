@@ -3,11 +3,11 @@
     <%= render 'shared/error', errors: @spreadsheet.errors %>
     <div class="button-bar">
       <%= link_to user_spreadsheets_path, class: 'button-box' do %>
-        <%= fa_icon 'times' %>Cancel
+        <%= fa_icon 'times' %><%= t 'views.cancel' %>
       <% end %>
     </div>
     <div class="form-box">
-      <div class="label">New Spreadsheet</div>
+      <div class="label"><%= t 'views.new_spreadsheet' %></div>
       <%= render 'form', spreadsheet: @spreadsheet %>
     </div>
   </div>

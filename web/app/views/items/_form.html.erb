@@ -15,7 +15,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :category_id %>
+    <%= form.label :category_id, Category.model_name.human %>
     <%= select_tag :category_id, options_for_select(select_options_helper) , include_blank: true %>
   </div>
 
