@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170721135855) do
+ActiveRecord::Schema.define(version: 20170731234232) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
@@ -105,6 +105,8 @@ ActiveRecord::Schema.define(version: 20170721135855) do
     t.datetime "activated_at"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+    t.text "profile"
+    t.string "picture"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

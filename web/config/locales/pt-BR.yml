@@ -46,6 +46,7 @@ pt-BR:
         last_name: Sobrenome
         password: Senha
         password_confirmation: Confirmar senha
+        profile: perfil
     errors:
       messages:
         record_invalid: 'A validação falhou: %{errors}'
@@ -290,6 +291,7 @@ pt-BR:
       invalid: 'Link de alteração de senha inválido.'
       expired_token: 'Link de alteração de senha expirou.'
   views:
+    about_me: Sobre mim
     back: Voltar
     cancel: Cancelar
     edit: Editar
@@ -303,3 +305,4 @@ pt-BR:
     save: Salvar
     search: Procurar
     submit: Enviar
+    user_picture: Imagem do usuário

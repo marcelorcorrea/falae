@@ -21,6 +21,20 @@
     <strong><%= t User.human_attribute_name :email %>:</strong>
     <%= @user.email %>
   </p>
+
+  <p>
+    <strong><%= t 'view.about_me' %>:</strong>
+    <%= @user.profile %>
+  </p>
+
+  <% if @user.picture.present? %>
+  <p>
+    <strong><%= t 'views.user_picture' %>:</strong>
+    <div class="user-picture">
+      <img src="<%= @user.picture %>" alt="<%= t 'views.user_picture' %>" />
+    </div>
+  </p>
+  <% end %>
 </div>
 
 <% end %>
