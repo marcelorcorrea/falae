@@ -1,5 +1,4 @@
 <div class="overlay">
-
   <div class="search-item">
     <a class="close">
       <%= fa_icon 'times-circle-o', class: :default %>
@@ -14,7 +13,7 @@
         </div>
         <div class="actions">
           <%= form.button :submit, name: :search do %>
-            <%= fa_icon 'search' %>Search
+            <%= fa_icon 'search'%><%= t 'views.search' %>
           <% end %>
         </div>
       <% end %>
@@ -22,5 +21,4 @@
     <div id="search-items-result">
     </div>
   </div>
-
 </div>

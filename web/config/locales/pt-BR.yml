@@ -18,12 +18,30 @@ pt-BR:
       wrong_email_password: 'Email e/ou senha inválidos.'
   activerecord:
     models:
-      category: Categoria
-      item: Item
-      page: Page
-      role: Papel
-      spreadsheet: Prancha
-      user: Usuário
+      category:
+        zero: Categoria
+        one: Categoria
+        other: Categorias
+      item:
+        zero: Item
+        one: Item
+        other: Itens
+      page:
+        zero: Página
+        one: Página
+        other: Páginas
+      role:
+        zero: Papel
+        one: Papel
+        other: Papéis
+      spreadsheet:
+        zero: Prancha
+        one: Prancha
+        other: Pranchas
+      user:
+        zero: Usuário
+        one: Usuário
+        other: Usuários
     attributes:
       category:
         name: Nome
@@ -292,17 +310,22 @@ pt-BR:
       expired_token: 'Link de alteração de senha expirou.'
   views:
     about_me: Sobre mim
+    add_to_page: Adicionar a página
     back: Voltar
     cancel: Cancelar
     edit: Editar
     initial_page: Página inicial
+    item_already_in_this_page: Item já nesta página
+    mobile_view: Visualização de dispositivo
     name: Nome
     new_item: Criar item
     new_page: Criar página
     new_spreadsheet: Criar Prancha
+    no_item_was_found: No item was found.
     profile: Perfil
     register: Cadastrar
     save: Salvar
     search: Procurar
+    speech: Pronúncia
     submit: Enviar
     user_picture: Imagem do usuário

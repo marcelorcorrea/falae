@@ -1,6 +1,6 @@
 <% if items.empty? %>
   <p>
-    No item was found.
+    <%= t 'views.no_item_was_found' %>
   </p>
 <% else %>
   <% items.each do |item| %>
@@ -10,25 +10,25 @@
       </div>
 
       <p>
-        <strong>Name:</strong>
+        <strong><%= Item.human_attribute_name :name %>:</strong>
         <%= item.name %>
       </p>
 
       <p>
-        <strong>Speech:</strong>
+        <strong><%= Item.human_attribute_name :speech %>:</strong>
         <%= item.speech %>
       </p>
       <p>
-        <strong>Category:</strong>
+        <strong><%= Category.model_name.human %>:</strong>
         <%= display_name item.category %>
       </p>
 
       <%# TODO: refactoring %>
       <% if item.in_page? @page %>
-        <span class="already">Already in this page</span>
+        <span class="already"><%= t 'views.item_already_in_this_page' %></span>
       <% else @page %>
         <%= button_to({action: 'add_to_page'}, remote: true, params: {item_id: item.id}, class: 'button-box') do %>
-          <%= fa_icon 'plus-circle' %>Add to page
+          <%= fa_icon 'plus-circle' %><%= t 'views.add_to_page' %>
         <% end %>
       <% end %>
     </div>

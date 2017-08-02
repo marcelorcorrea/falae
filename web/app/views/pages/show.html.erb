@@ -3,36 +3,36 @@
   <div class="page">
     <p id="notice"><%= notice %></p>
 
-    <%= link_to user_spreadsheet_path(@user, @spreadsheet), class: 'button-box' do %>
-      <%= fa_icon 'arrow-left' %>Back
-    <% end %>
-
     <%= link_to edit_user_spreadsheet_page_path(@user, @spreadsheet, @page), class: 'button-box' do %>
-      <%= fa_icon 'edit' %>Edit
+      <%= fa_icon 'edit' %><%= t 'views.edit' %>
     <% end %>
 
-    <%= link_to user_spreadsheet_page_items_path(@user, @spreadsheet, @page), class: 'button-box' do %>
-      <%= fa_icon 'plus' %>Add Item
+    <%= link_to user_spreadsheet_path(@user, @spreadsheet), class: 'button-box' do %>
+      <%= fa_icon 'arrow-left' %><%= t 'views.back' %>
     <% end %>
+
+    <%#= link_to user_spreadsheet_page_items_path(@user, @spreadsheet, @page), class: 'button-box' do %>
+      <%#= fa_icon 'plus' %><!-- Add Item -->
+    <%# end %>
 
     <p>
-      <strong>Name:</strong>
+      <strong><%= Page.human_attribute_name :name %>:</strong>
       <%= @page.name %>
     </p>
 
     <p>
-      <strong>Columns:</strong>
+      <strong><%= Page.human_attribute_name :columns %>:</strong>
       <%= @page.columns %>
     </p>
 
     <p>
-      <strong>Rows:</strong>
+      <strong><%= Page.human_attribute_name :rows %>:</strong>
       <%= @page.rows %>
     </p>
 
     <div class="tab-bar">
-      <div class="tab page-items-tab active">Items List</div>
-      <div class="tab page-mobile-tab">Mobile View</div>
+      <div class="tab page-items-tab active"><%= Item.model_name.human(count: 2) %></div>
+      <div class="tab page-mobile-tab"><%= t 'views.mobile_view' %></div>
     </div>
 
     <div class='item-lists'>

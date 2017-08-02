@@ -1,5 +1,5 @@
 <div class="list">
-  <strong>Pages:</strong>
+  <strong><%= Page.model_name.human(count: 2) %>:</strong>
   <ul>
   <% @pages.each do |page| %>
     <li><%= link_to page.name, user_spreadsheet_page_path(@user, @spreadsheet, page) %></li>
