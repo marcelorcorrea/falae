@@ -31,6 +31,9 @@ document.addEventListener 'turbolinks:load', ->
         this.style.opacity = '0.5'
         e.dataTransfer.effectAllowed = 'move'
         e.dataTransfer.setData 'text/html', this.innerHTML
+        buttons = this.parentElement.getElementsByTagName 'button'
+        for button in buttons
+          button.style.display = 'none'
       card.addEventListener 'dragenter', (e) ->
         if srcEl != this
           this.classList.add 'over'
@@ -52,6 +55,9 @@ document.addEventListener 'turbolinks:load', ->
         return false
       card.addEventListener 'dragend', (e) ->
         this.style.opacity = '1'
+        buttons = srcEl.parentElement.getElementsByTagName 'button'
+        for button in buttons
+          button.style.display = ''
 
   if pageItemList
     addDragAndDropEventListeners()
