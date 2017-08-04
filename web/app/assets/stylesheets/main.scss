@@ -162,10 +162,10 @@ body {
       color: $medium-sea-green;
       float: right;
       margin: 0 0.5em;
-      $padding: 0.5em;
+      $padding: 0.25em;
       padding: $padding;
       border: 0.125em solid $medium-sea-green;
-      border-radius: 0.5em;
+      border-radius: 0.25em;
       display: inline-block;
       text-decoration: none;
       background-color: white;
@@ -177,17 +177,27 @@ body {
       i {
         padding-right: $padding;
       }
+      &.cancel {
+        color: $dark-orange;
+        border-color: $dark-orange;
+        &:hover {
+          color: #FFF;
+          background-color: $dark-orange;
+          cursor: pointer;
+        }
+      }
     }
+
 
     .form-box {
       box-shadow: 0 0 0.25em 0 #AAA;
       width: 20em;
-      margin: 4em auto;
+      margin: 2em auto;
       border-radius: 0.25em;
       padding: 1em;
 
       .label {
-        font-size: 2em;
+        font-size: 1.5em;
         font-style: italic;
         font-weight: 700;
         text-align: center;

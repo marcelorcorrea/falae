@@ -2,7 +2,7 @@
   <div class="spreadsheet">
     <%= render 'shared/error', errors: @spreadsheet.errors %>
     <div class="button-bar">
-      <%= link_to user_spreadsheets_path, class: 'button-box' do %>
+      <%= link_to user_spreadsheets_path, class: 'button-box cancel' do %>
         <%= fa_icon 'times' %><%= t 'views.cancel' %>
       <% end %>
     </div>
