@@ -209,6 +209,11 @@
         display: inline-block;
       }
     }
+    .no-items-found {
+      color: $dark-orange;
+      text-align: center;
+      font-style: italic;
+    }
     .item-result {
       overflow: auto;
       margin: 1em 8em;

@@ -1,4 +1,4 @@
-<%= link_to item, class: ['card', css_class_name(item.category)] do %>
+<%= link_to user_item_path(item.user, item), class: ['card', css_class_name(item.category)] do %>
   <div class="name"><%= item.name %></div>
   <img src="<%= item.img_src %>"/>
 <% end %>

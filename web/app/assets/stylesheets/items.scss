@@ -5,51 +5,16 @@
 @import 'defaults';
 
 .item {
-  .tab-bar {
-    position: relative;
-    width: 100%;
-    height: 1.8em;
-    .tab {
-      position: absolute;
-      width: 50%;
-      border: 0.125em solid transparent;
-      border-bottom: $tab-border;
-      padding: 4px 8px;
-      box-sizing: border-box;
-      cursor: pointer;
-    }
-    .tab.active {
-      border: $tab-border;
-      border-bottom: 0.125em solid white;
-      border-top-left-radius: 0.25em;
-      border-top-right-radius: 0.25em;
-    }
-    .tab.search-items-tab {
-      left: 50%;
-    }
+  .item-title {
+    font-size: 1.25em;
   }
-
   .item-lists {
     position: relative;
-
     .user-items-list {
       //float: left;
       display: none;
     }
-
-    .search-items-list {
-      display: none;
-
-      .form-box {
-        margin-top: 1em;
-      }
-    }
-
-    .active {
-      display: block;
-    }
   }
-
   .card-list {
     padding: 0.5em 0;
     // remove blank space between inline-block elements
@@ -70,7 +35,6 @@
       box-sizing: border-box;
       text-decoration: none;
       color: inherit;
-
       .name {
         padding: 0.25em;
       }
@@ -80,39 +44,9 @@
       }
     }
   }
-
-  .item-result {
-    overflow: auto;
-    margin: 1em 0;
-
-    .item-result-img {
-      float: left;
-      width: 3em;
-      width: 10em;
-      height: 12em;
-      margin-right: 1em;
-      display: inline-block;
-      vertical-align: middle;
-      text-align: center;
-      img {
-        margin-top: 1.5em;
-        width: 80%;
-        vertical-align: middle;
-      }
-    }
-    .already {
-      color: $medium-sea-green;
-      font-style: italic;
-    }
-    .button-box {
-      margin: 0 !important;
-      float: left !important;
-    }
-  }
   .page-card-list {
     padding: 0.5em 0;
     width: 100%;
-    // 7 spaces 6 cards = 100%
     margin: 0.28%;
     .card {
       display: block;
@@ -126,7 +60,6 @@
       box-sizing: border-box;
       text-decoration: none;
       color: inherit;
-
       .name {
         padding: 0.25em;
       }

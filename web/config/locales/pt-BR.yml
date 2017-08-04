@@ -317,11 +317,13 @@ pt-BR:
     initial_page: Página inicial
     item_already_in_this_page: Item já nesta página
     mobile_view: Visualização de dispositivo
+    my: Meus
     name: Nome
     new_item: Criar item
     new_page: Criar página
     new_spreadsheet: Criar Prancha
-    no_item_was_found: No item was found.
+    no_item_was_found: Nenhum foi encontrado.
+    no_user_items: Você ainda não possui nenhum item.
     profile: Perfil
     register: Cadastrar
     save: Salvar
