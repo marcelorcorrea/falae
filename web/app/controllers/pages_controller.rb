@@ -97,9 +97,14 @@ class PagesController < ApplicationController
   # PUT
   def update_item
     ip = ItemPage.find_by page_id: @page.id, item_id: params[:item_id]
-    page = @spreadsheet.pages.find_by id: params[:page_id]
+
+    if params[:page_id].present?
+      page = @spreadsheet.pages.find_by id: params[:page_id]
+      ip.link_to = page.name
+    else
+      ip.link_to = nil
+    end
     # TODO error message when there no such objects
-    ip.link_to = page.name if ip and page
     ip.save
   end
 

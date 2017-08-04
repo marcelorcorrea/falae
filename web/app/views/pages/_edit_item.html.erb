@@ -11,7 +11,7 @@
         <div class="field">
           <%= form.label :page_id %>
           <%= select_tag :page_id,
-                options_for_select(select_pages_options_helper, @page.get_linked_page_id(item.id) ) %>
+                options_for_select(select_pages_options_helper, @page.get_linked_page_id(item.id)),  include_blank: true %>
         </div>
         <div class="actions">
           <%= form.button :submit, name: :save do %>
