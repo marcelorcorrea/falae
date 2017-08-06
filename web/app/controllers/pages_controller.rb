@@ -86,6 +86,7 @@ class PagesController < ApplicationController
   def add_to_page
     item = Item.find_by id: params[:item_id]
     @page.items << item if item
+    @page.reload
   end
 
   # GET
