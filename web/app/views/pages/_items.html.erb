@@ -48,7 +48,9 @@
       <tr class="row">
         <td class="cell">
           <div class="card-wrapper">
-            <%= add_item_button %>
+            <div class="card">
+              <%= add_item_button %>
+            </div>
           </div>
         </td>
         <% 1.upto(cols - 1).each do %>
@@ -84,6 +86,7 @@
   <% end %>
 
 <% else %>
+
   <table class="sliced-page columns-<%= cols %>" cellspacing="0" cellpadding="0">
     <tr class="row">
       <td class="cell">
