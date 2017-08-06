@@ -3,9 +3,15 @@
 <div class="user">
   <p id="notice"><%= notice %></p>
 
+  <div class="button-bar">
   <%= link_to edit_user_path(@user), class: 'button-box' do %>
     <%= fa_icon 'edit' %><%= t 'views.edit' %>
   <% end %>
+  </div>
+
+  <div class="user-photo">
+    <%= image_tag @user.photo, alt: t('views.user_photo_not_found') %>
+  </div>
 
   <p>
     <strong><%= t User.human_attribute_name :name %>:</strong>
@@ -23,18 +29,9 @@
   </p>
 
   <p>
-    <strong><%= t 'view.about_me' %>:</strong>
+    <strong><%= t 'views.about_me' %>:</strong><br />
     <%= @user.profile %>
   </p>
-
-  <% if @user.picture.present? %>
-  <p>
-    <strong><%= t 'views.user_picture' %>:</strong>
-    <div class="user-picture">
-      <img src="<%= @user.picture %>" alt="<%= t 'views.user_picture' %>" />
-    </div>
-  </p>
-  <% end %>
 </div>
 
 <% end %>

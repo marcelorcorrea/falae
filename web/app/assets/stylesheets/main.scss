@@ -249,7 +249,7 @@ body {
       }
 
       input[type='text'], input[type='password'],
-      input[type='number'], select {
+      input[type='number'], select, textarea {
         color: $medium-sea-green;
         margin: 0.25em 0;
         border: 0.125em solid #AAA;
@@ -259,13 +259,40 @@ body {
         outline: none;
         box-sizing: border-box;
         width: 100%;
+        max-width: 100%;
         &:focus {
           box-shadow: 0 0 0.25em 0.125px $medium-sea-green;
         }
       }
+
       input.offset-for-icon {
         padding-left: 2.5em;
       }
+
+      .wrapper-custom-input-file {
+        text-align: center;
+        input[type="file"] {
+          // display: none;
+          width: 0.1px;
+          height: 0.1px;
+          opacity: 0;
+          overflow: hidden;
+          position: absolute;
+          z-index: -1;
+          &:focus + label {
+            box-shadow: 0 0 0.25em 0.125px $medium-sea-green;
+          }
+        }
+        .custom-input-file {
+          color: $medium-sea-green;
+          display: inline-block;
+          border: 0.125em solid $medium-sea-green;
+          padding: 4px;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+      }
+
       input[type='submit'], button[type='submit'] {
         display: block;
         color: white;

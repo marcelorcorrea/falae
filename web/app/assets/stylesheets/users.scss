@@ -5,4 +5,28 @@
 @import 'defaults';
 
 .user {
+  .user-photo {
+    float: left;
+    margin-right: 20px;
+    width: 150px;
+    height: 180px;
+    max-width: 170px;
+    max-height: 180px;
+    border: 2px solid $dark-sea-green;
+    border-radius: 4px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  #user-photo-container {
+    text-align: center;
+    img {
+      border: 2px solid #AAA;
+      border-radius: 4px;
+    }
+  }
+  .form-box {
+    width: 30em !important;
+  }
 }

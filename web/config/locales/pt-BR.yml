@@ -64,6 +64,7 @@ pt-BR:
         last_name: Sobrenome
         password: Senha
         password_confirmation: Confirmar senha
+        photo: Foto
         profile: perfil
     errors:
       messages:
@@ -330,4 +331,5 @@ pt-BR:
     search: Procurar
     speech: Pronúncia
     submit: Enviar
-    user_picture: Imagem do usuário
+    upload_file: Abrir arquivo
+    user_photo_not_found: Foto do usuário não encontrada.

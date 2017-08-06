@@ -39,6 +39,8 @@ gem "font-awesome-rails", '~> 4.7.0'
 # Secure headers
 gem 'secure_headers', '~>3.6.4'
 
+gem 'paperclip', '~> 5.1.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

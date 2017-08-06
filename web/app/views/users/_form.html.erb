@@ -1,4 +1,4 @@
-<%= form_with(model: user, local: true) do |form| %>
+<%= form_with(model: user, local: true, html: {multipart: true}) do |form| %>
   <div class="field">
     <%= form.label :name %>
     <span class="input-icon"><%= fa_icon 'user' %></span>
@@ -8,7 +8,8 @@
   <div class="field">
     <%= form.label :last_name %>
     <span class="input-icon"><%= fa_icon 'user' %></span>
-    <%= form.text_field :last_name, id: :user_last_name, class: 'offset-for-icon', placeholder: true %>
+    <%= form.text_field :last_name, id: :user_last_name, class: 'offset-for-icon',
+      placeholder: true %>
   </div>
 
   <div class="field">
@@ -18,16 +19,36 @@
   </div>
 
   <div class="field">
+    <%= label_tag User.human_attribute_name :photo %>
+    <div id="user-photo-container">
+      <%= image_tag user.photo.url %>
+    </div>
+    <div class="wrapper-custom-input-file">
+      <%= form.file_field :photo, id: :user_photo %>
+      <%= form.label :photo, class: 'custom-input-file' do %>
+        <%= fa_icon 'upload' %> <%= t 'views.upload_file' %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :description, t('views.profile') %>
+    <%= form.text_area :profile, id: :user_description, class: 'offset-for-icon',
+      rows: 15, placeholder: true %>
+  </div>
+
+  <div class="field">
     <%= form.label :password %>
     <span class="input-icon"><%= fa_icon 'lock' %></span>
-    <%= form.password_field :password, id: :user_password, class: 'offset-for-icon', placeholder: true %>
+    <%= form.password_field :password, id: :user_password, class: 'offset-for-icon',
+      placeholder: true %>
   </div>
 
   <div class="field">
     <%= form.label :password_confirmation %>
     <span class="input-icon"><%= fa_icon 'lock' %></span>
     <%= form.password_field :password_confirmation, id: :user_password_confirmation,
-                            class: 'offset-for-icon', placeholder: true %>
+      class: 'offset-for-icon', placeholder: true %>
   </div>
 
   <div class="actions">

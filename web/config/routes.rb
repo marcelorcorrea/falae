@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     end
     resources :items
     post 'items/add_to_user', to: 'items#add_to_user'
+    get 'photo'
   end
 
   resources :account_activations, only: [:edit]

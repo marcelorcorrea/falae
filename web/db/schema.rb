@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731234232) do
+ActiveRecord::Schema.define(version: 20170805182901) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20170731234232) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "default", default: false
-    t.string "link_to"
   end
 
   create_table "pages", force: :cascade do |t|
@@ -106,7 +105,10 @@ ActiveRecord::Schema.define(version: 20170731234232) do
     t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.text "profile"
-    t.string "picture"
+    t.string "photo_file_name"
+    t.string "photo_content_type"
+    t.integer "photo_file_size"
+    t.datetime "photo_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

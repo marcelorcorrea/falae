@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authenticate!, only: [:index, :show, :edit, :update]
-  before_action :authorized?, only: [:index, :show, :edit, :update]
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate!, only: [:index, :show, :edit, :update, :photo]
+  before_action :authorized?, only: [:index, :show, :edit, :update, :photo]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :photo]
 
   # GET /users
   # GET /users.json
@@ -67,6 +67,11 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET users/1/photo
+  def photo
+    send_file @user.photo.path, type: @user.photo_content_type
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -75,6 +80,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :last_name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :last_name, :email, :password,
+        :password_confirmation, :profile, :photo)
     end
 end

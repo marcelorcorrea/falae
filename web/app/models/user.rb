@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :spreadsheets, dependent: :destroy
   has_many :item_user, dependent: :destroy
   has_many :items, through: :item_user
+  has_attached_file :photo, default_url: 'missing_photo.png',
+    path: ':rails_root/app/data/images/user_:id/photo.:extension',
+    url: '/users/:id/photo'
 
   before_create :create_activation_digest
   before_validation do
@@ -29,6 +32,7 @@ class User < ApplicationRecord
             length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }
   validates :password, :password_confirmation, presence: true,
             length: { minimum: 6 }
+  validates_attachment_content_type :photo, content_type: /\Aimage\/(jpe?g|png|gif)/
 
   has_secure_password
 
