@@ -31,7 +31,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false },
             length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }
   validates :password, :password_confirmation, presence: true,
-            length: { minimum: 6 }
+            length: { minimum: 6 }, on: :create
   validates_attachment_content_type :photo, content_type: /\Aimage\/(jpe?g|png|gif)/
 
   has_secure_password

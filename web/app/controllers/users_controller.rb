@@ -46,6 +46,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    skip_password_if_not_changed
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -82,5 +83,12 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :last_name, :email, :password,
         :password_confirmation, :profile, :photo)
+    end
+
+    def skip_password_if_not_changed
+      if user_params[:password].blank? && user_params[:password_confirmation].blank?
+        user_params.delete :password
+        user_params.delete :password_confirmation
+      end
     end
 end
