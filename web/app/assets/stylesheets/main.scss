@@ -177,7 +177,7 @@ body {
       i {
         padding-right: $padding;
       }
-      &.cancel {
+      &.cancel, &.destroy {
         color: $dark-orange;
         border-color: $dark-orange;
         &:hover {

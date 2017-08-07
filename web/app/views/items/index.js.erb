@@ -1,2 +1,3 @@
 $("#search-results").empty();
-$("<%= escape_javascript(render 'items/search_results', items: @items) %>").appendTo("#search-results");
+$("<%= escape_javascript(render 'items/search_results', items: @items) %>")
+  .appendTo("#search-results");

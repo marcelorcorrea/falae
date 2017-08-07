@@ -4,27 +4,26 @@
   </div>
 
   <p>
-    <strong>Name:</strong>
+    <strong><%= Item.human_attribute_name :name %>:</strong>
     <%= item.name %>
   </p>
 
   <p>
-    <strong>Speech:</strong>
+    <strong><%= Item.human_attribute_name :speech %>:</strong>
     <%= item.speech %>
   </p>
 
   <p>
-    <strong>Category:</strong>
+    <strong><%= Category.model_name.human %>:</strong>
     <%= display_name item.category %>
   </p>
 
   <% if item.in_page?(Page.find(@page.id)) %>
-    <% puts @page.items.count %>
-    <span class="already">Already in this page</span>
+    <span class="already"><%= t 'views.item_already_in_this_page' %></span>
   <% else %>
-    <% puts item.name, @page.items.count %>
-    <%= button_to({action: 'add_to_page', id: item.id}, method: :post, remote: true, class: 'button-box') do %>
-      <%= fa_icon 'plus-circle' %>Add to Page
+    <%= button_to({action: 'add_to_page', id: item.id}, method: :post, remote: true,
+      class: 'button-box') do %>
+      <%= fa_icon 'plus-circle' %><%= t 'views.add-to_page' %>
     <% end %>
   <% end %>
 </div>

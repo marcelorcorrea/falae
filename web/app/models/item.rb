@@ -5,9 +5,11 @@ class Item < ApplicationRecord
   has_many :pages, through: :item_pages
   has_one :category_item, dependent: :destroy
   has_one :category, through: :category_item
+  has_attached_file :image, presence: true, path: :attachment_path, url: :attachment_url
 
+  validates :name, :speech, presence: true
   validates_associated :category
-  validates :name, :speech, :img_src, presence: true
+  validates_attachment_content_type :image, content_type: /\Aimage\/(jpe?g|png|gif)\z/
 
   after_save do
     if not self.user and self.pages.present?
@@ -15,27 +17,11 @@ class Item < ApplicationRecord
     end
   end
 
+  before_destroy { self.image = nil }
+
   def Item.defaults
     @default_items ||= Item.where default: true
   end
-
-  # def Item.swap(id1, id2)
-  #   item_1, item_2 = Item.find [id1, id2]
-  #   puts "#{item_1.id} #{item_1.name}"
-  #   puts "#{item_2.id} #{item_2.name}"
-  #   tmp = item_1
-  #   item_1.attributes = item_2.attributes.except('id')
-  #   puts "item 1: #{item_1.attributes}"
-  #   item_2.attributes = tmp.attributes.except('id')
-  #   puts "item 2: #{item_2.attributes}"
-  #   # ActiveRecord::Base.transaction do
-  #   #   item_1.save!
-  #   #   item_2.save!
-  #   # end
-  # rescue => e
-  #   puts e.message
-  #   # nil
-  # end
 
   def has?(user)
     user.items.include? self
@@ -43,5 +29,23 @@ class Item < ApplicationRecord
 
   def in_page?(page)
     self.pages.present? and self.pages.include?(page)
+  end
+
+  def image_remote_url=(url)
+    self.image = URI.parse url
+    @image_remote_url = url
+  end
+
+  def attachment_path
+    # self.user is nil here, but not for attachment_url... something related to paperclip?
+    if self.default?
+      ':rails_root/public/images/:id.:extension'
+    else
+      ":rails_root/app/data/images/user_#{self.item_user.user_id}/item_:id.:extension"
+    end
+  end
+
+  def attachment_url
+    self.default? ? '/images/:id.:extension' : "/users/#{self.user.id}/items/:id/image"
   end
 end

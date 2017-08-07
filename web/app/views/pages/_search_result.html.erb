@@ -6,7 +6,7 @@
   <% items.each do |item| %>
     <div class="item-result">
       <div class="item-result-img <%= css_class_name(item.category) %>">
-        <img src="<%= item.img_src %>"/>
+        <%= image_tag item.image, alt: t('views.item_image_not_found') %>
       </div>
 
       <p>

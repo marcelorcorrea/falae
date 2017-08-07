@@ -48,7 +48,7 @@ pt-BR:
         color: Cor
       item:
         name: Nome
-        img_src: Url da imagem
+        image: Imagem
         speech: Pronúncia
       page:
         name: Nome
@@ -314,9 +314,11 @@ pt-BR:
     add_to_page: Adicionar a página
     back: Voltar
     cancel: Cancelar
+    destroy: Apagar
     edit: Editar
     initial_page: Página inicial
     item_already_in_this_page: Item já nesta página
+    item_image_not_found: Imagem do item não encontrada.
     mobile_view: Visualização de dispositivo
     my: Meus
     name: Nome

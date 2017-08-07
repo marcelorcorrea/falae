@@ -1,7 +1,7 @@
 <div class="form-box">
   <%= form_with scope: :item, method: :get do |form| %>
     <div class="field">
-      <%= form.label t('views.name') %>
+      <%= form.label Item.human_attribute_name :name %>
       <%= form.text_field :name, id: :item_name %>
     </div>
     <div class="actions">

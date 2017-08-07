@@ -1,6 +1,15 @@
-<h1>Editing Item</h1>
+<%= render 'layouts/nav_menu_and_view' do %>
+<div class="item">
+  <div class="button-bar">
+    <%= link_to user_item_path(@user, @item), class: 'button-box cancel' do %>
+      <%= fa_icon 'times' %><%= t 'views.cancel' %>
+    <% end %>
+  </div>
 
-<%= render 'form', item: @item %>
-
-<%= link_to 'Show', user_item_path(@user, @item) %> |
-<%= link_to 'Back', items_path %>
+  <%= render 'shared/error', errors: @user.errors %>
+  <div class="form-box">
+    <div class="label"><%= t 'views.edit'  %> </div>
+    <%= render 'form', item: @item %>
+  </div>
+</div>
+<% end %>

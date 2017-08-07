@@ -5,31 +5,26 @@
     </div>
 
     <p>
-      <strong>Name:</strong>
+      <strong><%= Item.human_atrribute_name :name %>:</strong>
       <%= item.name %>
     </p>
 
     <p>
-      <strong>Speech:</strong>
+      <strong><%= Item.human_atrribute_name :speech %>:</strong>
       <%= item.speech %>
     </p>
     <p>
-      <strong>Category:</strong>
+      <strong><%= Category.model_name.human %>:</strong>
       <%= display_name item.category %>
     </p>
 
     <%# TODO: refactoing %>
     <% if item.in_page? @page %>
-      <span class="already">Already in this page</span>
-    <% elsif item.has? current_user %>
-      <span class="already">Already in My Items</span>
+      <span class="already"><%= t 'views.item_already_in_this_page' %></span>
     <% elsif @page %>
-      <%= button_to({action: 'add_to_page', id: item.id}, method: :post, remote: true, class: 'button-box') do %>
-        <%= fa_icon 'plus-circle' %>Add to page
-      <% end %>
-    <% else %>
-      <%= button_to({action: 'add_to_user', id: item.id}, method: :post, remote: true, class: 'button-box') do %>
-        <%= fa_icon 'plus-circle' %>Add to My Items
+      <%= button_to({action: 'add_to_page', id: item.id}, method: :post, remote: true,
+        class: 'button-box') do %>
+        <%= fa_icon 'plus-circle' %><%= t 'views.add_to_page' %>
       <% end %>
     <% end %>
 

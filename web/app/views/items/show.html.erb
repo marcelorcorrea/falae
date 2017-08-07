@@ -1,24 +1,41 @@
-<p id="notice"><%= notice %></p>
+<%= render 'layouts/nav_menu_and_view' do %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @item.name %>
-</p>
+<div class="item">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Speech:</strong>
-  <%= @item.speech %>
-</p>
+  <div class="button-bar">
+  <%= link_to user_item_path(@user, @item), method: :delete, data: { confirm: 'Are you sure?' },
+    class: 'button-box destroy' do %>
+    <%= fa_icon 'trash-o' %><%= t 'views.destroy' %>
+  <% end %>
+  <%= link_to edit_user_item_path(@user, @item), class: 'button-box' do %>
+    <%= fa_icon 'edit' %><%= t 'views.edit' %>
+  <% end %>
+  <%= link_to user_items_path(@user, @item), class: 'button-box' do %>
+    <%= fa_icon 'arrow-left' %><%= t 'views.back' %>
+  <% end %>
+  </div>
 
-<p>
-  <strong>Source:</strong>
-  <%= @item.img_src %>
-</p>
+  <p>
+    <strong><%= Item.human_attribute_name :name %>:</strong>
+    <%= @item.name %>
+  </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @item.category.name %>
-</p>
+  <p>
+    <strong><%= Item.human_attribute_name :speech %>:</strong>
+    <%= @item.speech %>
+  </p>
 
-<%= link_to 'Edit', edit_user_item_path(@item) %> |
-<%= link_to 'Back', user_items_path %>
+  <p>
+    <strong><%= Category.model_name.human %>:</strong>
+    <%= display_name @item.category %>
+  </p>
+
+  <p>
+    <strong><%= Item.human_attribute_name :image %>:</strong>
+    <div class="item-image">
+      <%= image_tag @item.image, alt: t('views.item_image_not_found') %>
+    </div>
+  </p>
+</div>
+<% end %>

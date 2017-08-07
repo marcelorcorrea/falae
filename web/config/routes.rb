@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   resources :users do
     resources :spreadsheets do
       resources :pages do
-        resources :items
+        resources :items do
+          get 'image'
+        end
         post 'items/add_to_page', to: 'items#add_to_page'
       end
       get 'pages/:id/add_item', to: 'pages#add_item', as: :page_add_item
@@ -24,7 +26,9 @@ Rails.application.routes.draw do
       delete 'pages/:id/remove_item', to: 'pages#remove_item', as: :page_remove_item
       put 'pages/:id/swap_items', to: 'pages#swap_items', as: :page_swap_items
     end
-    resources :items
+    resources :items do
+      get 'image'
+    end
     post 'items/add_to_user', to: 'items#add_to_user'
     get 'photo'
   end

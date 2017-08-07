@@ -10,8 +10,18 @@
   </div>
 
   <div class="field">
-    <%= form.label :img_src %>
-    <%= form.text_field :img_src, id: :item_img_src %>
+    <%= label_tag Item.human_attribute_name :image %>
+    <div id="item-image-container">
+      <% if item.image.present? %>
+      <%= image_tag item.image %>
+      <% end %>
+    </div>
+    <div class="wrapper-custom-input-file">
+      <%= form.file_field :image, id: :item_image %>
+      <%= form.label :image, class: 'custom-input-file' do %>
+        <%= fa_icon 'upload' %> <%= t 'views.upload_file' %>
+      <% end %>
+    </div>
   </div>
 
   <div class="field">
