@@ -7,12 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Category.destroy_all
-social_ctgy = Category.create! name: 'GREETINGS_SOCIAL_EXPRESSIONS', color: '#CC6699'
-subject_ctgy = Category.create! name: 'SUBJECT', color: '#E6E600'
-verbs_ctgy = Category.create! name: 'VERB', color: '#009900'
-nouns_ctgy = Category.create! name: 'NOUN', color: '#FFA500'
-adjetives_ctgy = Category.create! name: 'ADJECTIVE', color: '#0000FF'
-Category.create! name: 'OTHER', color: '#FFFFFF'
+social_ctgy = Category.create! name: 'GREETINGS_SOCIAL_EXPRESSIONS', color: '#CC6699',
+  description: 'Cumprimentos e expressões sociais'
+subject_ctgy = Category.create! name: 'SUBJECT', color: '#E6E600', description: 'Sujeitos'
+verbs_ctgy = Category.create! name: 'VERB', color: '#009900', description: 'Verbos'
+nouns_ctgy = Category.create! name: 'NOUN', color: '#FFA500', description: 'Substântivos'
+adjetives_ctgy = Category.create! name: 'ADJECTIVE', color: '#0000FF', description: 'Adjetivos'
+Category.create! name: 'OTHER', color: '#FFFFFF', description: 'Outros'
 
 Item.destroy_all
 Item.create! [
