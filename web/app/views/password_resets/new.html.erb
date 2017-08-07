@@ -1,7 +1,7 @@
 <div class="reset-password">
   <%= render :partial => 'shared/flash'%>
   <div class="form-box">
-    <div class="label"><%= t :reset_password %></div>
+    <div class="label"><%= t 'views.reset_password' %></div>
     <%= form_for :password_reset, url: password_resets_path do |form| %>
       <div class="field">
         <%= form.label :email %>
@@ -9,7 +9,7 @@
         <%= form.text_field :email, class: 'offset-for-icon', placeholder: :email %>
       </div>
       <div class="actions">
-        <%= form.submit t :submit %>
+        <%= form.submit t 'views.submit' %>
       </div>
     <% end %>
   </div>

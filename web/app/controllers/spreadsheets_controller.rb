@@ -34,7 +34,7 @@ class SpreadsheetsController < ApplicationController
 
     respond_to do |format|
       if @spreadsheet.save
-        format.html { redirect_to [@user, @spreadsheet], notice: 'Spreadsheet was successfully created.' }
+        format.html { redirect_to [@user, @spreadsheet], notice: t('.notice') }
         format.json { render :show, status: :created, location: @spreadsheet }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class SpreadsheetsController < ApplicationController
   def update
     respond_to do |format|
       if @spreadsheet.update(spreadsheet_params)
-        format.html { redirect_to [@spreadsheet.user, @spreadsheet], notice: 'Spreadsheet was successfully updated.' }
+        format.html { redirect_to [@spreadsheet.user, @spreadsheet], notice: t('.notice') }
         format.json { render :show, status: :ok, location: @spreadsheet }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class SpreadsheetsController < ApplicationController
   def destroy
     @spreadsheet.destroy
     respond_to do |format|
-      format.html { redirect_to spreadsheets_url, notice: 'Spreadsheet was successfully destroyed.' }
+      format.html { redirect_to spreadsheets_url, notice: t('.notice') }
       format.json { head :no_content }
     end
   end

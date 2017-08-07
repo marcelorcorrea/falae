@@ -1,21 +1,5 @@
 ---
 pt-BR:
-  hello: Olá
-  home: Início
-  about: Sobre
-  contact: Contato
-  log_in: Entrar
-  register: Cadastrar
-  log_out: Sair
-  welcome: Bem-vindo
-  activate: Ativar
-  forgot_password: 'Esqueceu sua senha?'
-  reset_password: 'Alterar senha'
-  submit: 'Enviar'
-  save: 'Salvar'
-  flash:
-    error:
-      wrong_email_password: 'Email e/ou senha inválidos.'
   activerecord:
     models:
       category:
@@ -72,6 +56,13 @@ pt-BR:
         restrict_dependent_destroy:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
+  categories:
+    create:
+      notice: Categoria criada com sucesso.
+    update:
+      notice: Categoria atualizada com sucesso.
+    destroy:
+      notice: Categoria apagada com sucesso.
   date:
     abbr_day_names:
     - Dom
@@ -171,6 +162,16 @@ pt-BR:
       month: Mês
       second: Segundo
       year: Ano
+  items:
+    create:
+      notice: Item criado com sucesso.
+    update:
+      notice: Item atualizado com sucesso.
+    destroy:
+      notice: Item apagado com sucesso.
+  flash:
+    error:
+      wrong_email_password: 'Email e/ou senha inválidos.'
   errors:
     format: "%{attribute} %{message}"
     messages:
@@ -279,6 +280,20 @@ pt-BR:
     precision:
       format:
         delimiter: "."
+  pages:
+    create:
+      notice: Página criada com sucesso.
+    update:
+      notice: Página atualizada com sucesso.
+    destroy:
+      notice: Página apagada com sucesso.
+  roles:
+    create:
+      notice: Papel criado com sucesso.
+    update:
+      notice: Papel atualizado com sucesso.
+    destroy:
+      notice: Papel apagado com sucesso.
   support:
     array:
       last_word_connector: " e "
@@ -291,6 +306,13 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: ''
+  users:
+    create:
+      notice: Usuário criado com sucesso.
+    update:
+      notice: Usuário atualizado com sucesso.
+    destroy:
+      notice: Usuário apagado com sucesso.
   user_mailer:
     account_activation:
       subject: 'Ativação de Conta'
@@ -310,15 +332,23 @@ pt-BR:
       invalid: 'Link de alteração de senha inválido.'
       expired_token: 'Link de alteração de senha expirou.'
   views:
+    about: Sobre
     about_me: Sobre mim
+    activate: Ativar
     add_to_page: Adicionar a página
     back: Voltar
     cancel: Cancelar
+    contact: Contato
     destroy: Apagar
     edit: Editar
+    forgot_password: 'Esqueceu sua senha?'
+    hello: Olá
+    home: Início
     initial_page: Página inicial
     item_already_in_this_page: Item já nesta página
     item_image_not_found: Imagem do item não encontrada.
+    log_in: Entrar
+    log_out: Sair
     mobile_view: Visualização de dispositivo
     my: Meus
     name: Nome
@@ -329,9 +359,11 @@ pt-BR:
     no_user_items: Você ainda não possui nenhum item.
     profile: Perfil
     register: Cadastrar
+    reset_password: 'Alterar senha'
     save: Salvar
     search: Procurar
     speech: Pronúncia
     submit: Enviar
     upload_file: Abrir arquivo
     user_photo_not_found: Foto do usuário não encontrada.
+    welcome: Bem-vindo

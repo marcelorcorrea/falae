@@ -33,7 +33,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to [@spreadsheet.user, @spreadsheet, @page], notice: 'Page was successfully created.' }
+        format.html { redirect_to [@spreadsheet.user, @spreadsheet, @page], notice: t('.notice') }
         format.json { render :show, status: :created, location: @page }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class PagesController < ApplicationController
   def update
     respond_to do |format|
       if @page.update(page_params)
-        format.html { redirect_to [@page.spreadsheet.user, @page.spreadsheet, @page], notice: 'Page was successfully updated.' }
+        format.html { redirect_to [@page.spreadsheet.user, @page.spreadsheet, @page], notice: t('.notice') }
         format.json { render :show, status: :ok, location: @page }
       else
         format.html { render :edit }
@@ -61,7 +61,7 @@ class PagesController < ApplicationController
   def destroy
     @page.destroy
     respond_to do |format|
-      format.html { redirect_to pages_url, notice: 'Page was successfully destroyed.' }
+      format.html { redirect_to pages_url, notice: t('.notice') }
       format.json { head :no_content }
     end
   end
