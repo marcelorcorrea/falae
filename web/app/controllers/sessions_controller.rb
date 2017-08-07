@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   def new
   end
 
@@ -9,28 +8,24 @@ class SessionsController < ApplicationController
       if @user.activated?
         log_in @user
         respond_to do |format|
-        format.html { redirect_to user_spreadsheets_path(@user) }
-        format.json {
-          render template: 'users/show', location: @user
-          log_out
-        }
+          format.html { redirect_to user_spreadsheets_path(@user) }
+          format.json {
+            render template: 'users/show', location: @user
+            log_out
+          }
         end
       else
         flash.now[:warning] = t('user_mailer.account_activation.notactivated')
         respond_to do |format|
-        format.html { render :new }
-        format.json {
-          unauthorized_json_access
-        }
+          format.html { render :new }
+          format.json { unauthorized_json_access }
         end
       end
     else
       flash.now[:alert] = t('flash.error.wrong_email_password')
       respond_to do |format|
         format.html { render :new }
-        format.json {
-          unauthorized_json_access
-        }
+        format.json { unauthorized_json_access }
       end
     end
   end

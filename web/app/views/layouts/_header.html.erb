@@ -13,23 +13,23 @@
       <% end %>
     <% end %>
 
-    <%= link_to home, class: ('active' if current_page?(root_path) || current_page?(home)) do %>
+    <%= link_to home, class: "#{:active if current_page?(root_path) || current_page?(home)}" do %>
       <%= fa_icon 'home' %> <%= t :home %>
     <% end %>
-    <%= link_to about_path, class: ('active' if current_page?(about_path)) do %>
+    <%= link_to about_path, class: "#{:active if current_page? about_path}" do %>
       <%= fa_icon 'info-circle' %> <%= t :about %>
     <% end %>
-    <%= link_to contact_path, class: ('active' if current_page?(contact_path)) do %>
+    <%= link_to contact_path, class: "#{:active if current_page? contact_path}" do %>
       <%= fa_icon 'envelope' %> <%= t :contact %>
     <% end %>
   </div>
 
   <div class="session">
     <% unless logged_in? %>
-      <%= link_to login_path, class: ('active' if current_page?(login_path)) do %>
+      <%= link_to login_path, class: "#{:active if controller_name.in? 'sessions'}" do %>
         <%= fa_icon 'sign-in' %> <%= t :log_in %>
       <% end %>
-      <%= link_to new_user_path, class: ('active' if current_page?(new_user_path)) do %>
+      <%= link_to new_user_path, class: "#{:active if controller_name.in? 'users'}" do %>
         <%= fa_icon 'user-plus' %> <%= t :register %>
       <% end %>
     <% else %>

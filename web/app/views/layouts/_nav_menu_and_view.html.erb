@@ -3,7 +3,8 @@
     <%= content_tag :li, class: "menu-item #{:active if controller_name.in? 'users'}" do %>
       <%= link_to t('views.profile'), user_path(current_user) %>
     <% end %>
-    <%= content_tag :li, class: "menu-item #{:active if controller_name.in? ['spreadsheets', 'pages']}" do %>
+    <%= content_tag :li,
+      class: "menu-item #{:active if controller_name.in? ['spreadsheets', 'pages']}" do %>
       <%= link_to Spreadsheet.model_name.human(count: 2), user_spreadsheets_path(current_user) %>
     <% end %>
     <%= content_tag :li, class: "menu-item #{:active if controller_name.in? 'items'}" do %>
@@ -13,7 +14,7 @@
 </div><!--
 <%#
   nav-menu and view are a inline-block elements, this html comment is to avoid
-  the blank space between this two elements, what would break the layout
+  the blank space between these two elements, what would break the layout
 %>
 --><div class="view">
   <%= yield %>
