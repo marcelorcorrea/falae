@@ -1,6 +1,5 @@
 <div class="nav-menu">
   <ul>
-  <%puts "controller name #{controller_name}"%>
     <%= content_tag :li, class: "menu-item #{:active if controller_name.in? 'users'}" do %>
       <%= link_to t('views.profile'), user_path(current_user) %>
     <% end %>
