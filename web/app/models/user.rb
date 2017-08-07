@@ -24,7 +24,8 @@ class User < ApplicationRecord
       self.spreadsheets << Spreadsheet.default
     end
   end
-  before_destroy { self.items.each { |item| item.destroy unless item.default }  }
+  before_destroy { self.items.each { |item| item.destroy unless item.default } }
+  before_destroy { self.photo = nil }
 
   validates_associated :role
   validates :name, :last_name, presence: true, length: { maximum: 50 }
@@ -32,7 +33,7 @@ class User < ApplicationRecord
             length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }
   validates :password, :password_confirmation, presence: true,
             length: { minimum: 6 }, on: :create
-  validates_attachment_content_type :photo, content_type: /\Aimage\/(jpe?g|png|gif)/
+  validates_attachment_content_type :photo, content_type: /\Aimage\/(jpe?g|png|gif)\z/
 
   has_secure_password
 
