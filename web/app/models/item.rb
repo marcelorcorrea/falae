@@ -5,10 +5,11 @@ class Item < ApplicationRecord
   has_many :pages, through: :item_pages
   has_one :category_item, dependent: :destroy
   has_one :category, through: :category_item
-  has_attached_file :image, presence: true, path: :attachment_path, url: :attachment_url
+  has_attached_file :image, path: :attachment_path, url: :attachment_url
 
   validates :name, :speech, presence: true
   validates_associated :category
+  validates_attachment_presence :image
   validates_attachment_content_type :image, content_type: /\Aimage\/(jpe?g|png|gif)\z/
 
   after_save do
