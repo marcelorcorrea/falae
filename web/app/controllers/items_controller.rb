@@ -43,9 +43,10 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to action: :index, notice: t('.notice') }
+        format.html { redirect_to user_items_url(@user), notice: t('.notice') }
         format.json { render :show, status: :created, location: @item }
       else
+        puts 'Eis me aqui!'
         format.html { render :new }
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
