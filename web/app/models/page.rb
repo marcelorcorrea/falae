@@ -7,7 +7,8 @@ class Page < ApplicationRecord
   validates_associated :spreadsheet
   validates :name, presence: true, uniqueness: {scope: :spreadsheet}
   validates :columns, :rows, presence: true,
-            numericality: {only_integer: true}
+            numericality: {only_integer: true, greater_than: 0}
+  validates :columns, numericality: {less_than_or_equal_to: 10}
 
   def Page.default_blank
     Page.new name: 'Initial', columns: 6, rows: 3
