@@ -2,15 +2,8 @@
   <div class="item">
     <%= render 'shared/error', errors: @item.errors %>
     <div class="button-bar">
-      <% if current_page? new_user_item_path %>
-        <%= link_to user_items_path(@user), class: 'button-box cancel' do %>
-          <%= fa_icon 'times' %><%= t 'views.cancel' %>
-        <% end %>
-      <% else %>
-        <%= link_to user_spreadsheet_page_items_path(@user, @spreadsheet, @page),
-          class: 'button-box cancel' do %>
-          <%= fa_icon 'times' %><%= t 'views.cancel' %>
-        <% end %>
+      <%= link_to user_items_path(@user), class: 'button-box cancel' do %>
+        <%= fa_icon 'times' %><%= t 'views.cancel' %>
       <% end %>
     </div>
     <div class="form-box">
