@@ -351,6 +351,7 @@ pt-BR:
     home: Início
     initial_page: Página inicial
     item_already_in_this_page: Item já nesta página
+    item_destroy_alert: Apagar este item o removerá de todas as páginas.
     item_image_not_found: Imagem do item não encontrada.
     log_in: Entrar
     log_out: Sair

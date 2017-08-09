@@ -3,8 +3,8 @@
   <p id="notice"><%= notice %></p>
 
   <div class="button-bar">
-  <%= link_to user_item_path(@user, @item), method: :delete, data: { confirm: 'Are you sure?' },
-    class: 'button-box destroy' do %>
+  <%= link_to user_item_path(@user, @item), method: :delete, class: 'button-box destroy',
+    data: {confirm: t('views.item_destroy_alert')} do %>
     <%= fa_icon 'trash-o' %><%= t 'views.destroy' %>
   <% end %>
   <%= link_to edit_user_item_path(@user, @item), class: 'button-box' do %>
