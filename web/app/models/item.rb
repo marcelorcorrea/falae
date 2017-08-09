@@ -47,6 +47,6 @@ class Item < ApplicationRecord
   end
 
   def attachment_url
-    self.default? ? '/images/:id.:extension' : "/users/#{self.user.id}/items/:id/image"
+    self.default? ? '/images/:id.:extension' : "/users/#{self.user.id}/items/:id/image.:extension"
   end
 end
