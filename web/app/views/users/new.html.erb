@@ -1,5 +1,5 @@
 <div class="user">
-  <%= render 'shared/error', errors: @user.errors %>
+  <%= render 'shared/error', model: @user %>
   <div class="form-box">
     <div class="label"><%= t 'views.register' %></div>
     <%= render 'form', user: @user %>

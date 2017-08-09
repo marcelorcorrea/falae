@@ -1,6 +1,6 @@
 <div class="reset-password">
   <%= render :partial => 'shared/flash'%>
-  <%= render 'shared/error', errors: @user.errors %>
+  <%= render 'shared/error', model: @user %>
   <div class="form-box">
     <div class="label"><%= t 'views.reset_password' %></div>
     <%= form_for @user, url: password_reset_path(params[:id]) do |form| %>

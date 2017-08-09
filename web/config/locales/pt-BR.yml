@@ -51,6 +51,11 @@ pt-BR:
         photo: Foto
         profile: perfil
     errors:
+      template:
+        body: 'Por favor, verifique o(s) seguinte(s) campo(s):'
+        header:
+          one: 'Não foi possível gravar %{model}: 1 erro'
+          other: 'Não foi possível gravar %{model}: %{count} erros'
       messages:
         record_invalid: 'A validação falhou: %{errors}'
         restrict_dependent_destroy:
@@ -359,7 +364,7 @@ pt-BR:
     no_user_items: Você ainda não possui nenhum item.
     profile: Perfil
     register: Cadastrar
-    reset_password: 'Alterar senha'
+    reset_password: Alterar senha
     save: Salvar
     search: Procurar
     speech: Pronúncia

@@ -30,18 +30,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: Hello
-  home: Home
-  about: About
-  contact: Contact
-  log_in: Log in
-  register: Register
-  log_out: Log out
-  welcome: Welcome
-  activate: Activate
-  forgot_password: 'Forgot password?'
-  reset_password: 'Reset password'
-  submit: 'Submit'
+  activerecord:
+    errors:
+      template:
+        header:
+          one:   "1 error prohibited this %{model} from being saved"
+          other: "%{count} errors prohibited this %{model} from being saved"
+        body:    "There were problems with the following fields:"
   flash:
     error:
       wrong_email_password: 'There is no match for this email and password.'
@@ -63,3 +58,39 @@ en:
       valid_reset: 'Password has been reset.'
       invalid: 'Invalid reset password link.'
       expired_token: 'Password reset link has expired.'
+  views:
+    about: About
+    about_me: About me
+    activate: Activate
+    add_to_page: Add to page
+    back: Back
+    cancel: Cancel
+    contact: Contact
+    destroy: Destroy
+    edit: Edit
+    forgot_password: 'Forgot your password?'
+    hello: Hello
+    home: Home
+    initial_page: Initial page
+    item_already_in_this_page: Item already in this page.
+    item_image_not_found: Item image not found.
+    log_in: Login
+    log_out: Logout
+    mobile_view: Mobile view
+    my: My
+    name: Name
+    new_item: New item
+    new_page: New page
+    new_spreadsheet: New Board
+    no_item_was_found: No item was found.
+    no_user_items: No user items.
+    profile: Prpfile
+    register: Register
+    reset_password: Reset password
+    save: Save
+    search: Search
+    speech: Speech
+    submit: Submit
+    upload_file: Upload file
+    user_photo_not_found: User photo not found.
+    welcome: Welcome

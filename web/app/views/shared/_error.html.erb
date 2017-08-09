@@ -1,9 +1,10 @@
-<% if errors.any? %>
+<% if model.errors.any? %>
   <div class="errors" xmlns="http://www.w3.org/1999/html">
     <div class="error-wrapper">
-      <span class="message"><%= pluralize(errors.count, 'error') %> prohibited this user from being saved:</span>
+      <span class="message"><%= t 'activerecord.errors.template.header',
+        model: model.model_name.human, count: model.errors.count %></span>
       <ul>
-      <% errors.full_messages.each do |message| %>
+      <% model.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
