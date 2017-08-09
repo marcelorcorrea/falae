@@ -8,12 +8,15 @@ document.addEventListener 'turbolinks:load', ->
   if userPhotoInput
   # add event listener to load user photo preview on form
     userPhotoInput.addEventListener 'change', (e) ->
-      files = event.target.files
+      userPhotoContainer = document.getElementById('user-photo-container')
+      files = e.target.files
       image = files[0]
-      reader = new FileReader()
-      reader.onload = (file) ->
-        img_base64 = new Image()
-        img_base64.src = file.target.result
-        userPhotoContainer = document.getElementById('user-photo-container')
-        userPhotoContainer.innerHTML = img_base64.outerHTML
-      reader.readAsDataURL image
+      if image && /.*\.(jpe?g|png|gif)/i.test image.name
+        reader = new FileReader()
+        reader.onload = (file) ->
+          img_base64 = new Image()
+          img_base64.src = file.target.result
+          userPhotoContainer.innerHTML = img_base64.outerHTML
+        reader.readAsDataURL image
+      else
+        userPhotoContainer.innerHTML = ''
