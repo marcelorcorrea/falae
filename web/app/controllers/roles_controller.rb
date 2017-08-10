@@ -1,5 +1,5 @@
 class RolesController < ApplicationController
-  before_action authenticate!
+  before_action :authenticate!
   before_action :set_role, only: [:show, :edit, :update, :destroy]
 
   # GET /roles
