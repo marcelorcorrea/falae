@@ -5,7 +5,7 @@
       <%= fa_icon 'times-circle', class: :hover %>
     </a>
     <div class="form-box">
-      <%= form_with url: user_spreadsheet_page_update_item_path(@user, @spreadsheet, @page),
+      <%= form_with url: update_item_user_spreadsheet_page_path(@user, @spreadsheet, @page),
                     method: :put do |form| %>
         <%= form.hidden_field :item_id, value: item.id %>
         <div class="field">

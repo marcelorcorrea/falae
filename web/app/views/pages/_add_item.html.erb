@@ -5,7 +5,7 @@
       <%= fa_icon 'times-circle', class: :hover %>
     </a>
     <div class="form-box">
-      <%= form_with url: user_spreadsheet_page_search_item_path(@user, @spreadsheet, @page),
+      <%= form_with url: search_item_user_spreadsheet_page_path(@user, @spreadsheet, @page),
           method: :get do |form| %>
         <div class="field">
           <%= form.label :name %>
