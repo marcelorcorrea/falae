@@ -7,7 +7,6 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    # @items = Item.all
     @items = if params[:search]
       if item_params[:name].blank?
         []
@@ -26,7 +25,6 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    #@item = Item.new
     @item = @user.items.new
   end
 
@@ -37,7 +35,6 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    #@item = Item.new(item_params)
     @item = @user.items.build item_params
     @item.category = Category.find_by(id: params[:category_id])
 
@@ -74,23 +71,6 @@ class ItemsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to user_items_url(@user), notice: t('.notice') }
       format.json { head :no_content }
-    end
-  end
-
-  def add_to_user
-    @item = Item.defaults.find_by id: params[:id]
-    if @item and not @item.has?(@user)
-      @user.items << @item
-    end
-  end
-
-  # TODO: obsolete?
-  def add_to_page
-    @item = Item.defaults.find_by id: params[:id]
-    if @item and not @item.in_page?(@page)
-      @page.items << @item
-      @user.items << @item unless @item.has?(@user)
-      @item.reload
     end
   end
 

@@ -16,7 +16,6 @@ Rails.application.routes.draw do
         resources :items do
           get 'image'
         end
-        post 'items/add_to_page', to: 'items#add_to_page'
       end
       get 'pages/:id/add_item', to: 'pages#add_item', as: :page_add_item
       get 'pages/:id/search_item', to: 'pages#search_item', as: :page_search_item
@@ -29,14 +28,11 @@ Rails.application.routes.draw do
     resources :items do
       get 'image'
     end
-    post 'items/add_to_user', to: 'items#add_to_user'
     get 'photo'
   end
 
   resources :account_activations, only: [:edit]
-  resources :password_resets,     only: [:new, :create, :edit, :update]
-
-  #post 'users/:id/items/add_to' => 'items#add_to', as: :add_to_my_items
+  resources :password_resets, only: [:new, :create, :edit, :update]
 
   #resources :categories
 end

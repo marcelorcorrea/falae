@@ -24,10 +24,6 @@ class Item < ApplicationRecord
     @default_items ||= Item.where default: true
   end
 
-  def has?(user)
-    user.items.include? self
-  end
-
   def in_page?(page)
     self.pages.present? and self.pages.include?(page)
   end
