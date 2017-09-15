@@ -1,12 +1,12 @@
-package com.marcelorcorrea.falae.model;
+package com.marcelorcorrea.falae.model
 
-import android.graphics.Color;
+import android.graphics.Color
 
 /**
  * Created by marcelo on 4/12/17.
  */
 
-public enum Category {
+enum class Category(private val color: Int) {
     GREETINGS_SOCIAL_EXPRESSIONS(Color.parseColor("#CC6699")),
     SUBJECT(Color.parseColor("#E6E600")),
     VERB(Color.parseColor("#009900")),
@@ -14,13 +14,5 @@ public enum Category {
     ADJECTIVE(Color.BLUE),
     OTHER(Color.WHITE);
 
-    private int color;
-
-    Category(int color) {
-        this.color = color;
-    }
-
-    public int color() {
-        return color;
-    }
+    fun color(): Int = color
 }
