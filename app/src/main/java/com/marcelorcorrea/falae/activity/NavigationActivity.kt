@@ -53,22 +53,22 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
         dbHelper = UserDbHelper(this)
         val users = dbHelper.read()
-        for (u in users) {
-            addUserToMenu(u)
+        for (user in users) {
+            addUserToMenu(user)
         }
         getLastConnectedUser()
     }
 
     private fun getLastConnectedUser() {
         val email = SharedPreferencesUtils.getStringPreferences(USER_EMAIL, this)
-        if (!email.isEmpty()) {
+        if (email.isNotEmpty()) {
             openUserMenuItem(email)
         }
     }
 
     private fun openUserMenuItem(email: String) {
         mUser = dbHelper.findByEmail(email)
-        val item = mNavigationView.menu.findItem(mUser!!.id)
+        val item = mUser?.id?.let { mNavigationView.menu.findItem(it) }
         if (item != null) {
             onNavigationItemSelected(item)
         }

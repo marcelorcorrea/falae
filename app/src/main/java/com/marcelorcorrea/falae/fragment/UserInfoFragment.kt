@@ -82,7 +82,7 @@ class UserInfoFragment : Fragment() {
 
         private val USER_PARAM = "userParam"
 
-        fun newInstance(user: User?): UserInfoFragment {
+        fun newInstance(user: User): UserInfoFragment {
             val fragment = UserInfoFragment()
             val args = Bundle()
             args.putParcelable(USER_PARAM, user)

@@ -76,7 +76,7 @@ class TabPagerFragment : Fragment(), SpreadSheetFragment.OnFragmentInteractionLi
             return if (position == 0) {
                 SpreadSheetFragment.newInstance(user!!)
             } else {
-                UserInfoFragment.newInstance(user)
+                UserInfoFragment.newInstance(user!!)
             }
         }
 

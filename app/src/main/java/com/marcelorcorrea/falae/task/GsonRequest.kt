@@ -11,7 +11,7 @@ import java.io.UnsupportedEncodingException
  * Created by corream on 06/06/2017.
  */
 
-class GsonRequest<T>(url: String, private val clazz: Class<T>, private val headers: Map<String, String>?, private val jsonRequest: JSONObject?,
+class GsonRequest<T>(url: String, private val clazz: Class<T>, private val headers: Map<String, String>?, private val jsonRequest: JSONObject,
                      private val listener: Response.Listener<T>, errorListener: Response.ErrorListener) : Request<T>(Request.Method.POST, url, errorListener) {
 
     private val gson = Gson()
@@ -21,10 +21,10 @@ class GsonRequest<T>(url: String, private val clazz: Class<T>, private val heade
 
     @Throws(AuthFailureError::class)
     override fun getBody(): ByteArray? {
-        try {
-            return jsonRequest?.toString()?.toByteArray(charset(PROTOCOL_CHARSET))
+        return try {
+            jsonRequest.toString().toByteArray(charset(PROTOCOL_CHARSET))
         } catch (uee: UnsupportedEncodingException) {
-            return null
+            null
         }
 
     }
@@ -51,7 +51,7 @@ class GsonRequest<T>(url: String, private val clazz: Class<T>, private val heade
     }
 
     companion object {
-        protected val PROTOCOL_CHARSET = "utf-8"
+        private val PROTOCOL_CHARSET = "utf-8"
         private val PROTOCOL_CONTENT_TYPE = String.format("application/json; charset=%s", PROTOCOL_CHARSET)
     }
 }
