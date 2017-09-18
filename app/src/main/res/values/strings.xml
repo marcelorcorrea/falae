@@ -35,4 +35,9 @@
     <string name="page_not_found">A prancha não contém a página selecionada.</string>
     <string name="download_failed">Um erro ocorreu ao baixar as imagens. Por favor verifique sua conexão com a internet.</string>
     <string name="error_internet_access">Um erro ocorreu ao tentar conectar-se com o servidor. Por favor verifique sua conexão com a internet.</string>
+    <string name="remove">Remover</string>
+    <string name="removeUser">Remover Usuário</string>
+    <string name="questionRemoveUser">Tem certeza que deseja remover este usuário?</string>
+    <string name="yes_option">Sim</string>
+    <string name="no_option">Não</string>
 </resources>
