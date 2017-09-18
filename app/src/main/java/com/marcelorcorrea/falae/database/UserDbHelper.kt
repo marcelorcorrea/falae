@@ -12,6 +12,7 @@ import com.marcelorcorrea.falae.model.SpreadSheet
 import com.marcelorcorrea.falae.model.User
 import java.util.*
 
+
 /**
  * Created by corream on 11/05/2017.
  */
@@ -63,6 +64,13 @@ class UserDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         val db = writableDatabase
         Log.d("FALAE", "Updating entry...")
         db.update(UserEntry.TABLE_NAME, userContentValues, UserEntry.COLUMN_EMAIL + "= ? ", arrayOf(user.email))
+    }
+
+    fun remove(userId: Int) {
+        val db = writableDatabase
+        val whereClause = "_id=?"
+        val whereArgs = arrayOf(userId.toString())
+        db.delete(UserEntry.TABLE_NAME, whereClause, whereArgs)
     }
 
     fun doesUserExist(user: User): Boolean {
@@ -117,11 +125,8 @@ class UserDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
 
     fun read(): List<User> {
         val db = readableDatabase
-
         val projection = arrayOf(UserEntry._ID, UserEntry.COLUMN_NAME, UserEntry.COLUMN_EMAIL)
-
         val cursor = db.query(UserEntry.TABLE_NAME, projection, null, null, null, null, null)
-
         val users = ArrayList<User>()
         while (cursor.moveToNext()) {
             val id = cursor.getLong(cursor.getColumnIndex(UserEntry._ID))

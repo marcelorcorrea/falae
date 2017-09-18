@@ -8,10 +8,10 @@ import android.net.Uri
 import android.os.AsyncTask
 import android.os.Build
 import android.util.Log
-import android.webkit.MimeTypeMap
 import android.widget.Toast
 import com.marcelorcorrea.falae.R
 import com.marcelorcorrea.falae.model.User
+import com.marcelorcorrea.falae.storage.FileHandler
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -57,16 +57,11 @@ class DownloadTask(private val context: Context, private val onSyncComplete: (us
     }
 
     override fun doInBackground(vararg params: User): User? {
-        if (!haveNetworkConnection()) {
+        if (!hasNetworkConnection()) {
             return null
         }
-
         val user = params[0]
-
-        val folder = File(context.filesDir, user.email)
-        if (!folder.exists()) {
-            folder.mkdirs()
-        }
+        val folder = FileHandler.createUserFolder(context, user.email)
         user.spreadsheets
                 .flatMap { it.pages }
                 .flatMap { it.items }
@@ -88,8 +83,7 @@ class DownloadTask(private val context: Context, private val onSyncComplete: (us
     }
 
     private fun download(folder: File, name: String, imgSrc: String): String {
-        val extension = MimeTypeMap.getFileExtensionFromUrl(imgSrc)
-        val filename = File(folder, name + "." + extension)
+        val filename = FileHandler.createImg(folder, name, imgSrc)
         try {
             val url = URL(imgSrc)
             val connection = url.openConnection()
@@ -120,7 +114,7 @@ class DownloadTask(private val context: Context, private val onSyncComplete: (us
         }
     }
 
-    private fun haveNetworkConnection(): Boolean {
+    private fun hasNetworkConnection(): Boolean {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val allNetworks = cm.allNetworks

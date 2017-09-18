@@ -49,4 +49,10 @@ object SharedPreferencesUtils {
         sharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
         return sharedPreferences!!.getInt(key, 0)
     }
+
+    fun clearEntry(key:String, context: Context) {
+        sharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
+        val edit = sharedPreferences!!.edit()
+        edit.remove(key)
+    }
 }

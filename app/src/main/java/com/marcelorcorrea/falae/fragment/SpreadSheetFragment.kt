@@ -1,13 +1,12 @@
 package com.marcelorcorrea.falae.fragment
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-
+import android.view.*
 import com.marcelorcorrea.falae.R
 import com.marcelorcorrea.falae.adapter.SpreadSheetAdapter
 import com.marcelorcorrea.falae.model.SpreadSheet
@@ -26,6 +25,7 @@ class SpreadSheetFragment : Fragment() {
             user = arguments.getParcelable(USER_PARAM)
         }
         onAttachFragment(parentFragment)
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -46,6 +46,34 @@ class SpreadSheetFragment : Fragment() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.board_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.remove_item -> {
+                val confirmBuilder = AlertDialog.Builder(activity)
+                val confirmDialog = confirmBuilder.setTitle(getString(R.string.removeUser))
+                        .setMessage(getString(R.string.questionRemoveUser))
+                        .setPositiveButton(getString(R.string.yes_option), { _, id ->
+                            mListener.removeUser(user!!)
+                        })
+                        .setNegativeButton(getString(R.string.no_option), { _, _ -> })
+                        .create()
+                confirmDialog.setOnShowListener {
+                    val buttonPositive = confirmDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                    val buttonNegative = confirmDialog.getButton(AlertDialog.BUTTON_NEGATIVE)
+                    buttonPositive.setTextColor(resources.getColor(R.color.colorAccent))
+                    buttonNegative.setTextColor(resources.getColor(R.color.colorAccent))
+                }
+                confirmDialog.show()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
     }
@@ -56,6 +84,7 @@ class SpreadSheetFragment : Fragment() {
 
     interface OnFragmentInteractionListener {
         fun displayActivity(spreadSheet: SpreadSheet)
+        fun removeUser(user: User)
     }
 
     companion object {

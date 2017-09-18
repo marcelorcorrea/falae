@@ -17,6 +17,7 @@ import com.marcelorcorrea.falae.model.SpreadSheet
 import com.marcelorcorrea.falae.model.User
 
 class TabPagerFragment : Fragment(), SpreadSheetFragment.OnFragmentInteractionListener, UserInfoFragment.OnFragmentInteractionListener {
+
     private var user: User? = null
 
     private lateinit var mListener: OnFragmentInteractionListener
@@ -57,7 +58,10 @@ class TabPagerFragment : Fragment(), SpreadSheetFragment.OnFragmentInteractionLi
 
     override fun displayActivity(spreadSheet: SpreadSheet) {
         mListener.displayActivity(spreadSheet)
+    }
 
+    override fun removeUser(user: User) {
+        mListener.removeUser(user)
     }
 
     override fun onFragmentInteraction(uri: Uri) {
@@ -66,6 +70,7 @@ class TabPagerFragment : Fragment(), SpreadSheetFragment.OnFragmentInteractionLi
 
     interface OnFragmentInteractionListener {
         fun displayActivity(spreadSheet: SpreadSheet)
+        fun removeUser(user: User)
     }
 
     inner class CustomFragmentPagerAdapter(fm: FragmentManager, private val context: Context) : FragmentStatePagerAdapter(fm) {

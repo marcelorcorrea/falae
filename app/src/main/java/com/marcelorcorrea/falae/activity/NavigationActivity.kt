@@ -22,14 +22,16 @@ import com.marcelorcorrea.falae.fragment.SyncUserFragment
 import com.marcelorcorrea.falae.fragment.TabPagerFragment
 import com.marcelorcorrea.falae.model.SpreadSheet
 import com.marcelorcorrea.falae.model.User
+import com.marcelorcorrea.falae.storage.FileHandler
 import com.marcelorcorrea.falae.storage.SharedPreferencesUtils
 import com.marcelorcorrea.falae.task.DownloadTask
 
 class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, TabPagerFragment.OnFragmentInteractionListener, SyncUserFragment.OnFragmentInteractionListener {
+
     private lateinit var mDrawer: DrawerLayout
     private lateinit var mNavigationView: NavigationView
     private lateinit var dbHelper: UserDbHelper
-    private var mUser: User? = null
+    private var mCurrentUser: User? = null
     private var doubleBackToExitPressedOnce: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,8 +69,8 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     }
 
     private fun openUserMenuItem(email: String) {
-        mUser = dbHelper.findByEmail(email)
-        val item = mUser?.id?.let { mNavigationView.menu.findItem(it) }
+        mCurrentUser = dbHelper.findByEmail(email)
+        val item = mCurrentUser?.id?.let { mNavigationView.menu.findItem(it) }
         if (item != null) {
             onNavigationItemSelected(item)
         }
@@ -78,7 +80,7 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         val userItem = mNavigationView.menu.add(R.id.users_group, user.id, 0, user.name)
         userItem.setIcon(R.drawable.ic_person_black_24dp)
         userItem.setOnMenuItemClickListener { item ->
-            mUser = dbHelper.findByEmail(user.email)
+            mCurrentUser = dbHelper.findByEmail(user.email)
             onNavigationItemSelected(item)
             true
         }
@@ -116,7 +118,7 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                 tag = SettingsFragment::class.java.simpleName
             }
             else -> {
-                fragment = TabPagerFragment.newInstance(mUser)
+                fragment = TabPagerFragment.newInstance(mCurrentUser)
                 tag = TabPagerFragment::class.java.simpleName
             }
         }
@@ -134,8 +136,8 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
     override fun onDestroy() {
         dbHelper.close()
-        if (mUser != null) {
-            SharedPreferencesUtils.storeStringPreferences(USER_EMAIL, mUser!!.email, this)
+        if (mCurrentUser != null) {
+            SharedPreferencesUtils.storeStringPreferences(USER_EMAIL, mCurrentUser!!.email, this)
         }
         super.onDestroy()
     }
@@ -164,6 +166,13 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         intent.putExtra(DisplayActivity.SPREADSHEET, spreadSheet)
         startActivity(intent)
         overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left)
+    }
+
+    override fun removeUser(user: User) {
+        dbHelper.remove(user.id)
+        SharedPreferencesUtils.clearEntry(user.email, this)
+        FileHandler.deleteUserFolder(this, user.email)
+        //recreate()
     }
 
     companion object {

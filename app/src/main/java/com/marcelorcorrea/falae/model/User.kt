@@ -37,6 +37,10 @@ class User(val id: Int, val name: String, val email: String, val spreadsheets: L
         dest.writeString(this.photoSrc)
     }
 
+    override fun toString(): String {
+        return "User(id=$id, name='$name', email='$email', spreadsheets=$spreadsheets, info='$info', photoSrc='$photoSrc')"
+    }
+
     companion object {
 
         val CREATOR: Parcelable.Creator<User> = object : Parcelable.Creator<User> {
@@ -45,4 +49,6 @@ class User(val id: Int, val name: String, val email: String, val spreadsheets: L
             override fun newArray(size: Int): Array<User?> = arrayOfNulls(size)
         }
     }
+
+
 }
