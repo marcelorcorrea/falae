@@ -35,9 +35,9 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     private var doubleBackToExitPressedOnce: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY)
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_navigation)
 
@@ -62,9 +62,12 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     }
 
     private fun getLastConnectedUser() {
-        val email = SharedPreferencesUtils.getStringPreferences(USER_EMAIL, this)
+        val email = SharedPreferencesUtils.getString(USER_EMAIL, this)
         if (email.isNotEmpty()) {
             openUserMenuItem(email)
+        } else {
+            onNavigationItemSelected(mNavigationView.menu.findItem(R.id.add_user))
+            mDrawer.openDrawer(GravityCompat.START)
         }
     }
 
@@ -137,7 +140,7 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     override fun onDestroy() {
         dbHelper.close()
         if (mCurrentUser != null) {
-            SharedPreferencesUtils.storeStringPreferences(USER_EMAIL, mCurrentUser!!.email, this)
+            SharedPreferencesUtils.storeString(USER_EMAIL, mCurrentUser!!.email, this)
         }
         super.onDestroy()
     }
@@ -170,9 +173,10 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
     override fun removeUser(user: User) {
         dbHelper.remove(user.id)
-        SharedPreferencesUtils.clearEntry(user.email, this)
+        SharedPreferencesUtils.remove(USER_EMAIL, this)
         FileHandler.deleteUserFolder(this, user.email)
-        //recreate()
+        mCurrentUser = null
+        recreate()
     }
 
     companion object {

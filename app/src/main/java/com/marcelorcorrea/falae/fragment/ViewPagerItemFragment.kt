@@ -71,9 +71,9 @@ class ViewPagerItemFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (SharedPreferencesUtils.getBooleanPreferences(SettingsFragment.SCAN_MODE, context)) {
+        if (SharedPreferencesUtils.getBoolean(SettingsFragment.SCAN_MODE, context)) {
             currentItemSelectedFromScan = -1
-            val scanModeDuration = SharedPreferencesUtils.getIntPreferences(SettingsFragment.SCAN_MODE_DURATION, context)
+            val scanModeDuration = SharedPreferencesUtils.getInt(SettingsFragment.SCAN_MODE_DURATION, context)
             doSpreadsheetScan(scanModeDuration)
         }
     }
@@ -102,7 +102,7 @@ class ViewPagerItemFragment : Fragment() {
         }
         frameLayout.setOnClickListener {
             var itemSelected = item
-            if (SharedPreferencesUtils.getBooleanPreferences(SettingsFragment.SCAN_MODE, context)) {
+            if (SharedPreferencesUtils.getBoolean(SettingsFragment.SCAN_MODE, context)) {
                 itemSelected = mItems!![currentItemSelectedFromScan]
             }
             onItemClicked(itemSelected)

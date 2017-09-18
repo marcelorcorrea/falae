@@ -12,47 +12,39 @@ import com.marcelorcorrea.falae.R
 object SharedPreferencesUtils {
 
     private var sharedPreferences: SharedPreferences? = null
-    private var editor: SharedPreferences.Editor? = null
 
-    fun storeBooleanPreferences(key: String, value: Boolean?, context: Context) {
+    fun storeBoolean(key: String, value: Boolean, context: Context) {
         sharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
-        editor = sharedPreferences!!.edit()
-        editor!!.putBoolean(key, value!!)
-        editor!!.apply()
+        sharedPreferences?.edit()?.putBoolean(key, value)?.apply()
     }
 
-    fun storeStringPreferences(key: String, value: String, context: Context) {
+    fun storeString(key: String, value: String, context: Context) {
         sharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
-        editor = sharedPreferences!!.edit()
-        editor!!.putString(key, value)
-        editor!!.apply()
+        sharedPreferences?.edit()?.putString(key, value)?.apply()
     }
 
-    fun storeIntPreferences(key: String, value: Int, context: Context) {
+    fun storeInt(key: String, value: Int, context: Context) {
         sharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
-        editor = sharedPreferences!!.edit()
-        editor!!.putInt(key, value)
-        editor!!.apply()
+        sharedPreferences?.edit()?.putInt(key, value)?.apply()
     }
 
-    fun getBooleanPreferences(key: String, context: Context): Boolean {
+    fun getBoolean(key: String, context: Context): Boolean {
         sharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
-        return sharedPreferences!!.getBoolean(key, false)
+        return sharedPreferences?.getBoolean(key, false)!!
     }
 
-    fun getStringPreferences(key: String, context: Context): String {
+    fun getString(key: String, context: Context): String {
         sharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
-        return sharedPreferences!!.getString(key, "")
+        return sharedPreferences?.getString(key, "")!!
     }
 
-    fun getIntPreferences(key: String, context: Context): Int {
+    fun getInt(key: String, context: Context): Int {
         sharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
-        return sharedPreferences!!.getInt(key, 0)
+        return sharedPreferences?.getInt(key, 0)!!
     }
 
-    fun clearEntry(key:String, context: Context) {
+    fun remove(key: String, context: Context) {
         sharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
-        val edit = sharedPreferences!!.edit()
-        edit.remove(key)
+        sharedPreferences?.edit()?.remove(key)?.apply()
     }
 }

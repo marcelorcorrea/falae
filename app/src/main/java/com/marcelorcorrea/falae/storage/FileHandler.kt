@@ -19,12 +19,11 @@ object FileHandler {
 
     fun createImg(folder: File, fileName: String, imgSrc: String) : File{
         val extension = MimeTypeMap.getFileExtensionFromUrl(imgSrc)
-        val image = File(folder, "$fileName.$extension")
-        return image
+        return File(folder, "$fileName.$extension")
     }
 
     fun deleteUserFolder(context: Context, folderName: String) {
         val folder = File(context.filesDir, folderName)
-        folder.delete()
+        folder.deleteRecursively()
     }
 }
