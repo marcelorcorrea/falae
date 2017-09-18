@@ -7,7 +7,7 @@ import android.os.Parcelable
  * Created by corream on 17/05/2017.
  */
 
-class User(val id: Int, val name: String, val email: String, val spreadsheets: List<SpreadSheet> = emptyList(), val info: String = "", val photoSrc: String = "") : Parcelable {
+class User(val id: Int, val name: String, val email: String, val spreadsheets: List<SpreadSheet> = emptyList(), val info: String? = "", val photoSrc: String? = "") : Parcelable {
 
     constructor(`in`: Parcel) : this(
             `in`.readInt(),
@@ -22,8 +22,8 @@ class User(val id: Int, val name: String, val email: String, val spreadsheets: L
              name: String = this.name,
              email: String = this.email,
              spreadsheets: List<SpreadSheet> = this.spreadsheets,
-             info: String = this.info,
-             photoSrc: String = this.photoSrc) = User(id, name, email, spreadsheets, info, photoSrc)
+             info: String? = this.info,
+             photoSrc: String? = this.photoSrc) = User(id, name, email, spreadsheets, info, photoSrc)
 
 
     override fun describeContents(): Int = 0
@@ -35,10 +35,6 @@ class User(val id: Int, val name: String, val email: String, val spreadsheets: L
         dest.writeTypedList(this.spreadsheets)
         dest.writeString(this.info)
         dest.writeString(this.photoSrc)
-    }
-
-    override fun toString(): String {
-        return "User(id=$id, name='$name', email='$email', spreadsheets=$spreadsheets, info='$info', photoSrc='$photoSrc')"
     }
 
     companion object {
