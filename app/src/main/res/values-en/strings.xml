@@ -10,7 +10,6 @@
     <string name="error_invalid_password">Password too short.</string>
     <string name="error_incorrect_password">Email or Password incorrect.</string>
     <string name="error_field_required">This field is required.</string>
-    <string name="title_activity_navigation">NavigationActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -20,7 +19,6 @@
     <string name="title_activity_login">Download Spreadsheet</string>
     <string name="spreadsheets">Spreadsheets</string>
     <string name="users">Add User</string>
-    <string name="sync_user">Sync User</string>
     <string name="voice">Voice</string>
     <string name="previous">Back</string>
     <string name="next">Next</string>

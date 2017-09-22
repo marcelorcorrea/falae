@@ -27,7 +27,7 @@ import com.marcelorcorrea.falae.storage.FileHandler
 import com.marcelorcorrea.falae.storage.SharedPreferencesUtils
 import com.marcelorcorrea.falae.task.DownloadTask
 
-class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, TabPagerFragment.OnFragmentInteractionListener, SyncUserFragment.OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, TabPagerFragment.OnFragmentInteractionListener, SyncUserFragment.OnFragmentInteractionListener {
 
     private lateinit var mDrawer: DrawerLayout
     private lateinit var mNavigationView: NavigationView
@@ -40,7 +40,7 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_navigation)
+        setContentView(R.layout.activity_main)
 
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
@@ -162,7 +162,7 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
             } else {
                 dbHelper.update(u)
             }
-            Toast.makeText(this@NavigationActivity, R.string.success_user_added, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity, R.string.success_user_added, Toast.LENGTH_SHORT).show()
             openUserMenuItem(u.email)
         }).execute(user)
     }

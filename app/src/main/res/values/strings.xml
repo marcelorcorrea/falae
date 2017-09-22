@@ -9,7 +9,6 @@
     <string name="error_invalid_password">Senha muito curta</string>
     <string name="error_incorrect_password">Senha inválida</string>
     <string name="error_field_required">Este campo é obrigatório</string>
-    <string name="title_activity_navigation">NavigationActivity</string>
 
     <string name="navigation_drawer_open">Abrir menu de navegação</string>
     <string name="navigation_drawer_close">Fechar menu de navegação</string>
