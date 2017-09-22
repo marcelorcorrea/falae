@@ -12,8 +12,8 @@ import android.widget.Toast
 import com.marcelorcorrea.falae.R
 import com.marcelorcorrea.falae.model.User
 import com.marcelorcorrea.falae.storage.FileHandler
+import com.marcelorcorrea.falae.toFile
 import java.io.File
-import java.io.FileOutputStream
 import java.io.IOException
 import java.net.URL
 import java.util.concurrent.LinkedBlockingQueue
@@ -83,24 +83,19 @@ class DownloadTask(private val context: Context, private val onSyncComplete: (us
     }
 
     private fun download(folder: File, name: String, imgSrc: String): String {
-        val filename = FileHandler.createImg(folder, name, imgSrc)
+        val file = FileHandler.createImg(folder, name, imgSrc)
+        val url = URL(imgSrc)
         try {
-            val url = URL(imgSrc)
             val connection = url.openConnection()
             connection.connectTimeout = TIME_OUT
             connection.readTimeout = TIME_OUT
             connection.connect()
-            val input = url.openStream()
-            val output = FileOutputStream(filename)
-            input.copyTo(output)
-            output.close()
-            input.close()
-        } catch (e: IOException) {
-            e.printStackTrace()
+            url.openStream().toFile(file.absolutePath)
+        } catch (ex: IOException) {
+            ex.printStackTrace()
         }
 
-        val uri = Uri.fromFile(filename)
-        return uri.toString()
+        return Uri.fromFile(file).toString()
     }
 
     override fun onPostExecute(user: User?) {

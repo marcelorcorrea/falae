@@ -19,7 +19,7 @@
 
     <string name="title_activity_login">Download Spreadsheet</string>
     <string name="spreadsheets">Spreadsheets</string>
-    <string name="users">Users</string>
+    <string name="users">Add User</string>
     <string name="sync_user">Sync User</string>
     <string name="voice">Voice</string>
     <string name="previous">Back</string>

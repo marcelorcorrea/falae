@@ -30,7 +30,7 @@ import java.util.*
 class ViewPagerItemFragment : Fragment() {
 
     private var mItems: List<Item>? = null
-    private var mItemsLayout: MutableList<FrameLayout>? = null
+    private var mItemsLayout: List<FrameLayout>? = null
     private lateinit var mListener: OnFragmentInteractionListener
     private var mColumns: Int = 0
     private var mRows: Int = 0
@@ -59,12 +59,10 @@ class ViewPagerItemFragment : Fragment() {
 
         val layoutDimensions = calculateLayoutDimensions()
 
-        mItemsLayout = ArrayList()
-
-        mItems?.forEach { item ->
+        mItemsLayout = mItems?.map { item ->
             val layout = generateLayout(inflater, item, layoutDimensions)
-            mItemsLayout!!.add(layout)
             mGridLayout.addView(layout)
+            layout
         }
         return view
     }

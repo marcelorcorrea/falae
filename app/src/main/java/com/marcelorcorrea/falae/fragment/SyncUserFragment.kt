@@ -20,14 +20,12 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.marcelorcorrea.falae.R
+import com.marcelorcorrea.falae.loadUser
 import com.marcelorcorrea.falae.model.User
+import com.marcelorcorrea.falae.readText
 import com.marcelorcorrea.falae.task.GsonRequest
-import org.apache.commons.io.IOUtils
 import org.json.JSONException
 import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.IOException
-import java.io.InputStreamReader
 import java.util.regex.Pattern
 
 class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorListener {
@@ -152,26 +150,21 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
     }
 
     private fun loginMock(email: String, password: String): User? {
-        var user: User? = null
-        DUMMY_CREDENTIALS.forEach { credential ->
-            val pieces = credential.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-            if (email == "amostra@falae.com") {
-                user = createMockSpreadsheets(R.raw.sampleboard)
-            } else if (pieces[0] == email) {
-                if (pieces[1] == password) {
-                    user = createMockSpreadsheets(R.raw.mockspreadsheet)
-                    if (email == "mlongaray@hp.com") {
-                        user = createMockSpreadsheets(R.raw.mockspreadsheet2)
-                    }
-                }
+        val user: User? = DUMMY_CREDENTIALS.map {
+            it.split(":")
+        }.find { it[0] == email }?.let {
+            val user = if (it[0] == "mlongaray@hp.com") {
+                resources.loadUser(R.raw.mockspreadsheet2)
+            } else {
+                resources.loadUser(R.raw.mockspreadsheet)
             }
+            mListener.onFragmentInteraction(user)
+            user
         }
         if (pDialog.isShowing) {
             pDialog.dismiss()
         }
-        if (user != null) {
-            mListener.onFragmentInteraction(user)
-        }
+
         return user
     }
 
@@ -198,18 +191,6 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
 
     interface OnFragmentInteractionListener {
         fun onFragmentInteraction(user: User?)
-    }
-
-    private fun createMockSpreadsheets(id: Int): User? {
-        try {
-            val raw = context.resources.openRawResource(id)
-            val `is` = BufferedReader(InputStreamReader(raw, "UTF8"))
-            val json = IOUtils.toString(`is`)
-            return Gson().fromJson(json, User::class.java)
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-        return null
     }
 
     companion object {

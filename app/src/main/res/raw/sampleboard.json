@@ -1,8 +1,8 @@
 {
-  "name": "Amostra",
-  "email": "amostra@falae.com",
-  "info": "Esta é uma prancha de amostra",
-  "photoSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/RCP4yRNYm6BxMzy/mostrar.png",
+  "name": "Demonstração",
+  "email": "demo@falae.com",
+  "info": "Esta é uma prancha de demonstração",
+  "photoSrc": "file:///android_asset/demo/mostrar.png",
   "spreadsheets": [
     {
       "initialPage": "Principal",
@@ -15,114 +15,114 @@
           "items": [
             {
               "category": "GREETINGS_SOCIAL_EXPRESSIONS",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/IFAtimmPiSpTZLP/oi.png",
+              "imgSrc": "file:///android_asset/demo/oi.png",
               "name": "Oi",
               "speech": "Oi"
             },
             {
               "category": "GREETINGS_SOCIAL_EXPRESSIONS",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/JB31UsYoBVuOB8P/adeus.png",
+              "imgSrc": "file:///android_asset/demo/adeus.png",
               "name": "Adeus",
               "speech": "Adeus"
             },
             {
               "category": "SUBJECT",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/hMsmmcGpdofWD81/eu_2.png",
+              "imgSrc": "file:///android_asset/demo/eu_2.png",
               "name": "Eu",
               "speech": "Eu"
             },
             {
               "category": "VERB",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/PTFEDlz5yESTqCR/quero.png",
+              "imgSrc": "file:///android_asset/demo/quero.png",
               "name": "Querer",
               "speech": "Querer"
             },
             {
               "category": "VERB",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/kic2pRGOV3GiSwg/comer.png",
+              "imgSrc": "file:///android_asset/demo/comer.png",
               "linkTo": "PaginaComer",
               "name": "Comer",
               "speech": "Comer"
             },
             {
               "category": "VERB",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/yRBPteMVcZKaSOc/estudar.png",
+              "imgSrc": "file:///android_asset/demo/estudar.png",
               "name": "Estudar",
               "speech": "Estudar"
             },
             {
               "category": "GREETINGS_SOCIAL_EXPRESSIONS",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/Xgwqk00L9Y4i9Ne/como%20est%C3%A1s.png",
+              "imgSrc": "file:///android_asset/demo/como estás.png",
               "name": "Como vai",
               "speech": "Como vai"
             },
             {
               "category": "GREETINGS_SOCIAL_EXPRESSIONS",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/nPQQuglv6qkXgH6/estou%20bem.png",
+              "imgSrc": "file:///android_asset/demo/estou bem.png",
               "name": "Estou bem",
               "speech": "Estou bem"
             },
             {
               "category": "SUBJECT",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/6DqX8uBDxg5p8b0/voc%C3%AA_2.png",
+              "imgSrc": "file:///android_asset/demo/você_2.png",
               "linkTo": null,
               "name": "Você",
               "speech": "Você"
             },
             {
               "category": "VERB",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/FWvkbr2y9HJVpSa/estar.png",
+              "imgSrc": "file:///android_asset/demo/estar.png",
               "linkTo": "PaginaEstar",
               "name": "Estar",
               "speech": "Estar"
             },
             {
               "category": "VERB",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/t6hGVfCCufkDE39/beber.png",
+              "imgSrc": "file:///android_asset/demo/beber.png",
               "linkTo": "PaginaBeber",
               "name": "Beber",
               "speech": "Beber"
             },
             {
               "category": "VERB",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/AO6gHjT05pgIJXd/dormir_2.png",
+              "imgSrc": "file:///android_asset/demo/dormir_2.png",
               "name": "Dormir",
               "speech": "Dormir"
             },
             {
               "category": "GREETINGS_SOCIAL_EXPRESSIONS",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/AQns4ixq2PRWkJJ/por%20favor.png",
+              "imgSrc": "file:///android_asset/demo/por favor.png",
               "name": "Por Favor",
               "speech": "Por Favor"
             },
             {
               "category": "GREETINGS_SOCIAL_EXPRESSIONS",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/0AH8ioVr2NbpL1X/obrigado.png",
+              "imgSrc": "file:///android_asset/demo/obrigado.png",
               "name": "Obrigado",
               "speech": "Obrigado"
             },
             {
               "category": "SUBJECT",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/j4KSLqaJhVVzyaO/n%C3%B3s.png",
+              "imgSrc": "file:///android_asset/demo/nós.png",
               "name": "Nós",
               "speech": "Nós"
             },
             {
               "category": "VERB",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/uppR3hFBRF9LQVd/ir.png",
+              "imgSrc": "file:///android_asset/demo/ir.png",
               "linkTo": "PaginaEstar",
               "name": "Ir",
               "speech": "Ir"
             },
             {
               "category": "VERB",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/GHifaGsMWYk5OJW/brincar.png",
+              "imgSrc": "file:///android_asset/demo/brincar.png",
               "name": "Brincar",
               "speech": "Brincar"
             },
             {
               "category": "VERB",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/BdPtkVpbP9blpVZ/falar_1.png",
+              "imgSrc": "file:///android_asset/demo/falar_1.png",
               "name": "Falar",
               "speech": "Falar"
             }
@@ -135,91 +135,91 @@
           "items": [
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/wHytDYvvR5X6NhG/comida.png",
+              "imgSrc": "file:///android_asset/demo/comida.png",
               "name": "Comida",
               "speech": "Comida"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/7FJDsY7Dmbq3q27/biscoito_4.png",
+              "imgSrc": "file:///android_asset/demo/biscoito_4.png",
               "name": "Biscoito",
               "speech": "Biscoito"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/Y8SlbdtK3OsJtxx/sopa_4.png",
+              "imgSrc": "file:///android_asset/demo/sopa_4.png",
               "name": "Sopa",
               "speech": "Sopa"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/GnqaEVA3AO0Upu1/quente_1.png",
+              "imgSrc": "file:///android_asset/demo/quente_1.png",
               "name": "Quente",
               "speech": "Quente"
             },
             {
               "category": "VERB",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/hTpkQY3EZPQLCAq/gostar_1.png",
+              "imgSrc": "file:///android_asset/demo/gostar_1.png",
               "name": "Gostar",
               "speech": "Gostar"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/t2RkBvHh48wrUqX/legumes_5.png",
+              "imgSrc": "file:///android_asset/demo/legumes_5.png",
               "name": "Legumes",
               "speech": "Legumes"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/ZkerOimO0eXByeB/bolo_1.png",
+              "imgSrc": "file:///android_asset/demo/bolo_1.png",
               "name": "Bolo",
               "speech": "Bolo"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/nnKdddzzjVGoHwK/salada.png",
+              "imgSrc": "file:///android_asset/demo/salada.png",
               "name": "Salada",
               "speech": "Salada"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/H69p7xzvq8sgQtz/frio_3.png",
+              "imgSrc": "file:///android_asset/demo/frio_3.png",
               "name": "Frio",
               "speech": "Frio"
             },
             {
               "category": "VERB",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/BvOj8WiOz3rUf47/nao.png",
+              "imgSrc": "file:///android_asset/demo/nao.png",
               "name": "Não gostar",
               "speech": "Não gostar"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/43HZ4Zx5BypRrvG/frutas.png",
+              "imgSrc": "file:///android_asset/demo/frutas.png",
               "name": "Frutas",
               "speech": "Frutas"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/gZ212wvuJ9msWmN/tablete%20de%20chocolate.png",
+              "imgSrc": "file:///android_asset/demo/tablete de chocolate.png",
               "name": "Chocolate",
               "speech": "Chocolate"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/z41yZ4hOM899NRi/p%C3%A3o%20branco.png",
+              "imgSrc": "file:///android_asset/demo/pão branco.png",
               "name": "Pão",
               "speech": "Pão"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/0FO21J8duJeOuTZ/outra.png",
+              "imgSrc": "file:///android_asset/demo/outra.png",
               "name": "Outra coisa",
               "speech": "Outra coisa"
             },
             {
               "category": "OTHER",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/dzYce76Jr6hOyno/in%C3%ADcio_1.png",
+              "imgSrc": "file:///android_asset/demo/início_1.png",
               "linkTo":"Principal",
               "name": "Início",
               "speech": "Início"
@@ -233,91 +233,91 @@
           "items": [
             {
               "category": "ADJECTIVE",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/4UJb5B1fM0uCdWe/feliz.png",
+              "imgSrc": "file:///android_asset/demo/feliz.png",
               "name": "Feliz",
               "speech": "Feliz"
             },
             {
               "category": "ADJECTIVE",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/Y7ipUmFCSY1FZSg/irritado_1.png",
+              "imgSrc": "file:///android_asset/demo/irritado_1.png",
               "name": "Irritado",
               "speech": "Irritado"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/zNXUaN8uijrHOqS/banheiro_6.png",
+              "imgSrc": "file:///android_asset/demo/banheiro_6.png",
               "name": "Banheiro",
               "speech": "Banheiro"
             },
             {
               "category": "VERB",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/PMEQfhBtRP9Wayf/tomar%20banho_7.png",
+              "imgSrc": "file:///android_asset/demo/tomar banho_7.png",
               "name": "Tomar banho",
               "speech": "Tomar banho"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/XIZQxiCnvRGQFge/casas.png",
+              "imgSrc": "file:///android_asset/demo/casas.png",
               "name": "Casa",
               "speech": "Casa"
             },
             {
               "category": "ADJECTIVE",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/cMQuEqNFP2JKDCt/triste.png",
+              "imgSrc": "file:///android_asset/demo/triste.png",
               "name": "Triste",
               "speech": "Triste"
             },
             {
               "category": "ADJECTIVE",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/Qmw5COYjHctN7kw/cansado.png",
+              "imgSrc": "file:///android_asset/demo/cansado.png",
               "name": "Cansado",
               "speech": "Cansado"
             },
             {
               "category": "VERB",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/ROLWHnYIVu1uQyZ/escovar%20os%20dentes_2.png",
+              "imgSrc": "file:///android_asset/demo/escovar os dentes_2.png",
               "name": "Escovar dentes",
               "speech": "Escovar dentes"
             },
             {
               "category": "VERB",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/UHSiG4cykAFgn64/fazer%20xixi_2.png",
+              "imgSrc": "file:///android_asset/demo/fazer xixi_2.png",
               "name": "Fazer xixi",
               "speech": "Fazer xixi"
             },
             {
               "category": "VERB",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/jmnSjqckinsLcbk/ver%20a%20televis%C3%A3o_2.png",
+              "imgSrc": "file:///android_asset/demo/ver a televisão_2.png",
               "name": "Assistir TV",
               "speech": "Assistir TV"
             },
             {
               "category": "ADJECTIVE",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/vtgOE1V2Z5JNvsk/dor_3.png",
+              "imgSrc": "file:///android_asset/demo/dor_3.png",
               "name": "Com dor",
               "speech": "Com dor"
             },
             {
               "category": "ADJECTIVE",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/TmUqFEnL1Rz0rua/entediados.png",
+              "imgSrc": "file:///android_asset/demo/entediados.png",
               "name": "Entediado",
               "speech": "Entediado"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/d7mBcRisYX0Tiop/rua.png",
+              "imgSrc": "file:///android_asset/demo/rua.png",
               "name": "Rua",
               "speech": "Rua"
             },
             {
               "category": "VERB",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/gIxcOMRAqKP8fua/passear_3.png",
+              "imgSrc": "file:///android_asset/demo/passear_3.png",
               "name": "Passear",
               "speech": "Passear"
             },
             {
               "category": "OTHER",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/dzYce76Jr6hOyno/in%C3%ADcio_1.png",
+              "imgSrc": "file:///android_asset/demo/início_1.png",
               "linkTo": "Principal",
               "name": "Início",
               "speech": "Início"
@@ -331,91 +331,91 @@
           "items": [
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/QZP99kTgoNTWni2/%C3%A1gua.png",
+              "imgSrc": "file:///android_asset/demo/água.png",
               "name": "Água",
               "speech": "Água"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/cGuB7dwfswZO6A2/quente_1.png",
+              "imgSrc": "file:///android_asset/demo/quente_1.png",
               "name": "Quente",
               "speech": "Quente"
             },
             {
               "category": "VERB",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/UCxmI8wkO0qbisR/gostar_1.png",
+              "imgSrc": "file:///android_asset/demo/gostar_1.png",
               "name": "Gostar",
               "speech": "Gostar"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/LtlxaDELo7ywunL/suco.png",
+              "imgSrc": "file:///android_asset/demo/suco.png",
               "name": "Suco",
               "speech": "Suco"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/vdllUMw2udD7bp6/frio_3.png",
+              "imgSrc": "file:///android_asset/demo/frio_3.png",
               "name": "Frio",
               "speech": "Frio"
             },
             {
               "category": "VERB",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/tJwS7rjDZdJFaex/nao.png",
+              "imgSrc": "file:///android_asset/demo/nao.png",
               "name": "Não gostar",
               "speech": "Não gostar"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/RgJI7TopUaYFl3A/refrigerante%20em%20lata.png",
+              "imgSrc": "file:///android_asset/demo/refrigerante em lata.png",
               "name": "Refrigerante",
               "speech": "Refrigerante"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/Rga4Mz69C4fRiDV/leite.png",
+              "imgSrc": "file:///android_asset/demo/leite.png",
               "name": "Leite",
               "speech": "Leite"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/t5VX4ZmIVAtdPjs/achocolatados.png",
+              "imgSrc": "file:///android_asset/demo/achocolatados.png",
               "name": "Achocolatado",
               "speech": "Achocolatado"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/yicYWbnbKE2y5og/outra.png",
+              "imgSrc": "file:///android_asset/demo/outra.png",
               "name": "Outra coisa",
               "speech": "Outra coisa"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/43HZ4Zx5BypRrvG/frutas.png",
+              "imgSrc": "file:///android_asset/demo/frutas.png",
               "name": "Frutas",
               "speech": "Frutas"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/gZ212wvuJ9msWmN/tablete%20de%20chocolate.png",
+              "imgSrc": "file:///android_asset/demo/tablete de chocolate.png",
               "name": "Chocolate",
               "speech": "Chocolate"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/z41yZ4hOM899NRi/p%C3%A3o%20branco.png",
+              "imgSrc": "file:///android_asset/demo/pão branco.png",
               "name": "Pão",
               "speech": "Pão"
             },
             {
               "category": "NOUN",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/0FO21J8duJeOuTZ/outra.png",
+              "imgSrc": "file:///android_asset/demo/outra.png",
               "name": "Outra coisa",
               "speech": "Outra coisa"
             },
             {
               "category": "OTHER",
-              "imgSrc": "https://s3.amazonaws.com/uploads.hipchat.com/167767/2020938/dzYce76Jr6hOyno/in%C3%ADcio_1.png",
+              "imgSrc": "file:///android_asset/demo/início_1.png",
               "linkTo": "Principal",
               "name": "Início",
               "speech": "Início"

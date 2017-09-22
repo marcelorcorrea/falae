@@ -6,22 +6,22 @@
         android:checkableBehavior="single"
         android:orderInCategory="0" />
     <group
-        android:id="@+id/add_user_group"
+        android:id="@+id/settings_group"
         android:checkableBehavior="single">
         <item
             android:id="@+id/add_user"
             android:icon="@drawable/ic_person_add_black_24dp"
-            android:orderInCategory="1"
+            android:orderInCategory="2"
             android:title="@string/users" />
         <item
             android:id="@+id/voice_item"
             android:icon="@drawable/ic_volume_up_black_24dp"
-            android:orderInCategory="2"
+            android:orderInCategory="3"
             android:title="@string/voice" />
         <item
             android:id="@+id/settings"
             android:icon="@drawable/ic_settings_black_24dp"
-            android:orderInCategory="3"
+            android:orderInCategory="4"
             android:title="@string/settings" />
     </group>
 </menu>

@@ -20,6 +20,7 @@ import com.marcelorcorrea.falae.database.UserDbHelper
 import com.marcelorcorrea.falae.fragment.SettingsFragment
 import com.marcelorcorrea.falae.fragment.SyncUserFragment
 import com.marcelorcorrea.falae.fragment.TabPagerFragment
+import com.marcelorcorrea.falae.loadUser
 import com.marcelorcorrea.falae.model.SpreadSheet
 import com.marcelorcorrea.falae.model.User
 import com.marcelorcorrea.falae.storage.FileHandler
@@ -58,6 +59,7 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         for (user in users) {
             addUserToMenu(user)
         }
+        loadDemoUser()
         getLastConnectedUser()
     }
 
@@ -79,15 +81,22 @@ class NavigationActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         }
     }
 
-    private fun addUserToMenu(user: User) {
-        val userItem = mNavigationView.menu.add(R.id.users_group, user.id, 0, user.name)
+    private fun loadDemoUser() {
+        val demoUser = resources.loadUser(R.raw.sampleboard)
+        addUserToMenu(demoUser, R.id.settings_group, 1, { null })
+    }
+
+    private fun addUserToMenu(user: User, groupId: Int = R.id.users_group, order: Int = 0, findUser: (User) -> User? = this::findUser) {
+        val userItem = mNavigationView.menu.add(groupId, user.id, order, user.name)
         userItem.setIcon(R.drawable.ic_person_black_24dp)
         userItem.setOnMenuItemClickListener { item ->
-            mCurrentUser = dbHelper.findByEmail(user.email)
+            mCurrentUser = findUser(user) ?: user
             onNavigationItemSelected(item)
             true
         }
     }
+
+    private fun findUser(user: User) = dbHelper.findByEmail(user.email)
 
     override fun onBackPressed() {
         if (mDrawer.isDrawerOpen(GravityCompat.START)) {

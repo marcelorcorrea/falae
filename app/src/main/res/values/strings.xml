@@ -18,7 +18,7 @@
 
     <string name="title_activity_login">Baixar Prancha</string>
     <string name="spreadsheets">Pranchas</string>
-    <string name="users">Usuários</string>
+    <string name="users">Adicionar Usuário</string>
     <string name="sync_user">Sincronizar Usuário</string>
     <string name="voice">Voz</string>
     <string name="previous">Voltar</string>
