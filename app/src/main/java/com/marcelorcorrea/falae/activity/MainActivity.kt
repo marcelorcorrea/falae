@@ -82,8 +82,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun loadDemoUser() {
-        val demoUser = resources.loadUser(R.raw.sampleboard)
-        addUserToMenu(demoUser, R.id.settings_group, 1, { null })
+        val demoUser = resources.loadUser(getString(R.string.sampleboard))
+        addUserToMenu(demoUser, R.id.settings_group, 1) { null }
     }
 
     private fun addUserToMenu(user: User, groupId: Int = R.id.users_group, order: Int = 0, findUser: (User) -> User? = this::findUser) {

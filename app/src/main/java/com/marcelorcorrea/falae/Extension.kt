@@ -20,5 +20,10 @@ fun Resources.loadUser(id: Int): User {
     return Gson().fromJson(raw.readText(), User::class.java)
 }
 
+fun Resources.loadUser(name: String): User {
+    val asset = assets.open(name)
+    return Gson().fromJson(asset.readText(), User::class.java)
+}
+
 fun InputStream.readText(charset: Charset = Charsets.UTF_8): String =
         bufferedReader(charset).use { it.readText() }

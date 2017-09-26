@@ -39,4 +39,5 @@
     <string name="questionRemoveUser">Tem certeza que deseja remover este usuário?</string>
     <string name="yes_option">Sim</string>
     <string name="no_option">Não</string>
+    <string name="sampleboard">sampleboard.json</string>
 </resources>

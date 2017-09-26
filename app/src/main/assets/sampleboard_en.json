@@ -1,203 +1,203 @@
 {
-  "name": "Demonstração",
+  "name": "Sample",
   "email": "demo@falae.com",
-  "info": "Esta é uma prancha de demonstração",
+  "info": "This is a sample board",
   "photoSrc": "file:///android_asset/demo/mostrar.png",
   "spreadsheets": [
     {
-      "initialPage": "Principal",
-      "name": "Prancha de amostra",
+      "initialPage": "Main",
+      "name": "Sample Board",
       "pages": [
         {
-          "name": "Principal",
+          "name": "Main",
           "columns": 6,
           "rows": 3,
           "items": [
             {
               "category": "GREETINGS_SOCIAL_EXPRESSIONS",
               "imgSrc": "file:///android_asset/demo/oi.png",
-              "name": "Oi",
-              "speech": "Oi"
+              "name": "Hi",
+              "speech": "Hi"
             },
             {
               "category": "GREETINGS_SOCIAL_EXPRESSIONS",
               "imgSrc": "file:///android_asset/demo/adeus.png",
-              "name": "Adeus",
-              "speech": "Adeus"
+              "name": "Goodbye",
+              "speech": "Goodbye"
             },
             {
               "category": "SUBJECT",
               "imgSrc": "file:///android_asset/demo/eu_2.png",
-              "name": "Eu",
-              "speech": "Eu"
+              "name": "Me",
+              "speech": "Me"
             },
             {
               "category": "VERB",
               "imgSrc": "file:///android_asset/demo/quero.png",
-              "name": "Querer",
-              "speech": "Querer"
+              "name": "Want",
+              "speech": "Want"
             },
             {
               "category": "VERB",
               "imgSrc": "file:///android_asset/demo/comer.png",
-              "linkTo": "PaginaComer",
-              "name": "Comer",
-              "speech": "Comer"
+              "linkTo": "EatPage",
+              "name": "Eat",
+              "speech": "Eat"
             },
             {
               "category": "VERB",
               "imgSrc": "file:///android_asset/demo/estudar.png",
-              "name": "Estudar",
-              "speech": "Estudar"
+              "name": "Study",
+              "speech": "Study"
             },
             {
               "category": "GREETINGS_SOCIAL_EXPRESSIONS",
               "imgSrc": "file:///android_asset/demo/como estás.png",
-              "name": "Como vai",
-              "speech": "Como vai"
+              "name": "How Are you",
+              "speech": "How Are you"
             },
             {
               "category": "GREETINGS_SOCIAL_EXPRESSIONS",
               "imgSrc": "file:///android_asset/demo/estou bem.png",
-              "name": "Estou bem",
-              "speech": "Estou bem"
+              "name": "I'm fine",
+              "speech": "I'm fine"
             },
             {
               "category": "SUBJECT",
               "imgSrc": "file:///android_asset/demo/você_2.png",
               "linkTo": null,
-              "name": "Você",
-              "speech": "Você"
+              "name": "You",
+              "speech": "You"
             },
             {
               "category": "VERB",
               "imgSrc": "file:///android_asset/demo/estar.png",
-              "linkTo": "PaginaEstar",
-              "name": "Estar",
-              "speech": "Estar"
+              "linkTo": "BePage",
+              "name": "Be",
+              "speech": "Be"
             },
             {
               "category": "VERB",
               "imgSrc": "file:///android_asset/demo/beber.png",
-              "linkTo": "PaginaBeber",
-              "name": "Beber",
-              "speech": "Beber"
+              "linkTo": "DrinkPage",
+              "name": "Drink",
+              "speech": "Drink"
             },
             {
               "category": "VERB",
               "imgSrc": "file:///android_asset/demo/dormir_2.png",
-              "name": "Dormir",
-              "speech": "Dormir"
+              "name": "Sleep",
+              "speech": "Sleep"
             },
             {
               "category": "GREETINGS_SOCIAL_EXPRESSIONS",
               "imgSrc": "file:///android_asset/demo/por favor.png",
-              "name": "Por Favor",
-              "speech": "Por Favor"
+              "name": "Please",
+              "speech": "Please"
             },
             {
               "category": "GREETINGS_SOCIAL_EXPRESSIONS",
               "imgSrc": "file:///android_asset/demo/obrigado.png",
-              "name": "Obrigado",
-              "speech": "Obrigado"
+              "name": "Thank you",
+              "speech": "Thank you"
             },
             {
               "category": "SUBJECT",
               "imgSrc": "file:///android_asset/demo/nós.png",
-              "name": "Nós",
-              "speech": "Nós"
+              "name": "We",
+              "speech": "We"
             },
             {
               "category": "VERB",
               "imgSrc": "file:///android_asset/demo/ir.png",
-              "linkTo": "PaginaEstar",
-              "name": "Ir",
-              "speech": "Ir"
+              "linkTo": "BePage",
+              "name": "Go",
+              "speech": "Go"
             },
             {
               "category": "VERB",
               "imgSrc": "file:///android_asset/demo/brincar.png",
-              "name": "Brincar",
-              "speech": "Brincar"
+              "name": "Play",
+              "speech": "Play"
             },
             {
               "category": "VERB",
               "imgSrc": "file:///android_asset/demo/falar_1.png",
-              "name": "Falar",
-              "speech": "Falar"
+              "name": "Speak",
+              "speech": "Speak"
             }
           ]
         },
         {
-          "name": "PaginaComer",
+          "name": "EatPage",
           "columns": 5,
           "rows": 3,
           "items": [
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/comida.png",
-              "name": "Comida",
-              "speech": "Comida"
+              "name": "Food",
+              "speech": "Food"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/biscoito_4.png",
-              "name": "Biscoito",
-              "speech": "Biscoito"
+              "name": "Cookie",
+              "speech": "Cookie"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/sopa_4.png",
-              "name": "Sopa",
-              "speech": "Sopa"
+              "name": "Soup",
+              "speech": "Soup"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/quente_1.png",
-              "name": "Quente",
-              "speech": "Quente"
+              "name": "Hot",
+              "speech": "Hot"
             },
             {
               "category": "VERB",
               "imgSrc": "file:///android_asset/demo/gostar_1.png",
-              "name": "Gostar",
-              "speech": "Gostar"
+              "name": "Like",
+              "speech": "Like"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/legumes_5.png",
-              "name": "Legumes",
-              "speech": "Legumes"
+              "name": "Vegetables",
+              "speech": "Vegetables"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/bolo_1.png",
-              "name": "Bolo",
-              "speech": "Bolo"
+              "name": "Cake",
+              "speech": "Cake"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/salada.png",
-              "name": "Salada",
-              "speech": "Salada"
+              "name": "Salad",
+              "speech": "Salad"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/frio_3.png",
-              "name": "Frio",
-              "speech": "Frio"
+              "name": "Cold",
+              "speech": "Cold"
             },
             {
               "category": "VERB",
               "imgSrc": "file:///android_asset/demo/nao.png",
-              "name": "Não gostar",
-              "speech": "Não gostar"
+              "name": "Don't like",
+              "speech": "Don't like"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/frutas.png",
-              "name": "Frutas",
-              "speech": "Frutas"
+              "name": "Fruits",
+              "speech": "Fruits"
             },
             {
               "category": "NOUN",
@@ -208,192 +208,192 @@
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/pão branco.png",
-              "name": "Pão",
-              "speech": "Pão"
+              "name": "Bread",
+              "speech": "Bread"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/outra.png",
-              "name": "Outra coisa",
-              "speech": "Outra coisa"
+              "name": "Another thing",
+              "speech": "Another thing"
             },
             {
               "category": "OTHER",
               "imgSrc": "file:///android_asset/demo/início_1.png",
-              "linkTo":"Principal",
-              "name": "Início",
-              "speech": "Início"
+              "linkTo":"Main",
+              "name": "Begin",
+              "speech": "Begin"
             }
           ]
         },
         {
-          "name": "PaginaEstar",
+          "name": "BePage",
           "columns": 5,
           "rows": 3,
           "items": [
             {
               "category": "ADJECTIVE",
               "imgSrc": "file:///android_asset/demo/feliz.png",
-              "name": "Feliz",
-              "speech": "Feliz"
+              "name": "Happy",
+              "speech": "Happy"
             },
             {
               "category": "ADJECTIVE",
               "imgSrc": "file:///android_asset/demo/irritado_1.png",
-              "name": "Irritado",
-              "speech": "Irritado"
+              "name": "Angry",
+              "speech": "Angry"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/banheiro_6.png",
-              "name": "Banheiro",
-              "speech": "Banheiro"
+              "name": "Bathroom",
+              "speech": "Bathroom"
             },
             {
               "category": "VERB",
               "imgSrc": "file:///android_asset/demo/tomar banho_7.png",
-              "name": "Tomar banho",
-              "speech": "Tomar banho"
+              "name": "Take a bath",
+              "speech": "Take a bath"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/casas.png",
-              "name": "Casa",
-              "speech": "Casa"
+              "name": "Home",
+              "speech": "Home"
             },
             {
               "category": "ADJECTIVE",
               "imgSrc": "file:///android_asset/demo/triste.png",
-              "name": "Triste",
-              "speech": "Triste"
+              "name": "Sad",
+              "speech": "Sad"
             },
             {
               "category": "ADJECTIVE",
               "imgSrc": "file:///android_asset/demo/cansado.png",
-              "name": "Cansado",
-              "speech": "Cansado"
+              "name": "Tired",
+              "speech": "Tired"
             },
             {
               "category": "VERB",
               "imgSrc": "file:///android_asset/demo/escovar os dentes_2.png",
-              "name": "Escovar dentes",
-              "speech": "Escovar dentes"
+              "name": "Brush teeth",
+              "speech": "Brush teeth"
             },
             {
               "category": "VERB",
               "imgSrc": "file:///android_asset/demo/fazer xixi_2.png",
-              "name": "Fazer xixi",
-              "speech": "Fazer xixi"
+              "name": "Pee",
+              "speech": "Pee"
             },
             {
               "category": "VERB",
               "imgSrc": "file:///android_asset/demo/ver a televisão_2.png",
-              "name": "Assistir TV",
-              "speech": "Assistir TV"
+              "name": "Watch TV",
+              "speech": "Watch TV"
             },
             {
               "category": "ADJECTIVE",
               "imgSrc": "file:///android_asset/demo/dor_3.png",
-              "name": "Com dor",
-              "speech": "Com dor"
+              "name": "In pain",
+              "speech": "In pain"
             },
             {
               "category": "ADJECTIVE",
               "imgSrc": "file:///android_asset/demo/entediados.png",
-              "name": "Entediado",
-              "speech": "Entediado"
+              "name": "Bored",
+              "speech": "Bored"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/rua.png",
-              "name": "Rua",
-              "speech": "Rua"
+              "name": "Street",
+              "speech": "Street"
             },
             {
               "category": "VERB",
               "imgSrc": "file:///android_asset/demo/passear_3.png",
-              "name": "Passear",
-              "speech": "Passear"
+              "name": "Take a walk",
+              "speech": "Take a walk"
             },
             {
               "category": "OTHER",
               "imgSrc": "file:///android_asset/demo/início_1.png",
-              "linkTo": "Principal",
-              "name": "Início",
-              "speech": "Início"
+              "linkTo": "Main",
+              "name": "Begin",
+              "speech": "Begin"
             }
           ]
         },
         {
-          "name": "PaginaBeber",
+          "name": "DrinkPage",
           "columns": 3,
           "rows": 3,
           "items": [
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/água.png",
-              "name": "Água",
-              "speech": "Água"
+              "name": "Water",
+              "speech": "Water"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/quente_1.png",
-              "name": "Quente",
-              "speech": "Quente"
+              "name": "Hot",
+              "speech": "Hot"
             },
             {
               "category": "VERB",
               "imgSrc": "file:///android_asset/demo/gostar_1.png",
-              "name": "Gostar",
-              "speech": "Gostar"
+              "name": "Like",
+              "speech": "Like"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/suco.png",
-              "name": "Suco",
-              "speech": "Suco"
+              "name": "Juice",
+              "speech": "Juice"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/frio_3.png",
-              "name": "Frio",
-              "speech": "Frio"
+              "name": "Cold",
+              "speech": "Cold"
             },
             {
               "category": "VERB",
               "imgSrc": "file:///android_asset/demo/nao.png",
-              "name": "Não gostar",
-              "speech": "Não gostar"
+              "name": "Don't like",
+              "speech": "Don't like"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/refrigerante em lata.png",
-              "name": "Refrigerante",
-              "speech": "Refrigerante"
+              "name": "Soda",
+              "speech": "Soda"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/leite.png",
-              "name": "Leite",
-              "speech": "Leite"
+              "name": "Milk",
+              "speech": "Milk"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/achocolatados.png",
-              "name": "Achocolatado",
-              "speech": "Achocolatado"
+              "name": "Chocolate milk",
+              "speech": "Chocolate Milk"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/outra.png",
-              "name": "Outra coisa",
-              "speech": "Outra coisa"
+              "name": "Another Thing",
+              "speech": "Another Thing"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/frutas.png",
-              "name": "Frutas",
-              "speech": "Frutas"
+              "name": "Fruits",
+              "speech": "Fruits"
             },
             {
               "category": "NOUN",
@@ -404,21 +404,21 @@
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/pão branco.png",
-              "name": "Pão",
-              "speech": "Pão"
+              "name": "Bread",
+              "speech": "Bread"
             },
             {
               "category": "NOUN",
               "imgSrc": "file:///android_asset/demo/outra.png",
-              "name": "Outra coisa",
-              "speech": "Outra coisa"
+              "name": "Another Thing",
+              "speech": "Another Thing"
             },
             {
               "category": "OTHER",
               "imgSrc": "file:///android_asset/demo/início_1.png",
-              "linkTo": "Principal",
-              "name": "Início",
-              "speech": "Início"
+              "linkTo": "Main",
+              "name": "Begin",
+              "speech": "Begin"
             }
           ]
         }

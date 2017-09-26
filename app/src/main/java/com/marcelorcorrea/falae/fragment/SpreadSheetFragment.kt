@@ -46,7 +46,7 @@ class SpreadSheetFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        if (!user?.email!!.contains("@falae.com")){
+        if (user?.email?.contains("@falae.com") == false){
             inflater?.inflate(R.menu.board_menu, menu)
         }
     }
@@ -73,14 +73,6 @@ class SpreadSheetFragment : Fragment() {
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
-    override fun onDetach() {
-        super.onDetach()
     }
 
     interface OnFragmentInteractionListener {
