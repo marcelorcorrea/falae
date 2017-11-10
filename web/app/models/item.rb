@@ -36,13 +36,13 @@ class Item < ApplicationRecord
   def attachment_path
     # self.user is nil here, but not for attachment_url... something related to paperclip?
     if self.default?
-      ':rails_root/public/images/:id.:extension'
+      "#{ENV['FALAE_IMAGES_PATH']}/public/:id.:extension"
     else
-      ":rails_root/app/data/images/user_#{self.item_user.user_id}/item_:id.:extension"
+      "#{ENV['FALAE_IMAGES_PATH']}/private/user_#{self.item_user.user_id}/item_:id.:extension"
     end
   end
 
   def attachment_url
-    self.default? ? '/images/:id.:extension' : "/users/#{self.user.id}/items/:id/image.:extension"
+    self.default? ? '/assets/:id.:extension' : "/users/#{self.user.id}/items/:id/image.:extension"
   end
 end

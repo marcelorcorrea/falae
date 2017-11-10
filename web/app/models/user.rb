@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :item_user, dependent: :destroy
   has_many :items, through: :item_user
   has_attached_file :photo, default_url: 'missing_photo.png',
-    path: ':rails_root/app/data/images/user_:id/photo.:extension',
+    path: "#{ENV['FALAE_IMAGES_PATH']}/private/user_:id/photo.:extension",
     url: '/users/:id/photo'
 
   before_create :create_activation_digest
