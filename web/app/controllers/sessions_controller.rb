@@ -37,14 +37,11 @@ class SessionsController < ApplicationController
 
   private
     def session_params
-      basic_authentication || params.require(:user).permit(:email, :password)
+      params.require(:user).permit(:email, :password)
     end
 
-    def basic_authentication
-      if request.format.json?
-        authenticate_with_http_basic do |email, password|
-          {email: email, password: password}
-        end
-      end
+    def unauthorized_json_access
+      response['WWW-Authenticate'] = 'Body realm="Access for Android app"'
+      render json: {error: 'Access Denied'}, status: :unauthorized
     end
 end
