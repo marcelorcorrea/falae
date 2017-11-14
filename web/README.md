@@ -1,24 +1,42 @@
-# README
+# Falaê
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Falaê web server develop with Ruby on Rails.
 
-Things you may want to cover:
+## Local setup
 
-* Ruby version
+Falaê was developed using ruby 2.4.0. It is recommend to use *rvm* and install the version.
 
-* System dependencies
+#### Install RVM
 
-* Configuration
+```
+curl -sSL https://get.rvm.io | bash -s stable
+```
+Then
+```
+cd .
+```
+For *rvm* to detect dot files in the web folder. It will use the project ruby version
+or warning it is not installed, also it will create the gemset.
 
-* Database creation
+#### Install ruby.
 
-* Database initialization
+```
+rvm install ruby-2.4.0
+```
 
-* How to run the test suite
+##### Database creation
+```
+rais db:setup
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+##### Database initialization
+```
+rails db:seed
+```
 
-* Deployment instructions
 
-* ...
+##### System dependencies
+
+* Image magick
+
+
