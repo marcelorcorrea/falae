@@ -36,6 +36,7 @@ class User < ApplicationRecord
   validates_attachment_content_type :photo, content_type: /\Aimage\/(jpe?g|png|gif)\z/
 
   has_secure_password
+  has_secure_token :auth_token
 
   def admin?
     false
@@ -47,6 +48,17 @@ class User < ApplicationRecord
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
+
+  # json token access
+  def revalidate_token_access
+    regenerate_auth_token
+    touch(:auth_token_created_at)
+  end
+
+  def User.with_unexpired_auth_token(token, period)
+    where(auth_token: token).where('auth_token_created_at >= ?', period).first
+  end
+  #
 
   # Returns random token
   def User.new_token
