@@ -1,11 +1,12 @@
 class Image < ApplicationRecord
   scope :pictogram, -> { where(type: 'Pictogram') }
   scope :private_images, -> { where(type: 'PrivateImage') }
+  belongs_to :user, optional: true
 
   has_attached_file :image, path: :attachment_path, url: :attachment_url
 
   validates_attachment_presence :image
-  validates_attachment_content_type :image, content_type: /\Aimage\/(jpe?g|png|gif)\z/
+  validates_attachment_content_type :image, content_type: %r{\Aimage\/(jpe?g|png|gif)\z}
 
   before_destroy { self.image = nil }
 
@@ -15,6 +16,6 @@ class Image < ApplicationRecord
   end
 
   def attachment_path
-    raise NotImplementedError.new 'This is an abstract base method.'
+    raise NotImplementedError, 'This is an abstract base method.'
   end
 end

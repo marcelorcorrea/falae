@@ -27,9 +27,9 @@
   </div>
 
   <div class="field">
-    <%= form.label :category_id, Category.model_name.human %>
-    <%= select_tag :category_id,
-        options_for_select(select_options_for_categories, category_id(item)) %>
+    <%= form.label :item_category_id, Category.model_name.human %>
+    <%= form.select :category_id,
+        options_for_select(select_options_for_categories, item.category_id) %>
   </div>
 
   <div class="actions">

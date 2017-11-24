@@ -17,4 +17,9 @@ class Pictogram < Image
     name = image_basename
     item = Item.new name: name, speech: name, image: self
   end
+
+  def self.find_like_by(param)
+    query = ["#{param.keys.first} LIKE ?", "#{param.values.first}%"]
+    Pictogram.where(query)
+  end
 end

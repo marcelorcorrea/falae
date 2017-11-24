@@ -14,10 +14,11 @@ class Page < ApplicationRecord
     Page.new name: 'Initial', columns: 6, rows: 3
   end
 
-  def swap_items(id_1, id_2)
+  def swap_items(id1, id2)
     Page.transaction do
-      i1, i2 = self.item_pages.where item_id: [id_1, id_2]
+      i1, i2 = item_pages.where item_id: [id1, id2]
       i1.item_id, i2.item_id = i2.item_id, i1.item_id
+      i1.link_to, i2.link_to = i2.link_to, i1.link_to
       i1.save!
       i2.save!
     end

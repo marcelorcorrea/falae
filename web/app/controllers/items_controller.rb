@@ -31,7 +31,6 @@ class ItemsController < ApplicationController
     @item = @user.items.build item_params
 
     respond_to do |format|
-      @item.category = Category.find_by id: params[:category_id]
       if @item.save
         format.html { redirect_to user_items_url(@user), notice: t('.notice') }
         format.json { render :show, status: :created, location: @item }
@@ -48,7 +47,6 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        @item.category = Category.find_by id: params[:category_id]
         format.html { redirect_to [@item.user, @item], notice: t('.notice') }
         format.json { render :show, status: :ok, location: @item }
       else
@@ -75,21 +73,22 @@ class ItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item
-      @item = @user.items.find_by id: params[:id]
-    end
 
-    def set_vars
-      @user = current_user
-      if params[:spreadsheet_id] and params[:page_id]
-        @spreadsheet = @user.spreadsheets.find_by id: params[:spreadsheet_id]
-        @page = @spreadsheet.pages.find_by id: params[:page_id]
-      end
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_item
+    @item = @user.items.find_by id: params[:id]
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def item_params
-      params.require(:item).permit(:name, :speech, image_attributes: [:image, :id])
+  def set_vars
+    @user = current_user
+    if params[:spreadsheet_id] and params[:page_id]
+      @spreadsheet = @user.spreadsheets.find_by id: params[:spreadsheet_id]
+      @page = @spreadsheet.pages.find_by id: params[:page_id]
     end
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def item_params
+    params.require(:item).permit(:name, :speech, :category_id, image_attributes: [:image, :id])
+  end
 end

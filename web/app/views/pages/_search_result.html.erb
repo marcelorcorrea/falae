@@ -50,8 +50,8 @@
         </div>
         <div class="field">
           <strong><%= Item.human_attribute_name :category %>:</strong>
-          <%= select_tag :category_id,
-              options_for_select(select_options_for_categories, category_id(item))%>
+          <%= form.select :category_id,
+                         options_for_select(select_options_for_categories, Category.default.id) %>
         </div>
         <div class="actions">
           <%= form.submit t('views.add_to_page') %>
