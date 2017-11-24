@@ -3,9 +3,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 document.addEventListener 'turbolinks:load', ->
-  itemImageInput = document.getElementById 'item_image'
+  itemImageInput = document.getElementById 'item_image_attributes_image'
   if itemImageInput
-  # add event listener to load user photo preview on form
+  # add event listener to load item image preview on form
     itemImageInput.addEventListener 'change', (e) ->
       itemImageContainer = document.getElementById('item-image-container')
       files = e.target.files

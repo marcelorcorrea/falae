@@ -4,16 +4,15 @@
   </p>
 <% else %>
   <% items.each do |item| %>
+    <% if !item.new_record? %>
     <div class="item-result">
       <div class="item-result-img <%= css_class_name(item.category) %>">
-        <%= image_tag item.image, alt: t('views.item_image_not_found') %>
+        <%= image_tag item.image.image, alt: t('views.item_image_not_found') %>
       </div>
-
       <p>
         <strong><%= Item.human_attribute_name :name %>:</strong>
         <%= item.name %>
       </p>
-
       <p>
         <strong><%= Item.human_attribute_name :speech %>:</strong>
         <%= item.speech %>
@@ -22,16 +21,43 @@
         <strong><%= Category.model_name.human %>:</strong>
         <%= item.category.description %>
       </p>
-
       <%# TODO: refactoring %>
       <% if item.in_page? @page %>
         <span class="already"><%= t 'views.item_already_in_this_page' %></span>
       <% else @page %>
-        <%= button_to({action: 'add_to_page'}, remote: true, params: {item_id: item.id},
+        <%= button_to({action: 'add_to_page'}, remote: true, params: {item: {id: item.id}},
           class: 'button-box') do %>
           <%= fa_icon 'plus-circle' %><%= t 'views.add_to_page' %>
         <% end %>
       <% end %>
     </div>
+    <% else %>
+      <%= form_with model: [@page, item], url: add_to_page_user_spreadsheet_page_path do |form| %>
+      <div class="item-result">
+        <div class="item-result-img <%= css_class_name(Category.default) %>">
+          <%= image_tag item.image.image, alt: t('views.item_image_not_found') %>
+          <%= form.fields_for :image do |img| %>
+            <% img.hidden_field :id %>
+          <% end %>
+        </div>
+        <p class="field">
+          <strong><%= Item.human_attribute_name :name %>:</strong>
+          <%= form.text_field :name, id: :item_name %>
+        </p>
+        <div class="field">
+          <strong><%= Item.human_attribute_name :speech %>:</strong>
+          <%= form.text_field :speech, id: :item_speech %>
+        </div>
+        <div class="field">
+          <strong><%= Item.human_attribute_name :category %>:</strong>
+          <%= select_tag :category_id,
+              options_for_select(select_options_for_categories, category_id(item))%>
+        </div>
+        <div class="actions">
+          <%= form.submit t('views.add_to_page') %>
+        </div>
+      <% end %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>

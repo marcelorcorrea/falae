@@ -218,8 +218,9 @@
       overflow: auto;
       margin: 1em 8em;
       .item-result-img {
+        border: solid 2px gray;
+        border-radius: 2px;
         float: left;
-        width: 3em;
         width: 10em;
         height: 12em;
         margin-right: 2em;

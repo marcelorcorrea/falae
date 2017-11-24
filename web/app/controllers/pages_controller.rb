@@ -71,11 +71,13 @@ class PagesController < ApplicationController
   def add_item
   end
 
+  # TODO review it!
   # GET
   def search_item
     items = if params[:search] and params[:name].present?
+      pictograms = Pictogram.where(['image_file_name LIKE ?', "#{params[:name]}%"])
       query = ['name LIKE ?', "#{params[:name]}%"]
-      Item.defaults.where(query) + @user.items.where(query)
+      @user.items.where(query) + pictograms.map(&:generate_item)
     else
       []
     end
@@ -84,8 +86,14 @@ class PagesController < ApplicationController
 
   # POST
   def add_to_page
-    item = Item.find_by id: params[:item_id]
-    @page.items << item if item
+    if item_params[:id]
+      item = Item.find_by id: item_params[:id]
+      @page.items << item if item
+    else
+      item = @page.items.create item_params
+      ctgy = Category.find_by(id: params[:category_id]) || Category.default
+      item.category = ctgy
+    end
     @page.reload
   end
 
@@ -136,5 +144,10 @@ class PagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
       params.require(:page).permit(:name, :columns, :rows, :spreadsheet_id)
+    end
+
+    def item_params
+      params.require(:item).permit(:id, :name, :speech, :category_id,
+        image_attributes: [:image, :id])
     end
 end

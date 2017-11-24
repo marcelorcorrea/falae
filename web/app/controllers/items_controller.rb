@@ -7,15 +7,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = if params[:search]
-      if item_params[:name].blank?
-        []
-      else
-       Item.defaults.where('name LIKE ?', "#{item_params[:name]}%")
-      end
-    else
-      @user.items
-    end
+    @items = @user.items
   end
 
   # GET /items/1
@@ -26,6 +18,7 @@ class ItemsController < ApplicationController
   # GET /items/new
   def new
     @item = @user.items.new
+    @item.image = Image.new
   end
 
   # GET /items/1/edit
@@ -36,13 +29,14 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = @user.items.build item_params
-    @item.category = Category.find_by(id: params[:category_id])
 
     respond_to do |format|
+      @item.category = Category.find_by id: params[:category_id]
       if @item.save
         format.html { redirect_to user_items_url(@user), notice: t('.notice') }
         format.json { render :show, status: :created, location: @item }
       else
+        @item.image = Image.new
         format.html { render :new }
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
@@ -54,6 +48,7 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
+        @item.category = Category.find_by id: params[:category_id]
         format.html { redirect_to [@item.user, @item], notice: t('.notice') }
         format.json { render :show, status: :ok, location: @item }
       else
@@ -75,7 +70,8 @@ class ItemsController < ApplicationController
 
   # GET image
   def image
-    send_file @item.image.path, type: @item.image_content_type
+    img = @item.image
+    send_file img.image.path, type: img.image_content_type, disposition: :inline
   end
 
   private
@@ -94,6 +90,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :speech, :image)
+      params.require(:item).permit(:name, :speech, image_attributes: [:image, :id])
     end
 end

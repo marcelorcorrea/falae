@@ -5,12 +5,12 @@ class Item < ApplicationRecord
   has_many :pages, through: :item_pages
   has_one :category_item, dependent: :destroy
   has_one :category, through: :category_item
-  has_attached_file :image, path: :attachment_path, url: :attachment_url
+  belongs_to :image, polymorphic: true
 
   validates :name, :speech, presence: true
   validates_associated :category
-  validates_attachment_presence :image
-  validates_attachment_content_type :image, content_type: /\Aimage\/(jpe?g|png|gif)\z/
+
+  accepts_nested_attributes_for :image
 
   after_save do
     if not self.user and self.pages.present?
@@ -18,31 +18,29 @@ class Item < ApplicationRecord
     end
   end
 
-  before_destroy { self.image = nil }
+  def image_attributes=(attributes)
+    image_id = attributes[:id]
+    if image_id.present?
+      img = Image.find_by id: image_id
+      self.update_attribute :image, img
+    end
+    super
+  end
 
-  def Item.defaults
-    @default_items ||= Item.where default: true
+  def build_image(params)
+    if self.image
+      self.image.update_attributes image: params[:image]
+    else
+      img = PrivateImage.create params
+      self.update_attribute :image, img
+    end
+  end
+
+  def image?
+    self.image.image.present? if self.image
   end
 
   def in_page?(page)
     self.pages.present? and self.pages.include?(page)
-  end
-
-  def image_remote_url=(url)
-    self.image = URI.parse url
-    @image_remote_url = url
-  end
-
-  def attachment_path
-    # self.user is nil here, but not for attachment_url... something related to paperclip?
-    if self.default?
-      "#{ENV['FALAE_IMAGES_PATH']}/public/:id.:extension"
-    else
-      "#{ENV['FALAE_IMAGES_PATH']}/private/user_#{self.item_user.user_id}/item_:id.:extension"
-    end
-  end
-
-  def attachment_url
-    self.default? ? '/assets/:id.:extension' : "/users/#{self.user.id}/items/:id/image.:extension"
   end
 end
