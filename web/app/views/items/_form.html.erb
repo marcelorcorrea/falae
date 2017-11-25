@@ -18,6 +18,7 @@
     </div>
     <div class="wrapper-custom-input-file">
       <%= form.fields_for :image do |image| %>
+        <%= image.hidden_field :user_id, value: current_user.id %>
         <%= image.file_field :image %>
         <%= image.label :image, class: 'custom-input-file' do %>
           <%= fa_icon 'upload' %> <%= t 'views.upload_file' %>

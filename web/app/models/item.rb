@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   has_many :item_pages, dependent: :destroy
   has_many :pages, through: :item_pages
   belongs_to :category, validate: true
-  belongs_to :image, polymorphic: true
+  belongs_to :image, polymorphic: true, dependent: :destroy
 
   validates :name, :speech, presence: true
   validates_associated :category

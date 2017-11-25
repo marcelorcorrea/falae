@@ -9,8 +9,9 @@ class Pictogram < Image
     '/assets/:id.:extension'
   end
 
-  def image_basename
-    File.basename(image_file_name, File.extname(image_file_name)).gsub('_', ' ')
+  def self.find_like_by(param)
+    query = ["#{param.keys.first} LIKE ?", "#{param.values.first}%"]
+    Pictogram.where(query)
   end
 
   def generate_item
@@ -18,8 +19,9 @@ class Pictogram < Image
     item = Item.new name: name, speech: name, image: self
   end
 
-  def self.find_like_by(param)
-    query = ["#{param.keys.first} LIKE ?", "#{param.values.first}%"]
-    Pictogram.where(query)
+  private
+
+  def image_basename
+    File.basename(image_file_name, File.extname(image_file_name)).gsub('_', ' ')
   end
 end
