@@ -299,6 +299,13 @@ pt-BR:
       notice: Papel atualizado com sucesso.
     destroy:
       notice: Papel apagado com sucesso.
+  spreadsheets:
+    create:
+      notice: Prancha criada com sucesso.
+    update:
+      notice: Prancha atualizada com sucesso.
+    destroy:
+      notice: Prancha apagada com sucesso.
   support:
     array:
       last_word_connector: " e "
