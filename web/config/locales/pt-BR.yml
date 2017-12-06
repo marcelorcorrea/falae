@@ -370,12 +370,14 @@ pt-BR:
     new_spreadsheet: Criar Prancha
     no_item_was_found: Nenhum foi encontrado.
     no_user_items: Você ainda não possui nenhum item.
+    page_destroy_alert: Apagar esta página também apagará todas seus pictogramas.
     profile: Perfil
     register: Cadastrar
     reset_password: Alterar senha
     save: Salvar
     search: Procurar
     speech: Pronúncia
+    spreadsheet_destroy_alert: Apagar esta prancha também apagará todas suas páginas e itens.
     submit: Enviar
     upload_file: Abrir arquivo
     user_photo_not_found: Foto do usuário não encontrada.

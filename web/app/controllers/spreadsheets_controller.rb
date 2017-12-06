@@ -62,7 +62,7 @@ class SpreadsheetsController < ApplicationController
   def destroy
     @spreadsheet.destroy
     respond_to do |format|
-      format.html { redirect_to spreadsheets_url, notice: t('.notice') }
+      format.html { redirect_to user_spreadsheets_url, notice: t('.notice') }
       format.json { head :no_content }
     end
   end
