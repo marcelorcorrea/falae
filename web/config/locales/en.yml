@@ -85,6 +85,7 @@ en:
     new_spreadsheet: New Board
     no_item_was_found: No item was found.
     no_user_items: No user items.
+    not_linked: -- sem vínculo --
     profile: Prpfile
     register: Register
     reset_password: Reset password
@@ -92,6 +93,7 @@ en:
     search: Search
     speech: Speech
     submit: Submit
+    unlink: -- unlink --
     upload_file: Upload file
     user_photo_not_found: User photo not found.
     welcome: Welcome

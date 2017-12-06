@@ -370,6 +370,7 @@ pt-BR:
     new_spreadsheet: Criar Prancha
     no_item_was_found: Nenhum foi encontrado.
     no_user_items: Você ainda não possui nenhum item.
+    not_linked: -- sem vínculo --
     profile: Perfil
     register: Cadastrar
     reset_password: Alterar senha
@@ -377,6 +378,7 @@ pt-BR:
     search: Procurar
     speech: Pronúncia
     submit: Enviar
+    unlink: -- desvincular --
     upload_file: Abrir arquivo
     user_photo_not_found: Foto do usuário não encontrada.
     welcome: Bem-vindo
