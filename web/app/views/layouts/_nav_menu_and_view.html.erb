@@ -8,7 +8,7 @@
       <%= link_to Spreadsheet.model_name.human(count: 2), user_spreadsheets_path(current_user) %>
     <% end %>
     <%= content_tag :li, class: "menu-item #{:active if controller_name.in? 'items'}" do %>
-      <%= link_to Item.model_name.human(count: 2), user_items_path(current_user) %>
+      <%= link_to "#{t('views.my')} #{Item.model_name.human(count: 2)}", user_items_path(current_user) %>
     <% end %>
   </ul>
 </div><!--
