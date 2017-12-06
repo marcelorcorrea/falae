@@ -8,7 +8,7 @@
       <%= form_with url: search_item_user_spreadsheet_page_path(@user, @spreadsheet, @page),
           method: :get do |form| %>
         <div class="field">
-          <%= form.label :name %>
+          <%= form.label Item.human_attribute_name :name %>
           <%= form.text_field :name, id: :item_name %>
         </div>
         <div class="actions">

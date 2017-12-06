@@ -9,7 +9,7 @@
                     method: :put do |form| %>
         <%= form.hidden_field :item_id, value: item.id %>
         <div class="field">
-          <%= form.label :page_id %>
+          <%= form.label :page_id, Page.model_name.human %>
           <%= select_tag :page_id,
                 options_for_select(select_pages_options_helper, @page.get_linked_page_id(item.id)),  include_blank: true %>
         </div>
