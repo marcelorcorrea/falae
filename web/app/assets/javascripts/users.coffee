@@ -20,3 +20,17 @@ document.addEventListener 'turbolinks:load', ->
         reader.readAsDataURL image
       else
         userPhotoContainer.innerHTML = ''
+
+  editCheckBox = document.getElementById 'edit_sensitive_data'
+  editCheckBox.addEventListener 'click', (e) ->
+    sensitiveDataElems = document.getElementsByClassName 'sensitive-data'
+    for elem in sensitiveDataElems
+      input = elem.getElementsByTagName('input')[0]
+      if e.target.checked
+        elem.style.color = 'inherit'
+        input.disabled = false
+        input.style.color = '#2E8B57'
+      else
+        elem.style.color = '#AAAAAA'
+        input.disabled = true
+        input.style.color = '#AAAAAA'
