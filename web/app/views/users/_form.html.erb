@@ -13,12 +13,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :email %>
-    <span class="input-icon"><%= fa_icon 'envelope-square' %></span>
-    <%= form.text_field :email, id: :user_email, class: 'offset-for-icon', placeholder: true %>
-  </div>
-
-  <div class="field">
     <%= label_tag User.human_attribute_name :photo %>
     <div id="user-photo-container">
       <%= image_tag user.photo.url %>
@@ -37,18 +31,30 @@
       rows: 15, placeholder: true %>
   </div>
 
-  <div class="field">
+  <div class="edit-sensitive-data">
+    <%= label_tag :edit_sensitive_data, 'Editar dados sensíveis:' %>
+    <%= check_box_tag :edit_sensitive_data %>
+  </div>
+
+  <div class="field sensitive-data">
+    <%= form.label :email %>
+    <span class="input-icon"><%= fa_icon 'envelope-square' %></span>
+    <%= form.text_field :email, id: :user_email, class: 'offset-for-icon',
+        placeholder: true, disabled: true %>
+  </div>
+
+  <div class="field sensitive-data">
     <%= form.label :password %>
     <span class="input-icon"><%= fa_icon 'lock' %></span>
     <%= form.password_field :password, id: :user_password, class: 'offset-for-icon',
-      placeholder: true %>
+      placeholder: true, disabled: true %>
   </div>
 
-  <div class="field">
+  <div class="field  sensitive-data">
     <%= form.label :password_confirmation %>
     <span class="input-icon"><%= fa_icon 'lock' %></span>
     <%= form.password_field :password_confirmation, id: :user_password_confirmation,
-      class: 'offset-for-icon', placeholder: true %>
+      class: 'offset-for-icon', placeholder: true, disabled: true %>
   </div>
 
   <div class="actions">
