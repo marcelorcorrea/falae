@@ -32,7 +32,8 @@
 
     <div class="tab-bar">
       <div class="tab page-items-tab active"><%= Item.model_name.human(count: 2) %></div>
-      <div class="tab page-mobile-tab"><%= t 'views.mobile_view' %></div>
+      <%# <div class="tab page-mobile-tab">%><%#= t 'views.mobile_view' %><%# </div> %>
+      <div class="tab page-mobile-tab">&nbsp;</div>
     </div>
 
     <div class='item-lists'>
