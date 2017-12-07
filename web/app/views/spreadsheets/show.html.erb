@@ -3,8 +3,15 @@
 <div class="spreadsheet">
   <p id="notice"><%= notice %></p>
 
+  <%= link_to user_spreadsheet_path(@user, @spreadsheet), method: :delete,
+      class: 'button-box destroy', data: {confirm: t('views.spreadsheet_destroy_alert')} do %>
+    <%= fa_icon 'trash-o' %><%= t 'views.destroy' %>
+  <% end %>
   <%= link_to edit_user_spreadsheet_path(@user, @spreadsheet), class: 'button-box' do %>
     <%= fa_icon 'edit' %><%= t 'views.edit' %>
+  <% end %>
+  <%= link_to user_spreadsheets_path(@user), class: 'button-box' do %>
+    <%= fa_icon 'arrow-left' %><%= t 'views.back' %>
   <% end %>
 
   <p>

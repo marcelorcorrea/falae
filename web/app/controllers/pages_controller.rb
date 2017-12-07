@@ -61,7 +61,7 @@ class PagesController < ApplicationController
   def destroy
     @page.destroy
     respond_to do |format|
-      format.html { redirect_to pages_url, notice: t('.notice') }
+      format.html { redirect_to user_spreadsheets_url, notice: t('.notice') }
       format.json { head :no_content }
     end
   end
