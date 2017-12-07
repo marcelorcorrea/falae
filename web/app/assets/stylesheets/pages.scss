@@ -216,15 +216,15 @@
       font-style: italic;
     }
     .item-result {
-      overflow: auto;
-      margin: 1em 8em;
+      // overflow: auto;
+      width: 35em;
+      text-align: center;
       .item-result-img {
-        float: left;
-        width: 3em;
+        display: inline-block;
+        border: solid 2px gray;
+        border-radius: 2px;
         width: 10em;
         height: 12em;
-        margin-right: 2em;
-        display: inline-block;
         vertical-align: middle;
         text-align: center;
         img {
@@ -233,9 +233,18 @@
           vertical-align: middle;
         }
       }
+      .fields {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+      }
+      .my-item {
+        width: 21em;
+        margin-bottom: 1em;
+      }
       .button-box {
-        margin: 0;
-        float: left;
+        float: none;
+        margin: 0 auto;
       }
       .already {
         color: $medium-sea-green;

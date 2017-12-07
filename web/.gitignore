@@ -23,6 +23,3 @@
 
 # Ignore IDE files
 /.idea/**/*
-
-/app/data/*
-/public/images/*

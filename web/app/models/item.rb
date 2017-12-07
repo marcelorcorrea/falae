@@ -1,48 +1,44 @@
 class Item < ApplicationRecord
-  has_one :item_user, dependent: :destroy
-  has_one :user, through: :item_user
+  belongs_to :user
   has_many :item_pages, dependent: :destroy
   has_many :pages, through: :item_pages
-  has_one :category_item, dependent: :destroy
-  has_one :category, through: :category_item
-  has_attached_file :image, path: :attachment_path, url: :attachment_url
+  belongs_to :category, validate: true
+  belongs_to :image, polymorphic: true, dependent: :destroy
 
   validates :name, :speech, presence: true
   validates_associated :category
-  validates_attachment_presence :image
-  validates_attachment_content_type :image, content_type: /\Aimage\/(jpe?g|png|gif)\z/
+
+  accepts_nested_attributes_for :image
 
   after_save do
-    if not self.user and self.pages.present?
-      self.update user: self.pages.first.spreadsheet.user
+    if not user and pages.present?
+      update user: pages.first.spreadsheet.user
     end
   end
 
-  before_destroy { self.image = nil }
+  def image_attributes=(attributes)
+    image_id = attributes[:id]
+    if image_id.present?
+      img = Image.find_by id: image_id
+      update_attribute :image, img
+    end
+    super
+  end
 
-  def Item.defaults
-    @default_items ||= Item.where default: true
+  def build_image(params)
+    if image
+      image.update_attributes image: params[:image]
+    else
+      img = PrivateImage.create params
+      update_attribute :image, img
+    end
+  end
+
+  def image?
+    image.image&.present?
   end
 
   def in_page?(page)
-    self.pages.present? and self.pages.include?(page)
-  end
-
-  def image_remote_url=(url)
-    self.image = URI.parse url
-    @image_remote_url = url
-  end
-
-  def attachment_path
-    # self.user is nil here, but not for attachment_url... something related to paperclip?
-    if self.default?
-      "#{ENV['FALAE_IMAGES_PATH']}/public/:id.:extension"
-    else
-      "#{ENV['FALAE_IMAGES_PATH']}/private/user_#{self.item_user.user_id}/item_:id.:extension"
-    end
-  end
-
-  def attachment_url
-    self.default? ? '/assets/:id.:extension' : "/users/#{self.user.id}/items/:id/image.:extension"
+    pages.present? and pages.include?(page)
   end
 end

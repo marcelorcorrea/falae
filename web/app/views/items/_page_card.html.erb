@@ -1,6 +1,6 @@
 <div class="item-result">
   <div class="item-result-img <%= css_class_name(item.category) %>">
-    <img src="<%= item.img_src %>"/>
+    <%= image_tag item.image.image, alt: t('views.item_image_not_found') %>
   </div>
 
   <p>
@@ -23,7 +23,7 @@
   <% else %>
     <%= button_to({action: 'add_to_page', id: item.id}, method: :post, remote: true,
       class: 'button-box') do %>
-      <%= fa_icon 'plus-circle' %><%= t 'views.add-to_page' %>
+      <%= fa_icon 'plus-circle' %><%= t 'views.add_to_page' %>
     <% end %>
   <% end %>
 </div>
