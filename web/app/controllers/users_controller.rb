@@ -70,7 +70,7 @@ class UsersController < ApplicationController
 
   # GET users/1/photo
   def photo
-    send_file @user.photo.path, type: @user.photo_content_type
+    send_file @user.photo.path, type: @user.photo_content_type, disposition: :inline
   end
 
   private

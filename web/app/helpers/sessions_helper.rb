@@ -25,6 +25,10 @@ module SessionsHelper
     user_from_session || user_from_token_authentication
   end
 
+  def user_from_session
+    User.find_by(id: session[:user_id])
+  end
+
   def user_from_token_authentication
     authenticate_with_http_token do |token, _|
       if user = User.with_unexpired_auth_token(token, 1.hour.ago)
@@ -35,10 +39,6 @@ module SessionsHelper
         ) && user
       end
     end
-  end
-
-  def user_from_session
-    User.find_by(id: session[:user_id])
   end
 
   def logged_in?

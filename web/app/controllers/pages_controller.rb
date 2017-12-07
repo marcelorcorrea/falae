@@ -61,7 +61,7 @@ class PagesController < ApplicationController
   def destroy
     @page.destroy
     respond_to do |format|
-      format.html { redirect_to pages_url, notice: t('.notice') }
+      format.html { redirect_to user_spreadsheets_url, notice: t('.notice') }
       format.json { head :no_content }
     end
   end
@@ -71,11 +71,14 @@ class PagesController < ApplicationController
   def add_item
   end
 
+  # TODO review it!
   # GET
   def search_item
-    items = if params[:search] and params[:name].present?
-      query = ['name LIKE ?', "#{params[:name]}%"]
-      Item.defaults.where(query) + @user.items.where(query)
+    items = if params[:search] && params[:name].present?
+      name = params[:name]
+      private_items = @user.find_items_like_by(name: name)
+      pictograms = Pictogram.find_like_by image_file_name: name
+      private_items + pictograms.map(&:generate_item)
     else
       []
     end
@@ -84,8 +87,12 @@ class PagesController < ApplicationController
 
   # POST
   def add_to_page
-    item = Item.find_by id: params[:item_id]
-    @page.items << item if item
+    if item_params[:id]
+      item = Item.find_by id: item_params[:id]
+      @page.items << item if item
+    else
+      @page.items.create item_params
+    end
     @page.reload
   end
 
@@ -122,19 +129,25 @@ class PagesController < ApplicationController
   # END TODO: Notify on error
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_page
-      #@page = Page.find(params[:id])
-      @page = @spreadsheet.pages.find_by id: params[:id]
-    end
 
-    def set_vars
-      @user = current_user
-      @spreadsheet = @user.spreadsheets.find_by id: params[:spreadsheet_id]
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_page
+    #@page = Page.find(params[:id])
+    @page = @spreadsheet.pages.find_by id: params[:id]
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def page_params
-      params.require(:page).permit(:name, :columns, :rows, :spreadsheet_id)
-    end
+  def set_vars
+    @user = current_user
+    @spreadsheet = @user.spreadsheets.find_by id: params[:spreadsheet_id]
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def page_params
+    params.require(:page).permit(:name, :columns, :rows, :spreadsheet_id)
+  end
+
+  def item_params
+    params.require(:item).permit(:id, :name, :speech, :category_id,
+                                 image_attributes: [:image, :id])
+  end
 end

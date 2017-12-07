@@ -6,8 +6,7 @@ class User < ApplicationRecord
   has_one :role_user, dependent: :destroy
   has_one :role, through: :role_user
   has_many :spreadsheets, dependent: :destroy
-  has_many :item_user, dependent: :destroy
-  has_many :items, through: :item_user
+  has_many :items
   has_attached_file :photo, default_url: 'missing_photo.png',
     path: "#{ENV['FALAE_IMAGES_PATH']}/private/user_:id/photo.:extension",
     url: '/users/:id/photo'
@@ -40,6 +39,11 @@ class User < ApplicationRecord
 
   def admin?
     false
+  end
+
+  def find_items_like_by(param)
+    query = ["#{param.keys.first} LIKE ?", "#{param.values.first}%"]
+    items.where(query)
   end
 
   # Returns hash digest of given string

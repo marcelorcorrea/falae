@@ -3,6 +3,11 @@
   <div class="page">
     <p id="notice"><%= notice %></p>
 
+    <%= link_to user_spreadsheet_page_path(@user, @spreadsheet, @page), method: :delete,
+        class: 'button-box destroy', data: {confirm: t('views.page_destroy_alert')} do %>
+      <%= fa_icon 'trash-o' %><%= t 'views.destroy' %>
+    <% end %>
+
     <%= link_to edit_user_spreadsheet_page_path(@user, @spreadsheet, @page), class: 'button-box' do %>
       <%= fa_icon 'edit' %><%= t 'views.edit' %>
     <% end %>
@@ -32,7 +37,8 @@
 
     <div class="tab-bar">
       <div class="tab page-items-tab active"><%= Item.model_name.human(count: 2) %></div>
-      <div class="tab page-mobile-tab"><%= t 'views.mobile_view' %></div>
+      <%# <div class="tab page-mobile-tab">%><%#= t 'views.mobile_view' %><%# </div> %>
+      <div class="tab page-mobile-tab">&nbsp;</div>
     </div>
 
     <div class='item-lists'>

@@ -12,21 +12,24 @@
   <div class="field">
     <%= label_tag Item.human_attribute_name :image %>
     <div id="item-image-container">
-      <% if item.image.present? %>
-      <%= image_tag item.image %>
+      <% if item.image? %>
+      <%= image_tag item.image.image %>
       <% end %>
     </div>
     <div class="wrapper-custom-input-file">
-      <%= form.file_field :image, id: :item_image %>
-      <%= form.label :image, class: 'custom-input-file' do %>
-        <%= fa_icon 'upload' %> <%= t 'views.upload_file' %>
+      <%= form.fields_for :image do |image| %>
+        <%= image.file_field :image %>
+        <%= image.label :image, class: 'custom-input-file' do %>
+          <%= fa_icon 'upload' %> <%= t 'views.upload_file' %>
+        <% end %>
       <% end %>
     </div>
   </div>
 
   <div class="field">
-    <%= form.label :category_id, Category.model_name.human %>
-    <%= select_tag :category_id, options_for_select(select_options_helper) %>
+    <%= form.label :item_category_id, Category.model_name.human %>
+    <%= form.select :category_id,
+          options_for_select(select_options_for_categories, item.category_id) %>
   </div>
 
   <div class="actions">
