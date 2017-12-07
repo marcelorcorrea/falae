@@ -9,9 +9,12 @@
                     method: :put do |form| %>
         <%= form.hidden_field :item_id, value: item.id %>
         <div class="field">
+          <% linked_page_id = @page.get_linked_page_id(item.id) %>
+          <% text_for_include_blank = linked_page_id ? t('views.unlink') : t('views.not_linked') %>
           <%= form.label :page_id, Page.model_name.human %>
           <%= select_tag :page_id,
-                options_for_select(select_pages_options_helper, @page.get_linked_page_id(item.id)),  include_blank: true %>
+                options_for_select(select_pages_options_helper, linked_page_id),
+                include_blank: text_for_include_blank %>
         </div>
         <div class="actions">
           <%= form.button :submit, name: :save do %>
