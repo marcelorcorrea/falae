@@ -22,7 +22,7 @@ test:
 
 production:
   <<: *default
-  adapter: mysql
+  adapter: mysql2
   encondig: utf-8
   reconnect: true
   database: falae
