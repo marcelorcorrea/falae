@@ -7,7 +7,7 @@ import android.os.Parcelable
  * Created by marcelo on 4/11/17.
  */
 
-class Item(val name: String, var imgSrc: String, val speech: String, val category: Category, val linkTo: String?) : Parcelable {
+data class Item(val name: String, var imgSrc: String, val speech: String, val category: Category, val linkTo: String?) : Parcelable {
 
     constructor(parcel: Parcel) : this(
             parcel.readString(),
@@ -15,12 +15,6 @@ class Item(val name: String, var imgSrc: String, val speech: String, val categor
             parcel.readString(),
             Category.values()[parcel.readInt()],
             parcel.readString())
-
-    fun copy(name: String = this.name,
-             imgSrc: String = this.imgSrc,
-             speech: String = this.speech,
-             category: Category = this.category,
-             linkTo: String? = this.linkTo) = Item(name, imgSrc, speech, category, linkTo)
 
     override fun describeContents(): Int = 0
 

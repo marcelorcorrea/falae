@@ -7,7 +7,7 @@ import android.os.Parcelable
  * Created by marcelo on 4/11/17.
  */
 
-class SpreadSheet(val name: String, val initialPage: String, val pages: List<Page>) : Parcelable {
+data class SpreadSheet(val name: String, val initialPage: String, val pages: List<Page>) : Parcelable {
 
     constructor(parcel: Parcel) : this(
             parcel.readString(),

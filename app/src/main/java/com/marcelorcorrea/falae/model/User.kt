@@ -7,10 +7,11 @@ import android.os.Parcelable
  * Created by corream on 17/05/2017.
  */
 
-class User(val id: Int, val name: String, val email: String, val spreadsheets: List<SpreadSheet> = emptyList(), val info: String? = "", val photoSrc: String? = "") : Parcelable {
+data class User(val id: Int, val name: String, val authToken: String = "", val email: String, val spreadsheets: List<SpreadSheet> = emptyList(), val info: String? = "", val photoSrc: String? = "") : Parcelable {
 
     constructor(`in`: Parcel) : this(
             `in`.readInt(),
+            `in`.readString(),
             `in`.readString(),
             `in`.readString(),
             `in`.createTypedArrayList(SpreadSheet.CREATOR),
@@ -18,19 +19,12 @@ class User(val id: Int, val name: String, val email: String, val spreadsheets: L
             `in`.readString()
     )
 
-    fun copy(id: Int = this.id,
-             name: String = this.name,
-             email: String = this.email,
-             spreadsheets: List<SpreadSheet> = this.spreadsheets,
-             info: String? = this.info,
-             photoSrc: String? = this.photoSrc) = User(id, name, email, spreadsheets, info, photoSrc)
-
-
     override fun describeContents(): Int = 0
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
         dest.writeLong(this.id.toLong())
         dest.writeString(this.name)
+        dest.writeString(this.authToken)
         dest.writeString(this.email)
         dest.writeTypedList(this.spreadsheets)
         dest.writeString(this.info)

@@ -17,6 +17,7 @@ import android.widget.Toast
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
 import com.android.volley.VolleyError
+import com.android.volley.toolbox.ImageRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.marcelorcorrea.falae.R
@@ -34,10 +35,6 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
     private lateinit var mEmailView: EditText
     private lateinit var mPasswordView: EditText
     private lateinit var pDialog: ProgressDialog
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -117,9 +114,9 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
         if (cancel) {
             focusView?.requestFocus()
         } else {
-            if (loginMock(email, password) == null) { //remove this if when mock method is removed.
+//            if (loginMock(email, password) == null) { //remove this if when mock method is removed.
                 loginIn(email, password)
-            }
+//            }
         }
     }
 
@@ -143,7 +140,7 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
             val jsObjRequest = GsonRequest(URL, User::class.java, null, jsonRequest, this, this)
             queue.add(jsObjRequest)
             pDialog.show()
-        } catch (e: JSONException) {
+        } catch (e: JSONException) {gq
             e.printStackTrace()
         }
 
@@ -195,7 +192,8 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
 
     companion object {
 
-        private val URL = "http://10.28.0.64:3000/login.json"
+//        private val URL = "http://10.28.0.64:3000/login.json"
+        private val URL = "https://187.86.153.89:3000/login.json"
         private val EMAIL_CREDENTIAL_FIELD = "email"
         private val PASSWORD_CREDENTIAL_FIELD = "password"
         private val USER_CREDENTIAL_FIELD = "user"

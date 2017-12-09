@@ -110,7 +110,7 @@ class UserDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
                 val photoSrc = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_PHOTO))
                 val spreadSheets = gson.fromJson<List<SpreadSheet>>(spreadSheetsJson, listType)
 
-                return User(id.toInt(), name, e, spreadSheets, info, photoSrc)
+                return User(id.toInt(), name = name, email = e, spreadsheets = spreadSheets, info = info, photoSrc = photoSrc)
             }
             if (!cursor.isClosed) {
                 cursor.close()
@@ -132,7 +132,7 @@ class UserDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
             val id = cursor.getLong(cursor.getColumnIndex(UserEntry._ID))
             val name = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_NAME))
             val email = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_EMAIL))
-            val user = User(id.toInt(), name, email)
+            val user = User(id.toInt(), name = name, email = email)
             users.add(user)
         }
         if (!cursor.isClosed) {
