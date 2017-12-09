@@ -140,7 +140,7 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
             val jsObjRequest = GsonRequest(URL, User::class.java, null, jsonRequest, this, this)
             queue.add(jsObjRequest)
             pDialog.show()
-        } catch (e: JSONException) {gq
+        } catch (e: JSONException) {
             e.printStackTrace()
         }
 
