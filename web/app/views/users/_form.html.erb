@@ -31,30 +31,34 @@
       rows: 15, placeholder: true %>
   </div>
 
+  <% new_user_action = current_page?(new_user_path) %>
+
+  <% unless new_user_action %>
   <div class="edit-sensitive-data">
     <%= label_tag :edit_sensitive_data, 'Editar dados sensíveis:' %>
     <%= check_box_tag :edit_sensitive_data %>
   </div>
+  <% end %>
 
-  <div class="field sensitive-data">
+  <div class="field<%= ' sensitive-data' unless new_user_action%>">
     <%= form.label :email %>
     <span class="input-icon"><%= fa_icon 'envelope-square' %></span>
     <%= form.text_field :email, id: :user_email, class: 'offset-for-icon',
-        placeholder: true, disabled: true %>
+        placeholder: true, disabled: !new_user_action %>
   </div>
 
-  <div class="field sensitive-data">
+  <div class="field<%= ' sensitive-data' unless new_user_action%>">
     <%= form.label :password %>
     <span class="input-icon"><%= fa_icon 'lock' %></span>
     <%= form.password_field :password, id: :user_password, class: 'offset-for-icon',
-      placeholder: true, disabled: true %>
+      placeholder: true, disabled: !new_user_action %>
   </div>
 
-  <div class="field  sensitive-data">
+  <div class="field<%= ' sensitive-data' unless new_user_action%>">
     <%= form.label :password_confirmation %>
     <span class="input-icon"><%= fa_icon 'lock' %></span>
     <%= form.password_field :password_confirmation, id: :user_password_confirmation,
-      class: 'offset-for-icon', placeholder: true, disabled: true %>
+      class: 'offset-for-icon', placeholder: true, disabled: !new_user_action %>
   </div>
 
   <div class="actions">
