@@ -4,11 +4,12 @@
       <p id="notice"><%= notice %></p>
     <% end %>
 
+    <p>
+      &nbsp;
       <%= link_to new_user_item_path(@user), class: 'button-box' do %>
         <%= fa_icon 'plus-circle' %><%= t 'views.new_item' %>
       <% end %>
-
-    <p class="item-title"><%= t 'views.my' %> <%= Item.model_name.human(count: 2) %>:</p>
+    </p>
 
     <% if @items.present? %>
     <div class='item-lists'>
