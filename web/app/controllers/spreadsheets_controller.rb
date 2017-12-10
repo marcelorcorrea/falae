@@ -48,7 +48,7 @@ class SpreadsheetsController < ApplicationController
   def update
     respond_to do |format|
       if @spreadsheet.update(spreadsheet_params)
-        format.html { redirect_to [@spreadsheet.user, @spreadsheet], notice: t('.notice') }
+        format.html { redirect_to [@user, @spreadsheet], notice: t('.notice') }
         format.json { render :show, status: :ok, location: @spreadsheet }
       else
         format.html { render :edit }
