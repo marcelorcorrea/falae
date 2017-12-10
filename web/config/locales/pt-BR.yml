@@ -38,6 +38,7 @@ pt-BR:
         name: Nome
         columns: Colunas
         rows: Linhas
+        initial: Inicial
       role:
         name: Nome
       spreadsheet:

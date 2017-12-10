@@ -12,17 +12,20 @@ class User < ApplicationRecord
     url: '/users/:id/photo'
 
   before_create :create_activation_digest
+
   before_validation do
     if self.role.blank?
       self.role = Role.default
     end
   end
+
   before_save do
     self.email = email.downcase
     if self.spreadsheets.empty?
       self.spreadsheets << Spreadsheet.default
     end
   end
+
   before_destroy { self.items.each { |item| item.destroy unless item.default } }
   before_destroy { self.photo = nil }
 

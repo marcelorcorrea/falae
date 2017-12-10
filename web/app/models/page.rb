@@ -11,7 +11,7 @@ class Page < ApplicationRecord
   validates :columns, numericality: {less_than_or_equal_to: 10}
 
   def Page.default_blank
-    Page.new name: 'Initial', columns: 6, rows: 3
+    Page.new name: Page.human_attribute_name(:initial), columns: 6, rows: 3
   end
 
   def swap_items(id1, id2)

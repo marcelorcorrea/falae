@@ -10,7 +10,7 @@ class Spreadsheet < ApplicationRecord
     end
   end
 
-  #validates_associated :user
+  # validates_associated :user
   validates :name, presence: true, uniqueness: { scope: :user }
   #TODO: validate existence of referenced initial_page when assign new value
 
