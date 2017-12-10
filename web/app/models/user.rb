@@ -26,7 +26,6 @@ class User < ApplicationRecord
     end
   end
 
-  before_destroy { self.items.each { |item| item.destroy unless item.default } }
   before_destroy { self.photo = nil }
 
   validates_associated :role
