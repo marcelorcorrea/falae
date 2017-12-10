@@ -4,7 +4,7 @@
 
 <% if items.any? %>
 
-  <% items.each_slice(cols*rows).each do |page| %>
+  <% items.each_slice(cols*rows).with_index do |page, page_index| %>
   <table class="sliced-page columns-<%= cols < 5 ? cols : 'x' %>" cellspacing="0" cellpadding="0">
     <% page.each_slice(cols).each do |row| %>
     <tr class="row">
@@ -28,6 +28,7 @@
       </td>
       <% end %>
       <% if row.size != cols %>
+      <% puts "l31 row.size #{row.size}, cols: #{cols}" %>
       <td class="cell">
         <div class="card-wrapper">
           <div class="card">
@@ -44,7 +45,7 @@
       <% end %>
     </tr>
     <% end %>
-    <% if items.size % cols == 0 and items.size % (cols*rows) != 0 %>
+    <% if items.size % cols == 0 and items.size % (cols*rows) != 0 and items.size / (cols*rows) == page_index %>
       <tr class="row">
         <td class="cell">
           <div class="card-wrapper">
