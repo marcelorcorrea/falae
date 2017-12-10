@@ -29,8 +29,8 @@
     text-align: center;
     margin: 8px;
     img {
-      width: 130px;
-      height: 150px;
+      max-width: 150px;
+      max-height: 150px;
       border: 2px solid #AAA;
       border-radius: 4px;
     }

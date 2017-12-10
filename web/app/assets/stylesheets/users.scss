@@ -10,7 +10,7 @@
     margin-right: 20px;
     width: 150px;
     height: 180px;
-    max-width: 170px;
+    max-width: 150px;
     max-height: 180px;
     border: 2px solid $dark-sea-green;
     border-radius: 4px;
@@ -22,6 +22,8 @@
   #user-photo-container {
     text-align: center;
     img {
+      max-width: 150px;
+      max-height: 180px;
       border: 2px solid #AAA;
       border-radius: 4px;
     }
