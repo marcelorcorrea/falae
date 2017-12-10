@@ -351,6 +351,7 @@ pt-BR:
     add_to_page: Adicionar a página
     back: Voltar
     cancel: Cancelar
+    confirm_message: Você tem certeza?
     contact: Contato
     destroy: Apagar
     edit: Editar
@@ -373,6 +374,7 @@ pt-BR:
     no_user_items: Você ainda não possui nenhum item.
     not_linked: -- sem vínculo --
     page_destroy_alert: Apagar esta página também apagará todas seus pictogramas.
+    page_item_remove_alert: Remover item da página?
     profile: Perfil
     register: Cadastrar
     reset_password: Alterar senha
