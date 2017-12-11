@@ -63,7 +63,11 @@ namespace :pictograms do
   def insert_into_pictogram_table(folder)
     Dir.entries(folder).reject {|f| File.directory? f}.each do |file|
       img = File.new File.join(folder, file)
-      Pictogram.create! image: img
+      begin
+        Pictogram.create! image: img
+      rescue => e
+        puts "Error in #{file}"
+      end
     end
   end
 
