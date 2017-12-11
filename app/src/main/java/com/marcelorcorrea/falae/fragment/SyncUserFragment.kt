@@ -17,13 +17,10 @@ import android.widget.Toast
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
 import com.android.volley.VolleyError
-import com.android.volley.toolbox.ImageRequest
-import com.android.volley.toolbox.Volley
-import com.google.gson.Gson
 import com.marcelorcorrea.falae.R
+import com.marcelorcorrea.falae.VolleyRequest
 import com.marcelorcorrea.falae.loadUser
 import com.marcelorcorrea.falae.model.User
-import com.marcelorcorrea.falae.readText
 import com.marcelorcorrea.falae.task.GsonRequest
 import org.json.JSONException
 import org.json.JSONObject
@@ -115,7 +112,7 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
             focusView?.requestFocus()
         } else {
 //            if (loginMock(email, password) == null) { //remove this if when mock method is removed.
-                loginIn(email, password)
+            loginIn(email, password)
 //            }
         }
     }
@@ -128,7 +125,6 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
     private fun isPasswordValid(password: String): Boolean = password.length > 4
 
     private fun loginIn(email: String, password: String) {
-        val queue = Volley.newRequestQueue(context)
         try {
             val credentials = JSONObject()
             credentials.put(EMAIL_CREDENTIAL_FIELD, email)
@@ -138,7 +134,7 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
             jsonRequest.put(USER_CREDENTIAL_FIELD, credentials)
 
             val jsObjRequest = GsonRequest(URL, User::class.java, null, jsonRequest, this, this)
-            queue.add(jsObjRequest)
+            VolleyRequest.getInstance(context).addToRequestQueue(jsObjRequest)
             pDialog.show()
         } catch (e: JSONException) {
             e.printStackTrace()
@@ -192,7 +188,7 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
 
     companion object {
 
-//        private val URL = "http://10.28.0.64:3000/login.json"
+        //        private val URL = "http://10.28.0.64:3000/login.json"
         private val URL = "https://187.86.153.89:3000/login.json"
         private val EMAIL_CREDENTIAL_FIELD = "email"
         private val PASSWORD_CREDENTIAL_FIELD = "password"

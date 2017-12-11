@@ -17,6 +17,19 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        dev {
+            signingConfig signingConfigs.debug
+            buildConfigField 'String', "BASE_URL", '"https://10.0.2.2:3000"'
+        }
+
+        prod {
+            signingConfig signingConfigs.debug
+            shrinkResources false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', "BASE_URL", '"https://187.86.153.89:3000"'
+        }
     }
 }
 
