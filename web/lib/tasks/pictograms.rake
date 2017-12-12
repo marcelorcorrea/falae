@@ -22,11 +22,11 @@ namespace :pictograms do
   def populate_table(folder)
     entries = Dir.entries(folder).reject { |entry| File.directory? entry }
     validated_filetypes = check_file_type(folder, entries)
-    normalized_filenames = validated_filetypes.map do |entry|
-      normalize_filename(entries, folder, entry)
-    end
-    rename_files(folder, entries, normalized_filenames)
+    normalized_filenames = normalize_filenames(validated_filetypes)
+    unique_filenames = generate_unique_filenames(normalized_filenames)
+    rename_files(folder, entries, unique_filenames)
     insert_into_pictogram_table(folder)
+
   end
 
   def check_file_type(folder, entries)
@@ -36,21 +36,41 @@ namespace :pictograms do
       ef_mime_type = MimeMagic.by_magic entry_file
       ef_mime_subtype = ef_mime_type&.subtype
       if ef_mime_subtype && ef_extension != ef_mime_subtype
-        if !ef_extension
-          possible_name = "#{entry}.#{ef_mime_subtype}"
-          entry = generate_suffixed_filename_if_neessary(entries, possible_name)
+        entry = if !ef_extension
+          "#{entry}.#{ef_mime_subtype}"
         elsif ef_extension != 'jpg' || ef_mime_subtype != 'jpeg'
-          entry = entry.sub /#{ef_extension}$/, ef_mime_subtype
+          entry.sub /#{ef_extension}$/, ef_mime_subtype
         end
       end
       entry
     end
   end
 
-  def normalize_filename(entries, folder, entry)
-    normalized_filename = entry.strip.sub(/^[^\p{L}]*/, '').gsub(' ', '_')
-    return normalized_filename if normalized_filename == entry
-    generate_suffixed_filename_if_neessary(entries, normalized_filename)
+  def normalize_filenames(entries)
+    entries.map do |entry|
+      entry.strip.sub(/^[^\p{L}]*/, '').gsub(' ', '_')
+    end
+  end
+
+  def generate_unique_filenames(entries)
+    unique_filenames = []
+    entries.each do |entry|
+      unique_filenames << if unique_filenames.include? entry
+        suffixed_entry = ''
+        basename, extension = entry.split(/(\.[^.]*)$/)
+        index = Integer(entry[/_(\d)*$/, 1] || 1)
+        loop do
+          suffix = "_#{index}"
+          suffixed_entry = "#{basename}#{suffix}#{extension}"
+          break unless unique_filenames.include? suffixed_entry
+          index += 1
+        end
+        suffixed_entry
+      else
+        entry
+      end
+    end
+    unique_filenames
   end
 
   def rename_files(folder, entries, filenames)
@@ -63,23 +83,7 @@ namespace :pictograms do
   def insert_into_pictogram_table(folder)
     Dir.entries(folder).reject {|f| File.directory? f}.each do |file|
       img = File.new File.join(folder, file)
-      begin
-        Pictogram.create! image: img
-      rescue => e
-        puts "Error in #{file}"
-      end
-    end
-  end
-
-  def generate_suffixed_filename_if_neessary(entries, filename)
-    return filename unless entries.include? filename
-    basename, extension = filename.split(/(\.[^.]*)$/)
-    index = Integer(filename[/_(\d)*$/, 1] || 1)
-    loop do
-      suffix = "_#{index}"
-      suffixed_filename = "#{basename}#{suffix}#{extension}"
-      return suffixed_filename unless entries.include? suffixed_filename
-      index += 1
+      Pictogram.create! image: img rescue puts "Error in #{file}"
     end
   end
 
