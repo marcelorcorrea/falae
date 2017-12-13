@@ -27,6 +27,10 @@ module PagesHelper
     end
   end
 
+  def select_pages_names_options
+    @spreadsheet.pages.map { |p| [p.name] }
+  end
+
   def select_pages_options_helper
     pages = @spreadsheet.pages - [@page]
     pages.map { |p| [p.name, p.id] }

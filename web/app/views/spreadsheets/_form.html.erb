@@ -7,8 +7,8 @@
   <% unless spreadsheet.new_record? %>
   <div class="field">
     <%= form.label :initial_page %>
-    <%= select_tag(:initial_page, options_for_select(spreadsheet.pages.map(&:name),
-                    spreadsheet.initial_page)) %>
+    <%= form.select :initial_page,
+          options_for_select(select_pages_names_options, spreadsheet.initial_page) %>
   </div>
   <% end %>
 
