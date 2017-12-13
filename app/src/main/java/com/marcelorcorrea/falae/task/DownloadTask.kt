@@ -9,7 +9,9 @@ import android.os.AsyncTask
 import android.os.Build
 import android.util.Log
 import android.widget.Toast
+import com.marcelorcorrea.falae.BuildConfig
 import com.marcelorcorrea.falae.R
+import com.marcelorcorrea.falae.getSSLContext
 import com.marcelorcorrea.falae.model.User
 import com.marcelorcorrea.falae.storage.FileHandler
 import com.marcelorcorrea.falae.toFile
@@ -19,21 +21,22 @@ import java.net.URL
 import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
+import javax.net.ssl.HttpsURLConnection
 
 
 /**
  * Created by corream on 15/05/2017.
  */
 
-class DownloadTask(private val context: Context, private val onSyncComplete: (user: User) -> Unit) : AsyncTask<User, Void, User>() {
+class DownloadTask(val context: Context, private val onSyncComplete: (user: User) -> Unit) : AsyncTask<User, Void, User>() {
+    private val NUMBER_OF_CORES: Int = Runtime.getRuntime().availableProcessors()
     private val executor: ThreadPoolExecutor
-    private val numberOfCores: Int = Runtime.getRuntime().availableProcessors()
     private var pDialog: ProgressDialog? = null
 
     init {
         executor = ThreadPoolExecutor(
-                numberOfCores * 2,
-                numberOfCores * 2,
+                NUMBER_OF_CORES * 2,
+                NUMBER_OF_CORES * 2,
                 60L,
                 TimeUnit.SECONDS,
                 LinkedBlockingQueue()
@@ -53,7 +56,6 @@ class DownloadTask(private val context: Context, private val onSyncComplete: (us
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
     }
 
     override fun doInBackground(vararg params: User): User? {
@@ -67,8 +69,9 @@ class DownloadTask(private val context: Context, private val onSyncComplete: (us
                 .flatMap { it.items }
                 .forEach {
                     executor.execute {
+                        val imgSrc = "${BuildConfig.BASE_URL}${it.imgSrc}"
                         Log.d("DEBUG", "Downloading item: " + it.name)
-                        val uri = download(folder, it.name, it.imgSrc)
+                        val uri = download(folder, user.authToken, it.name, imgSrc)
                         it.imgSrc = uri
                     }
                 }
@@ -78,23 +81,26 @@ class DownloadTask(private val context: Context, private val onSyncComplete: (us
         } catch (e: InterruptedException) {
             e.printStackTrace()
         }
-
         return user
     }
 
-    private fun download(folder: File, name: String, imgSrc: String): String {
+    private fun download(folder: File, token: String, name: String, imgSrc: String): String {
         val file = FileHandler.createImg(folder, name, imgSrc)
         val url = URL(imgSrc)
         try {
-            val connection = url.openConnection()
-            connection.connectTimeout = TIME_OUT
-            connection.readTimeout = TIME_OUT
-            connection.connect()
-            url.openStream().toFile(file.absolutePath)
+            with(url.openConnection()) {
+                if (this is HttpsURLConnection) {
+                    sslSocketFactory = getSSLContext(context).socketFactory
+                }
+                connectTimeout = TIME_OUT
+                readTimeout = TIME_OUT
+                setRequestProperty("Authorization", "Token $token")
+                connect()
+                inputStream.toFile(file.absolutePath)
+            }
         } catch (ex: IOException) {
             ex.printStackTrace()
         }
-
         return Uri.fromFile(file).toString()
     }
 
@@ -111,23 +117,18 @@ class DownloadTask(private val context: Context, private val onSyncComplete: (us
 
     private fun hasNetworkConnection(): Boolean {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val allNetworks = cm.allNetworks
-            allNetworks
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            cm.allNetworks
                     .map { cm.getNetworkInfo(it) }
-                    .filter { isConnected(it) }
-                    .forEach { return true }
+                    .firstOrNull { isConnected(it) } != null
         } else {
-            val netInfo = cm.allNetworkInfo
-            netInfo
-                    .filter { isConnected(it) }
-                    .forEach { return true }
+            cm.allNetworkInfo.firstOrNull { isConnected(it) } != null
         }
-        return false
     }
 
     private fun isConnected(networkInfo: NetworkInfo): Boolean =
-            (networkInfo.type == ConnectivityManager.TYPE_WIFI || networkInfo.type == ConnectivityManager.TYPE_MOBILE) && networkInfo.isConnected
+            (networkInfo.type == ConnectivityManager.TYPE_WIFI ||
+                    networkInfo.type == ConnectivityManager.TYPE_MOBILE) && networkInfo.isConnected
 
     companion object {
 

@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         mDrawer.openDrawer(GravityCompat.START)
         mNavigationView = findViewById(R.id.nav_view) as NavigationView
         mNavigationView.setNavigationItemSelectedListener(this)
-
         dbHelper = UserDbHelper(this)
         val users = dbHelper.read()
         for (user in users) {

@@ -11,8 +11,12 @@ import java.io.UnsupportedEncodingException
  * Created by corream on 06/06/2017.
  */
 
-class GsonRequest<T>(url: String, private val clazz: Class<T>, private val headers: Map<String, String>?, private val jsonRequest: JSONObject,
-                     private val listener: Response.Listener<T>, errorListener: Response.ErrorListener) : Request<T>(Request.Method.POST, url, errorListener) {
+class GsonRequest<T>(url: String,
+                     private val clazz: Class<T>,
+                     private val headers: Map<String, String>?,
+                     private val jsonRequest: JSONObject,
+                     private val listener: Response.Listener<T>,
+                     errorListener: Response.ErrorListener) : Request<T>(Request.Method.POST, url, errorListener) {
 
     private val gson = Gson()
 
@@ -36,16 +40,16 @@ class GsonRequest<T>(url: String, private val clazz: Class<T>, private val heade
     }
 
     override fun parseNetworkResponse(response: NetworkResponse): Response<T> {
-        try {
+        return try {
             val charSet = HttpHeaderParser.parseCharset(response.headers)
             val json = response.data.toString(charset(charSet))
-            return Response.success(
+            Response.success(
                     gson.fromJson(json, clazz),
                     HttpHeaderParser.parseCacheHeaders(response))
         } catch (e: UnsupportedEncodingException) {
-            return Response.error(ParseError(e))
+            Response.error(ParseError(e))
         } catch (e: JsonSyntaxException) {
-            return Response.error(ParseError(e))
+            Response.error(ParseError(e))
         }
 
     }

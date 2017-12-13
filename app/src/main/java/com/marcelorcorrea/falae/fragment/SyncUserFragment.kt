@@ -17,12 +17,10 @@ import android.widget.Toast
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
 import com.android.volley.VolleyError
-import com.android.volley.toolbox.Volley
-import com.google.gson.Gson
+import com.marcelorcorrea.falae.BuildConfig
 import com.marcelorcorrea.falae.R
-import com.marcelorcorrea.falae.loadUser
+import com.marcelorcorrea.falae.VolleyRequest
 import com.marcelorcorrea.falae.model.User
-import com.marcelorcorrea.falae.readText
 import com.marcelorcorrea.falae.task.GsonRequest
 import org.json.JSONException
 import org.json.JSONObject
@@ -34,10 +32,6 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
     private lateinit var mEmailView: EditText
     private lateinit var mPasswordView: EditText
     private lateinit var pDialog: ProgressDialog
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -117,9 +111,7 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
         if (cancel) {
             focusView?.requestFocus()
         } else {
-            if (loginMock(email, password) == null) { //remove this if when mock method is removed.
-                loginIn(email, password)
-            }
+            loginIn(email, password)
         }
     }
 
@@ -131,7 +123,6 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
     private fun isPasswordValid(password: String): Boolean = password.length > 4
 
     private fun loginIn(email: String, password: String) {
-        val queue = Volley.newRequestQueue(context)
         try {
             val credentials = JSONObject()
             credentials.put(EMAIL_CREDENTIAL_FIELD, email)
@@ -140,32 +131,13 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
             val jsonRequest = JSONObject()
             jsonRequest.put(USER_CREDENTIAL_FIELD, credentials)
 
-            val jsObjRequest = GsonRequest(URL, User::class.java, null, jsonRequest, this, this)
-            queue.add(jsObjRequest)
+            val url = BuildConfig.BASE_URL + LOGIN_ENDPOINT
+            val jsObjRequest = GsonRequest(url, User::class.java, null, jsonRequest, this, this)
+            VolleyRequest.getInstance(context).addToRequestQueue(jsObjRequest)
             pDialog.show()
         } catch (e: JSONException) {
             e.printStackTrace()
         }
-
-    }
-
-    private fun loginMock(email: String, password: String): User? {
-        val user: User? = DUMMY_CREDENTIALS.map {
-            it.split(":")
-        }.find { it[0] == email }?.let {
-            val user = if (it[0] == "mlongaray@hp.com") {
-                resources.loadUser(R.raw.mockspreadsheet2)
-            } else {
-                resources.loadUser(R.raw.mockspreadsheet)
-            }
-            mListener.onFragmentInteraction(user)
-            user
-        }
-        if (pDialog.isShowing) {
-            pDialog.dismiss()
-        }
-
-        return user
     }
 
     override fun onResponse(response: User) {
@@ -195,7 +167,7 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
 
     companion object {
 
-        private val URL = "http://10.28.0.64:3000/login.json"
+        private val LOGIN_ENDPOINT = "/login.json"
         private val EMAIL_CREDENTIAL_FIELD = "email"
         private val PASSWORD_CREDENTIAL_FIELD = "password"
         private val USER_CREDENTIAL_FIELD = "user"

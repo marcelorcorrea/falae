@@ -7,7 +7,7 @@ import android.os.Parcelable
  * Created by marcelo on 4/11/17.
  */
 
-class Page(val name: String, val items: MutableList<Item>, val columns: Int, val rows: Int) : Parcelable {
+data class Page(val name: String, val items: MutableList<Item>, val columns: Int, val rows: Int) : Parcelable {
 
     override fun describeContents(): Int = 0
 

@@ -14,6 +14,7 @@ import com.marcelorcorrea.falae.model.User
 
 class SpreadSheetFragment : Fragment() {
 
+    private val EMAIL_SAMPLE = "@falae.com"
     private lateinit var mListener: OnFragmentInteractionListener
     private lateinit var spreadSheetAdapter: SpreadSheetAdapter
     private var user: User? = null
@@ -46,7 +47,8 @@ class SpreadSheetFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        if (user?.email?.contains("@falae.com") == false){
+        val u = user
+        if (u != null && u.email.contains(EMAIL_SAMPLE).not()){
             inflater?.inflate(R.menu.board_menu, menu)
         }
     }

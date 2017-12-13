@@ -15,7 +15,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="synchronize">Synchronize</string>
-
+    <string name="sync_user">Synchronize User</string>
     <string name="title_activity_login">Download Spreadsheet</string>
     <string name="spreadsheets">Spreadsheets</string>
     <string name="users">Add User</string>
