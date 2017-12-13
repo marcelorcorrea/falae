@@ -32,33 +32,24 @@ fun InputStream.readText(charset: Charset = Charsets.UTF_8): String =
         bufferedReader(charset).use { it.readText() }
 
 fun getSSLContext(context: Context): SSLContext {
-    // Load CAs from an InputStream
-    // (could be from a resource or ByteArrayInputStream or ...)
     val cf = CertificateFactory.getInstance("X.509")
     val ca: Certificate = context.resources.openRawResource(R.raw.certificate).use { caInput ->
         cf.generateCertificate(caInput)
     }
-
-    // Create a KeyStore containing our trusted CAs
     val keyStore = KeyStore.getDefaultType().let { keyStoreType ->
         KeyStore.getInstance(keyStoreType).apply {
             load(null, null);
             setCertificateEntry("ca", ca)
         }
     }
-
-    // Create a TrustManager that trusts the CAs in our KeyStore
     val tmf = TrustManagerFactory.getDefaultAlgorithm().let {
         TrustManagerFactory.getInstance(it).apply {
             init(keyStore)
         }
     }
-
     val hostnameVerifier = HostnameVerifier { hostname, _ ->
         hostname.compareTo("187.86.153.89") == 0
     }
     HttpsURLConnection.setDefaultHostnameVerifier(hostnameVerifier)
-
-    // Create an SSLContext that uses our TrustManager
     return SSLContext.getInstance("TLS").apply { init(null, tmf.trustManagers, null) }
 }

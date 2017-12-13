@@ -13,7 +13,8 @@ import com.android.volley.toolbox.Volley
  * Created by corream on 11/12/2017.
  */
 class VolleyRequest(context: Context) {
-    private val mRequestQueue: RequestQueue = Volley.newRequestQueue(context.applicationContext, HurlStack(null, getSSLContext(context.applicationContext).socketFactory))
+    private val mRequestQueue: RequestQueue = Volley.newRequestQueue(context.applicationContext,
+            HurlStack(null, getSSLContext(context.applicationContext).socketFactory))
     private val mImageLoader: ImageLoader
 
     init {
