@@ -46,7 +46,8 @@ class SpreadSheetFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        if (user?.email?.contains("@falae.com") == false){
+        val u = user
+        if (u != null && u.email.contains("@falae.com").not()){
             inflater?.inflate(R.menu.board_menu, menu)
         }
     }
