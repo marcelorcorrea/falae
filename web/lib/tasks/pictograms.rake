@@ -21,7 +21,7 @@ namespace :pictograms do
 
   def populate_table(folder)
     entries = Dir.entries(folder).reject { |entry| File.directory? entry }
-    validated_filetypes = check_file_type(folder, entries)
+    validated_filetypes = handle_file_types(folder, entries)
     normalized_filenames = normalize_filenames(validated_filetypes)
     unique_filenames = generate_unique_filenames(normalized_filenames)
     rename_files(folder, entries, unique_filenames)
@@ -29,7 +29,7 @@ namespace :pictograms do
 
   end
 
-  def check_file_type(folder, entries)
+  def handle_file_types(folder, entries)
     entries.map do |entry|
       ef_filename, ef_extension = entry.split(/\.([^.]*)$/)
       entry_file = File.open File.join(folder, entry)
