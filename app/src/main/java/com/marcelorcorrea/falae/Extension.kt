@@ -23,11 +23,6 @@ fun InputStream.toFile(path: String): File {
     return file
 }
 
-fun Resources.loadUser(id: Int): User {
-    val raw = openRawResource(id)
-    return Gson().fromJson(raw.readText(), User::class.java)
-}
-
 fun Resources.loadUser(name: String): User {
     val asset = assets.open(name)
     return Gson().fromJson(asset.readText(), User::class.java)
@@ -47,7 +42,8 @@ fun getSSLContext(context: Context): SSLContext {
     // Create a KeyStore containing our trusted CAs
     val keyStore = KeyStore.getDefaultType().let { keyStoreType ->
         KeyStore.getInstance(keyStoreType).apply {
-            load(null, null); setCertificateEntry("ca", ca)
+            load(null, null);
+            setCertificateEntry("ca", ca)
         }
     }
 
@@ -58,10 +54,8 @@ fun getSSLContext(context: Context): SSLContext {
         }
     }
 
-    val hostnameVerifier = HostnameVerifier { hostname, session ->
-        println("hostname.compareTo(\"187.86.153.89\") == 0 ${hostname.compareTo("187.86.153.89") == 0}")
+    val hostnameVerifier = HostnameVerifier { hostname, _ ->
         hostname.compareTo("187.86.153.89") == 0
-        true
     }
     HttpsURLConnection.setDefaultHostnameVerifier(hostnameVerifier)
 

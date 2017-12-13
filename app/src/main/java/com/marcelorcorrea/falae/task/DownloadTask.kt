@@ -56,7 +56,6 @@ class DownloadTask(val context: Context, private val onSyncComplete: (user: User
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
     }
 
     override fun doInBackground(vararg params: User): User? {
@@ -89,7 +88,6 @@ class DownloadTask(val context: Context, private val onSyncComplete: (user: User
         val file = FileHandler.createImg(folder, name, imgSrc)
         val url = URL(imgSrc)
         try {
-            println(imgSrc)
             with(url.openConnection()) {
                 if (this is HttpsURLConnection) {
                     sslSocketFactory = getSSLContext(context).socketFactory
@@ -98,12 +96,11 @@ class DownloadTask(val context: Context, private val onSyncComplete: (user: User
                 readTimeout = TIME_OUT
                 setRequestProperty("Authorization", "Token $token")
                 connect()
-                getInputStream().toFile(file.absolutePath)
+                inputStream.toFile(file.absolutePath)
             }
         } catch (ex: IOException) {
             ex.printStackTrace()
         }
-
         return Uri.fromFile(file).toString()
     }
 
@@ -120,21 +117,18 @@ class DownloadTask(val context: Context, private val onSyncComplete: (user: User
 
     private fun hasNetworkConnection(): Boolean {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val allNetworks = cm.allNetworks
-            allNetworks.map { cm.getNetworkInfo(it) }
-                    .filter { isConnected(it) }
-                    .forEach { return true }
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            cm.allNetworks
+                    .map { cm.getNetworkInfo(it) }
+                    .firstOrNull { isConnected(it) } != null
         } else {
-            val netInfo = cm.allNetworkInfo
-            netInfo.filter { isConnected(it) }
-                    .forEach { return true }
+            cm.allNetworkInfo.firstOrNull { isConnected(it) } != null
         }
-        return false
     }
 
     private fun isConnected(networkInfo: NetworkInfo): Boolean =
-            (networkInfo.type == ConnectivityManager.TYPE_WIFI || networkInfo.type == ConnectivityManager.TYPE_MOBILE) && networkInfo.isConnected
+            (networkInfo.type == ConnectivityManager.TYPE_WIFI ||
+                    networkInfo.type == ConnectivityManager.TYPE_MOBILE) && networkInfo.isConnected
 
     companion object {
 

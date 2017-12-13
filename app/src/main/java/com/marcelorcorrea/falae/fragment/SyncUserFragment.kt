@@ -19,7 +19,6 @@ import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.marcelorcorrea.falae.R
 import com.marcelorcorrea.falae.VolleyRequest
-import com.marcelorcorrea.falae.loadUser
 import com.marcelorcorrea.falae.model.User
 import com.marcelorcorrea.falae.task.GsonRequest
 import org.json.JSONException
@@ -111,9 +110,7 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
         if (cancel) {
             focusView?.requestFocus()
         } else {
-//            if (loginMock(email, password) == null) { //remove this if when mock method is removed.
             loginIn(email, password)
-//            }
         }
     }
 
@@ -139,26 +136,6 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
         } catch (e: JSONException) {
             e.printStackTrace()
         }
-
-    }
-
-    private fun loginMock(email: String, password: String): User? {
-        val user: User? = DUMMY_CREDENTIALS.map {
-            it.split(":")
-        }.find { it[0] == email }?.let {
-            val user = if (it[0] == "mlongaray@hp.com") {
-                resources.loadUser(R.raw.mockspreadsheet2)
-            } else {
-                resources.loadUser(R.raw.mockspreadsheet)
-            }
-            mListener.onFragmentInteraction(user)
-            user
-        }
-        if (pDialog.isShowing) {
-            pDialog.dismiss()
-        }
-
-        return user
     }
 
     override fun onResponse(response: User) {
