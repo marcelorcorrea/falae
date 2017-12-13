@@ -50,14 +50,14 @@ class UserInfoFragment : Fragment() {
         }
 
         Picasso.with(context)
-                .load(user!!.photoSrc)
+                .load(user!!.photo)
                 .placeholder(placeHolderImage)
                 .error(brokenImage!!)
                 .transform(CropCircleTransformation())
                 .into(imageView)
 
         userName.text = user?.name
-        userInfo.text = user?.info
+        userInfo.text = user?.profile
 
         return view
     }

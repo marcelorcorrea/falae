@@ -27,8 +27,8 @@ class UserDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
             val _ID = "_id"
             val COLUMN_NAME = "name"
             val COLUMN_EMAIL = "email"
-            val COLUMN_INFO = "info"
-            val COLUMN_PHOTO = "photoSrc"
+            val COLUMN_PROFILE = "profile"
+            val COLUMN_PHOTO = "photo"
             val _COUNT = "_count"
         }
     }
@@ -46,8 +46,8 @@ class UserDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         val contentValues = ContentValues()
         contentValues.put(UserEntry.COLUMN_NAME, user.name)
         contentValues.put(UserEntry.COLUMN_EMAIL, user.email)
-        contentValues.put(UserEntry.COLUMN_INFO, user.info)
-        contentValues.put(UserEntry.COLUMN_PHOTO, user.photoSrc)
+        contentValues.put(UserEntry.COLUMN_PROFILE, user.profile)
+        contentValues.put(UserEntry.COLUMN_PHOTO, user.photo)
         contentValues.put(UserEntry.COLUMN_SPREADSHEETS, Gson().toJson(user.spreadsheets))
         return contentValues
     }
@@ -93,7 +93,7 @@ class UserDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         var cursor: Cursor? = null
         try {
             val db = readableDatabase
-            val projection = arrayOf(UserEntry._ID, UserEntry.COLUMN_NAME, UserEntry.COLUMN_EMAIL, UserEntry.COLUMN_INFO, UserEntry.COLUMN_PHOTO, UserEntry.COLUMN_SPREADSHEETS)
+            val projection = arrayOf(UserEntry._ID, UserEntry.COLUMN_NAME, UserEntry.COLUMN_EMAIL, UserEntry.COLUMN_PROFILE, UserEntry.COLUMN_PHOTO, UserEntry.COLUMN_SPREADSHEETS)
             val selection = UserEntry.COLUMN_EMAIL + " = ?"
             val selectionArgs = arrayOf(email)
             cursor = db.query(UserEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, null)
@@ -106,11 +106,11 @@ class UserDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
                 val name = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_NAME))
                 val e = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_EMAIL))
                 val spreadSheetsJson = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_SPREADSHEETS))
-                val info = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_INFO))
+                val info = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_PROFILE))
                 val photoSrc = cursor.getString(cursor.getColumnIndex(UserEntry.COLUMN_PHOTO))
                 val spreadSheets = gson.fromJson<List<SpreadSheet>>(spreadSheetsJson, listType)
 
-                return User(id.toInt(), name = name, email = e, spreadsheets = spreadSheets, info = info, photoSrc = photoSrc)
+                return User(id.toInt(), name = name, email = e, spreadsheets = spreadSheets, profile = info, photo = photoSrc)
             }
             if (!cursor.isClosed) {
                 cursor.close()
@@ -150,7 +150,7 @@ class UserDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
                         UserEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                         UserEntry.COLUMN_NAME + " TEXT NOT NULL," +
                         UserEntry.COLUMN_EMAIL + " TEXT NOT NULL UNIQUE," +
-                        UserEntry.COLUMN_INFO + " TEXT," +
+                        UserEntry.COLUMN_PROFILE + " TEXT," +
                         UserEntry.COLUMN_PHOTO + " TEXT," +
                         UserEntry.COLUMN_SPREADSHEETS + " TEXT)"
 

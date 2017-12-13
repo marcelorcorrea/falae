@@ -7,7 +7,7 @@ import android.os.Parcelable
  * Created by corream on 17/05/2017.
  */
 
-data class User(val id: Int, val name: String, val authToken: String = "", val email: String, val spreadsheets: List<SpreadSheet> = emptyList(), val info: String? = "", val photoSrc: String? = "") : Parcelable {
+data class User(val id: Int, val name: String, val authToken: String = "", val email: String, val spreadsheets: List<SpreadSheet> = emptyList(), val profile: String? = "", var photo: String? = "") : Parcelable {
 
     constructor(`in`: Parcel) : this(
             `in`.readInt(),
@@ -27,8 +27,8 @@ data class User(val id: Int, val name: String, val authToken: String = "", val e
         dest.writeString(this.authToken)
         dest.writeString(this.email)
         dest.writeTypedList(this.spreadsheets)
-        dest.writeString(this.info)
-        dest.writeString(this.photoSrc)
+        dest.writeString(this.profile)
+        dest.writeString(this.photo)
     }
 
     companion object {

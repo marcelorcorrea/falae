@@ -64,6 +64,12 @@ class DownloadTask(val context: Context, private val onSyncComplete: (user: User
         }
         val user = params[0]
         val folder = FileHandler.createUserFolder(context, user.email)
+        val photo = user.photo
+        if (photo != null && photo.isNotEmpty()) {
+            val userUri = download(folder, user.authToken, user.name,
+                    "${BuildConfig.BASE_URL}${user.photo}")
+            user.photo = userUri
+        }
         user.spreadsheets
                 .flatMap { it.pages }
                 .flatMap { it.items }
