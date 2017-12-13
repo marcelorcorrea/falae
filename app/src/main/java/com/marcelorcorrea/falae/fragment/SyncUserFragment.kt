@@ -17,6 +17,7 @@ import android.widget.Toast
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
 import com.android.volley.VolleyError
+import com.marcelorcorrea.falae.BuildConfig
 import com.marcelorcorrea.falae.R
 import com.marcelorcorrea.falae.VolleyRequest
 import com.marcelorcorrea.falae.model.User
@@ -130,7 +131,8 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
             val jsonRequest = JSONObject()
             jsonRequest.put(USER_CREDENTIAL_FIELD, credentials)
 
-            val jsObjRequest = GsonRequest(URL, User::class.java, null, jsonRequest, this, this)
+            val url = BuildConfig.BASE_URL + LOGIN_ENDPOINT
+            val jsObjRequest = GsonRequest(url, User::class.java, null, jsonRequest, this, this)
             VolleyRequest.getInstance(context).addToRequestQueue(jsObjRequest)
             pDialog.show()
         } catch (e: JSONException) {
@@ -165,8 +167,7 @@ class SyncUserFragment : Fragment(), Response.Listener<User>, Response.ErrorList
 
     companion object {
 
-        //        private val URL = "http://10.28.0.64:3000/login.json"
-        private val URL = "https://187.86.153.89:3000/login.json"
+        private val LOGIN_ENDPOINT = "/login.json"
         private val EMAIL_CREDENTIAL_FIELD = "email"
         private val PASSWORD_CREDENTIAL_FIELD = "password"
         private val USER_CREDENTIAL_FIELD = "user"
