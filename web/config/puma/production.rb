@@ -25,11 +25,15 @@ puts tmp_dir
 bind "unix://#{tmp_dir}/sockets/falae.sock"
 
 # Logging
-stdout_redirect "#{tmp_dir}/log/puma.stdout.log", "#{tmp_dir}/log/puma.stderr.log", true
+log_dir = "#{tmp_dir}/log"
+Dir.mkdir log_dir unless Dir.exist? log_dir
+stdout_redirect "#{log_dir}/puma.stdout.log", "#{log_dir}/puma.stderr.log", true
 
 # Set master PID and state locations
-pidfile "#{tmp_dir}/pids/puma.pid"
-state_path "#{tmp_dir}/pids/puma.state"
+pids_dir = "#{tmp_dir}/pids"
+Dir.mkdir pids_dir unless Dir.exist? pids_dir
+pidfile "#{pids_dir}/puma.pid"
+state_path "#{pids_dir}/puma.state"
 activate_control_app
 
 
