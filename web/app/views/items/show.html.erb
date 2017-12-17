@@ -10,7 +10,7 @@
   <%= link_to edit_user_item_path(@user, @item), class: 'button-box' do %>
     <%= fa_icon 'edit' %><%= t 'views.edit' %>
   <% end %>
-  <%= link_to user_items_path(@user, @item), class: 'button-box' do %>
+  <%= link_to user_items_path(@user), class: 'button-box' do %>
     <%= fa_icon 'arrow-left' %><%= t 'views.back' %>
   <% end %>
   </div>
