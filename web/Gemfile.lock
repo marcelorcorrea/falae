@@ -98,6 +98,8 @@ GEM
       mimemagic (~> 0.3.0)
     puma (3.8.2)
     rack (2.0.2)
+    rack-attack (5.0.1)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.1.1)
@@ -185,6 +187,7 @@ DEPENDENCIES
   mysql2
   paperclip (~> 5.1.0)
   puma (~> 3.7)
+  rack-attack (~> 5.0)
   rails (~> 5.1.1)
   sass-rails (~> 5.0)
   secure_headers (~> 3.6.7)

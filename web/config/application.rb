@@ -26,6 +26,9 @@ module Web
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    # Use Rack::Attack protection middleware
+    config.middleware.use Rack::Attack
+
     # Don't generate system test files.
     config.generators.system_tests = nil
 
