@@ -37,7 +37,7 @@ SecureHeaders::Configuration.default do |config|
     })
   end
 
-  #config.csp_report_only = config.csp.merge({
-  #  report_uri: %w(https://report-uri.io/example-csp-report-only)
-  #})
+  config.csp_report_only = config.csp.merge({
+    report_uri: %w(/csp-report)
+  })
 end
