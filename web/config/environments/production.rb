@@ -61,6 +61,9 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "web_#{Rails.env}"
 
+  # We need SendGrid API key to configure action_mailer in production
+  raise 'SENDGRID_APIKEY is not set.' if ENV['SENDGRID_APIKEY'].blank?
+
   #  Set action_mailer configuration for production
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_caching = false
