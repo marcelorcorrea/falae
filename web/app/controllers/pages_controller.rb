@@ -76,7 +76,7 @@ class PagesController < ApplicationController
   def search_item
     items = if params[:search] && params[:name].present?
       name = params[:name]
-      private_items = @user.find_items_like_by(name: name)
+      private_items = @user.find_items_like_by name: name
       pictograms = Pictogram.find_like_by image_file_name: name
       private_items + pictograms.map(&:generate_item)
     else

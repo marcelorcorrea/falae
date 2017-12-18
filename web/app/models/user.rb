@@ -44,7 +44,7 @@ class User < ApplicationRecord
   end
 
   def find_items_like_by(param)
-    query = ["#{param.keys.first} LIKE ?", "#{param.values.first}%"]
+    query = ["? LIKE ?", param.keys.first.to_s, "#{param.values.first}%"]
     items.where(query)
   end
 
