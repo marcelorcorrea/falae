@@ -36,8 +36,11 @@ gem 'jquery-rails', '~> 4.3.1'
 # Awesome Fonts (Icons)
 gem "font-awesome-rails", '~> 4.7.0'
 
-# Secure headers
+# Security headers
 gem 'secure_headers', '~>3.6.7'
+
+# Throttling/blocking protection middleware
+gem "rack-attack", "~> 5.0"
 
 gem 'paperclip', '~> 5.1.0'
 
