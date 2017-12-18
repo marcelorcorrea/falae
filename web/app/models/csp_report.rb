@@ -1,0 +1,2 @@
+class CspReport < ApplicationRecord
+end

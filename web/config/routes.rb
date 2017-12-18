@@ -4,11 +4,10 @@ Rails.application.routes.draw do
   get '/home', to: 'home#home'
   get '/about', to: 'home#about'
   get '/contact', to: 'home#contact'
+  post '/csp-report', to: 'csp_reports#create'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-
-  #resources :roles
 
   resources :users do
     member do
@@ -41,6 +40,4 @@ Rails.application.routes.draw do
 
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
-
-  #resources :categories
 end

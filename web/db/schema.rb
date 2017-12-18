@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124131218) do
+ActiveRecord::Schema.define(version: 20171217232136) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
@@ -19,6 +19,21 @@ ActiveRecord::Schema.define(version: 20171124131218) do
     t.datetime "updated_at", null: false
     t.string "description"
     t.index ["name"], name: "index_categories_on_name", unique: true
+  end
+
+  create_table "csp_reports", force: :cascade do |t|
+    t.text "user_agent"
+    t.text "blocked_uri"
+    t.text "document_uri"
+    t.text "effective_directive"
+    t.text "original_policy"
+    t.text "referrer"
+    t.text "script_sample"
+    t.text "source_file"
+    t.integer "status_code"
+    t.text "violated_directive"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "images", force: :cascade do |t|
