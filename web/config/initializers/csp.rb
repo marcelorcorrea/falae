@@ -21,37 +21,15 @@ SecureHeaders::Configuration.default do |config|
   config.csp = {
     preserve_schemes: true,
     base_uri: %w('self'),
-    #default_src: %w('self' https:),
     default_src: %w('self'),
     child_src: %w('none'),
     media_src: %w('none'),
     object_src: %w('none'),
-    #font_src: %w('self' https: data:),
-    font_src: %w('self' data:),
-    #img_src: %w('self' www.arasaac.org https: data:),
-    img_src: %w('self' www.arasaac.org data:),
-    #script_src: %w('self' 'unsafe-inline' https:),
     script_src: %w('self' 'unsafe-inline'),
-    #style_src: %w('self' https:),
-    style_src: %w('self'),
-    #upgrade_insecure_requests: true,
     block_all_mixed_content: true,
   }
 
-  # This is available only from 3.5.0; use the `report_only: true` setting for 3.4.1 and below.
   #config.csp_report_only = config.csp.merge({
-  #  img_src: %w(somewhereelse.com),
   #  report_uri: %w(https://report-uri.io/example-csp-report-only)
   #})
-
-  #config.hpkp = {
-  #  report_only: false,
-  #  max_age: 60.days.to_i,
-  #  include_subdomains: true,
-  #  report_uri: "https://report-uri.io/example-hpkp",
-  #  pins: [
-  #    {sha256: "abc"},
-  #    {sha256: "123"}
-  #  ]
-  #}
 end
