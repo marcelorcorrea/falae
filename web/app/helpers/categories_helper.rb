@@ -1,6 +1,6 @@
 module CategoriesHelper
   def select_options_for_categories
-    Category.all.map { |ctgy| [ctgy.description, ctgy.id] }
+    @all_ctgy ||= Category.all.map { |ctgy| [ctgy.description, ctgy.id] }
   end
 
   def category_id(item)
