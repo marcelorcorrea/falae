@@ -70,7 +70,8 @@ class UsersController < ApplicationController
 
   # GET users/1/photo
   def photo
-    send_file @user.photo.path, type: @user.photo_content_type, disposition: :inline
+    send_file @user.photo.path, filename: SecureRandom.hex[0..7],
+      type: @user.photo_content_type, disposition: :inline
   end
 
   private

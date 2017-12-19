@@ -69,7 +69,8 @@ class ItemsController < ApplicationController
   # GET image
   def image
     img = @item.image
-    send_file img.image.path, type: img.image_content_type, disposition: :inline
+    send_file img.image.path, filename: SecureRandom.hex[0..7],
+      type: img.image_content_type, disposition: :inline
   end
 
   private
