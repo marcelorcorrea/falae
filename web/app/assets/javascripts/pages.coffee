@@ -5,7 +5,7 @@
 document.addEventListener 'turbolinks:load', ->
   # pageItemsTab = document.getElementsByClassName('page-items-tab')[0]
   # pageMobileTab = document.getElementsByClassName('page-mobile-tab')[0]
-  # pageItemList = document.getElementsByClassName('page-items-list')[0]
+  pageItemList = document.getElementsByClassName('page-items-list')[0]
   # pageMobileView = document.getElementsByClassName('page-mobile-view')[0]
 
   # if pageItemsTab
