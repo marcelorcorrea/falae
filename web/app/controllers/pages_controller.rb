@@ -14,6 +14,18 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
+    respond_to do |format|
+      if @spreadsheet && @page
+        format.html { render :show }
+        format.json { render :show, location: @page }
+      elsif !@spreadsheet
+        format.html { redirect_to user_spreadsheets_url }
+        format.json { render 'spreadsheets/index' }
+      else
+        format.html { redirect_to [@spreadsheet.user, @spreadsheet] }
+        format.json { render :show, location: @spreadsheet }
+      end
+    end
   end
 
   # GET /pages/new
@@ -132,8 +144,7 @@ class PagesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_page
-    #@page = Page.find(params[:id])
-    @page = @spreadsheet.pages.find_by id: params[:id]
+    @page = @spreadsheet ? @spreadsheet.pages.find_by(id: params[:id]) : nil
   end
 
   def set_vars
