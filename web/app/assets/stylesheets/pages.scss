@@ -192,6 +192,13 @@
     // height: 90%;
     background-color: white;
     overflow: auto;
+    .add-item-title {
+        font-size: 1.5em;
+        font-style: italic;
+        font-weight: 700;
+        text-align: center;
+        color: $medium-sea-green;
+      }
     .close {
       background: none;
       float: right;
