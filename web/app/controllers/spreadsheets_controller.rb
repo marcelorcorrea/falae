@@ -14,7 +14,16 @@ class SpreadsheetsController < ApplicationController
   # GET /spreadsheets/1
   # GET /spreadsheets/1.json
   def show
-    @pages = @spreadsheet.pages
+    respond_to do |format|
+      if @spreadsheet
+        @pages = @spreadsheet.pages
+        format.html { render :show }
+        format.json { render :show, location: @spreadsheet }
+      else
+        format.html { redirect_to user_spreadsheets_url }
+        format.json { render :index }
+      end
+    end
   end
 
   # GET /spreadsheets/new
