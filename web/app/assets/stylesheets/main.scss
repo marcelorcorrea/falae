@@ -13,10 +13,16 @@ body {
   color: $default-font-color;
 }
 
+@media screen and (min-width: $wrapper-width) {
+  body {
+    overflow-x: hidden;
+  }
+}
+
 .wrapper {
   position: relative;
-  width: 1000px;
-  min-width: 1000px;
+  width: $wrapper-width;
+  min-width: $wrapper-width;
   margin: 0 auto;
   background-color: #FFF;
   border-top: 1em solid $default-bg-color;
