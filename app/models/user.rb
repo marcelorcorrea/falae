@@ -44,7 +44,7 @@ class User < ApplicationRecord
   end
 
   def find_items_like_by(param)
-    query = ["? LIKE ?", param.keys.first.to_s, "#{param.values.first}%"]
+    query = ["#{param.keys.first} LIKE ?", "#{param.values.first}%"]
     items.where(query)
   end
 
@@ -111,4 +111,3 @@ class User < ApplicationRecord
       self.activation_digest = User.digest(activation_token)
     end
 end
-

@@ -10,7 +10,7 @@ class Pictogram < Image
   end
 
   def self.find_like_by(param)
-    query = ["? LIKE ?", param.keys.first.to_s, "#{param.values.first}%"]
+    query = ["#{param.keys.first} LIKE ?", "#{param.values.first}%"]
     Pictogram.where(query)
   end
 
