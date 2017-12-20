@@ -25,7 +25,6 @@ SecureHeaders::Configuration.default do |config|
     default_src: %w('self'),
     child_src: %w('none'),
     media_src: %w('none'),
-    object_src: %w('none'),
     img_src: %w('self' data:),
     script_src: %w('self' 'unsafe-inline'),
     style_src: %w('self' 'unsafe-inline'),
