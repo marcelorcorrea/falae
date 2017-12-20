@@ -18,7 +18,7 @@ SecureHeaders::Configuration.default do |config|
 
   config.clear_site_data = [ "cookies", "storage" ]
 
-  # CSP allows inline scripts due application requirements
+  # CSP allows inline scripts/style due application requirements
   config.csp = {
     preserve_schemes: true,
     base_uri: %w('self'),
@@ -28,15 +28,9 @@ SecureHeaders::Configuration.default do |config|
     object_src: %w('none'),
     img_src: %w('self' data:),
     script_src: %w('self' 'unsafe-inline'),
+    style_src: %w('self' 'unsafe-inline'),
     block_all_mixed_content: true,
   }
-
-  # Allow inline styles for development-only
-  if Rails.env.development?
-    config.csp = config.csp.merge({
-      style_src: %w('self' 'unsafe-inline')
-    })
-  end
 
   config.csp_report_only = config.csp.merge({
     report_uri: %w(/csp-report)
