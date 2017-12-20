@@ -19,13 +19,13 @@ app_dir = File.expand_path("../../..", __FILE__)
 
 tmp_dir = "#{app_dir}/tmp"
 
-puts tmp_dir
-
 # Set up socket location
-bind "unix://#{tmp_dir}/sockets/falae.sock"
+sockets_dir = "#{tmp_dir}/sockets"
+Dir.mkdir sockets_dir unless Dir.exist? sockets_dir
+bind "unix://#{sockets_dir}/falae.sock"
 
 # Logging
-log_dir = "#{tmp_dir}/log"
+log_dir = "#{tmp_dir}/logs"
 Dir.mkdir log_dir unless Dir.exist? log_dir
 stdout_redirect "#{log_dir}/puma.stdout.log", "#{log_dir}/puma.stderr.log", true
 
