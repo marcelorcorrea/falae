@@ -16,8 +16,6 @@ SecureHeaders::Configuration.default do |config|
   config.x_permitted_cross_domain_policies = "none"
   config.referrer_policy = "strict-origin-when-cross-origin"
 
-  config.clear_site_data = [ "cookies", "storage" ]
-
   # CSP allows inline scripts/style due application requirements
   config.csp = {
     preserve_schemes: true,
