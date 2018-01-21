@@ -2,7 +2,7 @@
   <%= render :partial => 'shared/flash'%>
   <div class="form-box">
     <div class="label"><%= t 'views.welcome' %>!</div>
-    <%= form_with scope: :user, local: true do |form| %>
+    <%= form_with scope: :user, url: login_path, local: true do |form| %>
       <div class="field">
         <%= form.label :email %>
         <span class="input-icon"><%= fa_icon 'user' %></span>
