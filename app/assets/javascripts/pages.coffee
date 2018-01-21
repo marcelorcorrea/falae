@@ -50,7 +50,9 @@ document.addEventListener 'turbolinks:load', ->
           $.ajax {
             type: "PUT",
             url: window.location.href + '/swap_items',
-            data: { id_1: srcEl.id, id_2: this.id }
+            data: { id_1: srcEl.id, id_2: this.id },
+            beforeSend: addLoadingLayer,
+            success: removeLoadingLayer
           }
         return false
       card.addEventListener 'dragend', (e) ->
@@ -66,3 +68,17 @@ document.addEventListener 'turbolinks:load', ->
         if mutation.addedNodes.length > 0
           addDragAndDropEventListeners()
     observer.observe pageItemList, {childList: true}
+
+  addLoadingLayer = () ->
+    spinner = document.createElement 'div'
+    spinner.className = 'fa fa-spinner fa-pulse fa-3x fa-fw'
+    loadingLayer = document.createElement 'div'
+    loadingLayer.id = 'loading-layer'
+    loadingLayer.appendChild spinner
+    document.body.appendChild loadingLayer
+
+  removeLoadingLayer = () ->
+    loadingLayer = document.getElementById 'loading-layer'
+    if loadingLayer
+      document.body.removeChild loadingLayer
+
