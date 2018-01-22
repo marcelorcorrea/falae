@@ -17,7 +17,8 @@
     <div id="user-photo-container">
       <%= image_tag user.photo.url %>
     </div>
-    <div class="wrapper-custom-input-file">
+    <div class="wrapper-custom-input-file"
+      data-unsupported-photo-type="<%= t 'views.unsupported_image_type' %>">
       <%= form.file_field :photo, id: :user_photo %>
       <%= form.label :photo, class: 'custom-input-file' do %>
         <%= fa_icon 'upload' %> <%= t 'views.upload_file' %>
