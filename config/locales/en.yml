@@ -60,6 +60,15 @@ en:
       expired_token: 'Password reset link has expired.'
   views:
     about: About
+    about_app_title: 'The App'
+    about_app_text_p1: '<b>Falaê</b> is an Android app developed by HP volunteers from Brazil R&D in partnership with the NGO Educandário – Centro de Reabilitação São João Batista. It is an Alternative Communication app, that allows people with speech and mobility impairments to communicate by using pictures that represent words (verbs, nouns, adjectives…). The web page can be used to create and modify the pages and and items, as well as create and modify users.'
+    about_app_text_p2: 'The main goal of this project is to make the app completely free and unlimited. Up to now, all of the Alternative Communication apps known by the NGO are paid, and have limited functionalities. This is a barrier to low-income families, limiting their integration in the society. We wish to enable everyone, regardless of their income, to use this resource and overcome their difficulties.'
+    about_app_text_devopers: 'In order to make the application available for free, we have the partnership of <a href="https://devopers.com.br/">Devopers</a>, a company that specializes in providing cloud server solutions, which made the application infrastructure available free of charge.'
+    about_app_text_open_source: 'Another difference of Falaê is its Open Source nature. That is, anyone can freely download and / or modify the code to fit their needs.'
+    about_ngo_title: 'About the NGO Educandário - Centro de Reabilitação São João Batista'
+    about_ngo_text_p1: 'The NGO whose work has inspired us was founded in 1939 to provide care for children with poliomyelitis. Today the NGO serves children and teenagers with multiple disabilities. Its mission is '
+    about_ngo_text_p1_quote: '“to promote the rehabilitation and social integration of children and teenagers with disabilities, providing them with adequate treatment and education, aiming a better quality of life and empowering them as citizens”.'
+    about_ngo_text_p2: 'It is an institution where children and teens with multiple disabilities have several specific classes and health treatment according to their disabilities for free. The institution is pioneer in using Alternative Communication methods for literacy and education to give a chance for those who can’t speak to learn and to express themselves.'
     about_me: About me
     activate: Activate
     add_item: Add Item
