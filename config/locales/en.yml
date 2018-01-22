@@ -119,6 +119,7 @@ en:
     speech: Speech
     submit: Submit
     unlink: -- unlink --
+    unsupported_image_type: Image type not supported.
     upload_file: Upload file
     user_photo_not_found: User photo not found.
     welcome: Welcome

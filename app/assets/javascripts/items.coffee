@@ -18,4 +18,6 @@ document.addEventListener 'turbolinks:load', ->
           itemImageContainer.innerHTML = img_base64.outerHTML
         reader.readAsDataURL image
       else
-        itemImageContainer.innerHTML = ''
+        inputFileButton = document.getElementsByClassName('wrapper-custom-input-file')[0]
+        unsuportedImageTypeText = inputFileButton.dataset.unsupportedImageType
+        alert unsuportedImageTypeText

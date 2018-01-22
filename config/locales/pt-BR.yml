@@ -33,6 +33,9 @@ pt-BR:
       item:
         name: Nome
         image: Imagem
+        image_content_type: Content-Type da imagem
+        image_file_name: Nome da imagem
+        image_file_size: Tamanho da imagem
         speech: Pronúncia
       page:
         name: Nome
@@ -50,6 +53,9 @@ pt-BR:
         password: Senha
         password_confirmation: Confirmar senha
         photo: Foto
+        photo_content_type: Content-Type da foto
+        photo_file_name: Nome da foto
+        photo_file_size: Tamanho da foto
         profile: perfil
     errors:
       template:
@@ -58,10 +64,12 @@ pt-BR:
           one: 'Não foi possível gravar %{model}: 1 erro'
           other: 'Não foi possível gravar %{model}: %{count} erros'
       messages:
+        in_between: "deve ter entre %{min} e %{max}"
         record_invalid: 'A validação falhou: %{errors}'
         restrict_dependent_destroy:
           has_one: Não é possível excluir o registro pois existe um %{record} dependente
           has_many: Não é possível excluir o registro pois existem %{record} dependentes
+        spoofed_media_type: "tem uma extensão que não corresponde ao seu conteúdo"
   categories:
     create:
       notice: Categoria criada com sucesso.
@@ -412,6 +420,7 @@ dificuldades de fala e mobilidade se comunicarem utilizando pictogramas (imagens
     spreadsheet_destroy_alert: Apagar esta prancha também apagará todas suas páginas e itens.
     submit: Enviar
     unlink: -- desvincular --
+    unsupported_image_type: Tipo de imagem não suportado.
     upload_file: Abrir arquivo
     user_photo_not_found: Foto do usuário não encontrada.
     welcome: Bem-vindo

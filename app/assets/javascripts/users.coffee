@@ -10,16 +10,18 @@ document.addEventListener 'turbolinks:load', ->
     userPhotoInput.addEventListener 'change', (e) ->
       userPhotoContainer = document.getElementById('user-photo-container')
       files = e.target.files
-      image = files[0]
-      if image && /.*\.(jpe?g|png|gif)/i.test image.name
+      photo = files[0]
+      if photo && /.*\.(jpe?g|png|gif)/i.test photo.name
         reader = new FileReader()
         reader.onload = (file) ->
           img_base64 = new Image()
           img_base64.src = file.target.result
           userPhotoContainer.innerHTML = img_base64.outerHTML
-        reader.readAsDataURL image
+        reader.readAsDataURL photo
       else
-        userPhotoContainer.innerHTML = ''
+        inputFileButton = document.getElementsByClassName('wrapper-custom-input-file')[0]
+        unsuportedPhotoTypeText = inputFileButton.dataset.unsupportedPhotoType
+        alert unsuportedPhotoTypeText
 
   editCheckBox = document.getElementById 'edit_sensitive_data'
   if editCheckBox

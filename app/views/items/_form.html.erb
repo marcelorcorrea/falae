@@ -16,7 +16,8 @@
       <%= image_tag item.image.image %>
       <% end %>
     </div>
-    <div class="wrapper-custom-input-file">
+    <div class="wrapper-custom-input-file"
+      data-unsupported-image-type="<%= t 'views.unsupported_image_type' %>">
       <%= form.fields_for :image do |image| %>
         <%= image.file_field :image %>
         <%= image.label :image, class: 'custom-input-file' do %>
