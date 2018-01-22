@@ -1,11 +1,7 @@
 module HomeHelper
   def home
     if current_user
-      if request.path.start_with? user_path(current_user)
-        request.path
-      else
-        user_spreadsheets_path current_user
-      end
+      user_spreadsheets_path current_user
     else
       home_path
     end
