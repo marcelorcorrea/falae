@@ -347,7 +347,7 @@ pt-BR:
   views:
     about: Sobre
     about_app_title: 'O Aplicativo'
-    about_app_text_p1: 'Falaê é um aplicativo Android desenvolvido por voluntários da HP do Brasil R & D em parceria com a ONG Educandário - Centro de Reabilitação São João Batista. É um aplicativo de Comunicação Alternativa, que permite pessoas com
+    about_app_text_p1: 'Falaê é um aplicativo Android desenvolvido por voluntários da HP do Brasil R&D em parceria com a ONG Educandário - Centro de Reabilitação São João Batista. É um aplicativo de Comunicação Alternativa, que permite pessoas com
 impedimentos de fala e mobilidade se comunicarem usando imagens que representam palavras (verbos, substantivos, adjetivos ...). A página web pode ser usada para criar e modificar as pranchas de comunicação, assim como criar e modificar usuários.'
     about_app_text_p2: 'O objetivo principal deste projeto é tornar o aplicativo completamente gratuito e ilimitado. Até então, os aplicativos de Comunicação Alternativa conhecidos pela ONG eram pagos e possuíam funcionalidades limitadas (como um número máximo de pranchas e itens por usuário). Esta é uma barreira para as famílias de baixa renda, limitando sua integração na sociedade. Desejamos que todos, independentemente da sua renda, possam usar esse recurso e superar suas dificuldades. '
     about_app_text_open_source: 'Outro diferencial do Falaê é a sua natureza Open Source. Ou seja, qualquer pessoa pode baixar e/ou modificar o código livremente para adtaptar às suas necessidades.'
