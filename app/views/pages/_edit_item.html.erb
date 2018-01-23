@@ -4,24 +4,49 @@
       <%= fa_icon 'times-circle-o', class: :default %>
       <%= fa_icon 'times-circle', class: :hover %>
     </a>
-    <div class="form-box">
+    <p class="edit-item-title"><%= t 'views.edit_item' %></p>
+      <div class="form-box edit-item">
       <%= form_with url: update_item_user_spreadsheet_page_path(@user, @spreadsheet, @page),
-                    method: :put do |form| %>
-        <%= form.hidden_field :item_id, value: item.id %>
-        <div class="field">
-          <% linked_page_id = @page.get_linked_page_id(item.id) %>
-          <% text_for_include_blank = linked_page_id ? t('views.unlink') : t('views.not_linked') %>
-          <%= form.label :page_id, Page.model_name.human %>
-          <%= select_tag :page_id,
-                options_for_select(select_pages_options_helper, linked_page_id),
-                include_blank: text_for_include_blank %>
-        </div>
-        <div class="actions">
-          <%= form.button :submit, name: :save do %>
-            <%= fa_icon 'floppy-o' %><%= t 'views.save' %>
+                    model: item, method: :put do |form| %>
+        <%= form.hidden_field :id, value: item.id %>
+        <div class="item-edit-img <%= css_class_name item.category %>">
+          <%= image_tag item.image.image, alt: t('views.item_image_not_found') %>
+          <%= form.fields_for :image do |img| %>
+            <% img.hidden_field :id %>
           <% end %>
         </div>
+        <div class="fields">
+          <p class="field">
+            <strong><%= Item.human_attribute_name :name %>:</strong>
+            <%= form.text_field :name, id: :item_name %>
+          </p>
+          <div class="field">
+            <strong><%= Item.human_attribute_name :speech %>:</strong>
+            <%= form.text_field :speech, id: :item_speech %>
+          </div>
+          <div class="field">
+            <strong><%= Category.model_name.human %>:</strong>
+            <%= form.select :category_id,
+                            options_for_select(select_options_for_categories,
+                                              item.category_id) %>
+          </div>
+          <% unless @spreadsheet.pages.one? %>
+          <div class="field">
+            <% linked_page_id = @page.get_linked_page_id(item.id) %>
+            <% text_for_include_blank = item.link_to ? t('views.unlink') : t('views.not_linked') %>
+            <strong><%= Page.model_name.human %>:</strong>
+            <%= select_tag :link_to_page,
+                  options_for_select(select_pages_options_helper, linked_page_id),
+                  include_blank: text_for_include_blank %>
+          </div>
+          <% end %>
+          <div class="actions">
+            <%= form.button :submit, name: :save do %>
+              <%= fa_icon 'floppy-o' %><%= t 'views.save' %>
+            <% end %>
+          </div>
+        <div>
       <% end %>
-    </div>
+      </div>
   </div>
 </div>

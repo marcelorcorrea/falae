@@ -9,12 +9,10 @@ module PagesHelper
   end
 
   def edit_item_button(item_id)
-    unless @spreadsheet.pages.one?
-      button_to(edit_item_user_spreadsheet_page_path(@user, @spreadsheet, @page),
-                {method: :get, class: :edit, remote: true, params: {item_id: item_id}}) do
-        concat fa_icon 'pencil-square-o', class: :default
-        concat fa_icon 'pencil-square', class: :hover
-      end
+    button_to(edit_item_user_spreadsheet_page_path(@user, @spreadsheet, @page),
+              {method: :get, class: :edit, remote: true, params: {item_id: item_id}}) do
+      concat fa_icon 'pencil-square-o', class: :default
+      concat fa_icon 'pencil-square', class: :hover
     end
   end
 
