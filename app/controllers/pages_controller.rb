@@ -103,7 +103,8 @@ class PagesController < ApplicationController
       item = Item.find_by id: item_params[:id]
       @page.items << item if item
     else
-      @page.items.create item_params
+      params = item_params.merge user_id: current_user.id
+      @page.items.create params
     end
     @page.reload
   end
@@ -116,16 +117,26 @@ class PagesController < ApplicationController
 
   # PUT
   def update_item
-    ip = ItemPage.find_by page_id: @page.id, item_id: params[:item_id]
+    return if item_params[:id].blank?
 
-    if params[:page_id].present?
-      page = @spreadsheet.pages.find_by id: params[:page_id]
-      ip.link_to = page.name
-    else
-      ip.link_to = nil
+    item = @page.items.find_by id: item_params[:id]
+    return unless item
+
+    item.assign_attributes item_params
+    item.save
+    item_page = ItemPage.find_by page_id: @page.id, item_id: item.id
+    return unless item_page
+
+    if params[:link_to_page].present?
+      link_to_page = @spreadsheet.pages.find_by id: params[:link_to_page]
+      if link_to_page
+        item_page.link_to = link_to_page.name
+        item_page.save
+      end
+    elsif item_page.link_to.present?
+      item_page.link_to = nil
+      item_page.save
     end
-    # TODO error message when there no such objects
-    ip.save
   end
 
   # DELETE
@@ -136,6 +147,7 @@ class PagesController < ApplicationController
 
   # PUT
   def swap_items
+    # TODO check if @page has items with id_1 and id_2
     @page.swap_items params[:id_1], params[:id_2]
   end
   # END TODO: Notify on error
