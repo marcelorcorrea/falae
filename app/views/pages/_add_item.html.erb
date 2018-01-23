@@ -7,7 +7,7 @@
     <p class="add-item-title"><%= t 'views.add_item' %></p>
     <div class="form-box">
       <%= form_with url: search_item_user_spreadsheet_page_path(@user, @spreadsheet, @page),
-          method: :get do |form| %>
+          id: 'search-items' , method: :get do |form| %>
         <div class="field">
           <%= form.label Item.human_attribute_name :name %>
           <%= form.text_field :name, id: :item_name %>

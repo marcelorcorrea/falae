@@ -1,5 +1,6 @@
 $('body').css('overflow', 'hidden');
-$("<%= escape_javascript(render 'pages/edit_item', item: item) %>").appendTo(".container");
+$("<%= escape_javascript(render 'pages/edit_item', item: item) %>")
+  .appendTo(".container");
 
 /* select style */
 var select = $('.overlay select#page_id');
