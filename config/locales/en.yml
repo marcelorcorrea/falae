@@ -61,15 +61,17 @@ en:
   views:
     about: About
     about_app_title: 'The App'
-    about_app_text_p1: '<b>Falaê</b> is an Android app developed by HP volunteers from Brazil R&D in partnership with the NGO Educandário – Centro de Reabilitação São João Batista. It is an Alternative Communication app, that allows people with speech and mobility impairments to communicate by using pictures that represent words (verbs, nouns, adjectives…). The web page can be used to create and modify the pages and and items, as well as create and modify users. The pictographic symbols used are the property of CATEDU (<a href="http://catedu.es/arasaac/">http://catedu.es/arasaac/</a>) under the <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/es/">Creative Commons</a> license and created by <a href="http://www.palao.es/">Sergio Palao</a>.'
-    about_app_text_p2: 'The main goal of this project is to make the app completely free and unlimited. Up to now, all of the Alternative Communication apps known by the NGO are paid, and have limited functionalities. This is a barrier to low-income families, limiting their integration in the society. We wish to enable everyone, regardless of their income, to use this resource and overcome their difficulties.'
-    about_app_text_open_source: 'Another difference of <b>Falaê</b> is its <a href="https://github.com/marcelorcorrea/falae">Open Source</a> nature. That is, anyone can freely download and / or modify the code to fit their needs.'
+    about_app_text_p1: '<b>Falaê</b> is an Android application developed by HP volunteers from Brazil R&D in partnership with the NGO Educandário – Centro de Reabilitação São João Batista. It is an Alternative Communication app, that allows people with speech and mobility impairments to communicate by using pictograms (images or symbols) that represent words (verbs, nouns, adjectives etc).'
+    about_app_text_p2: 'The main goal of this project is to make the app completely free and unlimited. Up to now, all of the Alternative Communication apps known by the NGO are paid and have limited functionalities. This is a barrier to low-income families. We wish to enable everyone, regardless of their income, to use this resource and overcome their difficulties.'
+    about_app_text_p3: "<b>Falaê</b> consists of two parts: Android app and the web platform. The web page is used for user registering. Once registered, the user can customize their profile, as well as create and modify communication boards, pages and items. The Android app connects to the web platform in order to sincronize the user's data."
+    about_app_text_p4: 'Another advantage of <b>Falaê</b> is its <a href="https://github.com/marcelorcorrea/falae">open source</a> nature. That is, anyone can freely download and/or modify the code to best fit their needs, as well as contribute to the open source community.'
+    about_app_text_p5: 'The pictographic symbols used are property of CATEDU (<a href="http://catedu.es/arasaac/">http://catedu.es/arasaac/</a>) under the <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/es/">Creative Commons</a> license and created by <a href="http://www.palao.es/">Sergio Palao</a>.'
     about_ngo_title: 'About the NGO Educandário - Centro de Reabilitação São João Batista'
     about_ngo_text_p1: 'The NGO whose work has inspired us was founded in 1939 to provide care for children with poliomyelitis. Today the NGO serves children and teenagers with multiple disabilities. Its mission is '
     about_ngo_text_p1_quote: '“to promote the rehabilitation and social integration of children and teenagers with disabilities, providing them with adequate treatment and education, aiming a better quality of life and empowering them as citizens”.'
-    about_ngo_text_p2: 'It is an institution where children and teens with multiple disabilities have several specific classes and health treatment according to their disabilities for free. The institution is pioneer in using Alternative Communication methods for literacy and education to give a chance for those who can’t speak to learn and to express themselves.'
+    about_ngo_text_p2: "It is an institution where children and teens have several specific classes and health treatments according to their needs entirely for free. The institution is pioneer in using Alternative Communication methods for literacy and education, promoting a distinguised opportunity for those who can’t speak to learn and express themselves."
     about_partners_title: Partners
-    about_partners_devopers: 'In order to make the application available for free, we have the partnership of <a href="https://devopers.com.br/">Devopers</a>, a company that specializes in providing cloud server solutions, which made the application infrastructure available free of charge.'
+    about_partners_devopers: 'In order to make the application available for free, we partnered with <a href="https://devopers.com.br/">Devopers</a>, a company specialized in providing cloud hosting solutions, which enabled the entire web infrastructure free of charge.'
     about_partners_crialab: 'The visual identity of the application was developed by <a href="http://www.pucrs.br/tecnopuc/crialab/">Crialab</a>, the Laboratory of Creativity of TECNOPUC.'
     about_me: About me
     activate: Activate
@@ -80,7 +82,7 @@ en:
     contact: Contact
     contact_dev_title: Development
     contact_dev: 'voluntarios.educandario@gmail.com'
-    contact_dev_github: 'To contribute or report issues, access our repositories on Github: <br/> <a href="https://github.com/marcelorcorrea/falae">Web Application</a> <br/> <a href="https://github.com/marcelorcorrea/falae-android">Android Application</a>'
+    contact_dev_github: 'To contribute or report issues, feel free to access our repositories on Github: <br/> <a href="https://github.com/marcelorcorrea/falae">Web Application</a> <br/> <a href="https://github.com/marcelorcorrea/falae-android">Android Application</a>'
     contact_ngo_title: 'Educandário São João Batista'
     contact_ngo_email: 'comunicacao@educandario.org.br'
     contact_ngo_phone1: '+ 55 (51) 3246 5655'
