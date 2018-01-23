@@ -364,6 +364,13 @@ impedimentos de fala e mobilidade se comunicarem usando imagens que representam 
     cancel: Cancelar
     confirm_message: Você tem certeza?
     contact: Contato
+    contact_dev_title: Desenvolvimento
+    contact_dev: 'voluntarios.educandario@gmail.com'
+    contact_ngo_title: 'Educandário São João Batista'
+    contact_ngo_email: 'comunicacao@educandario.org.br'
+    contact_ngo_phone1: '+ 55 (51) 3246 5655'
+    contact_ngo_phone2: '+ 55 (51) 99318 5352'
+    contact_ngo_website: 'www.educandario.org.br'
     destroy: Apagar
     edit: Editar
     forgot_password: 'Esqueceu sua senha?'
