@@ -37,6 +37,7 @@ class UsersController < ApplicationController
         }
         format.json { render :show, status: :created, location: @user }
       else
+        @user.photo = nil
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
