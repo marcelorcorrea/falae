@@ -4,3 +4,12 @@ $("<%= escape_javascript(render 'pages/search_result', items: items) %>")
   .appendTo("#search-items-result");
 
 $("#loading-layer").remove();
+
+$('select[name="item[category_id]"]').on('change', function() {
+  const classNames = {};
+  <% Category.all.each do |ctgy| %>
+    classNames[<%= ctgy.id %>] = "<%= CategoriesHelper::css_class_name(ctgy) %>";
+  <% end %>
+  const imageContainer = $(this).parent().parent().prev();
+  $(imageContainer).attr("class", `item-result-img ${classNames[this.value]}`);
+});
