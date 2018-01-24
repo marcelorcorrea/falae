@@ -3,8 +3,17 @@ $("<%= escape_javascript(render 'pages/add_item') %>").appendTo(".container");
 
 $('#item_name').focus();
 
-$('.close').on('click', function(e) {
+$('.close').on('click', function (e) {
   e.preventDefault();
   $('.overlay').remove();
   $('body').css('overflow', 'initial');
+});
+
+$('#search-items').on('submit', function (e) {
+  const loadingLayer = $('<div/>', {
+    id: 'loading-layer',
+    append: $('<div/>', {
+      class: 'fa fa-spinner fa-pulse fa-3x fa-fw'
+    })
+  }).appendTo($('body'));
 });
