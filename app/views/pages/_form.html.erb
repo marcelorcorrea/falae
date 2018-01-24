@@ -6,12 +6,13 @@
 
   <div class="field">
     <%= form.label :columns %>
-    <%= form.number_field :columns, id: :page_columns, min: 1, max: 10 %>
+    <%= form.number_field :columns, id: :page_columns, value: page.columns || 5,
+                          min: 1, max: 10 %>
   </div>
 
   <div class="field">
     <%= form.label :rows %>
-    <%= form.number_field :rows, id: :page_rows, min: 1 %>
+    <%= form.number_field :rows, id: :page_rows, value: page.rows || 3, min: 1 %>
   </div>
 
   <div class="actions">
