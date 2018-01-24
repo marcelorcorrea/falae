@@ -1,7 +1,5 @@
 # Falaê
 
-
-
 Falaê is an Android app developed by HP volunteers from Brazil R&D in
 partnership with the NGO Educandário – Centro de Reabilitação São João
 Batista. It is an Alternative Communication app, that allows people with
