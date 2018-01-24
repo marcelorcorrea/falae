@@ -3,9 +3,9 @@ require "open-uri"
 namespace :pictograms do
   desc 'Populate pictograms table with images from a folder'
   task :populate_table, [:folder] => :environment do |task, args|
-    folder = args.folder
-    unless folder
-      msg = 'You need specify a folder param (e.g. rails pictograms:populate_table[<folder>]).'
+    folder = File.expand_path(args.folder)
+    unless folder && Dir.exist?(folder)
+      msg = 'You need specify a valid folder param (e.g. rails pictograms:populate_table[<folder>]).'
       abort(msg)
     end
     populate_table(folder)
@@ -30,6 +30,7 @@ namespace :pictograms do
   end
 
   def handle_file_types(folder, entries)
+    puts 'Checking file types.'
     entries.map do |entry|
       ef_filename, ef_extension = entry.split(/\.([^.]*)$/)
       entry_file = File.open File.join(folder, entry)
@@ -47,12 +48,14 @@ namespace :pictograms do
   end
 
   def normalize_filenames(entries)
+    puts 'Normalizing file names.'
     entries.map do |entry|
       entry.strip.sub(/^[^\p{L}]*/, '').gsub(' ', '_')
     end
   end
 
   def generate_unique_filenames(entries)
+    puts 'Generating unique file names.'
     unique_filenames = []
     entries.each do |entry|
       unique_filenames << if unique_filenames.include? entry
@@ -74,6 +77,7 @@ namespace :pictograms do
   end
 
   def rename_files(folder, entries, filenames)
+    puts 'Renaming files with unique names.'
     entries.zip(filenames) do |entry, filename|
       next if entry == filename
       File.rename File.join(folder, entry), File.join(folder, filename)
@@ -81,10 +85,14 @@ namespace :pictograms do
   end
 
   def insert_into_pictogram_table(folder)
-    Dir.entries(folder).reject {|f| File.directory? f}.each do |file|
+    entries = Dir.entries(folder).reject {|f| File.directory? f}
+    entries_size = entries.length
+    entries.each_with_index do |file, idx|
       img = File.new File.join(folder, file)
       Pictogram.create! image: img rescue puts "Error in #{file}"
+      print "\rInserting pictograms into database (#{idx}/#{entries_size})."
     end
+    puts
   end
 
   def download_samples()
