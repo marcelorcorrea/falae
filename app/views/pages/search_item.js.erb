@@ -3,13 +3,34 @@ $("#search-items-result").empty();
 $("<%= escape_javascript(render 'pages/search_result', items: items) %>")
   .appendTo("#search-items-result");
 
-$("#loading-layer").remove();
+$("#loading-layer") && $("#loading-layer").remove();
 
-$('select[name="item[category_id]"]').on('change', function() {
+$('select[name="item[category_id]"]').on('change', (e) => {
   const classNames = {};
   <% Category.all.each do |ctgy| %>
     classNames[<%= ctgy.id %>] = "<%= CategoriesHelper::css_class_name(ctgy) %>";
   <% end %>
-  const imageContainer = $(this).parent().parent().prev();
-  $(imageContainer).attr("class", `item-result-img ${classNames[this.value]}`);
+  const imageContainer = $(e.target).parent().parent().prev();
+  $(imageContainer).attr("class", `item-result-img ${classNames[e.target.value]}`);
+});
+
+$('.paginate a').on('click', (e) => {
+  const loadingLayer = $('<div/>', {
+    id: 'paginate-loading-layer',
+    append: $('<div/>', {
+      class: 'fa fa-spinner fa-pulse fa-3x fa-fw',
+    })
+  }).appendTo($('body'));
+
+  $('.overlay').animate({
+      scrollTop: $("#search-items-result").offset().top +
+        $('.overlay').scrollTop() - 16,
+  }, 750, () => $("#paginate-loading-layer").remove());
+
+  $.ajax({
+    type: "GET",
+    url: $(e.target).attr("href"),
+    dataType: "script"
+  });
+  return false;
 });

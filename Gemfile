@@ -45,6 +45,8 @@ gem "rack-attack", "~> 5.0"
 # File attachment management for ActiveRecord
 gem 'paperclip', '~> 5.2.0'
 
+gem 'will_paginate', '~> 3.1.6'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
