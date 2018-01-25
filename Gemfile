@@ -42,7 +42,8 @@ gem 'secure_headers', '~>3.6.7'
 # Throttling/blocking protection middleware
 gem "rack-attack", "~> 5.0"
 
-gem 'paperclip', '~> 5.1.0'
+# File attachment management for ActiveRecord
+gem 'paperclip', '~> 5.2.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
