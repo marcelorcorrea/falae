@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class PagesController < ApplicationController
   before_action :authenticate!
   before_action :authorized?
@@ -94,7 +96,8 @@ class PagesController < ApplicationController
     else
       []
     end
-    render locals: { items: items }
+    items_paginated = items.paginate page: params[:offset], per_page: 5
+    render locals: { items: items_paginated }
   end
 
   # POST

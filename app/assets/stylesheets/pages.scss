@@ -258,6 +258,24 @@
       .already {
         color: $medium-sea-green;
         font-style: italic;
+        margin-top: 2em;
+      }
+    }
+    .paginate {
+      text-align: center;
+      margin: 16px;
+      * {
+        margin: 0 1px;
+      }
+      .current {
+        color: $dark-orange;
+      }
+      .gap {
+        color: $medium-sea-green;
+      }
+      a {
+        color: $medium-sea-green;
+        text-decoration: none;
       }
     }
   }

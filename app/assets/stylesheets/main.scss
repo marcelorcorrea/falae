@@ -13,7 +13,7 @@ body {
   color: $default-font-color;
 }
 
-#loading-layer {
+#loading-layer, #paginate-loading-layer {
   display: block;
   position: fixed;
   top: 0;

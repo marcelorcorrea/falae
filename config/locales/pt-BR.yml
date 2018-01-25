@@ -424,3 +424,7 @@ dificuldades de fala e mobilidade se comunicarem utilizando pictogramas (imagens
     upload_file: Abrir arquivo
     user_photo_not_found: Foto do usuário não encontrada.
     welcome: Bem-vindo
+  will_paginate:
+    previous_label: "&#171; Anterior"
+    next_label: "Próxima &#187;"
+    page_gap: "&hellip;"
