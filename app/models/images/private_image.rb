@@ -10,4 +10,8 @@ class PrivateImage < Image
   def attachment_url
     "/users/#{user_id}/items/#{item.id}/image"
   end
+
+  def private?
+    true
+  end
 end
