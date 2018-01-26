@@ -219,6 +219,11 @@
         display: inline-block;
       }
     }
+    button[type="submit"][disabled],
+    button[type="submit"][disabled]:hover, {
+      cursor: not-allowed;
+      opacity: 0.75;
+    }
     .no-items-found {
       color: $dark-orange;
       text-align: center;
