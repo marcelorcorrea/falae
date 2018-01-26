@@ -9,6 +9,10 @@ class Pictogram < Image
     '/assets/:id.:extension'
   end
 
+  def pictogram?
+    true
+  end
+
   def self.find_like_by(param)
     query = ["#{param.keys.first} LIKE ?", "#{param.values.first}%"]
     Pictogram.where(query)

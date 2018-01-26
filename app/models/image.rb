@@ -18,4 +18,12 @@ class Image < ApplicationRecord
   def attachment_path
     raise NotImplementedError, 'This is an abstract base method.'
   end
+
+  def pictogram?
+    false
+  end
+
+  def private?
+    false
+  end
 end
