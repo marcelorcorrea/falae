@@ -187,6 +187,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   overflow: auto;
   .search-item {
+    position: relative;
     width: 950px;
     margin: 2em auto;
     // height: 90%;
@@ -200,13 +201,14 @@
         color: $medium-sea-green;
       }
     .close {
-      background: none;
-      float: right;
-      cursor: pointer;
       color: $dark-orange;
-      border: none;
       font-size: 1.75em;
+      border: none;
       margin: 0.5em;
+      background: none;
+      position: absolute;
+      right: 0;
+      cursor: pointer;
       .hover {
         display: none;
       }
