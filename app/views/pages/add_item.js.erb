@@ -1,5 +1,7 @@
 $('body').css('overflow', 'hidden');
-$("<%= escape_javascript(render 'pages/add_item') %>").appendTo(".container");
+
+$("<%= escape_javascript(render 'pages/add_item') %>")
+  .appendTo(".page");
 
 $('#item_name').focus();
 
@@ -9,11 +11,29 @@ $('.close').on('click', function (e) {
   $('body').css('overflow', 'initial');
 });
 
-$('#search-items').on('submit', function (e) {
-  const loadingLayer = $('<div/>', {
-    id: 'loading-layer',
-    append: $('<div/>', {
-      class: 'fa fa-spinner fa-pulse fa-3x fa-fw'
-    })
-  }).appendTo($('body'));
-});
+{
+  const searchInput = $('.overlay #item_name');
+  const searchBtn = $('.overlay button[name="search"]');
+  let searchedText = searchInput.val();
+
+  $(searchBtn).prop("disabled", true);
+
+  $(searchInput).on('keyup', (ev) => {
+    if (ev.target.value !== searchedText) {
+      $(searchBtn).removeAttr("disabled");
+    } else {
+      $(searchBtn).prop("disabled", true);
+    }
+  });
+
+  $('#search-items').on('submit', function (e) {
+    searchedText = $(searchInput).val();
+    $(searchBtn).prop("disabled", true);
+    const loadingLayer = $('<div/>', {
+      id: 'loading-layer',
+      append: $('<div/>', {
+        class: 'fa fa-spinner fa-pulse fa-3x fa-fw'
+      })
+    }).appendTo($('body'));
+  });
+}
