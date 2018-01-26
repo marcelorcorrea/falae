@@ -23,8 +23,19 @@ select.on('change', function () {
 
 $('#item_page_link_to').focus();
 
-$('.close').on('click', function(e) {
-  e.preventDefault();
+function closeDialog(event) {
+  event.preventDefault();
   $('.overlay').remove();
   $('body').css('overflow', 'initial');
-});
+  $(window).off('keyup', closeDialogOnEscape);
+}
+
+function closeDialogOnEscape (ev) {
+  if (ev.which === 27) {
+    closeDialog(ev);
+  }
+}
+
+$('.close').on('click', closeDialog);
+$(window).on('keyup', closeDialogOnEscape);
+
