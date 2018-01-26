@@ -1,7 +1,9 @@
 <div class="cards">
   <div class="card-list">
     <% items.each do |item| %>
+      <% if item.image.private? %>
       <%= render 'items/card', item: item %>
+      <% end %>
     <% end %>
   </div>
 </div>
