@@ -29,7 +29,7 @@ $(window).on('keyup', closeDialogOnEscape);
   $(searchBtn).prop("disabled", true);
 
   $(searchInput).on('keyup', (ev) => {
-    if (ev.target.value !== searchedText) {
+    if (ev.target.value !== '' && ev.target.value !== searchedText) {
       $(searchBtn).removeAttr("disabled");
     } else {
       $(searchBtn).prop("disabled", true);
