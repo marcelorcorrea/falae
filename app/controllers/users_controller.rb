@@ -84,7 +84,8 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :last_name, :email, :password,
-        :password_confirmation, :profile, :photo)
+        :password_confirmation, :profile, :photo, :crop_x, :crop_y,:crop_w,
+        :crop_h)
     end
 
     def skip_password_if_not_changed

@@ -386,6 +386,8 @@ dificuldades de fala e mobilidade se comunicarem utilizando pictogramas (imagens
     contact_ngo_phone1: '+ 55 (51) 3246 5655'
     contact_ngo_phone2: '+ 55 (51) 99318 5352'
     contact_ngo_website: 'Para maiores informações, acesse a página oficial <a href="http://www.educandario.org.br">aqui</a>.'
+    crop: Recortar
+    crop_title: Recortar Imagem
     destroy: Apagar
     edit: Editar
     edit_item: Editar item

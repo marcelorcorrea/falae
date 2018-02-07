@@ -15,8 +15,13 @@
   <div class="field">
     <%= label_tag User.human_attribute_name :photo %>
     <div id="user-photo-container">
-      <%= image_tag user.photo.url %>
+      <div id="user-photo-wrapper">
+        <%= image_tag user.photo.url, id: 'user-photo' %>
+      </div>
     </div>
+    <% [:crop_x, :crop_y, :crop_w, :crop_h].each do |attribute| %>
+      <%= form.hidden_field attribute, id: attribute %>
+    <% end %>
     <div class="wrapper-custom-input-file"
       data-unsupported-photo-type="<%= t 'views.unsupported_image_type' %>">
       <%= form.file_field :photo, id: :user_photo %>
@@ -66,3 +71,5 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<%= render 'shared/modal_image_crop', title: t('views.crop_title') %>

@@ -21,12 +21,21 @@
   }
   #user-photo-container {
     text-align: center;
-    img {
-      max-width: 150px;
-      max-height: 180px;
+    #user-photo-wrapper {
+      display: inline-block;
+      width: 150px;
+      height: 180px;
+      max-width: 154px;
+      max-height: 184px;
+      overflow: hidden;
       border: 2px solid #AAA;
       border-radius: 4px;
+      #user-photo {
+        width: 150px;
+        height: 180px;
+      }
     }
+
   }
   .form-box {
     width: 30em !important;

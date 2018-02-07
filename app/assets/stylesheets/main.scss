@@ -35,6 +35,75 @@ body {
   }
 }
 
+.overlay {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+  .content-wrapper {
+    position: relative;
+    width: 950px;
+    margin: 2em auto;
+    text-align: center;
+    background-color: white;
+    overflow: hidden;
+    .title {
+      font-size: 1.5em;
+      font-style: italic;
+      font-weight: 700;
+      text-align: center;
+      color: $medium-sea-green;
+    }
+    .img-crop-container {
+      display: inline-block;
+      text-align: center;
+      max-width: 80%;
+      border: 1px solid #AAA;
+      box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
+    }
+    button {
+      display: block;
+      color: white;
+      background-color: $medium-sea-green;
+      margin: 2em auto;
+      border: none;
+      border-radius: 0.25em;
+      padding: 0.5em 2em;;
+      box-shadow: 0 0 0.25em 0.125px $medium-sea-green;
+      &:hover {
+        opacity: 0.9;
+        cursor: pointer;
+      }
+      i {
+        padding-right: 0.5em;
+      }
+    }
+    .close {
+      color: $dark-orange;
+      font-size: 1.75em;
+      border: none;
+      margin: 0.5em;
+      background: none;
+      position: absolute;
+      right: 0;
+      cursor: pointer;
+      .hover {
+        display: none;
+      }
+      &:hover .default {
+        display: none;
+      }
+      &:hover .hover {
+        display: inline-block;
+      }
+    }
+  }
+}
+
 .wrapper {
   position: relative;
   width: $wrapper-width;
@@ -293,6 +362,7 @@ body {
 
       .wrapper-custom-input-file {
         text-align: center;
+        margin: 4px auto;
         input[type="file"] {
           // display: none;
           width: 0.1px;
