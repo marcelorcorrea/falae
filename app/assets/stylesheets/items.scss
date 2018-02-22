@@ -27,12 +27,19 @@
   }
   #item-image-container {
     text-align: center;
-    margin: 8px;
-    img {
-      max-width: 150px;
-      max-height: 150px;
+    #item-image-wrapper {
+      display: none;
+      width: 150px;
+      height: 150px;
+      max-width: 154px;
+      max-height: 154px;
+      overflow: hidden;
       border: 2px solid #AAA;
       border-radius: 4px;
+      #item-image {
+        width: 150px;
+        height: 150px;
+      }
     }
   }
   .card-list {

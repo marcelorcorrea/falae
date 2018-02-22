@@ -16,6 +16,10 @@ class Item < ApplicationRecord
     end
   end
 
+  after_update do
+    image.reprocess_image if image.cropping?
+  end
+
   def image_attributes=(attributes)
     image_id = attributes[:id]
     if image_id.present?
