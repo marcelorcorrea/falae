@@ -2,6 +2,8 @@ $('body').css('overflow', 'hidden');
 $("<%= escape_javascript(render 'pages/edit_item', item: item) %>")
   .appendTo(".container");
 
+$('.overlay').show();
+
 /* select style */
 var select = $('.overlay select#page_id');
 function setSelectStyle() {
@@ -38,4 +40,3 @@ function closeDialogOnEscape (ev) {
 
 $('.close').on('click', closeDialog);
 $(window).on('keyup', closeDialogOnEscape);
-
