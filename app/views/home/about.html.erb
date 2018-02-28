@@ -11,4 +11,16 @@
   <h3><%= t 'views.about_partners_title' %></h3>
   <p><%= raw t ('views.about_partners_devopers') %></p>
   <p><%= raw t ('views.about_partners_crialab') %></p>
+  <div class="partners-logos">
+    <%= link_to 'http://www.educandario.org.br' do %>
+      <%= image_tag '/educandario-logo.jpg', class: 'partner-logo',
+        alt: 'Educandário São João Batista' %>
+    <% end %>
+    <%= link_to 'https://devopers.com.br/' do %>
+      <%= image_tag '/devopers-logo.png', class: 'partner-logo', alt: 'Devopers' %>
+    <% end %>
+    <%= link_to 'http://www.pucrs.br/tecnopuc/crialab/' do %>
+      <%= image_tag '/crialab-logo.jpg', class: 'partner-logo', alt: 'Crialab' %>
+    <% end %>
+  </div>
 </div>

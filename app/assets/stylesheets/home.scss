@@ -6,3 +6,15 @@
   text-align: justify;
   padding: 0 16px;
 }
+
+#about {
+  .partners-logos {
+    margin: 2em auto;
+    text-align: center;
+    .partner-logo {
+      vertical-align: middle;
+      width: 250px;
+      margin: 0 25px;
+    }
+  }
+}
