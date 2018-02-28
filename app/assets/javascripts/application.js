@@ -14,6 +14,7 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery3
+//= require jquery.Jcrop
 
 
 document.addEventListener('turbolinks:load', function (e) {

@@ -12,13 +12,18 @@
   <div class="field">
     <%= label_tag Item.human_attribute_name :image %>
     <div id="item-image-container">
-      <% if item.image? %>
-      <%= image_tag item.image.image %>
-      <% end %>
+      <div id="item-image-wrapper">
+        <% if item.image? %>
+        <%= image_tag item.image.image, id: 'item-image' %>
+        <% end %>
+      </div>
     </div>
     <div class="wrapper-custom-input-file"
       data-unsupported-image-type="<%= t 'views.unsupported_image_type' %>">
       <%= form.fields_for :image do |image| %>
+        <% [:crop_x, :crop_y, :crop_w, :crop_h].each do |attribute| %>
+          <%= image.hidden_field attribute, id: attribute %>
+        <% end %>
         <%= image.file_field :image %>
         <%= image.label :image, class: 'custom-input-file' do %>
           <%= fa_icon 'upload' %> <%= t 'views.upload_file' %>
@@ -37,3 +42,5 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<%= render 'shared/modal_image_crop', title: t('views.crop_title') %>

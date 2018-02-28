@@ -3,6 +3,7 @@ $('body').css('overflow', 'hidden');
 $("<%= escape_javascript(render 'pages/add_item') %>")
   .appendTo(".page");
 
+$('.overlay').show();
 $('#item_name').focus();
 
 function closeDialog(event) {

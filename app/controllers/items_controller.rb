@@ -91,7 +91,7 @@ class ItemsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def item_params
     attrs = params.require(:item).permit(:name, :speech, :category_id,
-                                         image_attributes: [:image, :id])
+      image_attributes: [:image, :id, :crop_x, :crop_y, :crop_w, :crop_h])
     attrs[:image_attributes][:user_id] = current_user.id
     attrs
   end

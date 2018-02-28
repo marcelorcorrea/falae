@@ -88,6 +88,8 @@ en:
     contact_ngo_phone1: '+ 55 (51) 3246 5655'
     contact_ngo_phone2: '+ 55 (51) 99318 5352'
     contact_ngo_website: 'For more information, please visit the official website <a href="http://www.educandario.org.br">here</a>.'
+    crop: Crop
+    crop_title: Crop Image
     destroy: Destroy
     edit: Edit
     edit_item: Edit item

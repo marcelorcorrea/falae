@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  attr_accessor :activation_token, :reset_token
+  attr_accessor :activation_token, :reset_token, :crop_x, :crop_y, :crop_w, :crop_h
 
   has_one :role_user, dependent: :destroy
   has_one :role, through: :role_user
@@ -9,7 +9,9 @@ class User < ApplicationRecord
   has_many :items
   has_attached_file :photo, default_url: 'missing_photo.png',
     path: "#{ENV['FALAE_IMAGES_PATH']}/private/user_:id/photo.:extension",
-    url: '/users/:id/photo'
+    url: '/users/:id/photo',
+    styles: { text: { image: :crop } },
+    processors: [:cropper]
 
   before_create :create_activation_digest
 
@@ -27,6 +29,8 @@ class User < ApplicationRecord
   end
 
   before_destroy { self.photo = nil }
+
+  after_update :reprocess_photo, if: :cropping?
 
   validates_associated :role
   validates :name, :last_name, presence: true, length: { maximum: 50 }
@@ -104,10 +108,18 @@ class User < ApplicationRecord
     self.reset_sent_at < 2.hours.ago
   end
 
+  def cropping?
+    crop_x.present? && crop_y.present? && crop_w.present? && crop_h.present?
+  end
+
   private
     # Creates and assigns activation token and digest
     def create_activation_digest
       self.activation_token  = User.new_token
       self.activation_digest = User.digest(activation_token)
+    end
+
+    def reprocess_photo
+      photo.reprocess!
     end
 end
