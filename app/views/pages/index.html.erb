@@ -4,7 +4,7 @@
     <p id="notice"><%= notice %></p>
     <% end %>
     <div class="button-bar">
-      <%= link_to new_user_spreadsheet_page_path(@user), class: 'button-box' do %>
+      <%= link_to new_user_spreadsheet_page_path(@user, @spreadsheet), class: 'button-box' do %>
         <%= fa_icon 'plus-circle' %><%= t 'views.new_page' %>
       <% end %>
     </div>
