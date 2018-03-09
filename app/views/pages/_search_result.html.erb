@@ -45,7 +45,7 @@
         <div class="fields">
           <p class="field">
             <strong><%= Item.human_attribute_name :name %>:</strong>
-            <%= form.text_field :name, id: :item_name %>
+            <%= form.text_field :name, id: :item_name, value: item.name.capitalize %>
           </p>
           <div class="field">
             <strong><%= Item.human_attribute_name :speech %>:</strong>
