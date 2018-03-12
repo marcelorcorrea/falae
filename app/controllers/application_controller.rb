@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :set_locale
   protect_from_forgery with: :exception, unless: -> { request.format.json? }
   include ApplicationHelper
   include SessionsHelper
@@ -27,5 +28,11 @@ class ApplicationController < ActionController::Base
     def unauthorized_json_access
       response['WWW-Authenticate'] = 'Body realm="Access for Android app"'
       render json: {error: 'Access Denied'}, status: :unauthorized
+    end
+
+  private
+    def set_locale
+      I18n.locale = http_accept_language.compatible_language_from(
+        I18n.available_locales) || I18n.default_locale
     end
 end
