@@ -62,6 +62,7 @@ GEM
       railties (>= 3.2, < 5.2)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    http_accept_language (2.1.1)
     i18n (0.8.1)
     jbuilder (2.6.4)
       activesupport (>= 3.0.0)
@@ -182,6 +183,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   font-awesome-rails (~> 4.7.0)
+  http_accept_language (~> 2.1)
   jbuilder (~> 2.5)
   jquery-rails (~> 4.3.1)
   listen (>= 3.0.5, < 3.2)
@@ -202,4 +204,4 @@ DEPENDENCIES
   will_paginate (~> 3.1.6)
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
