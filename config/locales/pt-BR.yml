@@ -1,4 +1,3 @@
----
 pt-BR:
   activerecord:
     models:
@@ -355,8 +354,7 @@ pt-BR:
   views:
     about: Sobre
     about_app_title: 'O Aplicativo'
-    about_app_text_p1: '<b>Falaê</b> é um aplicativo Android desenvolvido por voluntários da HP do Brasil R&D em parceria com a ONG Educandário - Centro de Reabilitação São João Batista. É um aplicativo de Comunicação Alternativa, que permite pessoas com
-dificuldades de fala e mobilidade se comunicarem utilizando pictogramas (imagens ou símbolos) que representam palavras (verbos, substantivos, adjetivos etc).'
+    about_app_text_p1: '<b>Falaê</b> é um aplicativo Android desenvolvido por voluntários da HP do Brasil R&D em parceria com a ONG Educandário - Centro de Reabilitação São João Batista. É um aplicativo de Comunicação Alternativa, que permite pessoas com dificuldades de fala e mobilidade se comunicarem utilizando pictogramas (imagens ou símbolos) que representam palavras (verbos, substantivos, adjetivos etc).'
     about_app_text_p2: 'O objetivo principal deste projeto é oferecer o aplicativo, e todos os seus recursos, completamente gratuito. Até então, aplicativos de Comunicação Alternativa conhecidos pela ONG eram pagos e possuíam funcionalidades limitadas (por exemplo: número máximo de pranchas, itens por usuário). Esta é uma barreira para famílias de baixa renda. Desejamos que todos, independentemente de sua renda, possam fazer uso da ferramenta e superar suas dificuldades. '
     about_app_text_p3: 'O sistema <b>Falaê</b> consiste de duas partes: aplicativo Android e a plataforma web. Esta é usada para registro de usuários. Após realizado cadastro, o usuário pode definir seu perfil e, também, criar e editar pranchas, páginas e items de comunicação. O aplicativo Android se conecta à plataforma para a sincronização dessas informações.'
     about_app_text_p4: 'Outro diferencial da aplicação <b>Falaê</b> é a sua natureza <i><a href="https://github.com/marcelorcorrea/falae">open source</a></i>. <b>Falaê</b> é licenciado sob a licença <a href="https://github.com/marcelorcorrea/falae/blob/master/LICENSE">MIT</a>, ou seja, qualquer pessoa pode baixar e/ou modificar o código para adaptar às suas necessidades livremente, além da possibilidade de contribuir com a comunidade.'
@@ -378,9 +376,7 @@ dificuldades de fala e mobilidade se comunicarem utilizando pictogramas (imagens
     contact: Contato
     contact_dev_title: Desenvolvimento
     contact_dev: 'voluntarios.educandario@gmail.com'
-    contact_dev_github: 'Para contribuir ou reportar problemas, acesse os nossos repositórios no Github: <br/> <i class="fa fa-github" aria-hidden="true"></i>
-<a href="https://github.com/marcelorcorrea/falae">Aplicação Web</a> <br/> <i class="fa fa-github" aria-hidden="true"></i>
-<a href="https://github.com/marcelorcorrea/falae-android">Aplicação Android</a>'
+    contact_dev_github: 'Para contribuir ou reportar problemas, acesse os nossos repositórios no Github: <br/> <a href="https://github.com/marcelorcorrea/falae">Aplicação Web</a> <br/> <a href="https://github.com/marcelorcorrea/falae-android">Aplicação Android</a>'
     contact_ngo_title: 'Educandário São João Batista'
     contact_ngo_email: 'comunicacao@educandario.org.br'
     contact_ngo_phone1: '+ 55 (51) 3246 5655'
@@ -411,7 +407,7 @@ dificuldades de fala e mobilidade se comunicarem utilizando pictogramas (imagens
     no_item_was_found: Nenhum foi encontrado.
     no_user_items: Você ainda não possui nenhum item.
     not_linked: -- sem vínculo --
-    page_destroy_alert: Apagar esta página também apagará todas seus pictogramas.
+    page_destroy_alert: Apagar esta página também apagará todos seus pictogramas.
     page_item_remove_alert: Remover item da página?
     profile: Perfil
     register: Cadastrar
