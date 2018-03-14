@@ -7,8 +7,10 @@ SecureHeaders::Configuration.default do |config|
     }
   }
 
-  # Add "; preload" and submit the site to hstspreload.org for best protection.
-  config.hsts = "max-age=#{1.year.to_i}; includeSubdomains"
+  # HSTS header is currently defined in the nginx configuration file. We'll keep
+  # the same directive here in case the application moves out from nginx.
+  # config.hsts = "max-age=#{1.year.to_i}; includeSubdomains; preload"
+  config.hsts = SecureHeaders::OPT_OUT
   config.x_frame_options = "DENY"
   config.x_content_type_options = "nosniff"
   config.x_xss_protection = "1; mode=block"
