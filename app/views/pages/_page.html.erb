@@ -1,8 +1,12 @@
 <div class="list">
   <strong><%= Page.model_name.human(count: 2) %>:</strong>
+  <% if @pages.present? %>
   <ul>
-  <% @pages.each do |page| %>
-    <li><%= link_to page.name, user_spreadsheet_page_path(@user, @spreadsheet, page) %></li>
-  <% end %>
+    <% @pages.each do |page| %>
+      <li><%= link_to page.name, user_spreadsheet_page_path(@user, @spreadsheet, page) %></li>
+    <% end %>
   </ul>
+  <% else %>
+  <p><%= t 'views.no_user_pages' %></p>
+  <% end %>
 </div>
