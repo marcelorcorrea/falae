@@ -4,3 +4,9 @@
 
 @import 'defaults';
 
+.spreadsheet {
+  .no-initial-page {
+    color: $dark-orange;
+    font-style: italic;
+  }
+}
