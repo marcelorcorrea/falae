@@ -11,14 +11,15 @@ module Paperclip
 
     def crop_command
       target = @attachment.instance
-      ret = nil
       if target.cropping?
-        ret = ["-crop", "#{target.crop_w}x#{target.crop_h}+#{target.crop_x}+#{target.crop_y}"]
+        commands = ["-crop", "#{target.crop_w}x#{target.crop_h}+#{target.crop_x}+#{target.crop_y}"]
         target.crop_w = target.crop_h = nil
         target.crop_x = target.crop_y = nil
-        ret
+        resize = options[:resize_image] || {}
+        r_width, r_height = resize[:width], resize[:height]
+        commands << "-resize" << "#{r_width}x#{r_height}" if r_width && r_height
+        commands
       end
     end
   end
 end
-

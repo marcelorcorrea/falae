@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  PHOTO_WIDTH = 400
+  PHOTO_HEIGHT = 480
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   attr_accessor :activation_token, :reset_token, :crop_x, :crop_y, :crop_w, :crop_h
@@ -10,7 +12,7 @@ class User < ApplicationRecord
   has_attached_file :photo, default_url: 'missing_photo.png',
     path: "#{ENV['FALAE_IMAGES_PATH']}/private/user_:id/photo.:extension",
     url: '/users/:id/photo',
-    styles: { text: { image: :crop } },
+    styles: {crop: {resize_image: {width: PHOTO_WIDTH, height: PHOTO_HEIGHT}}},
     processors: [:cropper]
 
   before_create :create_activation_digest
