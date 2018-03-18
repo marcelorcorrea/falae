@@ -73,9 +73,10 @@ class PagesController < ApplicationController
   # DELETE /pages/1
   # DELETE /pages/1.json
   def destroy
+    @spreadsheet.pages.destroy @page
     @page.destroy
     respond_to do |format|
-      format.html { redirect_to user_spreadsheets_url, notice: t('.notice') }
+      format.html { redirect_to user_spreadsheet_url(@user, @spreadsheet), notice: t('.notice') }
       format.json { head :no_content }
     end
   end
@@ -146,7 +147,7 @@ class PagesController < ApplicationController
   def remove_item
     item = @page.items.find_by id: params[:item_id]
     if item.private?
-      @page.items.destroy item 
+      @page.items.destroy item
     else
       Item.destroy item.id
     end
