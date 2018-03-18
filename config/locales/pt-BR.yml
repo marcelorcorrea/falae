@@ -408,6 +408,7 @@ pt-BR:
     no_user_items: Você ainda não possui nenhum item.
     no_user_pages: Você ainda não possui página nesta prancha.
     no_user_spreadsheets: Você ainda não possui nenhuma prancha.
+    no_spreadsheet_initial_page: '** Página inicial não definida **'
     not_linked: -- sem vínculo --
     og_description: Aplicativo de Comunicação Alternativa que permite pessoas com dificuldades de fala e mobilidade se comunicarem utilizando pictogramas que representam palavras.
     page_destroy_alert: Apagar esta página também apagará todos seus pictogramas.

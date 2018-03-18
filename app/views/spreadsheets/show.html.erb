@@ -21,7 +21,11 @@
 
   <p>
     <strong><%= t Spreadsheet.human_attribute_name :initial_page %>:</strong>
+    <% if @spreadsheet.initial_page.present? %>
     <%= @spreadsheet.initial_page %>
+    <% else %>
+    <span class="no-initial-page"><%= t 'views.no_spreadsheet_initial_page' %></span>
+    <% end %>
   </p>
 
   <%= link_to new_user_spreadsheet_page_path(@user, @spreadsheet), class: 'button-box' do %>
