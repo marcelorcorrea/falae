@@ -1,4 +1,6 @@
 class Image < ApplicationRecord
+  IMAGE_WIDTH = 500
+  IMAGE_HEIGHT = 500
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
 
   scope :pictogram, -> { where(type: 'Pictogram') }
@@ -6,7 +8,8 @@ class Image < ApplicationRecord
   belongs_to :user, optional: true
 
   has_attached_file :image, path: :attachment_path, url: :attachment_url,
-    styles: { text: { image: :crop } }, processors: [:cropper]
+    styles: {crop: {resize_image: {width: IMAGE_WIDTH, height: IMAGE_HEIGHT}}},
+    processors: [:cropper]
 
   validates_attachment_presence :image
   validates_attachment_content_type :image, content_type: %r{\Aimage\/(jpe?g|png|gif)\z}
