@@ -405,9 +405,9 @@ en:
     new_page: New page
     new_spreadsheet: New Board
     no_item_was_found: No item was found.
-    no_user_items: No user items.
-    no_user_pages: No page in this board.
-    no_user_spreadsheets: No user board.
+    no_user_items: You don't have items yet.
+    no_user_pages: You don't have pages in this board yet.
+    no_user_spreadsheets: You don't have boards yet.
     not_linked: -- not linked --
     og_description: Alternative Communication app that allows people with speech and mobility impairments to communicate by using pictograms that represent words.
     page_destroy_alert: Deleting this page will also delete all of its pictograms.
