@@ -4,7 +4,7 @@
 
 
 // References:
-// ttps://stackoverflow.com/questions/3942878/how-to-decide-font-color-in-white-or-black-depending-on-background-color#3943023
+// https://stackoverflow.com/questions/3942878/how-to-decide-font-color-in-white-or-black-depending-on-background-color#3943023
 // https://www.w3.org/TR/WCAG20/#relativeluminancedef
 // https://www.w3.org/TR/WCAG20/#contrast-ratiodef
 @function brightness($c) {
@@ -16,9 +16,9 @@
 
 @function set-category-text-color($color) {
   @if (brightness($color) > 0.179) {
-    @return #000000;
+    @return #000;
   } @else {
-    @return #ffffff;
+    @return #FFF;
   }
 }
 
@@ -26,6 +26,5 @@
 .<%= CategoriesHelper::css_class_name ctgy %> {
   color: set-category-text-color(<%= ctgy.color %>);
   background-color: <%= ctgy.color %>;
-  margin: brightness(<%= ctgy.color %>);
 }
 <% end %>
