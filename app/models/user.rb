@@ -23,9 +23,6 @@ class User < ApplicationRecord
 
   before_save do
     self.email = email.downcase
-    if self.spreadsheets.empty?
-      self.spreadsheets << Spreadsheet.default
-    end
   end
 
   before_destroy { self.photo = nil }

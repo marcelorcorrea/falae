@@ -10,8 +10,18 @@ class Page < ApplicationRecord
             numericality: {only_integer: true, greater_than: 0}
   validates :columns, numericality: {less_than_or_equal_to: 10}
 
-  def Page.default_blank
-    Page.new name: Page.human_attribute_name(:initial), columns: 6, rows: 3
+  after_save do
+    if spreadsheet.pages.count == 1
+      spreadsheet.initial_page = name
+      spreadsheet.save
+    end
+  end
+
+  after_destroy do
+    if name == spreadsheet.initial_page
+      spreadsheet.initial_page = nil
+      spreadsheet.save
+    end
   end
 
   def swap_items(id1, id2)
