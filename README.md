@@ -36,17 +36,43 @@ or warning it is not installed, also it will create the gemset.
 rvm install ruby-2.4.0
 ```
 
-##### Database creation
+#### Database setup.
 ```
-rais db:setup
-```
-
-##### Database initialization
-```
-rails db:seed
+rails db:setup
 ```
 
-##### System dependencies
+#### Install bundler gem at global gemset.
+
+```
+rvm @global do gem install bundler
+```
+
+#### Running falae
+
+Installing gems:
+
+```
+bundle install
+```
+Set FALAE_IMAGES_PATH environment variable, which should points to a directory where pictograms and users images will be stored. It should not set this variable to the app public directory.
+
+```
+export FALAE_IMAGES_PATH=<dir-name>
+```
+
+Running the application
+
+```
+rails server
+```
+
+There is a rails task to populate the database with some pictogram samples for development purposes.
+
+```
+rails pictograms:download_samples
+```
+
+#### System dependencies
 
 * Image magick
 
@@ -60,5 +86,3 @@ rails db:seed
 ## License
 
 MIT -- see [LICENSE](LICENSE)
-
-
