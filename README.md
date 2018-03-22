@@ -54,7 +54,7 @@ Installing gems:
 ```
 bundle install
 ```
-Set FALAE_IMAGES_PATH environment variable, which should points to a directory where pictograms and users images will be stored. It should not set this variable to the app public directory.
+Set FALAE_IMAGES_PATH environment variable to point to a directory where pictograms and user's images will be stored in. This variable should not point to the app's public directory.
 
 ```
 export FALAE_IMAGES_PATH=<dir-name>
@@ -66,7 +66,7 @@ Running the application
 rails server
 ```
 
-There is a rails task to populate the database with some pictogram samples for development purposes.
+For development purposes, there is a useful rails task to populate the database with some pictogram samples.
 
 ```
 rails pictograms:download_samples
