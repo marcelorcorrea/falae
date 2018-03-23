@@ -30,23 +30,52 @@ cd .
 For *rvm* to detect dot files in the web folder. It will use the project ruby version
 or warning it is not installed, also it will create the gemset.
 
-#### Install ruby.
+#### Install ruby
 
 ```
 rvm install ruby-2.4.0
 ```
 
-##### Database creation
+#### FALAE_IMAGES_PATH environment variable
+
+You must set FALAE_IMAGES_PATH environment variable to point to a directory where pictograms and user's images will be stored in. This variable should not point to the app's public directory.
+
 ```
-rais db:setup
+export FALAE_IMAGES_PATH=<dir-name>
 ```
 
-##### Database initialization
+#### Database setup
 ```
-rails db:seed
+rails db:setup
 ```
 
-##### System dependencies
+#### Install bundler gem at global gemset
+
+```
+rvm @global do gem install bundler
+```
+
+#### Running falae
+
+Installing gems:
+
+```
+bundle install
+```
+
+Running the application
+
+```
+rails server
+```
+
+For development purposes, there is a useful rails task to populate the database with some pictogram samples.
+
+```
+rails pictograms:download_samples
+```
+
+#### System dependencies
 
 * Image magick
 
@@ -60,5 +89,3 @@ rails db:seed
 ## License
 
 MIT -- see [LICENSE](LICENSE)
-
-
