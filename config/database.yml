@@ -23,7 +23,7 @@ test:
 production:
   <<: *default
   adapter: mysql2
-  encoding: utf-8
+  encoding: utf8
   reconnect: true
   database: falae
   username: <%= ENV["DB_USER"] %>
