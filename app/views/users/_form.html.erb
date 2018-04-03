@@ -57,14 +57,14 @@
     <%= form.label :password %>
     <span class="input-icon"><%= fa_icon 'lock' %></span>
     <%= form.password_field :password, id: :user_password, class: 'offset-for-icon',
-      placeholder: true, disabled: !new_user %>
+      placeholder: true, disabled: !new_user, autocomplete: 'off' %>
   </div>
 
   <div class="field<%= ' sensitive-data' unless new_user %>">
     <%= form.label :password_confirmation %>
     <span class="input-icon"><%= fa_icon 'lock' %></span>
     <%= form.password_field :password_confirmation, id: :user_password_confirmation,
-      class: 'offset-for-icon', placeholder: true, disabled: !new_user %>
+      class: 'offset-for-icon', placeholder: true, disabled: !new_user, autocomplete: 'off' %>
   </div>
 
   <div class="actions">
