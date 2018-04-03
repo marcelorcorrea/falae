@@ -69,8 +69,7 @@ class SpreadsheetsController < ApplicationController
   # DELETE /spreadsheets/1
   # DELETE /spreadsheets/1.json
   def destroy
-    @user.spreadsheet.destroy @spreadsheet
-    @spreadsheet.destroy
+    @user.spreadsheets.destroy @spreadsheet
     respond_to do |format|
       format.html { redirect_to user_spreadsheets_url, notice: t('.notice') }
       format.json { head :no_content }

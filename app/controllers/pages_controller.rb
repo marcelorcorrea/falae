@@ -74,7 +74,6 @@ class PagesController < ApplicationController
   # DELETE /pages/1.json
   def destroy
     @spreadsheet.pages.destroy @page
-    @page.destroy
     respond_to do |format|
       format.html { redirect_to user_spreadsheet_url(@user, @spreadsheet), notice: t('.notice') }
       format.json { head :no_content }
