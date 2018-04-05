@@ -4,7 +4,8 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   UNACTIVATED_TTL = 30.days.ago
 
-  attr_accessor :activation_token, :reset_token, :crop_x, :crop_y, :crop_w, :crop_h
+  attr_accessor :activation_token, :reset_token, :crop_x, :crop_y, :crop_w, :crop_h,
+    :current_password
 
   has_one :role_user, dependent: :destroy
   has_one :role, through: :role_user
@@ -16,8 +17,16 @@ class User < ApplicationRecord
     styles: {crop: {resize_image: {width: PHOTO_WIDTH, height: PHOTO_HEIGHT}}},
     processors: [:cropper]
 
-  before_create :create_activation_digest
-  after_create :send_activation_email
+
+  validates_associated :role
+  validates :name, :last_name, presence: true, length: { maximum: 50 }
+  validates :email, presence: true, uniqueness: { case_sensitive: false },
+            length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }
+  validates :password, presence: true, length: { minimum: 6 }, on: :create
+  validates :password, presence: true, length: { minimum: 6 }, on: :update,
+            if: :password_digest_changed?
+  validates_attachment_content_type :photo, content_type: /\Aimage\/(jpe?g|png|gif)\z/
+
 
   before_validation do
     if self.role.blank?
@@ -25,27 +34,23 @@ class User < ApplicationRecord
     end
   end
 
-  before_save do
-    self.email = email.downcase
-  end
-
-  before_destroy { self.photo = nil }
-
+  before_save { self.email = email.downcase }
+  before_create :create_activation_digest
+  after_create :send_activation_email
   after_update :reprocess_photo, if: :cropping?
-
-  validates_associated :role
-  validates :name, :last_name, presence: true, length: { maximum: 50 }
-  validates :email, presence: true, uniqueness: { case_sensitive: false },
-            length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }
-  validates :password, :password_confirmation, presence: true,
-            length: { minimum: 6 }, on: :create
-  validates_attachment_content_type :photo, content_type: /\Aimage\/(jpe?g|png|gif)\z/
+  before_destroy { self.photo = nil }
 
   has_secure_password
   has_secure_token :auth_token
 
   def admin?
     false
+  end
+
+  def authenticate!(passwd, field, msg = nil)
+    authenticated = authenticate(passwd)
+    errors.add(field, msg) unless authenticated
+    authenticated
   end
 
   def find_items_like_by(param)

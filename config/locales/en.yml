@@ -333,6 +333,14 @@ en:
       notice: User updated successfully.
     destroy:
       notice: User deleted successfully.
+    update_email:
+      incorrect_password: Password is incorrect.
+      invalid_email: Email is invalid.
+      notice: Email updated successfully.
+    update_password:
+      incorrect_password: Current password is invalid.
+      invalid_password: New password is ivalid or not equal to confirmation password field.
+      notice: Password updated successfully.
   user_mailer:
     account_activation:
       subject: 'Account activation'
@@ -372,6 +380,8 @@ en:
     add_to_page: Add to page
     back: Back
     cancel: Cancel
+    change_email: Change email
+    change_password: Change password
     confirm_message: Are you sure?
     contact: Contact
     contact_dev_title: Development
@@ -384,6 +394,7 @@ en:
     contact_ngo_website: 'For more information, please visit the official website <a href="http://www.educandario.org.br">here</a>.'
     crop: Crop
     crop_title: Crop Image
+    current_password: Current password
     destroy: Destroy
     edit: Edit
     edit_item: Edit item
@@ -403,6 +414,8 @@ en:
     name: Name
     new_item: New item
     new_page: New page
+    new_password: New password
+    new_password_confirmation: New password confirmation
     new_spreadsheet: New Board
     no_item_was_found: No item was found.
     no_user_items: You don't have items yet.

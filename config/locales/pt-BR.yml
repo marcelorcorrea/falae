@@ -333,6 +333,14 @@ pt-BR:
       notice: Usuário atualizado com sucesso.
     destroy:
       notice: Usuário apagado com sucesso.
+    update_email:
+      incorrect_password: A senha está incorreta.
+      invalid_email: O email é inválido.
+      notice: Email atualizado com sucesso.
+    update_password:
+      incorrect_password: A senha atual está incorreta.
+      invalid_password: A nova senha é inválida ou não é igual ao campo confirmação de senha.
+      notice: Senha atualizada com sucesso.
   user_mailer:
     account_activation:
       subject: 'Ativação de Conta'
@@ -372,6 +380,8 @@ pt-BR:
     add_to_page: Adicionar a página
     back: Voltar
     cancel: Cancelar
+    change_email: Alterar email
+    change_password: Alterar senha
     confirm_message: Você tem certeza?
     contact: Contato
     contact_dev_title: Desenvolvimento
@@ -384,6 +394,7 @@ pt-BR:
     contact_ngo_website: 'Para maiores informações, acesse a página oficial <a href="http://www.educandario.org.br">aqui</a>.'
     crop: Recortar
     crop_title: Recortar Imagem
+    current_password: Senha atual
     destroy: Apagar
     edit: Editar
     edit_item: Editar item
@@ -403,6 +414,8 @@ pt-BR:
     name: Nome
     new_item: Criar item
     new_page: Criar página
+    new_password: Nova senha
+    new_password_confirmation: Confirmar nova senha
     new_spreadsheet: Criar Prancha
     no_item_was_found: Nenhum foi encontrado.
     no_user_items: Você ainda não possui nenhum item.
