@@ -40,26 +40,13 @@
   .form-box {
     width: 30em !important;
 
-    .edit-sensitive-data {
-      color: $light-gray;
-      font-style: italic;
-      text-align: right;
-      margin: 2.5em auto 0;
-      width: 80%;
-      label {
-        display: inline;
-      }
-      input {
-        vertical-align: middle;
-      }
-    }
-    .sensitive-data {
-      color: $light-gray;
-    }
-
     input[type="text"][disabled="disabled"],
     input[type="password"][disabled="disabled"] {
       color: $light-gray;
+    }
+
+    a {
+      color: $dark-sea-green;
     }
   }
 }

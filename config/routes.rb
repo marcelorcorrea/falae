@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resources :users, except: [:destroy] do
     member do
       get 'photo'
+      get 'change_email'
+      get 'change_password'
+      patch 'update_email'
+      patch 'update_password'
     end
     resources :spreadsheets do
       resources :pages do

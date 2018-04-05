@@ -306,8 +306,8 @@ body {
           background: none;
 
           input[type='text'], input[type='password'] {
-            border: 1px solid red;
-            box-shadow: 0 0 0.25em 0.125px red;
+            border: 1px solid $dark-orange;
+            box-shadow: 0 0 0.25em 0.125px $dark-orange;
           }
         }
       }
@@ -468,19 +468,23 @@ div {
   }
 }
 
+.alert {
+  color: $dark-orange;
+}
+
 #notice {
   color: green;
 }
 
 .field_with_errors {
   padding: 2px;
-  background-color: red;
+  background-color: $dark-orange;
   display: table;
 }
 
 #error_explanation {
   width: 450px;
-  border: 2px solid red;
+  border: 2px solid $dark-orange;
   padding: 7px 7px 0;
   margin-bottom: 20px;
   background-color: #f0f0f0;

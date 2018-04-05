@@ -37,35 +37,35 @@
       rows: 15, placeholder: true %>
   </div>
 
-  <% new_user = user.new_record? %>
-
-  <% unless new_user %>
-  <div class="edit-sensitive-data">
-    <%= label_tag :edit_sensitive_data, 'Editar dados sensíveis:' %>
-    <%= check_box_tag :edit_sensitive_data %>
-  </div>
-  <% end %>
-
-  <div class="field<%= ' sensitive-data' unless new_user %>">
+  <% if user.new_record? %>
+  <div class="field">
     <%= form.label :email %>
     <span class="input-icon"><%= fa_icon 'envelope-square' %></span>
     <%= form.text_field :email, id: :user_email, class: 'offset-for-icon',
-        placeholder: true, disabled: !new_user %>
+        placeholder: true %>
   </div>
 
-  <div class="field<%= ' sensitive-data' unless new_user %>">
+  <div class="field">
     <%= form.label :password %>
     <span class="input-icon"><%= fa_icon 'lock' %></span>
     <%= form.password_field :password, id: :user_password, class: 'offset-for-icon',
-      placeholder: true, disabled: !new_user, autocomplete: 'off' %>
+      placeholder: true, autocomplete: 'off' %>
   </div>
 
-  <div class="field<%= ' sensitive-data' unless new_user %>">
+  <div class="field">
     <%= form.label :password_confirmation %>
     <span class="input-icon"><%= fa_icon 'lock' %></span>
     <%= form.password_field :password_confirmation, id: :user_password_confirmation,
-      class: 'offset-for-icon', placeholder: true, disabled: !new_user, autocomplete: 'off' %>
+      class: 'offset-for-icon', placeholder: true, autocomplete: 'off' %>
   </div>
+  <% else %>
+  <div class="field">
+    <%= link_to t('views.change_email'), change_email_user_path(@user) %>
+  </div>
+  <div class="field">
+    <%= link_to t('views.change_password'), change_password_user_path(@user) %>
+  </div>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>

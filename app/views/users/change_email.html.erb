@@ -1,0 +1,42 @@
+<%= render 'layouts/nav_menu_and_view' do %>
+<div class="user">
+  <div class="button-bar">
+    <%= link_to user_path(@user), class: 'button-box cancel' do %>
+      <%= fa_icon 'times' %><%= t 'views.cancel' %>
+    <% end %>
+    <%= link_to edit_user_path(@user), class: 'button-box back' do %>
+      <%= fa_icon 'arrow-left' %><%= t 'views.back' %>
+    <% end %>
+  </div>
+
+  <% if alert %>
+    <p class="alert"><%= alert %></p>
+  <% end %>
+
+  <div class="form-box">
+    <div class="label">
+      <%= t 'views.change_email' %>
+    </div>
+    <%= form_with model: @user, url: update_email_user_path(@user),
+      local: true do |form| %>
+      <div class="field">
+        <%= form.label :email %>
+        <span class="input-icon"><%= fa_icon 'envelope-square' %></span>
+        <%= form.text_field :email, id: :user_email, class: 'offset-for-icon',
+            placeholder: true %>
+      </div>
+
+      <div class="field">
+        <%= form.label :password %>
+        <span class="input-icon"><%= fa_icon 'lock' %></span>
+        <%= form.password_field :password, id: :user_password,
+          class: 'offset-for-icon', placeholder: true, autocomplete: 'off' %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% end %>
