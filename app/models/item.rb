@@ -7,6 +7,7 @@ class Item < ApplicationRecord
 
   validates :name, :speech, presence: true
   validates_associated :category
+  validates_associated :image
 
   accepts_nested_attributes_for :image
 
@@ -26,11 +27,15 @@ class Item < ApplicationRecord
     image.destroy if image.private?
   end
 
+  after_rollback(on: :create) do
+    self.image.destroy
+  end
+
   def image_attributes=(attributes)
     image_id = attributes[:id]
     if image_id.present?
       img = Image.find_by id: image_id
-      update_attribute :image, img
+      update_attributes image: img
     end
     super
   end
@@ -40,7 +45,8 @@ class Item < ApplicationRecord
       image.update_attributes image: params[:image]
     else
       img = PrivateImage.create params
-      update_attribute :image, img
+      img.reprocess_image if img.valid? && img.cropping?
+      self.image = img
     end
   end
 
