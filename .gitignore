@@ -17,6 +17,8 @@
 !/log/.keep
 !/tmp/.keep
 
+.nginx-conf.yaml
+
 /yarn-error.log
 
 .byebug_history
