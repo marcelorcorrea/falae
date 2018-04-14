@@ -47,6 +47,8 @@ gem 'paperclip', '~> 5.2.0'
 
 gem 'will_paginate', '~> 3.1.6'
 
+gem 'rufus-scheduler', '~> 3.4.2'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

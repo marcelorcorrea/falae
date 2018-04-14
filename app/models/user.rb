@@ -2,6 +2,7 @@ class User < ApplicationRecord
   PHOTO_WIDTH = 400
   PHOTO_HEIGHT = 480
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  UNACTIVATED_TTL = 30.days.ago
 
   attr_accessor :activation_token, :reset_token, :crop_x, :crop_y, :crop_w, :crop_h
 
@@ -57,6 +58,11 @@ class User < ApplicationRecord
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
+  end
+
+  def User.cleanup_unactivated
+    User.where('created_at < :ttl', ttl: UNACTIVATED_TTL)
+      .where(activated: false).destroy_all
   end
 
   # json token access
