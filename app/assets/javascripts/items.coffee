@@ -4,6 +4,8 @@
 
 document.addEventListener 'turbolinks:load', ->
 
+  $('#item-image').parent().css { display: 'inline-block' }
+
   itemImageInput = document.getElementById 'item_image_attributes_image'
   if itemImageInput
   # add event listener to load item image preview on form
