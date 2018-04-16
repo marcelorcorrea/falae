@@ -22,10 +22,9 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false },
             length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }
   validates :password, presence: true, length: { minimum: 6 }, on: :create
-  validates :password, presence: true, length: { minimum: 6 }, on: :update,
-            if: :password_digest_changed?
+  validates :password, presence: true, length: { minimum: 6 }, on: :update_password,
+            if: :update_password?
   validates_attachment_content_type :photo, content_type: /\Aimage\/(jpe?g|png|gif)\z/
-
 
   before_validation do
     if self.role.blank?
@@ -46,15 +45,26 @@ class User < ApplicationRecord
     false
   end
 
-  def authenticate!(passwd, field, msg = nil)
+  def authenticate!(passwd, attribute, message = nil)
     authenticated = authenticate(passwd)
-    errors.add(field, msg) unless authenticated
+    errors.add(attribute, message) unless authenticated
     authenticated
   end
 
   def find_items_like_by(param)
     query = ["#{param.keys.first} LIKE ?", "#{param.values.first}%"]
     items.where(query)
+  end
+
+  def update_password?
+    password_digest_changed? || password.blank?
+  end
+
+  def update_password_with_context(password_attributes)
+    with_transaction_returning_status do
+      assign_attributes(password_attributes)
+      save(context: :update_password)
+    end
   end
 
   # Returns hash digest of given string
