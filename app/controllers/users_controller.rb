@@ -30,7 +30,6 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        @user.send_activation_email
         format.html {
           flash[:warning] = t('user_mailer.account_activation.verification')
           redirect_to root_url
