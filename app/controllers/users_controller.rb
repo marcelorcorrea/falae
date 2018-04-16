@@ -109,7 +109,7 @@ class UsersController < ApplicationController
         flash.now[:alert] = error_msg
         format.html { render :change_password }
         format.json { render json: {error: error_msg}, status: :unprocessable_entity }
-      elsif @user.update(password_update_params)
+      elsif @user.update_password_with_context(password_update_params)
         format.html { redirect_to @user, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -138,6 +138,7 @@ class UsersController < ApplicationController
     end
 
     def password_update_params
-      params.require(:user).permit(:password, :password_confirmation)
+      params.require(:user).except(:current_password)
+        .permit(:password, :password_confirmation)
     end
 end

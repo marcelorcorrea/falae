@@ -339,7 +339,7 @@ en:
       notice: Email updated successfully.
     update_password:
       incorrect_password: Current password is invalid.
-      invalid_password: New password is ivalid or not equal to confirmation password field.
+      invalid_password: New password is invalid or not equal to confirmation password field.
       notice: Password updated successfully.
   user_mailer:
     account_activation:
