@@ -16,6 +16,7 @@ class User < ApplicationRecord
     processors: [:cropper]
 
   before_create :create_activation_digest
+  after_create :send_activation_email
 
   before_validation do
     if self.role.blank?
