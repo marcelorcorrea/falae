@@ -48,6 +48,7 @@ en:
         initial_page: Initial Page
       user:
         name: Name
+        email_confirmation: Confirm email
         last_name: Last name
         locale: Language
         password: Password

@@ -89,12 +89,11 @@ class UsersController < ApplicationController
         flash.now[:alert] = error_msg
         format.html { render :change_email }
         format.json { render json: {error: error_msg}, status: :unprocessable_entity }
-      elsif @user.update(email: params[:user][:email])
+      elsif @user.update(email_update_params)
         format.html { redirect_to @user, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @user }
       else
         error_msg = t('.invalid_email')
-        flash.now[:alert] = error_msg
         format.html { render :change_email }
         format.json { render json: {error: error_msg}, status: :unprocessable_entity }
       end
@@ -128,13 +127,18 @@ class UsersController < ApplicationController
     end
 
     def create_params
-      params.require(:user).permit(:name, :last_name, :profile, :email, :password,
-        :password_confirmation, :photo, :locale, :crop_x, :crop_y, :crop_w, :crop_h)
+      params.require(:user).permit(:name, :last_name, :profile, :email, :email_confirmation,
+        :password, :password_confirmation, :photo, :locale, :crop_x, :crop_y, :crop_w, :crop_h)
     end
 
     def update_params
       params.require(:user).permit(:name, :last_name, :profile, :photo, :locale,
         :crop_x, :crop_y, :crop_w, :crop_h)
+    end
+
+    def email_update_params
+      params.require(:user).except(:password)
+        .permit(:email, :email_confirmation)
     end
 
     def password_update_params
