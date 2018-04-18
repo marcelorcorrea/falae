@@ -17,6 +17,13 @@ require "secure_headers/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+AVAILABLE_LOCALES = {
+  en: 'English',
+  'pt-BR': 'Português - Brasil'
+}
+
+DEFAULT_LOCALE = 'pt-BR'
+
 module Web
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -33,10 +40,10 @@ module Web
     config.generators.system_tests = nil
 
     # Whitelist locales available for the application
-    I18n.available_locales = [:en, 'pt-BR']
+    I18n.available_locales = AVAILABLE_LOCALES.keys
 
     # Set default locale to something other than :en
-    I18n.default_locale = 'pt-BR'
+    I18n.default_locale = DEFAULT_LOCALE
 
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '**/')]
   end

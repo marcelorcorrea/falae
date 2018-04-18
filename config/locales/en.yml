@@ -49,6 +49,7 @@ en:
       user:
         name: Name
         last_name: Last name
+        locale: Language
         password: Password
         password_confirmation: Confirm password
         photo: Photo

@@ -129,12 +129,12 @@ class UsersController < ApplicationController
 
     def create_params
       params.require(:user).permit(:name, :last_name, :profile, :email, :password,
-        :password_confirmation, :photo, :crop_x, :crop_y, :crop_w, :crop_h)
+        :password_confirmation, :photo, :locale, :crop_x, :crop_y, :crop_w, :crop_h)
     end
 
     def update_params
-      params.require(:user).permit(:name, :last_name, :profile, :photo, :crop_x,
-        :crop_y, :crop_w, :crop_h)
+      params.require(:user).permit(:name, :last_name, :profile, :photo, :locale,
+        :crop_x, :crop_y, :crop_w, :crop_h)
     end
 
     def password_update_params

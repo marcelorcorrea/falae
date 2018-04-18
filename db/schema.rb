@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171217232136) do
+ActiveRecord::Schema.define(version: 20180417220239) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 20171217232136) do
     t.datetime "photo_updated_at"
     t.string "auth_token"
     t.datetime "auth_token_created_at"
+    t.string "locale", default: "pt-BR"
     t.index ["auth_token", "auth_token_created_at"], name: "index_users_on_auth_token_and_auth_token_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end

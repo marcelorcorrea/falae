@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
-  before_action :set_locale
   protect_from_forgery with: :exception, unless: -> { request.format.json? }
   include ApplicationHelper
   include SessionsHelper
+
+  before_action :set_locale
 
   def authenticate!
     if !logged_in? && !user_from_token_authentication
@@ -32,7 +33,8 @@ class ApplicationController < ActionController::Base
 
   private
     def set_locale
-      I18n.locale = http_accept_language.compatible_language_from(
-        I18n.available_locales) || I18n.default_locale
+      I18n.locale = current_user.try(:locale) ||
+        http_accept_language.compatible_language_from(I18n.available_locales) ||
+        I18n.default_locale
     end
 end

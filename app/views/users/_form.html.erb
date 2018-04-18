@@ -37,6 +37,11 @@
       rows: 15, placeholder: true %>
   </div>
 
+  <div class="field">
+    <%= form.label :locale %>
+    <%= form.select :locale, options_for_select(available_locales_options, I18n.locale) %>
+  </div>
+
   <% if user.new_record? %>
   <div class="field">
     <%= form.label :email %>
