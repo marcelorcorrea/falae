@@ -55,7 +55,7 @@ class User < ApplicationRecord
 
   def find_items_like_by(param)
     query = ["#{param.keys.first} LIKE ?", "#{param.values.first}%"]
-    items.where(query)
+    items.includes(:image).where(query).select(&:private?)
   end
 
   def update_password?
