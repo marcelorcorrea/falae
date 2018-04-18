@@ -48,6 +48,7 @@ pt-BR:
         initial_page: Página inicial
       user:
         name: Nome
+        email_confirmation: Confirmar email
         last_name: Sobrenome
         locale: Linguagem
         password: Senha

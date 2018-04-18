@@ -11,6 +11,10 @@
 
   <% if alert %>
     <p class="alert"><%= alert %></p>
+  <% else %>
+    <% @user.errors.full_messages.each do |message| %>
+    <p class="alert"><%= message %></p>
+    <% end %>
   <% end %>
 
   <div class="form-box">
@@ -24,6 +28,13 @@
         <span class="input-icon"><%= fa_icon 'envelope-square' %></span>
         <%= form.text_field :email, id: :user_email, class: 'offset-for-icon',
             placeholder: true %>
+      </div>
+
+      <div class="field">
+        <%= form.label :email_confirmation %>
+        <span class="input-icon"><%= fa_icon 'envelope-square' %></span>
+        <%= form.text_field :email_confirmation, id: :user_email_confirmation,
+          class: 'offset-for-icon', placeholder: true %>
       </div>
 
       <div class="field">
