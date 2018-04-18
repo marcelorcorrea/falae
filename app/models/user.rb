@@ -17,16 +17,6 @@ class User < ApplicationRecord
     styles: {crop: {resize_image: {width: PHOTO_WIDTH, height: PHOTO_HEIGHT}}},
     processors: [:cropper]
 
-
-  validates_associated :role
-  validates :name, :last_name, presence: true, length: { maximum: 50 }
-  validates :email, presence: true, uniqueness: { case_sensitive: false },
-            length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }
-  validates :password, presence: true, length: { minimum: 6 }, on: :create
-  validates :password, presence: true, length: { minimum: 6 }, on: :update_password,
-            if: :update_password?
-  validates_attachment_content_type :photo, content_type: /\Aimage\/(jpe?g|png|gif)\z/
-
   before_validation do
     if self.role.blank?
       self.role = Role.default
@@ -38,6 +28,17 @@ class User < ApplicationRecord
   after_create :send_activation_email
   after_update :reprocess_photo, if: :cropping?
   before_destroy { self.photo = nil }
+
+  validates_associated :role
+  validates :name, :last_name, presence: true, length: { maximum: 50 }
+  validates :email, presence: true, uniqueness: { case_sensitive: false },
+            length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }
+  validates :locale, presence: true,
+            inclusion: { in: I18n.available_locales.map(&:to_s) }
+  validates :password, presence: true, length: { minimum: 6 }, on: :create
+  validates :password, presence: true, length: { minimum: 6 }, on: :update_password,
+            if: :update_password?
+  validates_attachment_content_type :photo, content_type: /\Aimage\/(jpe?g|png|gif)\z/
 
   has_secure_password
   has_secure_token :auth_token

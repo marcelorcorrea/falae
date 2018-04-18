@@ -49,6 +49,7 @@ pt-BR:
       user:
         name: Nome
         last_name: Sobrenome
+        locale: Linguagem
         password: Senha
         password_confirmation: Confirmar senha
         photo: Foto
