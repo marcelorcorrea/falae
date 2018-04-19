@@ -1,6 +1,5 @@
-# return if running rails console/command, spring preloader or rake task
-return if defined?(Rails::Console) || defined?(Rails::Command) ||
-  $PROGRAM_NAME.include?('spring') || File.basename($0) == 'rake'
+# return if not running puma in production
+return unless $PROGRAM_NAME.include?('puma') && Rails.env == 'production'
 
 require 'rufus-scheduler'
 
@@ -10,6 +9,4 @@ if scheduler.up?
   scheduler.cron '0 2 * * *' do
     User.cleanup_unactivated
   end
-
-  scheduler.join
 end
