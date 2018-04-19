@@ -13,8 +13,12 @@ class Pictogram < Image
     true
   end
 
-  def self.find_like_by(param)
-    query = ["#{param.keys.first} LIKE ?", "#{param.values.first}%"]
+  def self.find_like_by_and_locale(params)
+    query = [
+      "#{params.keys.first} LIKE ? AND locale = ?",
+      "#{params.values.first}%",
+      params[:locale]
+    ]
     Pictogram.where(query)
   end
 

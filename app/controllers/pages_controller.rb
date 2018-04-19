@@ -91,7 +91,8 @@ class PagesController < ApplicationController
     items = if params[:search] && params[:name].present?
       name = params[:name]
       private_items = @user.find_items_like_by name: name
-      pictograms = Pictogram.find_like_by image_file_name: name
+      pictograms = Pictogram.find_like_by_and_locale image_file_name: name,
+                                                     locale: I18n.locale
       private_items + pictograms.map(&:generate_item)
     else
       []

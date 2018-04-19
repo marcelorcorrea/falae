@@ -2,13 +2,14 @@ require "open-uri"
 
 namespace :pictograms do
   desc 'Populate pictograms table with images from a folder'
-  task :populate_table, [:folder] => :environment do |task, args|
-    folder = File.expand_path(args.folder)
-    unless folder && Dir.exist?(folder)
-      msg = 'You need specify a valid folder param (e.g. rails pictograms:populate_table[<folder>]).'
+  task :populate_table, [:folder, :locale] => :environment do |task, args|
+    unless valid?(args)
+      msg = 'You need specify a valid folder and locale params (e.g. rails pictograms:populate_table[<folder>,<locale>]).'
       abort(msg)
     end
-    populate_table(folder)
+    folder = File.expand_path(args.folder)
+    locale = args.locale
+    populate_table(folder, locale)
   end
 
   desc 'Download some pictograms from araasac and populate db'
@@ -19,20 +20,26 @@ namespace :pictograms do
 
   # functions
 
-  def populate_table(folder)
+  def valid?(params)
+    folder = File.expand_path(params.folder)
+    availables_locales = AVAILABLE_LOCALES.keys.to_s
+    folder && Dir.exist?(folder) && availables_locales.include?(params.locale)
+  end
+
+  def populate_table(folder, locale)
     entries = Dir.entries(folder).reject { |entry| File.directory? entry }
     validated_filetypes = handle_file_types(folder, entries)
     normalized_filenames = normalize_filenames(validated_filetypes)
     unique_filenames = generate_unique_filenames(normalized_filenames)
     rename_files(folder, entries, unique_filenames)
-    insert_into_pictogram_table(folder)
+    insert_into_pictogram_table(folder, locale)
 
   end
 
   def handle_file_types(folder, entries)
     puts 'Checking file types.'
     entries.map do |entry|
-      ef_filename, ef_extension = entry.split(/\.([^.]*)$/)
+      ef_filename, ef_extension = entry.split(/\.(png|jpg|jpeg|bmp|tiff|gif)$/)
       entry_file = File.open File.join(folder, entry)
       ef_mime_type = MimeMagic.by_magic entry_file
       ef_mime_subtype = ef_mime_type&.subtype
@@ -84,12 +91,12 @@ namespace :pictograms do
     end
   end
 
-  def insert_into_pictogram_table(folder)
+  def insert_into_pictogram_table(folder, locale)
     entries = Dir.entries(folder).reject {|f| File.directory? f}
     entries_size = entries.length
     entries.each_with_index do |file, idx|
       img = File.new File.join(folder, file)
-      Pictogram.create! image: img rescue puts "Error in #{file}"
+      Pictogram.create! image: img, locale: locale rescue puts "Error in #{file}"
       print "\rInserting pictograms into database (#{idx}/#{entries_size})."
     end
     puts
@@ -135,7 +142,7 @@ namespace :pictograms do
 
     Dir.entries(tmp_load_folder).reject {|f| File.directory? f}.each do |entry|
       img = File.new File.join(tmp_load_folder, entry)
-      Pictogram.create! image: img
+      Pictogram.create! image: img, locale: 'pt'
     end
   end
 end
