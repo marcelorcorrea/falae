@@ -11,6 +11,9 @@ class Image < ApplicationRecord
     styles: {crop: {resize_image: {width: IMAGE_WIDTH, height: IMAGE_HEIGHT}}},
     processors: [:cropper]
 
+  validates :locale, presence: true,
+            inclusion: { in: I18n.available_locales.map(&:to_s) }
+
   validates_attachment_presence :image
   validates_attachment_content_type :image, content_type: %r{\Aimage\/(jpe?g|png|gif)\z}
 

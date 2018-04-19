@@ -93,6 +93,7 @@ class ItemsController < ApplicationController
     attrs = params.require(:item).permit(:name, :speech, :category_id,
       image_attributes: [:image, :id, :crop_x, :crop_y, :crop_w, :crop_h])
     attrs[:image_attributes][:user_id] = current_user.id
+    attrs[:image_attributes][:locale] = current_user.locale
     attrs
   end
 end
