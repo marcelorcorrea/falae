@@ -50,7 +50,7 @@ pt-BR:
         name: Nome
         email_confirmation: Confirmar email
         last_name: Sobrenome
-        locale: Linguagem
+        locale: Idioma
         password: Senha
         password_confirmation: Confirmar senha
         photo: Foto
