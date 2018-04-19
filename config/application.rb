@@ -19,10 +19,10 @@ Bundler.require(*Rails.groups)
 
 AVAILABLE_LOCALES = {
   en: 'English',
-  'pt-BR': 'Português - Brasil'
+  pt: 'Português'
 }
 
-DEFAULT_LOCALE = 'pt-BR'
+DEFAULT_LOCALE = :pt
 
 module Web
   class Application < Rails::Application
