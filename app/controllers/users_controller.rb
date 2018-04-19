@@ -48,6 +48,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(update_params)
+        I18n.locale = @user.locale
         format.html { redirect_to @user, notice: t('.notice') }
         format.json { render :show, status: :ok, location: @user }
       else
