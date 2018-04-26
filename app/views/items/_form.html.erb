@@ -35,7 +35,7 @@
   <div class="field">
     <%= form.label :item_category_id, Category.model_name.human %>
     <%= form.select :category_id,
-          options_for_select(select_options_for_categories, item.category_id) %>
+          options_for_select(select_options_for_categories, category_id(item)) %>
   </div>
 
   <div class="actions">

@@ -24,7 +24,7 @@
 
 <% Category.all.each do |ctgy| %>
 .<%= CategoriesHelper::css_class_name ctgy %> {
-  color: set-category-text-color(<%= ctgy.color %>);
-  background-color: <%= ctgy.color %>;
+  color: set-category-text-color(<%= ctgy.base_color %>);
+  background-color: <%= ctgy.base_color %>;
 }
 <% end %>

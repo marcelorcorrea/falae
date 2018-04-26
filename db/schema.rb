@@ -20,12 +20,12 @@ ActiveRecord::Schema.define(version: 20180420012423) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "color"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "description"
-    t.index ["name"], name: "index_categories_on_name", unique: true
+    t.string "locale", default: "pt"
+    t.integer "base_category_id"
+    t.index ["base_category_id"], name: "index_categories_on_base_category_id"
   end
 
   create_table "csp_reports", force: :cascade do |t|

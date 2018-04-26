@@ -15,6 +15,75 @@ BASE_CATEGORIES = [
   { name: 'OTHER', color: '#FFFFFF' }
 ]
 
+CATEGORIES = [
+  {
+    base_ctgy_name: 'GREETINGS_SOCIAL_EXPRESSIONS',
+    description: 'Cumprimentos e expressões sociais',
+    locale: 'pt'
+  },
+  {
+    base_ctgy_name: 'SUBJECT',
+    description: 'Sujeitos',
+    locale: 'pt'
+  },
+  {
+    base_ctgy_name: 'VERB',
+    description: 'Verbos',
+    locale: 'pt'
+  },
+  {
+    base_ctgy_name: 'NOUN',
+    description: 'Substântivos',
+    locale: 'pt'
+  },
+  {
+    base_ctgy_name: 'ADJECTIVE',
+    description: 'Adjetivos',
+    locale: 'pt'
+  },
+  {
+    base_ctgy_name: 'OTHER',
+    description: 'Outros',
+    locale: 'pt'
+  },
+  {
+    base_ctgy_name: 'GREETINGS_SOCIAL_EXPRESSIONS',
+    description: 'Greetings and social expressions',
+    locale: 'en'
+  },
+  {
+    base_ctgy_name: 'SUBJECT',
+    description: 'Subjects',
+    locale: 'en'
+  },
+  {
+    base_ctgy_name: 'VERB',
+    description: 'Verbs',
+    locale: 'en'
+  },
+  {
+    base_ctgy_name: 'NOUN',
+    description: 'Nouns',
+    locale: 'en'
+  },
+  {
+    base_ctgy_name: 'ADJECTIVE',
+    description: 'Adjectives',
+    locale: 'en'
+  },
+  {
+    base_ctgy_name: 'OTHER',
+    description: 'Others',
+    locale: 'en'
+  }
+]
+
 BASE_CATEGORIES.each do |base_ctgy|
   BaseCategory.find_or_create_by!(base_ctgy)
+end
+
+CATEGORIES.each do |ctgy|
+  base_ctgy = BaseCategory.find_by!(name: ctgy[:base_ctgy_name])
+  attrs = ctgy.except(:base_ctgy_name)
+  Category.create_with(base_category: base_ctgy).find_or_create_by!(attrs)
 end
