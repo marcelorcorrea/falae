@@ -25,3 +25,5 @@
 
 # Ignore IDE files
 /.idea/**/*
+
+/coverage/

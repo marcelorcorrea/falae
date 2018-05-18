@@ -55,10 +55,14 @@ gem 'rufus-scheduler', '~> 3.4.2'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  gem 'rspec-rails', '~> 3.7.2'
+  gem 'factory_bot_rails', '~> 4.8.2'
+  gem 'simplecov', '~> 0.16.1', require: false
 end
 
 group :development do
-  gem 'brakeman', :require => false
+  gem 'brakeman', require: false
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
