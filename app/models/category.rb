@@ -6,12 +6,12 @@ class Category < ApplicationRecord
 
   delegate :name, :color, to: :base_category, prefix: :base
 
-  def Category.default
-    Category.joins(:base_category)
-      .find_by(locale: I18n.locale, base_categories: {name: 'OTHER'})
+  def self.all_by_current_locale
+    Category.where(locale: I18n.locale)
   end
 
-  def Category.all_by_current_locale
-    Category.where(locale: I18n.locale)
+  def self.default
+    Category.joins(:base_category)
+            .find_by(locale: I18n.locale, base_categories: { name: 'OTHER' })
   end
 end
