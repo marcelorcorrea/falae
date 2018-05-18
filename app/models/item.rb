@@ -1,48 +1,26 @@
 class Item < ApplicationRecord
+  belongs_to :category
+  belongs_to :image, polymorphic: true, validate: true
   belongs_to :user
   has_many :item_pages, dependent: :destroy
   has_many :pages, through: :item_pages
-  belongs_to :category, validate: true
-  belongs_to :image, polymorphic: true
 
   validates :name, :speech, presence: true
-  validates_associated :category
-  validates_associated :image
 
   accepts_nested_attributes_for :image
 
-  delegate :private?, to: :image
-
   after_save do
-    if not user and pages.present?
-      update user: pages.first.spreadsheet.user
-    end
+    update user: pages.first.spreadsheet.user if user.blank? && pages.present?
   end
 
-  after_update do
-    image.reprocess_image if image.cropping?
-  end
+  after_update { image.reprocess_image if image.cropping? }
+  after_destroy { image.destroy if image.private? }
 
-  after_destroy do
-    image.destroy if image.private?
-  end
-
-  after_rollback(on: :create) do
-    self.image.destroy
-  end
-
-  def image_attributes=(attributes)
-    image_id = attributes[:id]
-    if image_id.present?
-      img = Image.find_by id: image_id
-      update_attributes image: img
-    end
-    super
-  end
+  delegate :private?, to: :image
 
   def build_image(params)
     if image
-      image.update_attributes image: params[:image]
+      image.update image: params[:image]
     else
       img = PrivateImage.create params
       img.reprocess_image if img.valid? && img.cropping?
@@ -54,7 +32,16 @@ class Item < ApplicationRecord
     image.image&.present?
   end
 
+  def image_attributes=(attributes)
+    image_id = attributes[:id]
+    if image_id.present?
+      img = Image.find_by(id: image_id)
+      update image: img
+    end
+    super
+  end
+
   def in_page?(page)
-    pages.present? and pages.include?(page)
+    pages.present? && pages.include?(page)
   end
 end
