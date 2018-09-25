@@ -7,7 +7,7 @@
     <% if !item.new_record? %>
     <div class="form-box item-result">
       <div class="item-result-img <%= css_class_name(item.category) %>">
-        <%= image_tag item.image.image, alt: t('views.item_image_not_found') %>
+        <%= image_tag item.image.image, alt: item.name %>
       </div>
       <div class="fields my-item">
         <p class="field">
@@ -37,7 +37,7 @@
     <div class="form-box item-result">
       <%= form_with model: [@page, item], url: add_to_page_user_spreadsheet_page_path do |form| %>
         <div class="item-result-img <%= css_class_name(Category.default) %>">
-          <%= image_tag item.image.image, alt: t('views.item_image_not_found') %>
+          <%= image_tag item.image.image, alt: item.name %>
           <%= form.fields_for :image do |img| %>
             <% img.hidden_field :id %>
           <% end %>

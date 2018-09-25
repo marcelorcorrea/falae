@@ -10,7 +10,7 @@
                     model: item, method: :put do |form| %>
         <%= form.hidden_field :id, value: item.id %>
         <div class="item-edit-img <%= css_class_name item.category %>">
-          <%= image_tag item.image.image, alt: t('views.item_image_not_found') %>
+          <%= image_tag item.image.image, alt: item.name %>
           <%= form.fields_for :image do |img| %>
             <% img.hidden_field :id %>
           <% end %>

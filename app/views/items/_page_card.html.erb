@@ -1,6 +1,6 @@
 <div class="item-result">
   <div class="item-result-img <%= css_class_name(item.category) %>">
-    <%= image_tag item.image.image, alt: t('views.item_image_not_found') %>
+    <%= image_tag item.image.image, alt: item.name %>
   </div>
 
   <p>

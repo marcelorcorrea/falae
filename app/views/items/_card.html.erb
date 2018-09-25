@@ -1,5 +1,5 @@
 <%= link_to user_item_path(item.user, item),
       class: ['card', css_class_name(item.category)] do %>
   <div class="name"><%= item.name %></div>
-  <%= image_tag item.image.image, alt: t('views.item_image_not_found') %>
+  <%= image_tag item.image.image, alt: item.name %>
 <% end %>
