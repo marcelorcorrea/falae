@@ -408,7 +408,6 @@ en:
     initial_page: Initial page
     item_already_in_this_page: Item already in this page.
     item_destroy_alert: Delete this item will remove it of all pages.
-    item_image_not_found: Item image not found.
     log_in: Login
     log_out: Logout
     mobile_view: Mobile view
