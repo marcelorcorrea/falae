@@ -22,14 +22,9 @@
           <strong><%= Category.model_name.human %>:</strong>
           <%= item.category.description %>
         </p>
-        <%# TODO: refactoring %>
-        <% if item.in_page? @page %>
-          <span class="already"><%= t 'views.item_already_in_this_page' %></span>
-        <% else @page %>
-          <%= button_to({action: 'add_to_page'}, remote: true,
-                params: {item: {id: item.id}}, class: 'button-box') do %>
-            <%= t 'views.add_to_page' %>
-          <% end %>
+        <%= button_to({action: 'add_to_page'}, remote: true,
+              params: {item: {id: item.id}}, class: 'button-box') do %>
+          <%= t 'views.add_to_page' %>
         <% end %>
       </div>
     </div>
