@@ -8,9 +8,19 @@ module PagesHelper
     end
   end
 
-  def edit_item_button(item_id)
-    button_to(edit_item_user_spreadsheet_page_path(@user, @spreadsheet, @page),
-              {method: :get, class: :edit, remote: true, params: {item_id: item_id}}) do
+  def edit_item_button(item_id, item_private)
+    path = edit_item_user_spreadsheet_page_path(@user, @spreadsheet, @page)
+    options = {
+      method: :get,
+      class: :edit,
+      params: {
+        item_id: item_id
+      },
+      remote: true
+    }
+    options[:data] = { confirm: t('views.page_item_edit_alert') } if item_private
+
+    button_to(path, options) do
       concat fa_icon 'pencil-square-o', class: :default
       concat fa_icon 'pencil-square', class: :hover
     end
