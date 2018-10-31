@@ -1,7 +1,8 @@
 class Page < ApplicationRecord
   belongs_to :spreadsheet
   has_many :item_pages, dependent: :destroy
-  has_many :items, -> { select 'items.*, item_pages.link_to' },
+  has_many :items, -> { select 'items.*, item_pages.link_to, '\
+                               'item_pages.id AS item_page_id' },
            through: :item_pages
 
   validates_associated :spreadsheet

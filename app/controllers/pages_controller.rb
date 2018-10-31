@@ -146,10 +146,12 @@ class PagesController < ApplicationController
   # DELETE
   def remove_item
     item = @page.items.find_by id: params[:item_id]
-    if item.private?
-      @page.items.destroy item
-    else
-      Item.destroy item.id
+    if item
+      if item.private?
+        @page.item_pages.destroy params[:item_page_id]
+      else
+        Item.destroy item.id
+      end
     end
   end
 
