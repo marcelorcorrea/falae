@@ -22,7 +22,7 @@
               </div>
             </div>
           </div>
-          <%= edit_item_button item.id %>
+          <%= edit_item_button item.id, item.private? %>
           <%= remove_item_button item.id, item.item_page_id %>
         </div>
       </td>
