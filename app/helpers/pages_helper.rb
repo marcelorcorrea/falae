@@ -16,10 +16,22 @@ module PagesHelper
     end
   end
 
-  def remove_item_button(item_id)
-    button_to(remove_item_user_spreadsheet_page_path(@user, @spreadsheet, @page),
-              {method: :delete, class: :remove, data: {confirm: t('views.page_item_remove_alert')},
-               remote: true, params: {item_id: item_id}}) do
+  def remove_item_button(item_id, item_page_id)
+    path = remove_item_user_spreadsheet_page_path(@user, @spreadsheet, @page)
+    options = {
+      method: :delete,
+      class: :remove,
+      data: {
+        confirm: t('views.page_item_remove_alert')
+      },
+      params: {
+        item_id: item_id,
+        item_page_id: item_page_id
+      },
+      remote: true
+    }
+
+    button_to(path, options) do
       concat fa_icon 'trash-o', class: :default
       concat fa_icon 'trash', class: :hover
     end
