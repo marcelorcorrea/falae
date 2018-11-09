@@ -1,7 +1,7 @@
 class PasswordResetsController < ApplicationController
-  before_action :get_user,   only: [:edit, :update]
-  before_action :valid_user, only: [:edit, :update]
-  before_action :check_expiration, only: [:edit, :update]
+  before_action :get_user, only: %i[edit update]
+  before_action :valid_user_password_reset, only: %i[edit update]
+  before_action :check_expiration, only: %i[edit update]
 
   def new
   end
@@ -19,11 +19,10 @@ class PasswordResetsController < ApplicationController
   def edit
   end
 
-
   def update
-    if @user.update_attributes(user_params)
+    if @user.update(user_params)
       log_in @user
-      @user.update_attribute(:reset_digest, nil)
+      @user.update(reset_digest: nil)
       flash[:success] = t('user_mailer.password_reset.valid_reset')
       redirect_to user_spreadsheets_path(@user)
     else
@@ -32,28 +31,27 @@ class PasswordResetsController < ApplicationController
   end
 
   private
-    def user_params
-      params.require(:user).permit(:password, :password_confirmation)
-    end
 
-    def get_user
-      @user = User.find_by(email: params[:email])
-    end
+  def user_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end
 
-    # Confirms a valid user.
-    def valid_user
-      unless (@user && @user.activated? &&
-              @user.authentic_token?(:reset, params[:id]))
-        flash[:alert] = t('user_mailer.password_reset.invalid')
-        redirect_to root_url
-      end
-    end
+  def get_user
+    @user = User.find_by(email: params[:email])
+  end
 
-    # Checks expiration of reset token.
-    def check_expiration
-      if @user.password_reset_expired?
-        flash[:alert] = t('user_mailer.password_reset.expired_token')
-        redirect_to new_password_reset_url
-      end
-    end
+  # Confirms a valid user.
+  def valid_user_password_reset
+    return unless !@user || !@user.activated? ||
+      !@user.authentic_token?(:reset, params[:id])
+    flash[:alert] = t('user_mailer.password_reset.invalid')
+    redirect_to root_url
+  end
+
+  # Checks expiration of reset token.
+  def check_expiration
+    return unless @user.password_reset_expired?
+    flash[:alert] = t('user_mailer.password_reset.expired_token')
+    redirect_to new_password_reset_url
+  end
 end
