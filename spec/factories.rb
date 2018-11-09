@@ -90,5 +90,26 @@ FactoryBot.define do
     locale 'en'
     photo { File.new("#{Rails.root}/spec/support/images/user.png") }
     role
+
+    factory :user_with_items do
+      transient do
+        items_count 1
+      end
+
+      after(:create) do |user, evaluator|
+        create_list(:item, evaluator.items_count, user: user)
+      end
+    end
+
+    factory :user_with_pages do
+      transient do
+        pages_count 1
+      end
+
+      after(:create) do |user, evaluator|
+        create_list(:page, evaluator.pages_count,
+          spreadsheet: create(:spreadsheet, user: user))
+      end
+    end
   end
 end

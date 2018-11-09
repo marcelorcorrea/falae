@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate!
   before_action :authorized?
   before_action :set_vars
-  before_action :set_item, only: [:show, :edit, :update, :destroy, :image]
+  before_action :set_item, only: %i[show edit update destroy image]
 
   # GET /items
   # GET /items.json
@@ -82,16 +82,12 @@ class ItemsController < ApplicationController
 
   def set_vars
     @user = current_user
-    if params[:spreadsheet_id] and params[:page_id]
-      @spreadsheet = @user.spreadsheets.find_by id: params[:spreadsheet_id]
-      @page = @spreadsheet.pages.find_by id: params[:page_id]
-    end
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def item_params
-    attrs = params.require(:item).permit(:name, :speech, :category_id,
-      image_attributes: [:image, :id, :crop_x, :crop_y, :crop_w, :crop_h])
+    attrs = params.require(:item)
+      .permit(:name, :speech, :category_id,
+        image_attributes: %i[image id crop_x crop_y crop_w crop_h])
     attrs[:image_attributes][:user_id] = current_user.id
     attrs[:image_attributes][:locale] = current_user.locale
     attrs

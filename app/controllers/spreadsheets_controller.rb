@@ -2,12 +2,11 @@ class SpreadsheetsController < ApplicationController
   before_action :authenticate!
   before_action :authorized?
   before_action :set_vars
-  before_action :set_spreadsheet, only: [:show, :edit, :update, :destroy]
+  before_action :set_spreadsheet, only: %i[show edit update destroy]
 
   # GET /spreadsheets
   # GET /spreadsheets.json
   def index
-    #@spreadsheets = Spreadsheet.all
     @spreadsheets = @user.spreadsheets
   end
 
@@ -28,7 +27,6 @@ class SpreadsheetsController < ApplicationController
 
   # GET /spreadsheets/new
   def new
-    #@spreadsheet = Spreadsheet.new
     @spreadsheet = @user.spreadsheets.new
   end
 
@@ -77,18 +75,17 @@ class SpreadsheetsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_spreadsheet
-      #@spreadsheet = Spreadsheet.find(params[:id])
-      @spreadsheet = @user.spreadsheets.find_by id: params[:id]
-    end
 
-    def set_vars
-      @user = current_user
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_spreadsheet
+    @spreadsheet = @user.spreadsheets.find_by id: params[:id]
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def spreadsheet_params
-      params.require(:spreadsheet).permit(:name, :initial_page)
-    end
+  def set_vars
+    @user = current_user
+  end
+
+  def spreadsheet_params
+    params.require(:spreadsheet).permit(:name, :initial_page)
+  end
 end
