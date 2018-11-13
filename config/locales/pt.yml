@@ -438,7 +438,7 @@ pt:
     unlink: -- desvincular --
     unsupported_image_type: Tipo de imagem não suportado.
     upload_file: Abrir arquivo
-    user_photo_not_found: Foto do usuário não encontrada.
+    user_photo: Foto do usuário
     welcome: Bem-vindo
   will_paginate:
     previous_label: "&#171; Anterior"
