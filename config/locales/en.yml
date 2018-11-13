@@ -408,6 +408,7 @@ en:
     initial_page: Initial page
     item_already_in_this_page: Item already in this page.
     item_destroy_alert: Delete this item will remove it of all pages.
+    item_edit_alert: This is a private item. Once edited, changes will be reflected in all other pages and boards this item is being used.
     log_in: Login
     log_out: Logout
     mobile_view: Mobile view
@@ -426,7 +427,6 @@ en:
     not_linked: -- not linked --
     og_description: Alternative Communication app that allows people with speech and mobility impairments to communicate by using pictograms that represent words.
     page_destroy_alert: Deleting this page will also delete all of its pictograms.
-    page_item_edit_alert: This is a private item. Once edited, changes will be reflected in all other pages and boards this item is being used.
     page_item_remove_alert: Delete item from page?
     profile: Profile
     register: Register

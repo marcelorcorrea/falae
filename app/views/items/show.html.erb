@@ -7,7 +7,8 @@
     data: {confirm: t('views.item_destroy_alert')} do %>
     <%= fa_icon 'trash-o' %><%= t 'views.destroy' %>
   <% end %>
-  <%= link_to edit_user_item_path(@user, @item), class: 'button-box' do %>
+  <%= link_to edit_user_item_path(@user, @item), class: 'button-box',
+    data: {confirm: t('views.item_edit_alert')} do %>
     <%= fa_icon 'edit' %><%= t 'views.edit' %>
   <% end %>
   <%= link_to user_items_path(@user), class: 'button-box' do %>
