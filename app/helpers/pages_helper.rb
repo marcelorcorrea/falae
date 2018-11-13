@@ -18,7 +18,7 @@ module PagesHelper
       },
       remote: true
     }
-    options[:data] = { confirm: t('views.page_item_edit_alert') } if item_private
+    options[:data] = { confirm: t('views.item_edit_alert') } if item_private
 
     button_to(path, options) do
       concat fa_icon 'pencil-square-o', class: :default
