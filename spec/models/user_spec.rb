@@ -251,6 +251,11 @@ RSpec.describe User, type: :model  do
         allow(Time).to receive(:zone).and_return(time_zone)
       end
 
+      it 'sets reset_token attribute'  do
+        user.create_reset_digest
+        expect(user.reset_token).to eq(token)
+      end
+      
       it 'updates reset_digest column with new digest token'  do
         user.create_reset_digest
         expect(user.reset_digest).to eq(digest)
