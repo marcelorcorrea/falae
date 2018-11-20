@@ -7,8 +7,6 @@ class User < ApplicationRecord
   attr_accessor :activation_token, :reset_token, :crop_x, :crop_y, :crop_w,
                 :crop_h, :current_password
 
-  has_one :role_user, dependent: :destroy
-  has_one :role, through: :role_user
   has_many :spreadsheets, dependent: :destroy
   has_many :items, dependent: :destroy
   has_attached_file :photo,
@@ -26,15 +24,12 @@ class User < ApplicationRecord
                     },
                     processors: [:cropper]
 
-  before_validation { self.role = Role.default if role.blank? }
-
   before_save { self.email = email.downcase }
   before_create :create_activation_digest
   after_create :send_activation_email
   after_update :reprocess_photo, if: :cropping?
   after_destroy { self.photo = nil }
 
-  validates_associated :role
   validates :name, :last_name, presence: true, length: { maximum: 50 }
   validates :email,
             presence: true,

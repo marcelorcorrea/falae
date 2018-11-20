@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180420012423) do
+ActiveRecord::Schema.define(version: 20181120214216) do
 
   create_table "base_categories", force: :cascade do |t|
     t.string "name", null: false
@@ -90,22 +90,6 @@ ActiveRecord::Schema.define(version: 20180420012423) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["spreadsheet_id"], name: "index_pages_on_spreadsheet_id"
-  end
-
-  create_table "role_users", force: :cascade do |t|
-    t.integer "role_id"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["role_id"], name: "index_role_users_on_role_id"
-    t.index ["user_id"], name: "index_role_users_on_user_id"
-  end
-
-  create_table "roles", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_roles_on_name", unique: true
   end
 
   create_table "spreadsheets", force: :cascade do |t|
