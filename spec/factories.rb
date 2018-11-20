@@ -70,11 +70,6 @@ FactoryBot.define do
     user
   end
 
-  factory :role do
-    name Role::DEFAULT_ROLE_NAME
-    initialize_with { Role.find_or_initialize_by(name: Role::DEFAULT_ROLE_NAME) }
-  end
-
   factory :spreadsheet do
     sequence(:name) { |idx| "spreadsheet_name_#{idx}" }
     initial_page 'spreadsheet_initial_page'
@@ -89,7 +84,6 @@ FactoryBot.define do
     profile 'user_profile'
     locale 'en'
     photo { File.new("#{Rails.root}/spec/support/images/user.png") }
-    role
 
     factory :user_with_items do
       transient do
