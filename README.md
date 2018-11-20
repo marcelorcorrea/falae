@@ -20,7 +20,7 @@ Feel free to fork or contribute this project.
 
 ## Local setup
 
-Falaê was developed using ruby 2.4.0. It is recommend to use *rvm* and install the version.
+Falaê is currently using ruby 2.5.3. It is recommend to use *rvm* and install the version.
 
 #### Install RVM
 
@@ -37,7 +37,7 @@ cd .
 
 #### Install ruby
 ```
-rvm install ruby-2.4.0
+rvm install ruby-2.5.3
 ```
 
 #### Set FALAE_IMAGES_PATH environment variable
