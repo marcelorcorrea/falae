@@ -95,7 +95,7 @@ RSpec.describe User, type: :model  do
   context 'methods'  do
     describe '.cleanup_unactivated'  do
       it 'deletes not activated users older than User::UNACTIVATED_TTL'  do
-        created_at = User::UNACTIVATED_TTL - 1.day
+        created_at = Time.now - (User::UNACTIVATED_TTL + 1).days
         create(:user, activated: true)
         create(:user, activated: false)
         create(:user, activated: false, created_at: created_at)
@@ -255,7 +255,7 @@ RSpec.describe User, type: :model  do
         user.create_reset_digest
         expect(user.reset_token).to eq(token)
       end
-      
+
       it 'updates reset_digest column with new digest token'  do
         user.create_reset_digest
         expect(user.reset_digest).to eq(digest)

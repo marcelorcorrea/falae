@@ -2,7 +2,7 @@ class User < ApplicationRecord
   PHOTO_WIDTH = 400
   PHOTO_HEIGHT = 480
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  UNACTIVATED_TTL = 30.days.ago
+  UNACTIVATED_TTL = 30
 
   attr_accessor :activation_token, :reset_token, :crop_x, :crop_y, :crop_w,
                 :crop_h, :current_password
@@ -53,8 +53,8 @@ class User < ApplicationRecord
   has_secure_token :auth_token
 
   def self.cleanup_unactivated
-    User.where('created_at < :ttl', ttl: UNACTIVATED_TTL)
-        .where(activated: false).destroy_all
+    User.where('created_at < :ttl', ttl: UNACTIVATED_TTL.days.ago)
+      .where(activated: false).destroy_all
   end
 
   def self.digest(string)
