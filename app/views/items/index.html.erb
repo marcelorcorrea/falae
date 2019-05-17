@@ -12,11 +12,15 @@
     </p>
 
     <% if @items.present? %>
-    <div class='item-lists'>
-      <%= render 'items/item', items: @items %>
-    </div>
+      <div class='items-list'>
+      <% @items.each do |item| %>
+        <% if item.private? %>
+            <%= render 'items/item', item: item %>
+        <% end %>
+      <% end %>
+      </div>
     <% else %>
-    <p><%= t 'views.no_user_items' %></p>
+      <p><%= t 'views.no_user_items' %></p>
     <% end %>
   </div>
 <% end %>

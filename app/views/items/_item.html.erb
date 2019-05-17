@@ -1,9 +1,15 @@
-<div class="cards">
-  <div class="card-list">
-    <% items.each do |item| %>
-      <% if item.image.private? %>
-      <%= render 'items/card', item: item %>
-      <% end %>
-    <% end %>
+<div class="items-list-item <%= css_class_name(item.category) %>">
+  <%= link_to user_item_path(item.user, item) do %>
+  <div class="items-list-item-show-icon">
+    <%= fa_icon('external-link') %>
+  </div>
+  <% end %>
+  <div class="items-list-item-name">
+    <span class="helper"></span><!--
+    --><span><%= item.name %></span>
+  </div>
+  <div class="items-list-item-image">
+    <span class="helper"></span><!--
+    --><%= image_tag item.image.image, alt: item.name %>
   </div>
 </div>
