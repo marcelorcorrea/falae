@@ -88,10 +88,16 @@ RSpec.describe Page, type: :model do
       expect(spreadsheet.initial_page).to eq(created_page.name)
     end
 
-    it 'set spreasheet initial page to nil if it is last spreadsheet page' do
+    it 'sets spreasheet initial page to nil if it is last spreadsheet page' do
       spreadsheet = created_page.spreadsheet
       created_page.destroy
       expect(spreadsheet.initial_page).to be_nil
+    end
+
+    it 'updates spreadsheet initial page name if it is the initial page' do
+      spreadsheet = created_page.spreadsheet
+      created_page.update(name: 'updated_name')
+      expect(spreadsheet.initial_page).to eq(created_page.name)
     end
   end
 

@@ -16,7 +16,9 @@ class Page < ApplicationRecord
   validates :columns, numericality: { less_than_or_equal_to: 10 }
 
   after_save do
-    spreadsheet.update(initial_page: name) if spreadsheet.pages.count == 1
+    if spreadsheet.initial_page == name_before_last_save || spreadsheet.pages.count == 1
+      spreadsheet.update(initial_page: name)
+    end
   end
 
   after_destroy do
