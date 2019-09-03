@@ -428,6 +428,7 @@ pt:
     og_description: Aplicativo de Comunicação Alternativa que permite pessoas com dificuldades de fala e mobilidade se comunicarem utilizando pictogramas que representam palavras.
     page_destroy_alert: Apagar esta página também apagará todos seus pictogramas.
     page_item_remove_alert: Remover item da página?
+    print: Imprimir
     profile: Perfil
     register: Cadastrar
     reset_password: Alterar senha

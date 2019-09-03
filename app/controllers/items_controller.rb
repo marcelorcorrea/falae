@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate!
   before_action :authorized?
   before_action :set_vars
-  before_action :set_item, only: %i[show edit update destroy image]
+  before_action :set_item, only: %i[show edit update destroy image pdf]
 
   # GET /items
   # GET /items.json
@@ -71,6 +71,15 @@ class ItemsController < ApplicationController
     img = @item.image
     send_file img.image.path, filename: SecureRandom.hex[0..7],
       type: img.image_content_type, disposition: :inline
+  end
+
+  #GET pdf
+  def pdf
+    pdf = ItemPdf.new @item
+    send_data pdf.render,
+      disposition: :inline,
+      filename: "#{@item.name}.pdf",
+      type: 'application/pdf'
   end
 
   private

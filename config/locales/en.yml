@@ -428,6 +428,7 @@ en:
     og_description: Alternative Communication app that allows people with speech and mobility impairments to communicate by using pictograms that represent words.
     page_destroy_alert: Deleting this page will also delete all of its pictograms.
     page_item_remove_alert: Delete item from page?
+    print: Print
     profile: Profile
     register: Register
     reset_password: Reset password

@@ -155,6 +155,15 @@ class PagesController < ApplicationController
   end
   # END TODO: Notify on error
 
+  #GET pdf
+  def pdf
+    pdf = PagePdf.new @page
+    send_data pdf.render,
+      disposition: :inline,
+      filename: "#{@page.name}.pdf",
+      type: 'application/pdf'
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

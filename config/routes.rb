@@ -26,18 +26,20 @@ Rails.application.routes.draw do
         end
         member do
           get 'add_item'
+          get 'edit_item'
+          get 'pdf'
           get 'search_item'
           post 'add_to_page'
-          get 'edit_item'
+          put 'swap_items'
           put 'update_item'
           delete 'remove_item'
-          put 'swap_items'
         end
       end
     end
     resources :items do
       member do
         get 'image'
+        get 'pdf'
       end
     end
   end
