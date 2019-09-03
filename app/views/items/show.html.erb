@@ -14,6 +14,9 @@
   <%= link_to user_items_path(@user), class: 'button-box' do %>
     <%= fa_icon 'arrow-left' %><%= t 'views.back' %>
   <% end %>
+  <%= link_to pdf_user_item_path(@user, @item, format: :pdf), class: 'button-box' do %>
+    <%= fa_icon 'print' %><%= t 'views.print' %>
+  <% end %>
   </div>
 
   <p>

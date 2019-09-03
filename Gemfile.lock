@@ -110,6 +110,10 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
+    pdf-core (0.7.0)
+    prawn (2.2.2)
+      pdf-core (~> 0.7.0)
+      ttfunk (~> 1.5)
     puma (3.8.2)
     rack (2.0.7)
     rack-attack (5.0.1)
@@ -197,6 +201,7 @@ GEM
     thor (0.20.3)
     thread_safe (0.3.6)
     tilt (2.0.7)
+    ttfunk (1.5.1)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.3)
@@ -231,6 +236,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   mysql2
   paperclip (~> 5.2.0)
+  prawn (~> 2.2.2)
   puma (~> 3.7)
   rack-attack (~> 5.0)
   rails (~> 5.1.1)

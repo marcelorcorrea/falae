@@ -49,6 +49,8 @@ gem 'will_paginate', '~> 3.1.6'
 
 gem 'rufus-scheduler', '~> 3.4.2'
 
+gem 'prawn', '~> 2.2.2'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
