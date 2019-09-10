@@ -39,22 +39,24 @@ class PagePdf
       page_height = item_height * rows
     end
 
-    x = ((bounds.width / 2) - (page_width / 2))
-    y = ((bounds.height / 2) + (page_height / 2))
+    x = bounds.width / 2 - page_width / 2
+    y = bounds.height / 2 + page_height / 2
 
     bounding_box([x, y], width: page_width, height: page_height) do
-      page_items = @page.items
-      page_items.each_slice(columns * rows).with_index do |page, idx|
-        y_pos = bounds.height
-        page.each_slice(columns).each do |items|
-          x_pos = 0
-          items.each do |item|
-            build_item item, x_pos, y_pos, item_width, item_height
-            x_pos += item_width
-          end
-          y_pos -= item_height
+      define_grid(columns: columns, rows: rows, gutter: 2)
+      items = @page.items
+      items.each_with_index do |item, idx|
+        x = idx / columns % rows
+        y = idx % columns
+
+        grid(x, y).bounding_box do
+          build_item(item, bounds.left, bounds.top, bounds.width, bounds.height)
         end
-        start_new_page unless page_items.size <= columns * rows || idx == rows - 1
+
+        next_idx = idx + 1
+        if next_idx % (columns * rows) == 0 && next_idx % items.length != 0
+          start_new_page
+        end
       end
     end
   end
