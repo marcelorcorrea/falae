@@ -15,10 +15,10 @@ class ItemPdf
 
   def build_pdf
     item_height = 250
-    item_with = item_height * 0.75
-    x_pos = ((bounds.width / 2) - (item_with / 2))
-    y_pos = ((bounds.height / 2) + (item_height / 2))
+    item_width = item_height * 0.75
+    x_pos = bounds.width / 2 - item_width / 2
+    y_pos = bounds.height / 2 + item_height / 2
 
-    build_item @item, x_pos, y_pos, item_with, item_height
+    build_item @item, x_pos, y_pos, item_width, item_height
   end
 end
