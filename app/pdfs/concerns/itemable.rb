@@ -7,7 +7,8 @@ module Itemable
       stroke_color '008383'
       item_ctgy_color = item.category.base_color.sub('#','')
       fill_color item_ctgy_color
-      fill_and_stroke_rounded_rectangle [0, height], width, height, 5
+      round_corner = (width * 0.025).floor
+      fill_and_stroke_rounded_rectangle [0, height], width, height, round_corner
 
       add_text_box item.name, item_ctgy_color, width, height
       add_image_box item.image.image.path, width, height
@@ -16,14 +17,20 @@ module Itemable
 
   def add_text_box(text, color, width, height)
     fill_color font_color color
-    text_box text,
+    options = {
       align: :center,
       at: [0, height],
+      document: @document,
       height: height * 0.2,
       overflow: :truncate,
       size: height * 0.095,
       valign: :center,
       width: width
+    }
+    box = Prawn::Text::Box.new text, options
+    overflow = box.render dry_run: true
+    text = text.sub(/...#{overflow}/, '...') unless overflow.empty?
+    text_box text, options
   end
 
   def add_image_box(image_path, width, height)

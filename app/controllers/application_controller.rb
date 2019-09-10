@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
     return if logged_in? || user_from_token_authentication
 
     respond_to do |format|
-      format.any { redirect_to root_path }
       format.html { redirect_to root_path }
       format.json { unauthorized_json_access }
+      format.pdf { redirect_to root_path }
     end
   end
 
