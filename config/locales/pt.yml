@@ -328,6 +328,11 @@ pt:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: ''
+  tours:
+    item:
+      intro: Criar Item
+    next: Próximo
+    step_by_step: Passo a passo
   users:
     create:
       notice: Usuário criado com sucesso.

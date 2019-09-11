@@ -3,12 +3,18 @@
     <%= content_tag :li, class: "menu-item #{:active if controller_name.in? 'users'}" do %>
       <%= link_to t('views.profile'), user_path(current_user) %>
     <% end %>
-    <%= content_tag :li,
+    <%= content_tag :li, id: 'nav-menu-spreadsheets',
       class: "menu-item #{:active if controller_name.in? ['spreadsheets', 'pages']}" do %>
-      <%= link_to Spreadsheet.model_name.human(count: 2), user_spreadsheets_path(current_user) %>
+      <%= link_to Spreadsheet.model_name.human(count: 2),
+        user_spreadsheets_path(current_user) %>
     <% end %>
-    <%= content_tag :li, class: "menu-item #{:active if controller_name.in? 'items'}" do %>
-      <%= link_to "#{t('views.my')} #{Item.model_name.human(count: 2)}", user_items_path(current_user) %>
+    <%= content_tag :li, data: create_item_tour_data_step(1),
+      class: "menu-item #{:active if controller_name.in? 'items'}" do %>
+      <%= link_to "#{t('views.my')} #{Item.model_name.human(count: 2)}",
+         user_items_path(current_user) %>
+    <% end %>
+    <%= content_tag :li, class: "menu-item #{:active if controller_name.in? 'tours'}" do %>
+      <%= link_to 'Tours', tours_path %>
     <% end %>
   </ul>
 </div><!--

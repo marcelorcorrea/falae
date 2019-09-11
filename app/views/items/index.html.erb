@@ -6,7 +6,8 @@
 
     <p>
       &nbsp;
-      <%= link_to new_user_item_path(@user), class: 'button-box' do %>
+      <%= link_to new_user_item_path(@user), class: 'button-box',
+        data: create_item_tour_data_step(2) do %>
         <%= fa_icon 'plus-circle' %><%= t 'views.new_item' %>
       <% end %>
     </p>

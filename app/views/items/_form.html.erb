@@ -1,15 +1,15 @@
 <%= form_with(model: [current_user, item], local: true) do |form| %>
-  <div class="field">
+  <%= content_tag :div, class: 'field', data: create_item_tour_data_step(3) do %>
     <%= form.label :name %>
     <%= form.text_field :name, id: :item_name %>
-  </div>
+  <% end %>
 
-  <div class="field">
+  <%= content_tag :div, class: 'field', data: create_item_tour_data_step(4) do %>
     <%= form.label :speech %>
     <%= form.text_field :speech, id: :item_speech %>
-  </div>
+  <% end %>
 
-  <div class="field">
+  <%= content_tag :div, class: 'field', data: create_item_tour_data_step(5) do %>
     <%= label_tag Item.human_attribute_name :image %>
     <div id="item-image-container">
       <div id="item-image-wrapper">
@@ -30,17 +30,17 @@
         <% end %>
       <% end %>
     </div>
-  </div>
+  <% end %>
 
-  <div class="field">
+  <%= content_tag :div, class: 'field', data: create_item_tour_data_step(6) do %>
     <%= form.label :item_category_id, Category.model_name.human %>
     <%= form.select :category_id,
           options_for_select(select_options_for_categories, category_id(item)) %>
-  </div>
+  <% end %>
 
-  <div class="actions">
+  <%= content_tag :div, class: 'actions', data: create_item_tour_data_step(7) do %>
     <%= form.submit %>
-  </div>
+  <% end %>
 <% end %>
 
 <%= render 'shared/modal_image_crop', title: t('views.crop_title') %>

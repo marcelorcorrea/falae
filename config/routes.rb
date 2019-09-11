@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  resources :tours, only: [:index]
+
   resources :users, except: [:index, :destroy] do
     member do
       get 'photo'

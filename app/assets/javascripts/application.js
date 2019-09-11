@@ -15,6 +15,7 @@
 //= require_tree .
 //= require jquery3
 //= require jquery.Jcrop
+//= require intro.min
 
 
 document.addEventListener('turbolinks:load', function (e) {
