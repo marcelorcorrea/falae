@@ -109,6 +109,7 @@ class PagesController < ApplicationController
       @page.items.create params
     end
     @page.reload
+    render :update_item
   end
 
   # GET
@@ -120,10 +121,8 @@ class PagesController < ApplicationController
   # PUT
   def update_item
     return if item_params[:id].blank?
-
     item = @page.items.find_by id: item_params[:id]
     return unless item
-
     item.update item_params
     item_page = ItemPage.find_by page_id: @page.id, item_id: item.id
     return unless item_page
@@ -146,12 +145,14 @@ class PagesController < ApplicationController
         Item.destroy item.id
       end
     end
+    render :update_items_list
   end
 
   # PUT
   def swap_items
     # TODO: check if @page has items with id_1 and id_2
     @page.swap_items params[:id_1], params[:id_2]
+    render :update_items_list
   end
   # END TODO: Notify on error
 

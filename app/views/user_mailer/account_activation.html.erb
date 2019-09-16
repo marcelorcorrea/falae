@@ -1,7 +1,8 @@
-<p><%= t 'views.hello' %> <%= @user.name %>,</p>
+<p><%= t 'user_mailer.account_activation.hello' %> <%= @user.name %>,</p>
 
 <p>
 <%= t('user_mailer.account_activation.body') %>
 </p>
 
-<%= link_to t('views.activate'), edit_account_activation_url(@user.activation_token, email: @user.email) %>
+<%= link_to t('user_mailer.account_activation.activate'),
+  edit_account_activation_url(@user.activation_token, email: @user.email) %>

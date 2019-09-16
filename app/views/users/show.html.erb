@@ -1,16 +1,14 @@
-<%= render 'layouts/nav_menu_and_view' do %>
-
 <div class="user">
   <p id="notice"><%= notice %></p>
 
   <div class="button-bar">
   <%= link_to edit_user_path(@user), class: 'button-box' do %>
-    <%= fa_icon 'edit' %><%= t 'views.edit' %>
+    <%= fa_icon 'edit' %><%= t '.edit' %>
   <% end %>
   </div>
 
   <div class="user-photo">
-    <%= image_tag @user.photo, alt: t('views.user_photo') %>
+    <%= image_tag @user.photo, alt: t('.photo') %>
   </div>
 
   <p>
@@ -29,9 +27,7 @@
   </p>
 
   <p>
-    <strong><%= t 'views.about_me' %>:</strong><br />
+    <strong><%= t '.description' %>:</strong><br />
     <%= @user.profile %>
   </p>
 </div>
-
-<% end %>

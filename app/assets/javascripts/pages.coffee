@@ -5,7 +5,7 @@
 document.addEventListener 'turbolinks:load', ->
   # pageItemsTab = document.getElementsByClassName('page-items-tab')[0]
   # pageMobileTab = document.getElementsByClassName('page-mobile-tab')[0]
-  pageItemList = document.getElementsByClassName('page-items-list')[0]
+  pageItemList = document.getElementsByClassName('page-items')[0]
   # pageMobileView = document.getElementsByClassName('page-mobile-view')[0]
 
   # if pageItemsTab
@@ -23,43 +23,44 @@ document.addEventListener 'turbolinks:load', ->
   #     pageMobileView.classList.add 'active'
 
   addDragAndDropEventListeners = () ->
-    cards = pageItemList.querySelectorAll 'div.card'
-    srcEl = null
-    for card in cards
-      card.addEventListener 'dragstart', (e) ->
-        srcEl = this
+    items = pageItemList.querySelectorAll '.items-list-item:not(.add-button)'
+    srcElement = null
+    for item in items
+      item.addEventListener 'dragstart', (e) ->
+        srcElement = this
         this.style.opacity = '0.5'
         e.dataTransfer.effectAllowed = 'move'
         e.dataTransfer.setData 'text/html', this.innerHTML
-        buttons = this.parentElement.getElementsByTagName 'button'
-        for button in buttons
-          button.style.display = 'none'
-      card.addEventListener 'dragenter', (e) ->
-        if srcEl != this
+        itemMenu = this.getElementsByClassName('items-list-item-menu')[0]
+        itemMenu.style.display = 'none'
+      item.addEventListener 'dragenter', (e) ->
+        if srcElement != this
           this.classList.add 'over'
-      card.addEventListener 'dragover', (e) ->
-        if srcEl != this
+      item.addEventListener 'dragover', (e) ->
+        if srcElement != this
           e.preventDefault()
           e.dataTransfer.dropEffect = 'move'
         return false
-      card.addEventListener 'dragleave', (e) ->
+      item.addEventListener 'dragleave', (e) ->
         this.classList.remove 'over'
-      card.addEventListener 'drop', (e) ->
+      item.addEventListener 'drop', (e) ->
         e.stopPropagation()
-        if srcEl != this
+        if srcElement != this
           $.ajax {
             type: "PUT",
             url: window.location.href + '/swap_items',
-            data: { id_1: srcEl.id, id_2: this.id },
+            data: {
+              id_1: srcElement.dataset.id,
+              id_2: this.dataset.id
+            },
             beforeSend: addLoadingLayer,
             success: removeLoadingLayer
           }
         return false
-      card.addEventListener 'dragend', (e) ->
+      item.addEventListener 'dragend', (e) ->
         this.style.opacity = '1'
-        buttons = srcEl.parentElement.getElementsByTagName 'button'
-        for button in buttons
-          button.style.display = ''
+        itemMenu = this.getElementsByClassName('items-list-item-menu')[0]
+        itemMenu.style.display = ''
 
   if pageItemList
     addDragAndDropEventListeners()
@@ -67,7 +68,7 @@ document.addEventListener 'turbolinks:load', ->
       mutations.forEach (mutation) ->
         if mutation.addedNodes.length > 0
           addDragAndDropEventListeners()
-    observer.observe pageItemList, {childList: true}
+    observer.observe pageItemList, { childList: true }
 
   addLoadingLayer = () ->
     spinner = document.createElement 'div'
@@ -81,4 +82,3 @@ document.addEventListener 'turbolinks:load', ->
     loadingLayer = document.getElementById 'loading-layer'
     if loadingLayer
       document.body.removeChild loadingLayer
-

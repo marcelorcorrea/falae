@@ -111,9 +111,9 @@ class UsersController < ApplicationController
 
   def create_params
     params.require(:user)
-      .permit(:name, :last_name, :profile, :email,
-        :email_confirmation, :password, :password_confirmation, :photo, :locale,
-        :crop_x, :crop_y, :crop_w, :crop_h)
+      .permit(:name, :last_name, :profile, :email, :email_confirmation,
+        :password, :password_confirmation, :photo, :locale, :crop_x, :crop_y,
+        :crop_w, :crop_h)
   end
 
   def update_params

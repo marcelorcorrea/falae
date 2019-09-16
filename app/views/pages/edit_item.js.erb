@@ -1,42 +1,72 @@
 $('body').css('overflow', 'hidden');
 $("<%= escape_javascript(render 'pages/edit_item', item: item) %>")
   .appendTo(".container");
-
 $('.overlay').show();
 
-/* select style */
-var select = $('.overlay select#page_id');
-function setSelectStyle() {
-  var selected = select.children().filter(':selected');
-  if (selected.val()) {
-    select.css('color', '#2E8B57');
-    select.css('font-style', '');
-  } else {
-    select.css('color', '#606060');
-    select.css('font-style', 'italic');
+{
+  document.querySelector('.overlay #item_name').focus();
+
+  var editItemName = document.querySelector('.edit-item input[name="item[name]"]');
+  var itemName = document.querySelector('.edit-item .items-list-item-name span');
+  var itemNameKeyUp = editItemName.addEventListener('keyup', function (ev) {
+    itemName.innerText = ev.target.value;
+  });
+
+  var editItemCategory = document.querySelector('.edit-item select[name="item[category_id]"]');
+  var itemCategory = document.querySelector('.edit-item .items-list-item');
+  var itemCategoryChange = editItemCategory.addEventListener('change', function (ev) {
+    var classNames = {};
+    <% Category.all.each do |ctgy| %>
+      classNames[<%= ctgy.id %>] = "<%= CategoriesHelper::css_class_name(ctgy) %>";
+    <% end %>
+    itemCategory.className = 'items-list-item ' + classNames[ev.target.value];
+  });
+
+  var editLinkToPage = document.querySelector('.edit-item select[name="link_to_page"]');
+
+  if (editLinkToPage) {
+    var itemElement = document.querySelector('.edit-item .items-list-item');
+    var itemLinkToPage = getItemLinkToPage(itemElement);
+
+    var itemLinkToPageChange = editLinkToPage.addEventListener('change', function (ev) {
+      if (!ev.target.value) {
+        itemElement.removeChild(itemLinkToPage);
+      } else {
+        itemElement.appendChild(itemLinkToPage)
+      }
+    });
   }
-}
 
-setSelectStyle();
+  function getItemLinkToPage(itemElement) {
+    let itemLinkToPage = itemElement.getElementsByClassName('link-to')[0]
+    if (itemLinkToPage) {
+      return itemLinkToPage;
+    }
+    itemLinkToPage = document.createElement('div');
+    itemLinkToPage.className = 'link-to';
 
-select.on('change', function () {
-  setSelectStyle();
-});
-
-$('#item_page_link_to').focus();
-
-function closeDialog(event) {
-  event.preventDefault();
-  $('.overlay').remove();
-  $('body').css('overflow', 'initial');
-  $(window).off('keyup', closeDialogOnEscape);
-}
-
-function closeDialogOnEscape (ev) {
-  if (ev.which === 27) {
-    closeDialog(ev);
+    $("<%= escape_javascript(fa_icon('external-link')) %>").appendTo(itemLinkToPage);
+    return itemLinkToPage;
   }
-}
 
-$('.close').on('click', closeDialog);
-$(window).on('keyup', closeDialogOnEscape);
+  function closeDialog(event) {
+    event.preventDefault();
+    $('.overlay').remove();
+    $('body').css('overflow', 'initial');
+    $(editItemName).off('keyup', itemNameKeyUp);
+    $(editItemCategory).off('keyup', itemCategoryChange);
+    if (editLinkToPage) {
+      $(editLinkToPage).off('change', itemLinkToPageChange);
+    }
+    $(window).off('keyup', closeDialogOnEscape);
+  }
+
+  function closeDialogOnEscape (ev) {
+    if (ev.which === 27) {
+      closeDialog(ev);
+    }
+  }
+
+  $('.close').on('click', closeDialog);
+  $(window).on('keyup', closeDialogOnEscape);
+}

@@ -1,0 +1,26 @@
+<div id="about">
+  <h3><%= raw t('.title') %></h3>
+  <p><%= raw t('.text_p1') %></p>
+  <p><%= raw t('.text_p2') %></p>
+  <p><%= raw t('.text_p3') %></p>
+  <p><%= raw t('.text_p4') %></p>
+  <p><%= raw t('.text_p5') %></p>
+  <h3><%= t '.ngo_title' %></h3>
+  <p><%= t '.ngo_text_p1' %><i><%= t '.ngo_text_p1_quote'%></i></p>
+  <p><%= t '.ngo_text_p2' %></p>
+  <h3><%= t '.partners_title' %></h3>
+  <p><%= raw t ('.partners_devopers') %></p>
+  <p><%= raw t ('.partners_crialab') %></p>
+  <div class="partners-logos">
+    <%= link_to 'http://www.educandario.org.br' do %>
+      <%= image_tag '/educandario-logo.png', class: 'partner-logo',
+        alt: 'Educandário São João Batista' %>
+    <% end %>
+    <%= link_to 'https://devopers.com.br/' do %>
+      <%= image_tag '/devopers-logo.png', class: 'partner-logo', alt: 'Devopers' %>
+    <% end %>
+    <%= link_to 'http://www.pucrs.br/tecnopuc/crialab/' do %>
+      <%= image_tag '/crialab-logo.jpg', class: 'partner-logo', alt: 'Crialab' %>
+    <% end %>
+  </div>
+</div>

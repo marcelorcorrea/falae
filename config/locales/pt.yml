@@ -177,16 +177,6 @@ pt:
       month: Mês
       second: Segundo
       year: Ano
-  items:
-    create:
-      notice: Item criado com sucesso.
-    update:
-      notice: Item atualizado com sucesso.
-    destroy:
-      notice: Item apagado com sucesso.
-  flash:
-    error:
-      wrong_email_password: 'Email e/ou senha inválidos.'
   errors:
     format: "%{attribute} %{message}"
     messages:
@@ -225,6 +215,9 @@ pt:
       header:
         one: 'Não foi possível gravar %{model}: 1 erro'
         other: 'Não foi possível gravar %{model}: %{count} erros'
+  flash:
+    error:
+      wrong_email_password: 'Email e/ou senha inválidos.'
   helpers:
     label:
       user:
@@ -239,6 +232,75 @@ pt:
       create: Criar
       submit: Salvar
       update: Atualizar
+  header_pages:
+    about:
+      title: 'O Aplicativo'
+      text_p1: '<b>Falaê</b> é um aplicativo Android desenvolvido por voluntários da HP do Brasil R&D em parceria com a ONG Educandário - Centro de Reabilitação São João Batista. É um aplicativo de Comunicação Alternativa, que permite pessoas com dificuldades de fala e mobilidade se comunicarem utilizando pictogramas (imagens ou símbolos) que representam palavras (verbos, substantivos, adjetivos etc).'
+      text_p2: 'O objetivo principal deste projeto é oferecer o aplicativo, e todos os seus recursos, completamente gratuito. Até então, aplicativos de Comunicação Alternativa conhecidos pela ONG eram pagos e possuíam funcionalidades limitadas (por exemplo: número máximo de pranchas, itens por usuário). Esta é uma barreira para famílias de baixa renda. Desejamos que todos, independentemente de sua renda, possam fazer uso da ferramenta e superar suas dificuldades.'
+      text_p3: 'O sistema <b>Falaê</b> consiste de duas partes: aplicativo Android e a plataforma web. Esta é usada para registro de usuários. Após realizado cadastro, o usuário pode definir seu perfil e, também, criar e editar pranchas, páginas e items de comunicação. O aplicativo Android se conecta à plataforma para a sincronização dessas informações. Através de um dispositivo Android (tablet ou celular), pessoas com dificuldades de fala e mobilidade podem iniciar um processo de alfabetização e comunicação totalmente gratuito. Para baixar e instalar o aplicativo, acesse a <a href="https://play.google.com/store/apps/details?id=org.falaeapp.falae">Google Play Store</a>.'
+      text_p4: 'Outro diferencial da aplicação <b>Falaê</b> é a sua natureza <i><a href="https://github.com/marcelorcorrea/falae">open source</a></i>. <b>Falaê</b> é licenciado sob a licença <a href="https://github.com/marcelorcorrea/falae/blob/master/LICENSE">MIT</a>, ou seja, qualquer pessoa pode baixar e/ou modificar o código para adaptar às suas necessidades livremente, além da possibilidade de contribuir com a comunidade.'
+      text_p5: 'Os símbolos pictográficos utilizados são propriedade de CATEDU (<a href="http://catedu.es/arasaac/">http://catedu.es/arasaac/</a>) sob a licença <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/es/">Creative Commons</a> e foram criados por <a href="http://www.palao.es/">Sergio Palao</a>.'
+      ngo_title: 'Sobre a ONG Educandário - Centro de Reabilitação São João Batista'
+      ngo_text_p1: 'A ONG, cujo trabalho nos inspirou, foi fundada em 1939 para cuidar de crianças com poliomielite. Atualmente, atende crianças e adolescentes com múltiplas incapacidades. Sua missão é '
+      ngo_text_p1_quote: '“promover a reabilitação e integração social de crianças e adolescentes com deficiência, proporcionando-lhes tratamento e educação adequados, visando uma melhor qualidade de vida e capacitando-os como cidadãos”.'
+      ngo_text_p2: 'É uma instituição que atende gratuitamente crianças e adolescentes, realizando diversas aulas específicas e tratamentos de saúde de acordo com suas necessidades. A instituição é pioneira no uso de métodos de alfabetização e educação utilizando Comunicação Alternativa, oferecendo uma oportunidade diferenciada para atender demandas específicas de aprendizado, facilitando o processo de comunicação com o meio.'
+      partners_title: Apoiadores
+      partners_devopers: 'Para disponibilizar a aplicação gratuitamente, contamos com a parceria da <a href="https://devopers.com.br/">Devopers</a>, empresa especializada em fornecer soluções de serviços em nuvem, que disponibilizou a infraestrutura para a aplicação sem quaisquer custos.'
+      partners_crialab: 'A identidade visual da aplicação foi desenvolvida pelo <a href="http://www.pucrs.br/tecnopuc/crialab/">Crialab</a>, o Laboratório de Criatividade do TECNOPUC.'
+    contact:
+      dev_title: Desenvolvimento
+      dev: 'voluntarios.educandario@gmail.com'
+      dev_github: 'Para contribuir ou reportar problemas, acesse os nossos repositórios no Github: <br/> <a href="https://github.com/marcelorcorrea/falae">Aplicação Web</a> <br/> <a href="https://github.com/marcelorcorrea/falae-android">Aplicação Android</a>'
+      ngo_title: 'Educandário São João Batista'
+      ngo_email: 'comunicacao@educandario.org.br'
+      ngo_phone1: '+ 55 (51) 3246 5655'
+      ngo_phone2: '+ 55 (51) 99318 5352'
+      ngo_website: 'Para maiores informações, acesse a página oficial <a href="http://www.educandario.org.br">aqui</a>.'
+    home:
+      title: Falaê
+      text_p1: '<b>Falaê</b> é um aplicativo Android desenvolvido por voluntários da HP do Brasil R&D em parceria com a ONG Educandário - Centro de Reabilitação São João Batista. É um aplicativo de Comunicação Alternativa, que permite pessoas com dificuldades de fala e mobilidade se comunicarem utilizando pictogramas (imagens ou símbolos) que representam palavras (verbos, substantivos, adjetivos etc).'
+      text_p2: 'O objetivo principal deste projeto é oferecer o aplicativo, e todos os seus recursos, completamente gratuito. Até então, aplicativos de Comunicação Alternativa conhecidos pela ONG eram pagos e possuíam funcionalidades limitadas (por exemplo: número máximo de pranchas, itens por usuário). Esta é uma barreira para famílias de baixa renda. Desejamos que todos, independentemente de sua renda, possam fazer uso da ferramenta e superar suas dificuldades.'
+      login: 'Faça o <a href="/login">login</a> ou <a href="/users/new">cadastre-se</a> para começar!'
+  items:
+    index:
+      new: Criar Item
+      none: Você ainda não possui nenhum item.
+    new:
+      cancel: Cancelar
+      new: Criar Item
+    show:
+      back: Voltar
+      destroy: Apagar
+      destroy_alert: Apagar este item o removerá de todas as páginas.
+      edit: Editar
+      edit_alert: Este é um item privado. Ao editá-lo, as mudanças serão refletidas em todas páginas e pranchas que o item está sendo utilizado.
+      print: Imprimir
+    edit:
+      cancel: Cancelar
+      edit: Editar
+    form:
+      unsupported_image_type: Tipo de imagem não suportado.
+      upload_file: Abrir arquivo
+    create:
+      notice: Item criado com sucesso.
+    update:
+      notice: Item atualizado com sucesso.
+    destroy:
+      notice: Item apagado com sucesso.
+  layouts:
+    application:
+      og_description: Aplicativo de Comunicação Alternativa que permite pessoas com dificuldades de fala e mobilidade se comunicarem utilizando pictogramas que representam palavras.
+    header:
+      about: Sobre
+      contact: Contato
+      home: Início
+      log_in: Entrar
+      log_out: Sair
+      register: Cadastrar
+      welcome: Bem-vindo
+    nav_menu:
+      my: Meus
+      profile: Perfil
   number:
     currency:
       format:
@@ -296,22 +358,75 @@ pt:
       format:
         delimiter: "."
   pages:
+    new:
+      cancel: Cancelar
+      new: Criar Página
     create:
       notice: Página criada com sucesso.
+    show:
+      back: Voltar
+      destroy: Apagar
+      destroy_alert: Apagar esta página também apagará todos seus pictogramas.
+      edit: Editar
+      mobile_view: Visualização de dispositivo
+      print: Imprimir
+    edit:
+      cancel: Cancelar
+      edit: Editar
     update:
       notice: Página atualizada com sucesso.
     destroy:
       notice: Página apagada com sucesso.
-  roles:
-    create:
-      notice: Papel criado com sucesso.
-    update:
-      notice: Papel atualizado com sucesso.
-    destroy:
-      notice: Papel apagado com sucesso.
+    page:
+      none: Você ainda não possui página nesta prancha.
+    items:
+      edit: Editar
+      edit_alert: Este é um item privado. Ao editá-lo, as mudanças serão refletidas em todas páginas e pranchas que o item está sendo utilizado.
+      remove: Remover
+      remove_alert: Remover item da página?
+    add_item:
+      add_item: Adicionar Item
+      search: Procurar
+    edit_item:
+      edit: Editar Item
+      not_linked: -- sem vínculo --
+      save: Salvar
+      unlink: -- desvincular --
+    search_result:
+      add_to_page: Adicionar a página
+      no_item_found: Nenhum item encontrado.
+  password_resets:
+    new:
+      reset_password: Alterar senha
+      submit: Enviar
+  sessions:
+    new:
+      forgot_password: Esqueceu sua senha?
+      log_in: Entrar
+      welcome: Bem-vindo
+  shared:
+    modal_image_crop:
+      crop: Recortar
+      title: Recortar Imagem
   spreadsheets:
+    index:
+      new: Criar Prancha
+      none: Você ainda não possui nenhuma prancha.
+    new:
+      cancel: Cancelar
+      new: Criar Prancha
     create:
       notice: Prancha criada com sucesso.
+    show:
+      back: Voltar
+      destroy: Apagar
+      edit: Editar
+      new_page: Criar Página
+      no_initial_page: '** Página inicial não definida **'
+      destroy_alert: Apagar esta prancha também apagará todas suas páginas e itens.
+    edit:
+      cancel: Cancelar
+      edit: Editar
     update:
       notice: Prancha atualizada com sucesso.
     destroy:
@@ -329,119 +444,65 @@ pt:
       short: "%d de %B, %H:%M"
     pm: ''
   users:
+    new:
+      register: Registrar
+    form:
+      change_email: Alterar email
+      change_password: Alterar senha
+      profile: Perfil
+      unsupported_image_type: Tipo de imagem não suportado.
+      upload_file: Abrir arquivo
     create:
       notice: Usuário criado com sucesso.
+    show:
+      edit: Editar
+      description: Sobre mim
+    edit:
+      cancel: Cancelar
+      edit: Editar
     update:
       notice: Usuário atualizado com sucesso.
     destroy:
       notice: Usuário apagado com sucesso.
+    change_email:
+      back: Voltar
+      cancel: Cancelar
+      change_email: Alterar senha
     update_email:
       incorrect_password: A senha está incorreta.
       invalid_email: O email é inválido.
       notice: Email atualizado com sucesso.
+    change_password:
+      back: Voltar
+      cancel: Cancelar
+      current_password: Senha atual
+      new_password: Nova senha
+      new_password_confirmation: Confirmar nova senha
     update_password:
       incorrect_password: A senha atual está incorreta.
       invalid_password: A nova senha é inválida ou não é igual ao campo confirmação de senha.
       notice: Senha atualizada com sucesso.
   user_mailer:
     account_activation:
-      subject: 'Ativação de Conta'
-      body: 'Bem-vindo ao Falaê! Clique no link abaixo para ativar sua conta:'
-      verification: 'Por favor, verifique seu e-mail para ativar sua conta.'
+      activate: Ativar
       activation: 'Conta ativada!'
-      invalid: 'Link de ativação inválido.'
-      notactivated: 'Conta não foi ativada. Procure link de ativação em seu e-mail.'
+      body: 'Bem-vindo ao Falaê! Clique no link abaixo para ativar sua conta:'
+      hello: Olá
+      invalid: Link de ativação inválido.
+      notactivated: Conta não foi ativada. Procure link de ativação em seu e-mail.
+      subject: Ativação de Conta
+      verification: Por favor, verifique seu e-mail para ativar sua conta.
     password_reset:
-      subject: 'Alteração de senha'
       body_begin: 'Para alterar sua senha, clique no link abaixo:'
-      body_expire: 'Este link irá expirar dentro de 2 horas.'
+      body_expire: Este link irá expirar dentro de 2 horas.
       body_end: 'Se você não solicitou alteração de senha, por favor ignore esse email
                 e sua senha continuará a mesma.'
-      verification: 'Por favor, verifique seu e-mail e siga instruções para alteração de senha.'
-      valid_reset: 'Senha alterada com sucesso.'
-      invalid: 'Link de alteração de senha inválido.'
-      expired_token: 'Link de alteração de senha expirou.'
-  views:
-    about: Sobre
-    about_app_title: 'O Aplicativo'
-    about_app_text_p1: '<b>Falaê</b> é um aplicativo Android desenvolvido por voluntários da HP do Brasil R&D em parceria com a ONG Educandário - Centro de Reabilitação São João Batista. É um aplicativo de Comunicação Alternativa, que permite pessoas com dificuldades de fala e mobilidade se comunicarem utilizando pictogramas (imagens ou símbolos) que representam palavras (verbos, substantivos, adjetivos etc).'
-    about_app_text_p2: 'O objetivo principal deste projeto é oferecer o aplicativo, e todos os seus recursos, completamente gratuito. Até então, aplicativos de Comunicação Alternativa conhecidos pela ONG eram pagos e possuíam funcionalidades limitadas (por exemplo: número máximo de pranchas, itens por usuário). Esta é uma barreira para famílias de baixa renda. Desejamos que todos, independentemente de sua renda, possam fazer uso da ferramenta e superar suas dificuldades. '
-    about_app_text_p3: 'O sistema <b>Falaê</b> consiste de duas partes: aplicativo Android e a plataforma web. Esta é usada para registro de usuários. Após realizado cadastro, o usuário pode definir seu perfil e, também, criar e editar pranchas, páginas e items de comunicação. O aplicativo Android se conecta à plataforma para a sincronização dessas informações. Através de um dispositivo Android (tablet ou celular), pessoas com dificuldades de fala e mobilidade podem iniciar um processo de alfabetização e comunicação totalmente gratuito. Para baixar e instalar o aplicativo, acesse a <a href="https://play.google.com/store/apps/details?id=org.falaeapp.falae">Google Play Store</a>.'
-    about_app_text_p4: 'Outro diferencial da aplicação <b>Falaê</b> é a sua natureza <i><a href="https://github.com/marcelorcorrea/falae">open source</a></i>. <b>Falaê</b> é licenciado sob a licença <a href="https://github.com/marcelorcorrea/falae/blob/master/LICENSE">MIT</a>, ou seja, qualquer pessoa pode baixar e/ou modificar o código para adaptar às suas necessidades livremente, além da possibilidade de contribuir com a comunidade.'
-    about_app_text_p5: 'Os símbolos pictográficos utilizados são propriedade de CATEDU (<a href="http://catedu.es/arasaac/">http://catedu.es/arasaac/</a>) sob a licença <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/es/">Creative Commons</a> e foram criados por <a href="http://www.palao.es/">Sergio Palao</a>.'
-    about_ngo_title: 'Sobre a ONG Educandário - Centro de Reabilitação São João Batista'
-    about_ngo_text_p1: 'A ONG, cujo trabalho nos inspirou, foi fundada em 1939 para cuidar de crianças com poliomielite. Atualmente, atende crianças e adolescentes com múltiplas incapacidades. Sua missão é '
-    about_ngo_text_p1_quote: '"promover a reabilitação e integração social de crianças e adolescentes com deficiência, proporcionando-lhes tratamento e educação adequados, visando uma melhor qualidade de vida e capacitando-os como cidadãos".'
-    about_ngo_text_p2: 'É uma instituição que atende gratuitamente crianças e adolescentes, realizando diversas aulas específicas e tratamentos de saúde de acordo com suas necessidades. A instituição é pioneira no uso de métodos de alfabetização e educação utilizando Comunicação Alternativa, oferecendo uma oportunidade diferenciada para atender demandas específicas de aprendizado, facilitando o processo de comunicação com o meio.'
-    about_partners_title: Apoiadores
-    about_partners_devopers: 'Para disponibilizar a aplicação gratuitamente, contamos com a parceria da <a href="https://devopers.com.br/">Devopers</a>, empresa especializada em fornecer soluções de serviços em nuvem, que disponibilizou a infraestrutura para a aplicação sem quaisquer custos.'
-    about_partners_crialab: 'A identidade visual da aplicação foi desenvolvida pelo <a href="http://www.pucrs.br/tecnopuc/crialab/">Crialab</a>, o Laboratório de Criatividade do TECNOPUC.'
-    about_me: Sobre mim
-    activate: Ativar
-    add_item: Adicionar Item
-    add_to_page: Adicionar a página
-    back: Voltar
-    cancel: Cancelar
-    change_email: Alterar email
-    change_password: Alterar senha
-    confirm_message: Você tem certeza?
-    contact: Contato
-    contact_dev_title: Desenvolvimento
-    contact_dev: 'voluntarios.educandario@gmail.com'
-    contact_dev_github: 'Para contribuir ou reportar problemas, acesse os nossos repositórios no Github: <br/> <a href="https://github.com/marcelorcorrea/falae">Aplicação Web</a> <br/> <a href="https://github.com/marcelorcorrea/falae-android">Aplicação Android</a>'
-    contact_ngo_title: 'Educandário São João Batista'
-    contact_ngo_email: 'comunicacao@educandario.org.br'
-    contact_ngo_phone1: '+ 55 (51) 3246 5655'
-    contact_ngo_phone2: '+ 55 (51) 99318 5352'
-    contact_ngo_website: 'Para maiores informações, acesse a página oficial <a href="http://www.educandario.org.br">aqui</a>.'
-    crop: Recortar
-    crop_title: Recortar Imagem
-    current_password: Senha atual
-    destroy: Apagar
-    edit: Editar
-    edit_item: Editar item
-    forgot_password: 'Esqueceu sua senha?'
-    hello: Olá
-    home: Início
-    home_app_title: Falaê
-    home_login: 'Faça o <a href="/login">login</a> ou <a href="/users/new">cadastre-se</a> para começar!'
-    initial_page: Página inicial
-    item_already_in_this_page: Item já nesta página
-    item_destroy_alert: Apagar este item o removerá de todas as páginas.
-    item_edit_alert: Este é um item privado. Ao editá-lo, as mudanças serão refletidas em todas páginas e pranchas que o item está sendo utilizado.
-    log_in: Entrar
-    log_out: Sair
-    mobile_view: Visualização de dispositivo
-    my: Meus
-    name: Nome
-    new_item: Criar item
-    new_page: Criar página
-    new_password: Nova senha
-    new_password_confirmation: Confirmar nova senha
-    new_spreadsheet: Criar Prancha
-    no_item_was_found: Nenhum foi encontrado.
-    no_user_items: Você ainda não possui nenhum item.
-    no_user_pages: Você ainda não possui página nesta prancha.
-    no_user_spreadsheets: Você ainda não possui nenhuma prancha.
-    no_spreadsheet_initial_page: '** Página inicial não definida **'
-    not_linked: -- sem vínculo --
-    og_description: Aplicativo de Comunicação Alternativa que permite pessoas com dificuldades de fala e mobilidade se comunicarem utilizando pictogramas que representam palavras.
-    page_destroy_alert: Apagar esta página também apagará todos seus pictogramas.
-    page_item_remove_alert: Remover item da página?
-    print: Imprimir
-    profile: Perfil
-    register: Cadastrar
-    reset_password: Alterar senha
-    save: Salvar
-    search: Procurar
-    speech: Pronúncia
-    spreadsheet_destroy_alert: Apagar esta prancha também apagará todas suas páginas e itens.
-    submit: Enviar
-    unlink: -- desvincular --
-    unsupported_image_type: Tipo de imagem não suportado.
-    upload_file: Abrir arquivo
-    user_photo: Foto do usuário
-    welcome: Bem-vindo
+      expired_token: Link de alteração de senha expirou.
+      invalid: Link de alteração de senha inválido.
+      subject: Alteração de senha
+      reset_password: Alterar senha
+      valid_reset: Senha alterada com sucesso.
+      verification: Por favor, verifique seu e-mail e siga instruções para alteração de senha.
   will_paginate:
     previous_label: "&#171; Anterior"
     next_label: "Próxima &#187;"

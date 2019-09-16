@@ -1,22 +1,21 @@
-<%= render 'layouts/nav_menu_and_view' do %>
-<div class="item">
+<div class="items">
   <p id="notice"><%= notice %></p>
 
   <div class="button-bar">
-  <%= link_to user_item_path(@user, @item), method: :delete, class: 'button-box destroy',
-    data: {confirm: t('views.item_destroy_alert')} do %>
-    <%= fa_icon 'trash-o' %><%= t 'views.destroy' %>
-  <% end %>
-  <%= link_to edit_user_item_path(@user, @item), class: 'button-box',
-    data: {confirm: t('views.item_edit_alert')} do %>
-    <%= fa_icon 'edit' %><%= t 'views.edit' %>
-  <% end %>
-  <%= link_to user_items_path(@user), class: 'button-box' do %>
-    <%= fa_icon 'arrow-left' %><%= t 'views.back' %>
-  <% end %>
-  <%= link_to pdf_user_item_path(@user, @item, format: :pdf), class: 'button-box' do %>
-    <%= fa_icon 'print' %><%= t 'views.print' %>
-  <% end %>
+    <%= link_to user_item_path(@user, @item), method: :delete, class: 'button-box destroy',
+      data: { confirm: t('.destroy_alert') } do %>
+      <%= fa_icon 'trash-o' %><%= t '.destroy' %>
+    <% end %>
+    <%= link_to edit_user_item_path(@user, @item), class: 'button-box',
+      data: {confirm: t('.edit_alert')} do %>
+      <%= fa_icon 'edit' %><%= t '.edit' %>
+    <% end %>
+    <%= link_to user_items_path(@user), class: 'button-box' do %>
+      <%= fa_icon 'arrow-left' %><%= t '.back' %>
+    <% end %>
+    <%= link_to pdf_user_item_path(@user, @item, format: :pdf), class: 'button-box' do %>
+      <%= fa_icon 'print' %><%= t '.print' %>
+    <% end %>
   </div>
 
   <p>
@@ -41,4 +40,3 @@
     </div>
   </p>
 </div>
-<% end %>

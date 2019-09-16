@@ -177,16 +177,6 @@ en:
       month: Month
       second: Seconds
       year: Year
-  items:
-    create:
-      notice: Item created successfully.
-    update:
-      notice: Item updated successfully.
-    destroy:
-      notice: Item deleted successfully.
-  flash:
-    error:
-      wrong_email_password: 'There is no match for this email and password.'
   errors:
     format: "%{attribute} %{message}"
     messages:
@@ -225,6 +215,9 @@ en:
       header:
         one: 1 error prohibited this %{model} from being saved
         other: "%{count} errors prohibited this %{model} from being saved"
+  flash:
+    error:
+      wrong_email_password: 'There is no match for this email and password.'
   helpers:
     label:
       user:
@@ -239,6 +232,75 @@ en:
       create: Create %{model}
       submit: Save %{model}
       update: Update %{model}
+  header_pages:
+    about:
+      title: 'The App'
+      text_p1: '<b>Falaê</b> is an Android application developed by HP volunteers from Brazil R&D in partnership with the NGO Educandário – Centro de Reabilitação São João Batista. It is an Alternative Communication app, that allows people with speech and mobility impairments to communicate by using pictograms (images or symbols) that represent words (verbs, nouns, adjectives etc).'
+      text_p2: 'The main goal of this project is to make the app completely free and unlimited. Up to now, all of the Alternative Communication apps known by the NGO are paid and have limited functionalities. This is a barrier to low-income families. We wish to enable everyone, regardless of their income, to use this resource and overcome their difficulties.'
+      text_p3: '<b>Falaê</b> consists of two parts: Android app and the web platform. The web page is used for user registering. Once registered, the user can customize their profile, as well as create and modify communication boards, pages and items. The Android app connects to the web platform in order to synchronize user data. With the use of an Android device (tablet or smartphone), people with speech and mobility impairments can start a literacy and communication process away of any charges. To download and install the application, please access the <a href="https://play.google.com/store/apps/details?id=org.falaeapp.falae">Google Play Store</a>.'
+      text_p4: 'Another advantage of <b>Falaê</b> is its <a href="https://github.com/marcelorcorrea/falae">open source</a> nature. <b>Falaê</b> is licensed under <a href="https://github.com/marcelorcorrea/falae/blob/master/LICENSE">MIT</a>, that is, anyone can freely download and/or modify the code to best fit their needs, as well as contribute to the open source community.'
+      text_p5: 'The pictographic symbols used are property of CATEDU (<a href="http://catedu.es/arasaac/">http://catedu.es/arasaac/</a>) under the <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/es/">Creative Commons</a> license and created by <a href="http://www.palao.es/">Sergio Palao</a>.'
+      ngo_title: 'About the NGO Educandário - Centro de Reabilitação São João Batista'
+      ngo_text_p1: 'The NGO whose work has inspired us was founded in 1939 to provide care for children with poliomyelitis. Today the NGO serves children and teenagers with multiple disabilities. Its mission is '
+      ngo_text_p1_quote: '“to promote the rehabilitation and social integration of children and teenagers with disabilities, providing them with adequate treatment and education, aiming a better quality of life and empowering them as citizens”.'
+      ngo_text_p2: "It is an institution where children and teens have several specific classes and health treatments according to their needs entirely for free. The institution is pioneer in using Alternative Communication methods for literacy and education, promoting a distinguished opportunity for those who can’t speak to learn and express themselves."
+      partners_title: Partners
+      partners_devopers: 'In order to make the application available for free, we partnered with <a href="https://devopers.com.br/">Devopers</a>, a company specialized in providing cloud hosting solutions, which enabled the entire web infrastructure free of charge.'
+      partners_crialab: 'The visual identity of the application was developed by <a href="http://www.pucrs.br/tecnopuc/crialab/">Crialab</a>, the Laboratory of Creativity of TECNOPUC.'
+    contact:
+      dev_title: Development
+      dev: 'voluntarios.educandario@gmail.com'
+      dev_github: 'To contribute or report issues, feel free to access our repositories on Github: <br/> <a href="https://github.com/marcelorcorrea/falae">Web Application</a> <br/> <a href="https://github.com/marcelorcorrea/falae-android">Android Application</a>'
+      ngo_title: 'Educandário São João Batista'
+      ngo_email: 'comunicacao@educandario.org.br'
+      ngo_phone1: '+ 55 (51) 3246 5655'
+      ngo_phone2: '+ 55 (51) 99318 5352'
+      ngo_website: 'For more information, please visit the official website <a href="http://www.educandario.org.br">here</a>.'
+    home:
+      title: Falaê
+      text_p1: '<b>Falaê</b> is an Android application developed by HP volunteers from Brazil R&D in partnership with the NGO Educandário – Centro de Reabilitação São João Batista. It is an Alternative Communication app, that allows people with speech and mobility impairments to communicate by using pictograms (images or symbols) that represent words (verbs, nouns, adjectives etc).'
+      text_p2: 'The main goal of this project is to make the app completely free and unlimited. Up to now, all of the Alternative Communication apps known by the NGO are paid and have limited functionalities. This is a barrier to low-income families. We wish to enable everyone, regardless of their income, to use this resource and overcome their difficulties.'
+      login: 'Please <a href="/login">login</a> or <a href="/users/new">register</a> to get started!'
+  items:
+    index:
+      new: New Item
+      none: You don't have items yet.
+    new:
+      cancel: Cancel
+      new: New item
+    show:
+      back: Cancel
+      destroy: Delete
+      destroy_alert: Delete this item will remove it of all pages.
+      edit: Edit
+      edit_alert: This is a private item. Once edited, changes will be reflected in all pages and boards this item is being used.
+      print: Print
+    edit:
+      cancel: Cancel
+      edit: Edit
+    form:
+      unsupported_image_type: Image type not supported.
+      upload_file: Upload file
+    create:
+      notice: Item created successfully.
+    update:
+      notice: Item updated successfully.
+    destroy:
+      notice: Item deleted successfully.
+  layouts:
+    application:
+      og_description: Alternative Communication app that allows people with speech and mobility impairments to communicate by using pictograms that represent words.
+    header:
+      about: About
+      contact: Contact
+      home: Home
+      log_in: Login
+      log_out: Sair
+      register: Register
+      welcome: Welcome
+    nav_menu:
+      my: My
+      profile: Profile
   number:
     currency:
       format:
@@ -296,22 +358,75 @@ en:
       format:
         delimiter: ''
   pages:
+    new:
+      cancel: Cancel
+      new: Create Page
     create:
       notice: Page created successfully.
+    show:
+      back: Back
+      destroy: Delete
+      destroy_alert: Deleting this page will also delete all of its pictograms.
+      edit: Edit
+      mobile_view: Mobile view
+      print: Print
+    edit:
+      cancel: Cancel
+      edit: Edit
     update:
       notice: Page updated successfully.
     destroy:
       notice: Page deleted successfully.
-  roles:
-    create:
-      notice: Role created successfully.
-    update:
-      notice: Role updated successfully.
-    destroy:
-      notice: Role deleted successfully.
+    page:
+      none: You don't have pages in this board yet.
+    items:
+      edit: Edit
+      edit_alert: This is a private item. Once edited, changes will be reflected in all pages and boards this item is being used.
+      remove: Delete
+      remove_alert: Delete item from page?
+    add_item:
+      add_item: Add Item
+      search: Search
+    edit_item:
+      edit: Edit Item
+      not_linked: -- not linked --
+      save: Save
+      unlink: -- unlink --
+    search_result:
+      add_to_page: Add to page
+      no_item_found: No item found.
+  password_resets:
+    new:
+      reset_password: Reset password
+      submit: Submit
+  sessions:
+    new:
+      forgot_password: Forgot your password?
+      log_in: Log in
+      welcome: Welcome
+  share:
+    modal_image_crop:
+      crop: Crop
+      title: Crop Image
   spreadsheets:
+    index:
+      new: New Board
+      none: You don't have boards yet.
+    new:
+      cancel: Cancel
+      new: New Board
     create:
       notice: Board created successfully.
+    show:
+      back: Back
+      destroy: Delete
+      edit: Edit
+      new_page: New Page
+      no_initial_page: '** Initial page not set **'
+      destroy_alert: Deleting this board will also delete all of its pages and items.
+    edit:
+      cancel: Cancel
+      edit: Edit
     update:
       notice: Board updated successfully.
     destroy:
@@ -329,119 +444,65 @@ en:
       short: "%d %b %I:%M %p"
     pm: pm
   users:
+    new:
+      register: Register
+    form:
+      change_email: Change email
+      change_password: Change password
+      profile: Profile
+      unsupported_image_type: Image type not supported.
+      upload_file: Upload file
     create:
       notice: User created successfully.
+    show:
+      edit: Edit
+      description: About me
+    edit:
+      cancel: Cancel
+      edit: Edit
     update:
       notice: User updated successfully.
     destroy:
       notice: User deleted successfully.
+    change_email:
+      back: Back
+      cancel: Cancel
+      change_email: Change Email
     update_email:
       incorrect_password: Password is incorrect.
       invalid_email: Email is invalid.
       notice: Email updated successfully.
+    change_password:
+      back: Back
+      cancel: Cancel
+      current_password: Current password
+      new_password: New password
+      new_password_confirmation: New password confirmation
     update_password:
       incorrect_password: Current password is invalid.
       invalid_password: New password is invalid or not equal to confirmation password field.
       notice: Password updated successfully.
   user_mailer:
     account_activation:
-      subject: 'Account activation'
-      body: 'Welcome to Falaê! Click on the link below to activate your account:'
-      verification: 'Please check your email to activate your account.'
+      activate: Activate
       activation: 'Account activated!'
-      invalid: 'Invalid activation link.'
-      notactivated: 'Account not activated. Check your email for the activation link.'
+      body: 'Welcome to Falaê! Click on the link below to activate your account:'
+      hello: Hello
+      invalid: Invalid activation link.
+      notactivated: Account not activated. Check your email for the activation link.
+      subject: Account activation
+      verification: Please check your email to activate your account.
     password_reset:
-      subject: 'Password reset'
       body_begin: 'To reset your password click the link below:'
-      body_expire: 'This link will expire in two hours.'
+      body_expire: This link will expire in two hours.
       body_end: 'If you did not request your password to be reset, please ignore this
                  email and your password will stay as it is.'
-      verification: 'Please check your email for password reset instructions.'
-      valid_reset: 'Password has been reset.'
-      invalid: 'Invalid reset password link.'
-      expired_token: 'Password reset link has expired.'
-  views:
-    about: About
-    about_app_title: 'The App'
-    about_app_text_p1: '<b>Falaê</b> is an Android application developed by HP volunteers from Brazil R&D in partnership with the NGO Educandário – Centro de Reabilitação São João Batista. It is an Alternative Communication app, that allows people with speech and mobility impairments to communicate by using pictograms (images or symbols) that represent words (verbs, nouns, adjectives etc).'
-    about_app_text_p2: 'The main goal of this project is to make the app completely free and unlimited. Up to now, all of the Alternative Communication apps known by the NGO are paid and have limited functionalities. This is a barrier to low-income families. We wish to enable everyone, regardless of their income, to use this resource and overcome their difficulties.'
-    about_app_text_p3: '<b>Falaê</b> consists of two parts: Android app and the web platform. The web page is used for user registering. Once registered, the user can customize their profile, as well as create and modify communication boards, pages and items. The Android app connects to the web platform in order to synchronize user data. With the use of an Android device (tablet or smartphone), people with speech and mobility impairments can start a literacy and communication process away of any charges. To download and install the application, please access the <a href="https://play.google.com/store/apps/details?id=org.falaeapp.falae">Google Play Store</a>.'
-    about_app_text_p4: 'Another advantage of <b>Falaê</b> is its <a href="https://github.com/marcelorcorrea/falae">open source</a> nature. <b>Falaê</b> is licensed under <a href="https://github.com/marcelorcorrea/falae/blob/master/LICENSE">MIT</a>, that is, anyone can freely download and/or modify the code to best fit their needs, as well as contribute to the open source community.'
-    about_app_text_p5: 'The pictographic symbols used are property of CATEDU (<a href="http://catedu.es/arasaac/">http://catedu.es/arasaac/</a>) under the <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/es/">Creative Commons</a> license and created by <a href="http://www.palao.es/">Sergio Palao</a>.'
-    about_ngo_title: 'About the NGO Educandário - Centro de Reabilitação São João Batista'
-    about_ngo_text_p1: 'The NGO whose work has inspired us was founded in 1939 to provide care for children with poliomyelitis. Today the NGO serves children and teenagers with multiple disabilities. Its mission is '
-    about_ngo_text_p1_quote: '“to promote the rehabilitation and social integration of children and teenagers with disabilities, providing them with adequate treatment and education, aiming a better quality of life and empowering them as citizens”.'
-    about_ngo_text_p2: "It is an institution where children and teens have several specific classes and health treatments according to their needs entirely for free. The institution is pioneer in using Alternative Communication methods for literacy and education, promoting a distinguished opportunity for those who can’t speak to learn and express themselves."
-    about_partners_title: Partners
-    about_partners_devopers: 'In order to make the application available for free, we partnered with <a href="https://devopers.com.br/">Devopers</a>, a company specialized in providing cloud hosting solutions, which enabled the entire web infrastructure free of charge.'
-    about_partners_crialab: 'The visual identity of the application was developed by <a href="http://www.pucrs.br/tecnopuc/crialab/">Crialab</a>, the Laboratory of Creativity of TECNOPUC.'
-    about_me: About me
-    activate: Activate
-    add_item: Add Item
-    add_to_page: Add to page
-    back: Back
-    cancel: Cancel
-    change_email: Change email
-    change_password: Change password
-    confirm_message: Are you sure?
-    contact: Contact
-    contact_dev_title: Development
-    contact_dev: 'voluntarios.educandario@gmail.com'
-    contact_dev_github: 'To contribute or report issues, feel free to access our repositories on Github: <br/> <a href="https://github.com/marcelorcorrea/falae">Web Application</a> <br/> <a href="https://github.com/marcelorcorrea/falae-android">Android Application</a>'
-    contact_ngo_title: 'Educandário São João Batista'
-    contact_ngo_email: 'comunicacao@educandario.org.br'
-    contact_ngo_phone1: '+ 55 (51) 3246 5655'
-    contact_ngo_phone2: '+ 55 (51) 99318 5352'
-    contact_ngo_website: 'For more information, please visit the official website <a href="http://www.educandario.org.br">here</a>.'
-    crop: Crop
-    crop_title: Crop Image
-    current_password: Current password
-    destroy: Destroy
-    edit: Edit
-    edit_item: Edit item
-    forgot_password: 'Forgot your password?'
-    hello: Hello
-    home: Home
-    home_app_title: Falaê
-    home_login: 'Please <a href="/login">login</a> or <a href="/users/new">register</a> to get started!'
-    initial_page: Initial page
-    item_already_in_this_page: Item already in this page.
-    item_destroy_alert: Delete this item will remove it of all pages.
-    item_edit_alert: This is a private item. Once edited, changes will be reflected in all other pages and boards this item is being used.
-    log_in: Login
-    log_out: Logout
-    mobile_view: Mobile view
-    my: My
-    name: Name
-    new_item: New item
-    new_page: New page
-    new_password: New password
-    new_password_confirmation: New password confirmation
-    new_spreadsheet: New Board
-    no_item_was_found: No item was found.
-    no_user_items: You don't have items yet.
-    no_user_pages: You don't have pages in this board yet.
-    no_user_spreadsheets: You don't have boards yet.
-    no_spreadsheet_initial_page: '** Initial page not set **'
-    not_linked: -- not linked --
-    og_description: Alternative Communication app that allows people with speech and mobility impairments to communicate by using pictograms that represent words.
-    page_destroy_alert: Deleting this page will also delete all of its pictograms.
-    page_item_remove_alert: Delete item from page?
-    print: Print
-    profile: Profile
-    register: Register
-    reset_password: Reset password
-    save: Save
-    search: Search
-    speech: Speech
-    spreadsheet_destroy_alert: Deleting this board will also delete all of its pages and items.
-    submit: Submit
-    unlink: -- unlink --
-    unsupported_image_type: Image type not supported.
-    upload_file: Upload file
-    user_photo: User photo
-    welcome: Welcome
+      invalid: Invalid reset password link.
+      subject: Password reset
+      reset_password: Reset password
+      verification: Please check your email for password reset instructions.
+      valid_reset: Password has been reset.
+      expired_token: Password reset link has expired.
   will_paginate:
     previous_label: "&#171; Previous"
     next_label: "Next &#187;"

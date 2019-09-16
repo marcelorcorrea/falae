@@ -4,77 +4,86 @@
 
 @import 'defaults';
 
-.item {
+.items {
+
   .items-list {
+    font-size: 0;
+
     .items-list-item {
-      border: 0.125em solid $medium-sea-green;
-      border-radius: 0.25em;
+      border-radius: 4px;
+      border: 2px solid $medium-sea-green;
       box-sizing: border-box;
       display: inline-block;
+      font-size: $default-font-size;
       height: 180px;
-      margin: 0.75%;
+      margin: 6px;
       position: relative;
       text-align: center;
       vertical-align: top;
-      width: 18%;
-      .items-list-item-show-icon {
-        box-sizing: border-box;
+      width: 142px;
+
+      .items-list-item-menu {
         background-color: white;
-        border: 0 solid $dark-orange;
         border-radius: 50%;
+        border: 0 solid $dark-orange;
+        box-sizing: border-box;
         color: $dark-orange;
         cursor: pointer;
+        font-size: 0;
+        height: 0;
+        left: 4px;
+        line-height: 1.5;
         position: absolute;
-        right: 4px;
         top: 4px;
-        transition: all 0.125s;
+        transition: all 0.125s ;
         width: 0;
-        height: 0px;
+
         &:hover {
-          box-shadow: 0 0 2px;
+          box-shadow: 0 0 4px;
         }
-        .fa {
-          opacity: 0;
-          transition: opacity 0.0625s;
-        }
+
         &:hover .fa {
           font-weight: bold;
         }
       }
-      &:hover a .items-list-item-show-icon {
-        padding: 1px 4px;
+
+      &:hover .items-list-item-menu {
         border: 2px solid $dark-orange;
-        right: -6px;
+        font-size: 14px;
+        height: 24px;
+        left: -6px;
         top: -6px;
         width: 24px;
-        height: 24px;
-        .fa {
-          font-size: 14px;
-          opacity: 1;
-          transition: opacity 0s ease 0.0625s;
-        }
       }
+
       a, a:active, a:focus {
         outline: none;
       }
+
       .items-list-item-name {
         height: 20%;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        .helper {
+
+        span::before {
+          content: '';
           display: inline-block;
           height: 100%;
           vertical-align: middle;
         }
       }
+
       .items-list-item-image {
         height: 80%;
-        .helper {
+
+        span::before {
+          content: '';
           display: inline-block;
           height: 100%;
           vertical-align: middle;
         }
+
         img {
           vertical-align: middle;
           width: 80%;
@@ -83,100 +92,34 @@
     }
   }
 
-  .item-title {
-    font-size: 1.25em;
-  }
-  .item-lists {
-    position: relative;
-    .user-items-list {
-      //float: left;
-      display: none;
-    }
-  }
   .item-image {
-    width: 150px;
     height: 150px;
-    max-width: 150px;
     max-height: 150px;
+    max-width: 150px;
+    width: 150px;
+
     img {
-      width: 100%;
       height: 100%;
+      width: 100%;
     }
   }
+
   #item-image-container {
     text-align: center;
+
     #item-image-wrapper {
-      display: none;
-      width: 150px;
-      height: 150px;
-      max-width: 154px;
-      max-height: 154px;
-      overflow: hidden;
-      border: 2px solid #AAA;
       border-radius: 4px;
+      border: 2px solid #AAA;
+      display: none;
+      height: 150px;
+      max-height: 154px;
+      max-width: 154px;
+      overflow: hidden;
+      width: 150px;
+
       #item-image {
-        width: 150px;
         height: 150px;
-      }
-    }
-  }
-  .card-list {
-    padding: 0.5em 0;
-    // remove blank space between inline-block elements
-    font-size: 0;
-    width: 100%;
-    // 7 spaces 6 cards = 100%
-    margin: 0.28%;
-    .card {
-      font-size: 16px;
-      margin: 0.125em 0.28%;
-      text-align: center;
-      display: inline-block;
-      width: 16%;
-      height: 12em;
-      vertical-align: top;
-      border: 0.0625em solid black;
-      border-radius: 0.125em;
-      box-sizing: border-box;
-      text-decoration: none;
-      position: relative;
-      .name {
-        padding: 0.25em;
-        max-height: 40px;
-        overflow-y: hidden;
-      }
-      img {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 8px;
-        margin: 0 auto;
-        width: 90%;
-      }
-    }
-  }
-  .page-card-list {
-    padding: 0.5em 0;
-    width: 100%;
-    margin: 0.28%;
-    .card {
-      display: block;
-      margin: 1em 0;
-      text-align: center;
-      width: 10em;
-      height: 13em;
-      vertical-align: top;
-      border: 0.0625em solid black;
-      border-radius: 0.125em;
-      box-sizing: border-box;
-      text-decoration: none;
-      color: inherit;
-      .name {
-        padding: 0.25em;
-      }
-      img {
-        margin-top: 1em;
-        width: 90%;
+        width: 150px;
       }
     }
   }

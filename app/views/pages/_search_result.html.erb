@@ -1,64 +1,55 @@
 <% if items.empty? %>
   <p class="no-items-found">
-    <%= t 'views.no_item_was_found' %>
+    <%= t '.no_item_found' %>
   </p>
 <% else %>
   <% items.each do |item| %>
-    <% if !item.new_record? %>
     <div class="form-box item-result">
-      <div class="item-result-img <%= css_class_name(item.category) %>">
-        <%= image_tag item.image.image, alt: item.name %>
-      </div>
-      <div class="fields my-item">
-        <p class="field">
-          <strong><%= Item.human_attribute_name :name %>:</strong>
-          <%= item.name %>
-        </p>
-        <p class="field">
-          <strong><%= Item.human_attribute_name :speech %>:</strong>
-          <%= item.speech %>
-        </p>
-        <p class="field">
-          <strong><%= Category.model_name.human %>:</strong>
-          <%= item.category.description %>
-        </p>
-        <%= button_to({action: 'add_to_page'}, remote: true,
-              params: {item: {id: item.id}}, class: 'button-box') do %>
-          <%= t 'views.add_to_page' %>
-        <% end %>
-      </div>
-    </div>
-    <% else %>
-    <div class="form-box item-result">
-      <%= form_with model: [@page, item], url: add_to_page_user_spreadsheet_page_path do |form| %>
-        <div class="item-result-img <%= css_class_name(Category.default) %>">
-          <%= image_tag item.image.image, alt: item.name %>
+      <%= form_with model: [@page, item], url: add_to_page_user_spreadsheet_page_path,
+        method: :post do |form| %>
+        <% new_record = item.new_record? %>
+        <% if new_record %>
+          <% item.name.capitalize! %>
+          <% item.category = Category.default %>
           <%= form.fields_for :image do |img| %>
             <% img.hidden_field :id %>
           <% end %>
+        <% else %>
+          <%= form.hidden_field :id, value: item.id %>
+        <% end %>
+        <div class="items">
+          <div class="items-list">
+            <% content_for :item_menu, flush: true do %>
+              <div sytle="display: none" />
+            <% end %>
+            <% item.name.capitalize! if item.new_record? %>
+            <%= render 'items/item', item: item %>
+          </div>
         </div>
-        <div class="fields">
+        <div class="fields<%= ' private' unless new_record %>"<%= ' disabled' unless new_record %> >
           <p class="field">
             <strong><%= Item.human_attribute_name :name %>:</strong>
-            <%= form.text_field :name, id: :item_name, value: item.name.capitalize %>
+              <%= form.text_field :name, id: :item_name, value: item.name, disabled: !new_record %>
           </p>
           <div class="field">
             <strong><%= Item.human_attribute_name :speech %>:</strong>
-            <%= form.text_field :speech, id: :item_speech %>
+            <%= form.text_field :speech, id: :item_speech, disabled: !new_record %>
           </div>
           <div class="field">
             <strong><%= Category.model_name.human %>:</strong>
-            <%= form.select :category_id,
+            <%= new_record ?
+                  form.select(:category_id,
                             options_for_select(select_options_for_categories,
-                                               Category.default.id) %>
+                                               Category.default.id)) :
+                  form.text_field(:category, id: :category, value: item.category.description,
+                    disabled: true) %>
           </div>
           <div class="actions">
-            <%= form.submit t('views.add_to_page') %>
+            <%= form.submit t('.add_to_page') %>
           </div>
         </div>
       <% end %>
     </div>
-    <% end %> <%# end else %>
   <% end %>
 <% end %>
 

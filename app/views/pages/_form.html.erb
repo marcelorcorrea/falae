@@ -1,7 +1,7 @@
 <%= form_with(model: [@user, @spreadsheet, page], local: true) do |form| %>
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :page_name %>
+    <%= form.text_field :name, id: :page_name, autofocus: true %>
   </div>
 
   <div class="field">

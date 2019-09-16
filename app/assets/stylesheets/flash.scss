@@ -1,27 +1,27 @@
 @import 'defaults';
 
 .flash {
-  visibility: hidden;
   border: 0.125em solid;
   border-radius: 0.25em;
   padding: 0.5em;
   text-align: center;
+  visibility: hidden;
 
   &.alert {
-    visibility: visible;
-    border-color: red;
     background-color: $lightpink;
+    border-color: red;
+    visibility: visible;
   }
 
   &.warning {
-    visibility: visible;
-    border-color: $goldenrod;
     background-color: $lightgoldenrod;
+    border-color: $goldenrod;
+    visibility: visible;
   }
 
   &.success {
-    visibility: visible;
-    border-color: $seagreen;
     background-color: $lightgreen;
+    border-color: $seagreen;
+    visibility: visible;
   }
 }

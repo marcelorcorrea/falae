@@ -1,26 +1,24 @@
-<%= render 'layouts/nav_menu_and_view' do %>
-  <div class="item">
-    <% if notice %>
-      <p id="notice"><%= notice %></p>
+<div class="items">
+  <% if notice %>
+    <p id="notice"><%= notice %></p>
+  <% end %>
+
+  <p>
+    &nbsp;
+    <%= link_to new_user_item_path(@user), class: 'button-box' do %>
+      <%= fa_icon 'plus-circle' %><%= t '.new' %>
     <% end %>
+  </p>
 
-    <p>
-      &nbsp;
-      <%= link_to new_user_item_path(@user), class: 'button-box' do %>
-        <%= fa_icon 'plus-circle' %><%= t 'views.new_item' %>
-      <% end %>
-    </p>
-
-    <% if @items.present? %>
-      <div class='items-list'>
+  <% if @items.present? %>
+    <div class="items-list">
       <% @items.each do |item| %>
         <% if item.private? %>
-            <%= render 'items/item', item: item %>
+          <%= render 'items/item', item: item %>
         <% end %>
       <% end %>
-      </div>
-    <% else %>
-      <p><%= t 'views.no_user_items' %></p>
-    <% end %>
-  </div>
-<% end %>
+    </div>
+  <% else %>
+    <p><%= t '.none' %></p>
+  <% end %>
+</div>

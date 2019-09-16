@@ -1,13 +1,14 @@
 .errors {
-  border: 0.125em solid red;
-
-  border-radius: 0.25em;
   background-color: lightpink;
+  border: 0.125em solid red;
+  border-radius: 0.25em;
   padding: 0.5em;
   text-align: center;
+
   .error-wrapper {
     display: inline-block;
     text-align: start;
+
     .message {
       text-align: center;
     }

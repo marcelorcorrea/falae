@@ -55,6 +55,7 @@ module SessionsHelper
   end
 
   def session_valid?
+    return true if Rails.env.development? && !ENV['EXPIRE_SESSION']
     !session_expired? && !!renew_session
   end
 

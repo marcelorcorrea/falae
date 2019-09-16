@@ -1,15 +1,15 @@
 <%= form_with(model: [@user, spreadsheet], local: true) do |form| %>
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :spreadsheet_name %>
+    <%= form.text_field :name, id: :spreadsheet_name, autofocus: true %>
   </div>
 
   <% unless spreadsheet.new_record? %>
-  <div class="field">
-    <%= form.label :initial_page %>
-    <%= form.select :initial_page,
-          options_for_select(select_pages_names_options, spreadsheet.initial_page) %>
-  </div>
+    <div class="field">
+      <%= form.label :initial_page %>
+      <%= form.select :initial_page,
+            options_for_select(select_pages_names_options, spreadsheet.initial_page) %>
+    </div>
   <% end %>
 
   <div class="actions">
