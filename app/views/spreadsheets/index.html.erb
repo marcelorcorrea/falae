@@ -1,18 +1,16 @@
-<%= render :partial => 'shared/flash'%>
-<%= render 'layouts/nav_menu_and_view' do %>
-  <div class="spreadsheet">
-    <% if notice %>
-    <p id="notice"><%= notice %></p>
-    <% end %>
-    <div class="button-bar">
-      <%= link_to new_user_spreadsheet_path, class: 'button-box' do %>
-        <%= fa_icon 'plus-circle' %><%= t 'views.new_spreadsheet' %>
-      <% end %>
-    </div>
-    <% if @spreadsheets.present? %>
-      <%= render 'spreadsheets/spreadsheet' %>
-    <% else %>
-    <p><%= t 'views.no_user_spreadsheets' %></p>
+<%= render :partial => 'shared/flash' %>
+<div class="spreadsheet">
+  <% if notice %>
+  <p id="notice"><%= notice %></p>
+  <% end %>
+  <div class="button-bar">
+    <%= link_to new_user_spreadsheet_path, class: 'button-box' do %>
+      <%= fa_icon 'plus-circle' %><%= t '.new' %>
     <% end %>
   </div>
-<% end %>
+  <% if @spreadsheets.present? %>
+    <%= render 'spreadsheets/spreadsheet' %>
+  <% else %>
+  <p><%= t '.none' %></p>
+  <% end %>
+</div>

@@ -1,108 +1,56 @@
-<% items = @page.items %>
-<% cols = @page.columns %>
-<% rows = @page.rows %>
-
-<% if items.any? %>
-
-  <% items.each_slice(cols*rows).with_index do |page, page_index| %>
-  <table class="sliced-page columns-<%= cols < 5 ? cols : 'x' %>" cellspacing="0" cellpadding="0">
-    <% page.each_slice(cols).each do |row| %>
-    <tr class="row">
-      <% row.each do |item| %>
-      <td class="cell">
-        <div class="card-wrapper">
-          <div id="<%= item.id %>" class="card" draggable=true>
-            <div class="content <%= css_class_name(item.category) %>">
-              <div class="name"><%= item.name %></div>
-              <% if item.link_to %>
-              <div class="link-to"><%= fa_icon 'external-link' %></div>
+<% if items.empty? %>
+  <div class="items">
+    <div class="items-list page">
+      <div class="page-row columns-<%= columns %>">
+        <%= add_item_button %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <% items.each_slice(columns * rows) do |page| %>
+    <div class="items">
+      <div class="items-list page">
+      <% page.each_slice(columns) do |row| %>
+        <div class="page-row columns-<%= columns %>">
+          <% row.each do |item| %>
+            <% content_for :item_menu, flush: true do %>
+              <%= page_item_menu_icon(item) %>
+            <% end %>
+            <% if item.link_to? %>
+              <% content_for :item_link_to, flush: true do %>
+                <div class="link-to">
+                  <%= fa_icon 'external-link' %>
+                </div>
               <% end %>
-              <div class="img-wrapper">
-                <%= image_tag item.image.image, alt: item.name, draggable: false %>
-              </div>
-            </div>
-          </div>
-          <%= edit_item_button item.id, item.private? %>
-          <%= remove_item_button item.id, item.item_page_id %>
+            <% else %>
+              <% content_for :item_link_to, '', flush: true %>
+            <% end %>
+            <%= render 'items/item', item: item %>
+          <% end %>
+          <%= add_item_button if row.length != columns %>
         </div>
-      </td>
       <% end %>
-      <% if row.size != cols %>
-      <td class="cell">
-        <div class="card-wrapper">
-          <div class="card">
-            <%= add_item_button %>
-          </div>
-        </div>
-      </td>
-        <% 1.upto(cols - row.size - 1).each do %>
-      <td class="cell">
-        <div class="card-wrapper">
-        </div>
-      </td>
-        <% end %>
-      <% end %>
-    </tr>
-    <% end %>
-    <% if items.size % cols == 0 and items.size % (cols*rows) != 0 and items.size / (cols*rows) == page_index %>
-      <tr class="row">
-        <td class="cell">
-          <div class="card-wrapper">
-            <div class="card">
+      <% if page.length % (columns * rows) != 0 && page.length % columns == 0 %>
+        <div class="items">
+          <div class="items-list page">
+            <div class="page-row columns-<%= columns %>">
               <%= add_item_button %>
             </div>
           </div>
-        </td>
-        <% 1.upto(cols - 1).each do %>
-        <td class="cell">
-          <div class="card-wrapper">
-          </div>
-        </td>
-        <% end %>
-      </tr>
-    <% end %>
-  </table>
+        </div>
+      <% end %>
+      </div>
+    </div>
+    <hr />
+  <% end %>
+  <% if items.length % (columns * rows) == 0 %>
+    <div class="items">
+      <div class="items-list page">
+        <div class="page-row columns-<%= columns %>">
+          <%= add_item_button %>
+        </div>
+      </div>
+    </div>
   <hr />
   <% end %>
-  <% if items.size % (cols*rows) == 0 %>
-  <table class="sliced-page columns-<%= cols %>" cellspacing="0" cellpadding="0">
-    <tr class="row">
-      <td class="cell">
-        <div class="card-wrapper">
-          <div class="card">
-            <%= add_item_button %>
-          </div>
-        </div>
-      </td>
-      <% 1.upto(cols - 1).each do %>
-      <td class="cell">
-        <div class="card-wrapper">
-        </div>
-      </td>
-      <% end %>
-    </tr>
-  </table>
-  <hr />
-  <% end %>
-
-<% else %>
-
-  <table class="sliced-page columns-<%= cols %>" cellspacing="0" cellpadding="0">
-    <tr class="row">
-      <td class="cell">
-        <div class="card-wrapper">
-          <div class="card">
-            <%= add_item_button %>
-          </div>
-        </div>
-      </td>
-      <% 1.upto(cols - 1).each do %>
-      <td class="cell">
-        <div class="card-wrapper">
-        </div>
-      </td>
-      <% end %>
-    </tr>
-  </table>
-
 <% end %>

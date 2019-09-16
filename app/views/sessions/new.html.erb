@@ -1,26 +1,28 @@
 <div class="login">
   <%= render :partial => 'shared/flash'%>
   <div class="form-box">
-    <div class="label"><%= t 'views.welcome' %>!</div>
+    <div class="label"><%= t '.welcome' %>!</div>
     <%= form_with scope: :user, url: login_path, local: true do |form| %>
       <div class="field">
         <%= form.label :email %>
         <span class="input-icon"><%= fa_icon 'user' %></span>
-        <%= form.text_field :email, class: 'offset-for-icon', placeholder: true %>
+        <%= form.text_field :email, class: 'offset-for-icon', autofocus: true,
+          placeholder: true %>
       </div>
 
       <div class="field">
         <%= form.label :password %>
         <span class="input-icon"><%= fa_icon 'lock' %></span>
-        <%= form.password_field :password, class: 'offset-for-icon', placeholder: true, autocomplete: 'off' %>
+        <%= form.password_field :password, class: 'offset-for-icon',
+          placeholder: true, autocomplete: 'off' %>
       </div>
 
       <div class="field forgot">
-        <%= link_to t('views.forgot_password'), new_password_reset_path %>
+        <%= link_to t('.forgot_password'), new_password_reset_path %>
       </div>
 
       <div class="actions">
-        <%= form.submit t 'views.log_in' %>
+        <%= form.submit t '.log_in' %>
       </div>
     <% end %>
   </div>

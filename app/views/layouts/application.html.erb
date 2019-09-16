@@ -5,7 +5,7 @@
     <%= favicon_link_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="Fala&ecirc;" />
-    <meta property="og:description" content="<%= t 'views.og_description' %>" />
+    <meta property="og:description" content="<%= t '.og_description' %>" />
     <meta property="og:image" content="<%= image_url 'og_image_falae_widescreen.png' %>" />
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
@@ -13,13 +13,15 @@
   </head>
 
   <body>
-    <div class="wrapper">
+    <div class="container">
       <header>
         <%= render 'layouts/header' %>
       </header>
-      <div class="wrapper-bar"></div>
-      <div class="container">
-        <%= yield %>
+      <div class="content">
+        <%= render 'layouts/nav_menu' if show_nav_menu? %>
+        <div class="view">
+          <%= yield %>
+        </div>
       </div>
     </div>
   </body>

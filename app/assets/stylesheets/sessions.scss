@@ -7,12 +7,16 @@
 .login {
 
   .login-error {
-    visibility: hidden;
-    border: 0.125em solid red;
-    border-radius: 0.25em;
     background-color: lightpink;
+    border-radius: 0.25em;
+    border: 0.125em solid red;
     padding: 0.5em;
     text-align: center;
+    visibility: hidden;
+  }
+
+  .form-box {
+    width: 20em;
   }
 
   .visible {

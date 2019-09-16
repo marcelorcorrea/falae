@@ -1,6 +1,0 @@
-formButton = $("form[action$='id=<%= @item.id %>']");
-itemList = formButton.parent();
-formButton.remove();
-$(itemList).append($('<span></span>').addClass('already').text('Added to My Items'));
-
-$("<%= escape_javascript(render 'items/card', item: @item) %>").appendTo(".card-list");

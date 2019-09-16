@@ -1,19 +1,25 @@
 <div class="overlay">
-  <div class="search-item">
+  <div class="edit-item">
     <a class="close">
       <%= fa_icon 'times-circle-o', class: :default %>
       <%= fa_icon 'times-circle', class: :hover %>
     </a>
-    <p class="edit-item-title"><%= t 'views.edit_item' %></p>
-      <div class="form-box edit-item">
+    <p class="item-title"><%= t '.edit' %></p>
+    <div class="form-box">
       <%= form_with url: update_item_user_spreadsheet_page_path(@user, @spreadsheet, @page),
                     model: item, method: :put do |form| %>
         <%= form.hidden_field :id, value: item.id %>
-        <div class="item-edit-img <%= css_class_name item.category %>">
-          <%= image_tag item.image.image, alt: item.name %>
-          <%= form.fields_for :image do |img| %>
-            <% img.hidden_field :id %>
-          <% end %>
+        <div class="items">
+          <div class="items-list">
+            <% if item.link_to %>
+              <% content_for :item_link_to, flush: true do %>
+                <div class="link-to">
+                  <%= fa_icon 'external-link' %>
+                </div>
+              <% end %>
+            <% end %>
+            <%= render 'items/item', item: item %>
+          </div>
         </div>
         <div class="fields">
           <p class="field">
@@ -31,22 +37,22 @@
                                               item.category_id) %>
           </div>
           <% unless @spreadsheet.pages.one? %>
-          <div class="field">
-            <% linked_page_id = @page.get_linked_page_id(item.id) %>
-            <% text_for_include_blank = item.link_to ? t('views.unlink') : t('views.not_linked') %>
-            <strong><%= Page.model_name.human %>:</strong>
-            <%= select_tag :link_to_page,
-                  options_for_select(select_pages_options_helper, linked_page_id),
-                  include_blank: text_for_include_blank %>
-          </div>
+            <div class="field">
+              <% linked_page_id = @page.get_linked_page_id(item.id) %>
+              <% text_for_include_blank = item.link_to ? t('.unlink') : t('.not_linked') %>
+              <strong><%= Page.model_name.human %>:</strong>
+              <%= select_tag :link_to_page,
+                    options_for_select(select_pages_options_helper, linked_page_id),
+                    include_blank: text_for_include_blank %>
+            </div>
           <% end %>
           <div class="actions">
             <%= form.button :submit, name: :save do %>
-              <%= fa_icon 'floppy-o' %><%= t 'views.save' %>
+              <%= fa_icon 'floppy-o' %><%= t '.save' %>
             <% end %>
           </div>
         <div>
       <% end %>
-      </div>
+    </div>
   </div>
 </div>

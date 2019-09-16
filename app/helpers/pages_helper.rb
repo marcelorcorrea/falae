@@ -1,49 +1,72 @@
 module PagesHelper
-  #TODO should it be in ItemsHelper?
   def add_item_button
-    button_to(add_item_user_spreadsheet_page_path(@user, @spreadsheet, @page),
-              {method: :get, form_class: "content add", class: 'add-button',
-               remote: true}) do
+    path = add_item_user_spreadsheet_page_path(@user, @spreadsheet, @page)
+    options = {
+      method: :get,
+      class: 'items-list-item add-button',
+      form_class: 'add-item-page',
+      remote: true
+    }
+
+    button_to(path, options) do
       fa_icon 'plus-circle'
     end
   end
 
-  def edit_item_button(item_id, item_private)
-    path = edit_item_user_spreadsheet_page_path(@user, @spreadsheet, @page)
-    options = {
-      method: :get,
-      class: :edit,
-      params: {
-        item_id: item_id
-      },
-      remote: true
-    }
-    options[:data] = { confirm: t('views.item_edit_alert') } if item_private
-
-    button_to(path, options) do
-      concat fa_icon 'pencil-square-o', class: :default
-      concat fa_icon 'pencil-square', class: :hover
+  def page_item_menu_icon(item)
+    content_tag(:div, class: 'items-list-item-menu') do
+      concat fa_icon('ellipsis-v')
+      concat page_item_nav_menu(item)
     end
   end
 
-  def remove_item_button(item_id, item_page_id)
-    path = remove_item_user_spreadsheet_page_path(@user, @spreadsheet, @page)
+  def page_item_nav_menu(item)
+    content_tag :nav, class: 'items-list-item-menu-options' do
+      concat page_edit_item(item)
+      concat page_remove_item(item)
+    end
+  end
+
+  def page_edit_item(item)
+    path = edit_item_user_spreadsheet_page_path(
+      @user,
+      @spreadsheet,
+      @page,
+      item_id: item.id
+    )
     options = {
-      method: :delete,
+      class: :edit,
+      method: :get,
+      remote: true
+    }
+    options[:data] = { confirm: t('.edit_alert') } if item.private?
+
+    link_to path, options do
+      concat fa_icon('pencil-square-o')
+      concat t('.edit')
+    end
+  end
+
+  def page_remove_item(item)
+    path = remove_item_user_spreadsheet_page_path(
+      @user,
+      @spreadsheet,
+      @page,
+      item_id: item.id,
+      item_page_id: item.item_page_id
+    )
+    options = {
       class: :remove,
       data: {
-        confirm: t('views.page_item_remove_alert')
+          confirm: t('.remove_alert')
       },
-      params: {
-        item_id: item_id,
-        item_page_id: item_page_id
-      },
+      method: :delete,
       remote: true
     }
 
-    button_to(path, options) do
-      concat fa_icon 'trash-o', class: :default
-      concat fa_icon 'trash', class: :hover
+    link_to path, options do
+      concat fa_icon('trash-o')
+      concat t('.remove')
     end
   end
 

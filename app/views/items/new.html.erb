@@ -1,14 +1,12 @@
-<%= render 'layouts/nav_menu_and_view' do %>
-  <div class="item">
-    <%= render 'shared/error', model: @item %>
-    <div class="button-bar">
-      <%= link_to user_items_path(@user), class: 'button-box cancel' do %>
-        <%= fa_icon 'times' %><%= t 'views.cancel' %>
-      <% end %>
-    </div>
-    <div class="form-box">
-      <div class="label"><%= t 'views.new_item' %></div>
-      <%= render 'form', item: @item %>
-    </div>
+<div class="items">
+  <%= render 'shared/error', model: @item %>
+  <div class="button-bar">
+    <%= link_to user_items_path(@user), class: 'button-box cancel' do %>
+      <%= fa_icon 'times' %><%= t '.cancel' %>
+    <% end %>
   </div>
-<% end %>
+  <div class="form-box">
+    <div class="label"><%= t '.new' %></div>
+    <%= render 'form', item: @item %>
+  </div>
+</div>

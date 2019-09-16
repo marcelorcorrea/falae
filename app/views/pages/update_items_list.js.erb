@@ -2,6 +2,3 @@ $('.page-items').empty();
 <% locals = { columns: @page.columns, items: @page.items, rows: @page.rows } %>
 $("<%= escape_javascript(render 'pages/items', locals) %>")
   .appendTo(".page-items");
-
-$('.overlay').remove();
-$('body').css('overflow', 'initial');

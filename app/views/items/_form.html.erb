@@ -1,7 +1,7 @@
 <%= form_with(model: [current_user, item], local: true) do |form| %>
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :item_name %>
+    <%= form.text_field :name, id: :item_name, autofocus: true %>
   </div>
 
   <div class="field">
@@ -19,14 +19,14 @@
       </div>
     </div>
     <div class="wrapper-custom-input-file"
-      data-unsupported-image-type="<%= t 'views.unsupported_image_type' %>">
+      data-unsupported-image-type="<%= t '.unsupported_image_type' %>">
       <%= form.fields_for :image do |image| %>
         <% [:crop_x, :crop_y, :crop_w, :crop_h].each do |attribute| %>
           <%= image.hidden_field attribute, id: attribute %>
         <% end %>
         <%= image.file_field :image %>
         <%= image.label :image, class: 'custom-input-file' do %>
-          <%= fa_icon 'upload' %> <%= t 'views.upload_file' %>
+          <%= fa_icon 'upload' %> <%= t '.upload_file' %>
         <% end %>
       <% end %>
     </div>
@@ -43,4 +43,4 @@
   </div>
 <% end %>
 
-<%= render 'shared/modal_image_crop', title: t('views.crop_title') %>
+<%= render 'shared/modal_image_crop' %>

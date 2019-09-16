@@ -2,7 +2,8 @@
   <div class="field">
     <%= form.label :name %>
     <span class="input-icon"><%= fa_icon 'user' %></span>
-    <%= form.text_field :name, id: :user_name, class: 'offset-for-icon', placeholder: true %>
+    <%= form.text_field :name, id: :user_name, class: 'offset-for-icon',
+      autofocus:true, placeholder: true %>
   </div>
 
   <div class="field">
@@ -23,16 +24,16 @@
       <%= form.hidden_field attribute, id: attribute %>
     <% end %>
     <div class="wrapper-custom-input-file"
-      data-unsupported-photo-type="<%= t 'views.unsupported_image_type' %>">
+      data-unsupported-photo-type="<%= t '.unsupported_image_type' %>">
       <%= form.file_field :photo, id: :user_photo %>
       <%= form.label :photo, class: 'custom-input-file' do %>
-        <%= fa_icon 'upload' %> <%= t 'views.upload_file' %>
+        <%= fa_icon 'upload' %> <%= t '.upload_file' %>
       <% end %>
     </div>
   </div>
 
   <div class="field">
-    <%= form.label :description, t('views.profile') %>
+    <%= form.label :description, t('.profile') %>
     <%= form.text_area :profile, id: :user_description, class: 'offset-for-icon',
       rows: 15, placeholder: true %>
   </div>
@@ -43,40 +44,40 @@
   </div>
 
   <% if user.new_record? %>
-  <div class="field">
-    <%= form.label :email %>
-    <span class="input-icon"><%= fa_icon 'envelope-square' %></span>
-    <%= form.text_field :email, id: :user_email, class: 'offset-for-icon',
-        placeholder: true %>
-  </div>
+    <div class="field">
+      <%= form.label :email %>
+      <span class="input-icon"><%= fa_icon 'envelope-square' %></span>
+      <%= form.text_field :email, id: :user_email, class: 'offset-for-icon',
+          placeholder: true %>
+    </div>
 
-  <div class="field">
-    <%= form.label :email_confirmation %>
-    <span class="input-icon"><%= fa_icon 'envelope-square' %></span>
-    <%= form.text_field :email_confirmation, id: :user_email_confirmation,
-      class: 'offset-for-icon', placeholder: true %>
-  </div>
+    <div class="field">
+      <%= form.label :email_confirmation %>
+      <span class="input-icon"><%= fa_icon 'envelope-square' %></span>
+      <%= form.text_field :email_confirmation, id: :user_email_confirmation,
+        class: 'offset-for-icon', placeholder: true %>
+    </div>
 
-  <div class="field">
-    <%= form.label :password %>
-    <span class="input-icon"><%= fa_icon 'lock' %></span>
-    <%= form.password_field :password, id: :user_password, class: 'offset-for-icon',
-      placeholder: true, autocomplete: 'off' %>
-  </div>
+    <div class="field">
+      <%= form.label :password %>
+      <span class="input-icon"><%= fa_icon 'lock' %></span>
+      <%= form.password_field :password, id: :user_password, class: 'offset-for-icon',
+        placeholder: true, autocomplete: 'off' %>
+    </div>
 
-  <div class="field">
-    <%= form.label :password_confirmation %>
-    <span class="input-icon"><%= fa_icon 'lock' %></span>
-    <%= form.password_field :password_confirmation, id: :user_password_confirmation,
-      class: 'offset-for-icon', placeholder: true, autocomplete: 'off' %>
-  </div>
+    <div class="field">
+      <%= form.label :password_confirmation %>
+      <span class="input-icon"><%= fa_icon 'lock' %></span>
+      <%= form.password_field :password_confirmation, id: :user_password_confirmation,
+        class: 'offset-for-icon', placeholder: true, autocomplete: 'off' %>
+    </div>
   <% else %>
-  <div class="field">
-    <%= link_to t('views.change_email'), change_email_user_path(@user) %>
-  </div>
-  <div class="field">
-    <%= link_to t('views.change_password'), change_password_user_path(@user) %>
-  </div>
+    <div class="field">
+      <%= link_to t('.change_email'), change_email_user_path(@user) %>
+    </div>
+    <div class="field">
+      <%= link_to t('.change_password'), change_password_user_path(@user) %>
+    </div>
   <% end %>
 
   <div class="actions">
@@ -84,4 +85,4 @@
   </div>
 <% end %>
 
-<%= render 'shared/modal_image_crop', title: t('views.crop_title') %>
+<%= render 'shared/modal_image_crop' %>

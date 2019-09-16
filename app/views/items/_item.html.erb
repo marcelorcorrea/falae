@@ -1,15 +1,21 @@
-<div class="items-list-item <%= css_class_name(item.category) %>">
-  <%= link_to user_item_path(item.user, item) do %>
-  <div class="items-list-item-show-icon">
-    <%= fa_icon('external-link') %>
-  </div>
+<% class_list = "items-list-item #{css_class_name(item.category)}" %>
+<div class="<%= class_list %>" draggable="true" data-id="<%= item.id %>" >
+  <% if content_for? :item_menu %>
+    <%= content_for :item_menu %>
+  <% else %>
+    <%= link_to user_item_path(item.user, item) do %>
+    <div class="items-list-item-menu">
+      <%= fa_icon('external-link') %>
+    </div>
+    <% end %>
   <% end %>
   <div class="items-list-item-name">
-    <span class="helper"></span><!--
-    --><span><%= item.name %></span>
+    <span><%= item.name %></span>
   </div>
+  <% if content_for? :item_link_to %>
+    <%= content_for :item_link_to %>
+  <% end %>
   <div class="items-list-item-image">
-    <span class="helper"></span><!--
-    --><%= image_tag item.image.image, alt: item.name %>
+    <span><%= image_tag item.image.image, alt: item.name %></span>
   </div>
 </div>
