@@ -59,7 +59,9 @@ module SessionsHelper
   end
 
   def session_expired?
-    session[:expires_after] && session[:expires_after] < Time.now.to_i
+    expired = session[:expires_after] && session[:expires_after] < Time.now.to_i
+    log_out if expired
+    expired
   end
 
 end
