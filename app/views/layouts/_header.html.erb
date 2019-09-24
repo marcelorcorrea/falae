@@ -16,7 +16,7 @@
   </div>
 
   <div class="session">
-    <% if logged_in? %>
+    <% if current_user %>
       <span class="welcome"><%= t 'views.welcome' %>, <%= link_to current_user.name,
             user_path(current_user), class: 'user-name' %>!</span>
       <span class="logout"><%= link_to logout_path, method: :delete do %>
