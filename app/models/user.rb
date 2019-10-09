@@ -26,7 +26,10 @@ class User < ApplicationRecord
 
   before_save { self.email = email.downcase }
   before_create :create_activation_digest
-  after_create :send_activation_email
+  after_create {
+    reprocess_photo if cropping?
+    send_activation_email
+  }
   after_update :reprocess_photo, if: :cropping?
   after_destroy { self.photo = nil }
 
