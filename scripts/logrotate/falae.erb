@@ -1,0 +1,32 @@
+# This is an example file to rotate app logs, replace the variables with the
+# correct directories, and place it in /etc/logrotate.d directory
+
+<%= falae_folder %>/log/production.log {
+	weekly
+	size 10M
+	missingok
+	notifempty
+	rotate 8
+	compress
+	delaycompress
+	copytruncate
+	nodateext
+}
+
+<%= falae_folder %>/tmp/nginx*.log {
+	weekly
+	missingok
+	rotate 8
+	compress
+	delaycompress
+	notifempty
+	sharedscripts
+	prerotate
+		if [ -d /etc/logrotate.d/httpd-prerotate ]; then \
+			run-parts /etc/logrotate.d/httpd-prerotate; \
+		fi \
+	endscript
+	postrotate
+		invoke-rc.d nginx rotate >/dev/null 2>&1
+	endscript
+}
