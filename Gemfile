@@ -37,7 +37,7 @@ gem 'jquery-rails', '~> 4.3.1'
 gem "font-awesome-rails", '~> 4.7.0'
 
 # Security headers
-gem 'secure_headers', '~>3.6.7'
+gem 'secure_headers', '~>3.9.0'
 
 # Throttling/blocking protection middleware
 gem "rack-attack", "~> 5.0"
