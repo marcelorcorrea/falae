@@ -235,10 +235,10 @@ pt:
   header_pages:
     about:
       title: 'O Aplicativo'
-      text_p1: '<b>Falaê</b> é um aplicativo Android desenvolvido por voluntários da HP do Brasil R&D em parceria com a ONG Educandário - Centro de Reabilitação São João Batista. É um aplicativo de Comunicação Alternativa, que permite pessoas com dificuldades de fala e mobilidade se comunicarem utilizando pictogramas (imagens ou símbolos) que representam palavras (verbos, substantivos, adjetivos etc).'
+      text_p1: '<b>Falaê<sup>&reg;</sup></b> é um aplicativo Android desenvolvido por voluntários da HP do Brasil R&D em parceria com a ONG Educandário - Centro de Reabilitação São João Batista. É um aplicativo de Comunicação Alternativa, que permite pessoas com dificuldades de fala e mobilidade se comunicarem utilizando pictogramas (imagens ou símbolos) que representam palavras (verbos, substantivos, adjetivos etc).'
       text_p2: 'O objetivo principal deste projeto é oferecer o aplicativo, e todos os seus recursos, completamente gratuito. Até então, aplicativos de Comunicação Alternativa conhecidos pela ONG eram pagos e possuíam funcionalidades limitadas (por exemplo: número máximo de pranchas, itens por usuário). Esta é uma barreira para famílias de baixa renda. Desejamos que todos, independentemente de sua renda, possam fazer uso da ferramenta e superar suas dificuldades.'
-      text_p3: 'O sistema <b>Falaê</b> consiste de duas partes: aplicativo Android e a plataforma web. Esta é usada para registro de usuários. Após realizado cadastro, o usuário pode definir seu perfil e, também, criar e editar pranchas, páginas e items de comunicação. O aplicativo Android se conecta à plataforma para a sincronização dessas informações. Através de um dispositivo Android (tablet ou celular), pessoas com dificuldades de fala e mobilidade podem iniciar um processo de alfabetização e comunicação totalmente gratuito. Para baixar e instalar o aplicativo, acesse a <a href="https://play.google.com/store/apps/details?id=org.falaeapp.falae">Google Play Store</a>.'
-      text_p4: 'Outro diferencial da aplicação <b>Falaê</b> é a sua natureza <i><a href="https://github.com/marcelorcorrea/falae">open source</a></i>. <b>Falaê</b> é licenciado sob a licença <a href="https://github.com/marcelorcorrea/falae/blob/master/LICENSE">MIT</a>, ou seja, qualquer pessoa pode baixar e/ou modificar o código para adaptar às suas necessidades livremente, além da possibilidade de contribuir com a comunidade.'
+      text_p3: 'O sistema <b>Falaê<sup>&reg;</sup></b> consiste de duas partes: aplicativo Android e a plataforma web. Esta é usada para registro de usuários. Após realizado cadastro, o usuário pode definir seu perfil e, também, criar e editar pranchas, páginas e items de comunicação. O aplicativo Android se conecta à plataforma para a sincronização dessas informações. Através de um dispositivo Android (tablet ou celular), pessoas com dificuldades de fala e mobilidade podem iniciar um processo de alfabetização e comunicação totalmente gratuito. Para baixar e instalar o aplicativo, acesse a <a href="https://play.google.com/store/apps/details?id=org.falaeapp.falae">Google Play Store</a>.'
+      text_p4: 'Outro diferencial da aplicação <b>Falaê<sup>&reg;</sup></b> é a sua natureza <i><a href="https://github.com/marcelorcorrea/falae">open source</a></i>. <b>Falaê<sup>&reg;</sup></b> é licenciado sob a licença <a href="https://github.com/marcelorcorrea/falae/blob/master/LICENSE">MIT</a>, ou seja, qualquer pessoa pode baixar e/ou modificar o código para adaptar às suas necessidades livremente, além da possibilidade de contribuir com a comunidade.'
       text_p5: 'Os símbolos pictográficos utilizados são propriedade de CATEDU (<a href="http://catedu.es/arasaac/">http://catedu.es/arasaac/</a>) sob a licença <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/es/">Creative Commons</a> e foram criados por <a href="http://www.palao.es/">Sergio Palao</a>.'
       ngo_title: 'Sobre a ONG Educandário - Centro de Reabilitação São João Batista'
       ngo_text_p1: 'A ONG, cujo trabalho nos inspirou, foi fundada em 1939 para cuidar de crianças com poliomielite. Atualmente, atende crianças e adolescentes com múltiplas incapacidades. Sua missão é '
@@ -258,7 +258,7 @@ pt:
       ngo_website: 'Para maiores informações, acesse a página oficial <a href="http://www.educandario.org.br">aqui</a>.'
     home:
       title: Falaê
-      text_p1: '<b>Falaê</b> é um aplicativo Android desenvolvido por voluntários da HP do Brasil R&D em parceria com a ONG Educandário - Centro de Reabilitação São João Batista. É um aplicativo de Comunicação Alternativa, que permite pessoas com dificuldades de fala e mobilidade se comunicarem utilizando pictogramas (imagens ou símbolos) que representam palavras (verbos, substantivos, adjetivos etc).'
+      text_p1: '<b>Falaê<sup>&reg;</sup></b> é um aplicativo Android desenvolvido por voluntários da HP do Brasil R&D em parceria com a ONG Educandário - Centro de Reabilitação São João Batista. É um aplicativo de Comunicação Alternativa, que permite pessoas com dificuldades de fala e mobilidade se comunicarem utilizando pictogramas (imagens ou símbolos) que representam palavras (verbos, substantivos, adjetivos etc).'
       text_p2: 'O objetivo principal deste projeto é oferecer o aplicativo, e todos os seus recursos, completamente gratuito. Até então, aplicativos de Comunicação Alternativa conhecidos pela ONG eram pagos e possuíam funcionalidades limitadas (por exemplo: número máximo de pranchas, itens por usuário). Esta é uma barreira para famílias de baixa renda. Desejamos que todos, independentemente de sua renda, possam fazer uso da ferramenta e superar suas dificuldades.'
       login: 'Faça o <a href="/login">login</a> ou <a href="/users/new">cadastre-se</a> para começar!'
   items:
@@ -486,7 +486,7 @@ pt:
     account_activation:
       activate: Ativar
       activation: 'Conta ativada!'
-      body: 'Bem-vindo ao Falaê! Clique no link abaixo para ativar sua conta:'
+      body: 'Bem-vindo ao Falaê<sup>&reg;</sup>! Clique no link abaixo para ativar sua conta:'
       hello: Olá
       invalid: Link de ativação inválido.
       notactivated: Conta não foi ativada. Procure link de ativação em seu e-mail.
