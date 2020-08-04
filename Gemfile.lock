@@ -115,7 +115,7 @@ GEM
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
     puma (3.12.4)
-    rack (2.0.8)
+    rack (2.2.3)
     rack-attack (5.0.1)
       rack
     rack-test (0.6.3)
