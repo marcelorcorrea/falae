@@ -15,7 +15,7 @@ RSpec.describe HeaderPagesController, type: :controller do
     end
 
     it 'should respond with success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to be_successful
     end
   end
 
@@ -29,7 +29,7 @@ RSpec.describe HeaderPagesController, type: :controller do
     end
 
     it 'should respond with success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to be_successful
     end
   end
 
@@ -43,7 +43,7 @@ RSpec.describe HeaderPagesController, type: :controller do
     end
 
     it 'should respond with success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to be_successful
     end
   end
 end

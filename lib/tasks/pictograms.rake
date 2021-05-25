@@ -3,6 +3,9 @@ require "open-uri"
 namespace :pictograms do
   desc 'Populate pictograms table with images from a folder'
   task :populate_table, [:folder, :locale] => :environment do |task, args|
+    unless image_magic_installed?
+      abort('Image Magic executable not found. You can install with "apt install imagemagick" for example')
+    end
     unless valid?(args)
       msg = 'You need specify a valid folder and locale params (e.g. rails pictograms:populate_table[<folder>,<locale>]).'
       abort(msg)
@@ -20,6 +23,10 @@ namespace :pictograms do
 
   # functions
 
+  def image_magic_installed?
+    system 'command -v convert > /dev/null 2>&1'
+  end
+
   def valid?(params)
     folder = File.expand_path(params.folder)
     availables_locales = AVAILABLE_LOCALES.keys.to_s
@@ -33,7 +40,6 @@ namespace :pictograms do
     unique_filenames = generate_unique_filenames(normalized_filenames)
     rename_files(folder, entries, unique_filenames)
     insert_into_pictogram_table(folder, locale)
-
   end
 
   def handle_file_types(folder, entries)
@@ -99,7 +105,7 @@ namespace :pictograms do
       Pictogram.create! image: img, locale: locale rescue puts "Error in #{file}"
       print "\rInserting pictograms into database (#{idx}/#{entries_size})."
     end
-    puts
+    puts 'Finished!'
   end
 
   def download_samples()

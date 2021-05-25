@@ -15,7 +15,7 @@ RSpec.describe PasswordResetsController, type: :controller do
     end
 
     it 'responds with success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to be_successful
     end
 
     it 'renders new' do
@@ -133,7 +133,7 @@ RSpec.describe PasswordResetsController, type: :controller do
       end
 
       it 'responds with success status' do
-        expect(response).to have_http_status(:success)
+        expect(response).to be_successful
       end
     end
 
@@ -215,7 +215,7 @@ RSpec.describe PasswordResetsController, type: :controller do
         end
 
         it 'responds with success status' do
-          expect(response).to have_http_status(:success)
+          expect(response).to be_successful
         end
       end
 

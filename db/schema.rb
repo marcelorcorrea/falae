@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 20181120214216) do
     t.datetime "photo_updated_at"
     t.string "auth_token"
     t.datetime "auth_token_created_at"
-    t.string "locale", default: "pt-BR"
+    t.string "locale", default: "pt"
     t.index ["auth_token", "auth_token_created_at"], name: "index_users_on_auth_token_and_auth_token_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
