@@ -1,3 +1,5 @@
+require File.join(Rails.root, "lib", "encryption_service.rb")
+
 class Page < ApplicationRecord
   belongs_to :spreadsheet
   has_many :item_pages, dependent: :destroy
@@ -43,5 +45,75 @@ class Page < ApplicationRecord
       raise ActiveRecord::Rollback unless u1 && u2
       true
     end
+  end
+
+  def export_as_json
+    self.as_json(
+      only: [:name, :columns, :rows, :spreadsheet_id],
+      include: {
+        items: {
+          only: [:id, :name, :speech, :category_id],
+          include: {
+            image: {
+              only: [:id, :type]
+            }
+          }
+        }
+      }
+    )
+  end
+
+  def export(include_private_items = false)
+    page = self.export_as_json
+    if !include_private_items
+      page['items'] = page['items'].select { |i| i['image']['type'] != PrivateImage.name }
+    end
+    EncryptionService.encrypt page.to_json
+  end
+
+  def private_items?
+    items.any? { |item| item.private? }
+  end
+
+  def self.import!(page_data, spreadsheet, user, opts = {})
+    parsed_page = if !opts[:serialized]
+      page_json  = EncryptionService.decrypt page_data
+      JSON.parse(page_json)
+    else
+      page_data
+    end
+
+    Page.transaction do
+      page = Page.create! name: parsed_page['name'],
+        columns: parsed_page['columns'],
+        rows: parsed_page['rows'],
+        spreadsheet: spreadsheet
+
+      parsed_page['items'].each do |item|
+        img = if item['image']['type'] == Pictogram.name
+          Image.find item['image']['id']
+        else
+          private_image = Image.find(item['image']['id'])
+          img_dup = private_image.dup
+          img_dup.image = private_image.image
+          img_dup.user_id = user.id
+          img_dup
+        end
+        page.items.create! name: item['name'],
+          speech: item['speech'],
+          category_id: item['category_id'],
+          user: user,
+          image: img
+      end
+    end
+  end
+
+  def self.import(page_encrypted, spreadsheet, user)
+    import! page_encrypted, spreadsheet, user
+    nil
+  rescue ActiveSupport::MessageVerifier::InvalidSignature, JSON::ParserError => ex
+    I18n.t 'errors.invalid_file'
+  rescue ActiveRecord::RecordInvalid => ex
+    ex.message
   end
 end

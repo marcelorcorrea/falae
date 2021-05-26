@@ -179,6 +179,7 @@ en:
       year: Year
   errors:
     format: "%{attribute} %{message}"
+    invalid_file: 'Invalid file.'
     messages:
       accepted: must be accepted
       blank: can't be blank
@@ -295,7 +296,7 @@ en:
       contact: Contact
       home: Home
       log_in: Login
-      log_out: Sair
+      log_out: Logout
       register: Register
       welcome: Welcome
     nav_menu:
@@ -368,6 +369,7 @@ en:
       destroy: Delete
       destroy_alert: Deleting this page will also delete all of its pictograms.
       edit: Edit
+      export: Export
       mobile_view: Mobile view
       print: Print
     edit:
@@ -395,6 +397,13 @@ en:
     search_result:
       add_to_page: Add to page
       no_item_found: No item found.
+    export:
+      ext: page
+      include_private_items: Include page private items
+      send: Send
+      title: Export page
+    export_data:
+      ext: page
   password_resets:
     new:
       reset_password: Reset password
@@ -410,6 +419,7 @@ en:
       title: Crop Image
   spreadsheets:
     index:
+      import: Import
       new: New Board
       none: You don't have boards yet.
     new:
@@ -421,6 +431,8 @@ en:
       back: Back
       destroy: Delete
       edit: Edit
+      export: Export
+      import: Import
       new_page: New Page
       no_initial_page: '** Initial page not set **'
       destroy_alert: Deleting this board will also delete all of its pages and items.
@@ -431,6 +443,23 @@ en:
       notice: Board updated successfully.
     destroy:
       notice: Board deleted successfully.
+    add_page:
+      no_file: No file selected.
+    export:
+      ext: board
+      include_private_items: Include private items
+      send: Send
+      title: Export board
+    export_data:
+      ext: board
+    import_page:
+      no_file: No file selected.
+      send: Send
+      search: Search
+      select_file: 'Select file:'
+      title: Import page
+    update_page_list:
+      page_not_imported: It was not possible to import the page.
   support:
     array:
       last_word_connector: ", and "
@@ -482,6 +511,16 @@ en:
       incorrect_password: Current password is invalid.
       invalid_password: New password is invalid or not equal to confirmation password field.
       notice: Password updated successfully.
+    add_spreadsheet:
+      no_file: No file selected.
+    import_spreadsheet:
+      no_file: No file selected.
+      send: Send
+      search: Search
+      select_file: 'Select file:'
+      title: Import board
+    update_spreadsheet_list:
+      spreadsheet_not_inported: It was not possible to import the board.
   user_mailer:
     account_activation:
       activate: Activate

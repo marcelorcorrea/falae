@@ -103,6 +103,34 @@ class UsersController < ApplicationController
     end
   end
 
+
+  # GET /users/1/import_spreadsheet
+  def import_spreadsheet
+    render locals: { user: @user }
+  end
+
+  # POST /users/1/add_spreadsheet
+  def add_spreadsheet
+    file = params[:user][:spreadsheet_file]
+    if params[:user][:spreadsheet_file].blank?
+      render :update_spreadsheet_list,
+        locals: { error: t('.no_file') },
+        status: :bad_request
+      return
+    end
+
+    spreadsheet_encrypted = file.read
+    error = Spreadsheet.import spreadsheet_encrypted, @user
+    if !error
+      @spreadsheets = @user.spreadsheets
+      render :update_spreadsheet_list
+    else
+      render :update_spreadsheet_list,
+        locals: { error: error },
+        status: :unprocessable_entity
+    end
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_user

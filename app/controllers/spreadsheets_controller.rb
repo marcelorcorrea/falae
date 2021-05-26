@@ -2,7 +2,17 @@ class SpreadsheetsController < ApplicationController
   before_action :authenticate!
   before_action :authorized?
   before_action :set_vars
-  before_action :set_spreadsheet, only: %i[show edit update destroy]
+  before_action :set_spreadsheet,
+    only: %i[
+      show
+      edit
+      update
+      destroy
+      import_spreadsheet
+      add_page
+      export
+      export_data
+    ]
 
   # GET /spreadsheets
   # GET /spreadsheets.json
@@ -74,11 +84,50 @@ class SpreadsheetsController < ApplicationController
     end
   end
 
+  # GET /spreadsheets/1/import_page
+  def import_page
+    render locals: { spreadsheet: @spreadsheet }
+  end
+
+  # POST /spreadsheets/1/add_page
+  def add_page
+    if params[:page_file].blank?
+      render :update_pages_list,
+        locals: { error: t('.no_file') },
+        status: :bad_request
+      return
+    end
+
+    page_encrypted = params[:page_file].read
+    error = Page.import page_encrypted, @spreadsheet, @user
+    if !error
+      @pages = @spreadsheet.pages
+      render :update_pages_list, locals: { initial_page: (@pages.one? && @pages.first.name) }
+    else
+      render :update_pages_list,
+        locals: { error: error },
+        status: :unprocessable_entity
+    end
+  end
+
+  # GET
+  def export
+    render locals: { filename: "#{@spreadsheet.name}.#{t('.ext')}" }
+  end
+
+  # GET
+  def export_data
+    send_data @spreadsheet.export(params[:include_private_items]),
+      disposition: :attachment,
+      filename: "#{@spreadsheet.name}.#{t('.ext')}",
+      type: 'application/octetstream'
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_spreadsheet
-    @spreadsheet = @user.spreadsheets.find_by id: params[:id]
+    @spreadsheet = @user.spreadsheets.find_by id: (params[:id] || params[:spreadsheet_id])
   end
 
   def set_vars

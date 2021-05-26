@@ -1,0 +1,53 @@
+$('body').css('overflow', 'hidden');
+
+$("<%= escape_javascript(render 'spreadsheets/import_page', spreadsheet: spreadsheet) %>")
+  .appendTo(".spreadsheet")
+
+$('.overlay').show();
+
+{
+  const importFileInput = document.getElementById('page-file');
+  importFileInput.addEventListener('change', ev => {
+    const file = ev.target.files[0];
+    if (file) {
+      const fileName = document.getElementById('selected-file');
+      fileName.classList.remove('no-file-selected');
+      const submitButton = document.getElementById('page-file-submit');
+      submitButton.disabled = false;
+      if ('textContent' in fileName) {
+        fileName.textContent = file.name;
+      } else {
+        fileName.innerText = file.name;
+      }
+    }
+  });
+}
+
+function closeDialog(event, preventDefault = true) {
+  if (preventDefault) {
+    event.preventDefault();
+  }
+  $('.overlay').remove();
+  $('body').css('overflow', 'initial');
+  $(window).off('keyup', closeDialogOnEscape);
+}
+
+function closeDialogOnEscape(ev) {
+  if (ev.which === 27) {
+    closeDialog(ev);
+  }
+}
+
+$('#import-page')
+  .on('ajax:before', (ev) => {
+    const loadingLayer = $('<div/>', {
+      id: 'paginate-loading-layer',
+      append: $('<div/>', {
+        class: 'fa fa-spinner fa-pulse fa-3x fa-fw',
+      })
+    }).appendTo($('body'));
+    closeDialog(ev, false);
+  });
+
+$('.close').on('click', closeDialog);
+$(window).on('keyup', closeDialogOnEscape);

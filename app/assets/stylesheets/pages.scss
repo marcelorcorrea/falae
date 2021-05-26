@@ -172,6 +172,7 @@
 
     .add-button {
       background-color: white;
+      color: $dark-gray;
       font-size: 48px;
       padding: 0;
 
@@ -212,7 +213,9 @@
     }
   }
 
-  .edit-item, .search-item, .item-result {
+  .edit-item, .search-item, .item-result,
+  .export-page, .import,
+  .export-spreadsheet {
     background-color: white;
     margin: 2em auto;
     overflow: auto;
@@ -221,6 +224,10 @@
 
     .form-box {
       text-align: center;
+
+      #import {
+        text-align: left;
+      }
 
       .fields, .items {
         display: inline-block;
@@ -248,7 +255,7 @@
       }
     }
 
-    .item-title {
+    .item-title, .export-title, .import-title {
       color: $medium-sea-green;
       font-size: 1.5em;
       font-style: italic;

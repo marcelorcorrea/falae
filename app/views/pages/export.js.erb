@@ -1,0 +1,39 @@
+$('body').css('overflow', 'hidden');
+
+$("<%= escape_javascript(render 'pages/export') %>")
+  .appendTo(".pages");
+
+$('.overlay').show();
+
+function closeDialog(event) {
+  event.preventDefault();
+  $('.overlay').remove();
+  $('body').css('overflow', 'initial');
+  $(window).off('keyup', closeDialogOnEscape);
+}
+
+function closeDialogOnEscape (ev) {
+  if (ev.which === 27) {
+    closeDialog(ev);
+  }
+}
+
+$('#export-data').on('ajax:success', (ev) => {
+  const [data, status, xhr] = event.detail;
+  console.log(status, data)
+
+  const blob = new Blob([data], { type: "application/octetstream" });
+  const a = document.createElement('a');
+  const url = window.URL.createObjectURL(blob);
+  a.href = url;
+  a.download = "<%= filename %>";
+  document.body.append(a);
+  a.click();
+  a.remove();
+  window.URL.revokeObjectURL(url);
+
+  closeDialog(ev)
+});
+
+$('.close').on('click', closeDialog);
+$(window).on('keyup', closeDialogOnEscape);

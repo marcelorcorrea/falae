@@ -330,6 +330,21 @@ body {
       cursor: pointer;
       display: inline-block;
       padding: 4px;
+      user-select: none;
+
+      &:hover {
+        color: white;
+        background-color: $medium-sea-green;
+      }
+    }
+  }
+
+  .import-file {
+    text-align: left;
+    margin-top: 8px;
+
+    span {
+      padding-left: 4px;
     }
   }
 
