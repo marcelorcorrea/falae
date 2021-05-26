@@ -14,10 +14,16 @@ Rails.application.routes.draw do
       get 'photo'
       get 'change_email'
       get 'change_password'
+      get 'import_spreadsheet'
+      post 'add_spreadsheet'
       patch 'update_email'
       patch 'update_password'
     end
     resources :spreadsheets do
+      get 'export'
+      get 'export_data'
+      get 'import_page'
+      post 'add_page'
       resources :pages do
         resources :items do
           member do
@@ -27,6 +33,8 @@ Rails.application.routes.draw do
         member do
           get 'add_item'
           get 'edit_item'
+          get 'export'
+          get 'export_data'
           get 'pdf'
           get 'search_item'
           post 'add_to_page'

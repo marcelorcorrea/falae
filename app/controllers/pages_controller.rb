@@ -118,6 +118,19 @@ class PagesController < ApplicationController
     render locals: { item: item }
   end
 
+  # GET
+  def export
+    render locals: { filename: "#{@page.name}.#{t('.ext')}" }
+  end
+
+  # GET
+  def export_data
+    send_data @page.export(params[:include_private_items]),
+      disposition: :attachment,
+      filename: "#{@page.name}.#{t('.ext')}",
+      type: 'application/octetstream'
+  end
+
   # PUT
   def update_item
     return if item_params[:id].blank?

@@ -179,6 +179,7 @@ pt:
       year: Ano
   errors:
     format: "%{attribute} %{message}"
+    invalid_file: 'Arquivo inválido.'
     messages:
       accepted: deve ser aceito
       blank: não pode ficar em branco
@@ -368,6 +369,7 @@ pt:
       destroy: Apagar
       destroy_alert: Apagar esta página também apagará todos seus pictogramas.
       edit: Editar
+      export: Exportar
       mobile_view: Visualização de dispositivo
       print: Imprimir
     edit:
@@ -395,6 +397,13 @@ pt:
     search_result:
       add_to_page: Adicionar a página
       no_item_found: Nenhum item encontrado.
+    export:
+      ext: pagina
+      include_private_items: Incluir itens privados das páginas
+      send: Enviar
+      title: Exportar página
+    export_data:
+      ext: pagina
   password_resets:
     new:
       reset_password: Alterar senha
@@ -410,6 +419,7 @@ pt:
       title: Recortar Imagem
   spreadsheets:
     index:
+      import: Importar
       new: Criar Prancha
       none: Você ainda não possui nenhuma prancha.
     new:
@@ -421,6 +431,8 @@ pt:
       back: Voltar
       destroy: Apagar
       edit: Editar
+      export: Exportar
+      import: Importar
       new_page: Criar Página
       no_initial_page: '** Página inicial não definida **'
       destroy_alert: Apagar esta prancha também apagará todas suas páginas e itens.
@@ -431,6 +443,23 @@ pt:
       notice: Prancha atualizada com sucesso.
     destroy:
       notice: Prancha apagada com sucesso.
+    add_page:
+      no_file: Nenhum arquivo selecionado.
+    export:
+      ext: prancha
+      include_private_items: Incluir itens privados das páginas
+      send: Enviar
+      title: Exportar prancha
+    export_data:
+      ext: prancha
+    import_page:
+      no_file: Nenhum arquivo selecionado.
+      send: Enviar
+      search: Procurar
+      select_file: 'Selecionar arquivo:'
+      title: Importar página
+    update_page_list:
+      page_not_imported: Não foi possível importar a página.
   support:
     array:
       last_word_connector: " e "
@@ -482,6 +511,16 @@ pt:
       incorrect_password: A senha atual está incorreta.
       invalid_password: A nova senha é inválida ou não é igual ao campo confirmação de senha.
       notice: Senha atualizada com sucesso.
+    add_spreadsheet:
+      no_file: Nenhum arquivo selecionado.
+    import_spreadsheet:
+      no_file: Nenhum arquivo selecionado.
+      send: Enviar
+      search: Procurar
+      select_file: 'Selecionar arquivo:'
+      title: Importar prancha
+    update_spreadsheet_list:
+      spreadsheet_not_inported: Não foi possível importar a prancha.
   user_mailer:
     account_activation:
       activate: Ativar

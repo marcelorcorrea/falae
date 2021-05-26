@@ -1,0 +1,23 @@
+<div class="overlay">
+  <div class="export-spreadsheet">
+    <a class="close">
+      <%= fa_icon 'times-circle-o', class: :default %>
+      <%= fa_icon 'times-circle', class: :hover %>
+    </a>
+    <p class="item-title"><%= t '.title' %></p>
+    <div class="form-box">
+      <%= form_with url: user_spreadsheet_export_data_path(@user, @spreadsheet),
+          id: 'export-data' , method: :get do |form| %>
+        <div class="field">
+          <%= form.check_box :include_private_items, {}, true, false %>
+          <%= t('.include_private_items') %>
+        </div>
+        <div class="actions">
+          <%= form.button :submit, name: :export_data do %>
+            <%= t '.send' %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

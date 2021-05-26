@@ -6,8 +6,21 @@
 
 .spreadsheet {
 
-  .no-initial-page {
+  .no-initial-page, .no-file-selected {
     color: $dark-orange;
     font-style: italic;
+  }
+
+  #import-spreadsheet, #import-page {
+    text-align: left;
+  }
+
+  input[type=submit]:disabled {
+    background-color: $light-gray;
+    box-shadow: 0 0 0.25em 0.125px $light-gray;
+  }
+
+  input[type=submit]:hover {
+    opacity: 1;
   }
 }

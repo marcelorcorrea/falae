@@ -15,14 +15,15 @@
       <%= fa_icon 'arrow-left' %><%= t '.back' %>
     <% end %>
 
+    <%= link_to export_user_spreadsheet_page_path(@user, @spreadsheet, @page),
+      class: 'button-box', remote: true do %>
+      <%= fa_icon 'upload' %><%= t '.export' %>
+    <% end %>
+
     <%= link_to pdf_user_spreadsheet_page_path(@user, @spreadsheet, @page, format: :pdf),
       class: 'button-box' do %>
       <%= fa_icon 'print' %><%= t '.print' %>
     <% end %>
-
-    <%#= link_to user_spreadsheet_page_items_path(@user, @spreadsheet, @page), class: 'button-box' do %>
-      <%#= fa_icon 'plus' %><%#= Add Item %>
-    <%# end %>
 
     <p>
       <strong><%= Page.human_attribute_name :name %>:</strong>
