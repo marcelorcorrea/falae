@@ -264,6 +264,8 @@ en:
       login: 'Please <a href="/login">login</a> or <a href="/users/new">register</a> to get started!'
   items:
     index:
+      delete: Delete
+      destroy_multiple_alert: Deleting private items will remove them of all pages.
       new: New Item
       none: You don't have items yet.
     new:
@@ -288,6 +290,8 @@ en:
       notice: Item updated successfully.
     destroy:
       notice: Item deleted successfully.
+    destroy_multiple:
+      notice: Item(s) deleted successfully.
   layouts:
     application:
       og_description: Alternative Communication app that allows people with speech and mobility impairments to communicate by using pictograms that represent words.

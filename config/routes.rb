@@ -49,6 +49,9 @@ Rails.application.routes.draw do
         get 'image'
         get 'pdf'
       end
+      collection do
+        delete 'destroy_multiple'
+      end
     end
   end
 

@@ -4,6 +4,34 @@
 
 document.addEventListener 'turbolinks:load', ->
 
+  # delete multiple items
+  $('.item-checkbox > .checkbox').click ->
+    $(this).removeClass 'show'
+    $(this).siblings().addClass 'show'
+    layer = $(this).parent().siblings('.layer')
+    layer.addClass 'selected'
+    deleteBtn = $('#items-page-delete-button')
+    deleteBtn.removeClass 'disabled'
+    hrefSplited = deleteBtn.attr('href').split('=')
+    curIds = if hrefSplited[1] then hrefSplited[1].split(',') else []
+    curIds.push($(this).parent().parent().data('item-id'))
+    deleteBtn.attr('href', hrefSplited[0] + '=' + curIds.join(','))
+
+    that = $(this)
+    layer.click ->
+      $(this).removeClass 'selected'
+      if !$(this).parent().siblings('.wrapper').children('.layer.selected').length
+        $('#items-page-delete-button').addClass 'disabled'
+      $(this).siblings('.item-checkbox').toggleClass 'show'
+      that.addClass 'show'
+      that.siblings().removeClass 'show'
+      itemId = $(this).parent().data('item-id')
+      layerCurIds = deleteBtn.attr('href').split('=')[1].split(',')
+      filtered = layerCurIds.filter((id) -> id != itemId + '')
+      deleteBtn.attr('href', hrefSplited[0] + '=' + filtered.join(','))
+      $(this).off 'click'
+  #
+
   $('#item-image').parent().css { display: 'inline-block' }
 
   itemImageInput = document.getElementById 'item_image_attributes_image'

@@ -264,6 +264,8 @@ pt:
       login: 'Faça o <a href="/login">login</a> ou <a href="/users/new">cadastre-se</a> para começar!'
   items:
     index:
+      delete: Apagar
+      destroy_multiple_alert: Apagar itens os removerá de todas as páginas.
       new: Criar Item
       none: Você ainda não possui nenhum item.
     new:
@@ -288,6 +290,8 @@ pt:
       notice: Item atualizado com sucesso.
     destroy:
       notice: Item apagado com sucesso.
+    destroy_multiple:
+      notice: Item(ns) apagado(s) com sucesso.
   layouts:
     application:
       og_description: Aplicativo de Comunicação Alternativa que permite pessoas com dificuldades de fala e mobilidade se comunicarem utilizando pictogramas que representam palavras.
