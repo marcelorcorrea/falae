@@ -8,13 +8,26 @@
     <%= link_to new_user_item_path(@user), class: 'button-box' do %>
       <%= fa_icon 'plus-circle' %><%= t '.new' %>
     <% end %>
+
+    <%= link_to destroy_multiple_user_items_path(@user, ids: ''), method: :delete,
+      id: 'items-page-delete-button', class: 'button-box destroy disabled',
+      data: { confirm: t('.destroy_multiple_alert') } do %>
+      <%= fa_icon 'trash-o' %><%= t '.delete' %>
+    <% end %>
   </p>
 
   <% if @items.present? %>
     <div class="items-list">
       <% @items.each do |item| %>
         <% if item.private? %>
-          <%= render 'items/item', item: item %>
+          <div class="wrapper" data-item-id="<%= item.id %>">
+            <div class="item-checkbox">
+              <%= fa_icon 'square-o', class: "checkbox show" %>
+              <%= fa_icon 'check-square', class: "checkbox" %>
+            </div>
+            <%= render 'items/item', item: item %>
+            <div class="layer"></div>
+          </div>
         <% end %>
       <% end %>
     </div>

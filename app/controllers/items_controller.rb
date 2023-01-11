@@ -66,6 +66,17 @@ class ItemsController < ApplicationController
     end
   end
 
+  # DELETE /items/remove_items
+  def destroy_multiple
+    ids = params[:ids].split(',').map(&:to_i)
+    Item.where(:id => ids).destroy_all
+
+    respond_to do |format|
+      format.html { redirect_to user_items_url(@user), notice: t('.notice') }
+      format.json { head :no_content }
+    end
+  end
+
   # GET image
   def image
     img = @item.image
