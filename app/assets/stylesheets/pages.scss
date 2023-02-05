@@ -38,6 +38,8 @@
     margin-top: 8px;
 
     .page-row {
+      align-items: flex-end;
+      display: flex;
       margin: 0 auto;
       width: 770px;
 
@@ -86,8 +88,6 @@
 
       .items-list-item-menu:hover > .items-list-item-menu-options {
         display: inline-block;
-
-
       }
 
       .link-to {
@@ -196,9 +196,12 @@
   z-index: 3;
 
   .edit-item, #search-items-result {
-
     .form-box {
       width: 35em;
+    }
+
+    .item-checkbox {
+      display: none;
     }
   }
 

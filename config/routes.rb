@@ -40,6 +40,7 @@ Rails.application.routes.draw do
           post 'add_to_page'
           put 'swap_items'
           put 'update_item'
+          delete 'destroy_multiple_items'
           delete 'remove_item'
         end
       end
