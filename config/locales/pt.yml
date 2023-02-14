@@ -370,8 +370,10 @@ pt:
       notice: Página criada com sucesso.
     show:
       back: Voltar
-      destroy: Apagar
       destroy_alert: Apagar esta página também apagará todos seus pictogramas.
+      destroy_items_alert: Remover item(ns) da página?
+      destroy_items: Remover item(ns)
+      destroy: Apagar
       edit: Editar
       export: Exportar
       mobile_view: Visualização de dispositivo

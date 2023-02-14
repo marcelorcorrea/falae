@@ -48,6 +48,13 @@
     </div>
 
     <div class="item-lists">
+      <div id="pages-items-button-group" class="button-group hidden">
+        <%= link_to destroy_multiple_items_user_spreadsheet_page_path(@user, @spreadsheet, @page, ids: ''),
+          method: :delete, remote: true, id: 'items-delete-button', class: 'destroy disabled',
+          data: { confirm: t('.destroy_items_alert') } do %>
+          <%= fa_icon 'trash-o' %><%= t '.destroy_items' %>
+        <% end %>
+      </div>
       <div class="page-items active">
         <%= render 'pages/items', columns: @page.columns, items: @page.items, rows: @page.rows %>
       </div>

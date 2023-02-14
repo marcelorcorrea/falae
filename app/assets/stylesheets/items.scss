@@ -9,9 +9,10 @@
   .items-list {
     font-size: 0;
 
-    .wrapper {
+    .item-wrapper {
       display: inline-block;
       font-size: $default-font-size;
+      margin: 2px 0;
       position: relative;
       text-align: right;
 

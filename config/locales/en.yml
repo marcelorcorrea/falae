@@ -370,8 +370,10 @@ en:
       notice: Page created successfully.
     show:
       back: Back
-      destroy: Delete
       destroy_alert: Deleting this page will also delete all of its pictograms.
+      destroy_items_alert: Remove item(s) from page?
+      destroy_items: Remove item(s)
+      destroy: Delete
       edit: Edit
       export: Export
       mobile_view: Mobile view

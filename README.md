@@ -1,7 +1,5 @@
 # Falaê
-<p align="center">
-  <img src="https://github.com/marcelorcorrea/falae-android/blob/master/app/src/main/res/drawable-xxxhdpi/falaelogotipo_512x512.png?raw=true" width="200" height="200">
-</p>
+![Falae App Logo](./app/assets/images/og_image_falae_widescreen.png?raw=true)
 
 Falaê is an Android app developed by HP volunteers from Brazil R&D in partnership with the NGO Educandário – Centro de Reabilitação São João Batista. It is an Alternative Communication app, that allows people with speech and mobility impairments to communicate by using pictures that represent words (verbs, nouns, adjectives…).
 
@@ -20,7 +18,7 @@ Feel free to fork or contribute this project.
 
 ## Local setup
 
-Falaê is currently using ruby 2.5.3. It is recommend to use *rvm* and install the version.
+Falaê is currently using ruby 2.7.3. It is recommend to use *rvm* and install the version.
 
 #### Install RVM
 
@@ -37,7 +35,7 @@ cd .
 
 #### Install ruby
 ```
-rvm install ruby-2.5.3
+rvm install ruby-2.7.3
 ```
 
 #### Set FALAE_IMAGES_PATH environment variable

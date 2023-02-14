@@ -190,6 +190,56 @@ body {
   }
 }
 
+.button-group {
+  background-color: white;
+  display: flex;
+  height: 32px;
+  justify-content: flex-end;
+  margin: 8px 0;
+
+  > * {
+    background-color: white;
+    border-radius: 0.25em;
+    border: 0.125em solid $medium-sea-green;
+    color: $medium-sea-green;
+    text-decoration: none;
+    padding: 0.25em;
+
+    &:hover {
+      background-color: $medium-sea-green;
+      color: #FFF;
+      cursor: pointer;
+    }
+
+    i {
+      padding-right: 0.25em;
+    }
+
+    &.cancel, &.destroy {
+      border-color: $dark-orange;
+      color: $dark-orange;
+
+      &:hover {
+        background-color: $dark-orange;
+        color: #FFF;
+        cursor: pointer;
+      }
+    }
+
+    &.disabled {
+      border-color: gray;
+      color: gray;
+      pointer-events: none;
+
+      &:hover {
+        background-color: transparent;
+        color: gray;
+        cursor: default;
+      }
+    }
+  }
+}
+
 .button-box {
   background-color: white;
   border-radius: 0.25em;
