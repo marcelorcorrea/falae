@@ -40,7 +40,7 @@
   <p>
     <strong><%= Item.human_attribute_name :image %>:</strong>
     <div class="item-image">
-      <%= image_tag @item.image.image, alt: @item.name %>
+      <%= image_tag @item.image.image.url, alt: @item.name %>
     </div>
   </p>
 </div>

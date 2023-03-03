@@ -18,7 +18,7 @@ RSpec.describe SpreadsheetsController, type: :controller do
     end
 
     it 'responds with success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to be_successful
     end
 
     it 'renders index' do
@@ -39,7 +39,7 @@ RSpec.describe SpreadsheetsController, type: :controller do
       end
 
       it 'responds with success' do
-        expect(response).to have_http_status(:success)
+        expect(response).to be_successful
       end
 
       it 'renders show' do
@@ -71,7 +71,7 @@ RSpec.describe SpreadsheetsController, type: :controller do
     end
 
     it 'responds with success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to be_successful
     end
 
     it 'renders new' do
@@ -91,7 +91,7 @@ RSpec.describe SpreadsheetsController, type: :controller do
     end
 
     it 'responds with success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to be_successful
     end
 
     it 'renders edit' do
@@ -150,7 +150,7 @@ RSpec.describe SpreadsheetsController, type: :controller do
       end
 
       it 'responds with redirect status' do
-        expect(response).to have_http_status(:success)
+        expect(response).to be_successful
       end
     end
   end
@@ -217,7 +217,7 @@ RSpec.describe SpreadsheetsController, type: :controller do
       end
 
       it 'responds with redirect status' do
-        expect(response).to have_http_status(:success)
+        expect(response).to be_successful
       end
     end
   end
