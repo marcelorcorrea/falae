@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       get 'change_email'
       get 'change_password'
       get 'import_spreadsheet'
+      get 'private_items', to: 'items#private'
       post 'add_spreadsheet'
       patch 'update_email'
       patch 'update_password'

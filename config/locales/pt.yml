@@ -266,6 +266,11 @@ pt:
     index:
       delete: Apagar
       destroy_multiple_alert: Apagar itens os removerá de todas as páginas.
+      filter:
+        name: Nome
+        no-results: Nenhum item encontrado.
+        noun: Filtro
+        verb: Filtrar
       new: Criar Item
       none: Você ainda não possui nenhum item.
     new:

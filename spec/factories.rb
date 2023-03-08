@@ -33,6 +33,7 @@ FactoryBot.define do
     name 'item_name'
     speech 'item_speech'
     image_type 'Pictogram'
+    private false
     category
     association :image, factory: :pictogram
     user

@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class ItemsController < ApplicationController
   before_action :authenticate!
   before_action :authorized?
@@ -8,6 +10,14 @@ class ItemsController < ApplicationController
   # GET /items.json
   def index
     @items = @user.items
+  end
+
+  def private
+    items = @user.items.where(private: true)
+    items = items.where('name LIKE ?', "%#{params[:name]}%") if params[:name]
+    @items = items.paginate(page: params[:offset], per_page: 15)
+
+    render :index, locals: { paginate: true }
   end
 
   # GET /items/1
@@ -28,11 +38,11 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = @user.items.build item_params
+    @item = @user.items.build item_params.merge(private: true)
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to user_items_url(@user), notice: t('.notice') }
+        format.html { redirect_to private_items_user_path(@user), notice: t('.notice') }
         format.json { render :show, status: :created, location: @item }
       else
         @item.image = Image.new
@@ -61,7 +71,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to user_items_url(@user), notice: t('.notice') }
+      format.html { redirect_to private_items_user_path(@user), notice: t('.notice') }
       format.json { head :no_content }
     end
   end
@@ -72,7 +82,7 @@ class ItemsController < ApplicationController
     Item.where(:id => ids).destroy_all
 
     respond_to do |format|
-      format.html { redirect_to user_items_url(@user), notice: t('.notice') }
+      format.html { redirect_to private_items_user_path(@user), notice: t('.notice') }
       format.json { head :no_content }
     end
   end

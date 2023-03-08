@@ -16,8 +16,6 @@ class Item < ApplicationRecord
   after_update { image.reprocess_image if image.cropping? }
   after_destroy { image.destroy if image.private? }
 
-  delegate :private?, to: :image
-
   def build_image(params)
     if image
       image.update image: params[:image]

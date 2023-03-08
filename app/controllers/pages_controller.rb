@@ -105,7 +105,7 @@ class PagesController < ApplicationController
       item = @user.items.find_by id: item_params[:id]
       @page.items << item if item
     else
-      params = item_params.merge user_id: current_user.id
+      params = item_params.merge user_id: current_user.id, private: false
       @page.items.create params
     end
     @page.reload

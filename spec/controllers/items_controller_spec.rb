@@ -106,8 +106,8 @@ RSpec.describe ItemsController, type: :controller do
         post :create, params: { item: item_params, user_id: user.id }
       end
 
-      it "redirects to user's items page" do
-        expect(response).to redirect_to(user_items_url(user))
+      it "redirects to user's private items page" do
+        expect(response).to redirect_to(private_items_user_path(user))
       end
 
       it 'sets flash notice message' do
@@ -214,8 +214,8 @@ RSpec.describe ItemsController, type: :controller do
         delete :destroy, params: params
       end
 
-      it "redirects to user's items page" do
-        expect(response).to redirect_to(user_items_url(user))
+      it "redirects to user's private items page" do
+        expect(response).to redirect_to(private_items_user_path(user))
       end
 
       it 'sets flash notice message' do

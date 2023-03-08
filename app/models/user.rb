@@ -108,7 +108,7 @@ class User < ApplicationRecord
 
   def find_items_like_by(param)
     query = ["#{param.keys.first} LIKE ?", "#{param.values.first}%"]
-    items.includes(:image).where(query).select(&:private?)
+    items.includes(:image).where(private: true).where(query)
   end
 
   def revalidate_token_access

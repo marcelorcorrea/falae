@@ -1,7 +1,7 @@
 <div class="items">
   <%= render 'shared/error', model: @item %>
   <div class="button-bar">
-    <%= link_to user_items_path(@user), class: 'button-box cancel' do %>
+    <%= link_to :back, class: 'button-box cancel' do %>
       <%= fa_icon 'times' %><%= t '.cancel' %>
     <% end %>
   </div>

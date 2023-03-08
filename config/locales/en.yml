@@ -266,6 +266,11 @@ en:
     index:
       delete: Delete
       destroy_multiple_alert: Deleting private items will remove them of all pages.
+      filter:
+        name: Name
+        no-results: No items found.
+        noun: Filter
+        verb: Filter
       new: New Item
       none: You don't have items yet.
     new:
