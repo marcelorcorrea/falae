@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181120214216) do
+ActiveRecord::Schema.define(version: 20230307220354) do
 
   create_table "base_categories", force: :cascade do |t|
     t.string "name", null: false
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20181120214216) do
     t.integer "image_id"
     t.integer "user_id"
     t.integer "category_id"
+    t.boolean "private"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["image_type", "image_id"], name: "index_items_on_image_type_and_image_id"
     t.index ["user_id"], name: "index_items_on_user_id"

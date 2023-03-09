@@ -309,26 +309,5 @@
       font-style: italic;
       text-align: center;
     }
-
-    .paginate {
-      text-align: center;
-      margin: 16px 16px 32px;
-
-      * {
-        margin: 0 1px;
-      }
-
-      .current {
-        color: $dark-orange;
-      }
-
-      .gap {
-        color: $medium-sea-green;
-      }
-
-      a {
-        text-decoration: none;
-      }
-    }
   }
 }

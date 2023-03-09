@@ -3,6 +3,28 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 document.addEventListener 'turbolinks:load', ->
+  # filter items
+  itemsSeach = $('#items-search-area')
+  if itemsSeach
+    input = itemsSeach.children('input').first()
+    searchBtn = itemsSeach.children('button').first()
+
+    if input?.val()?.trim()
+      searchBtn.attr 'disabled', false
+
+    input.keyup ->
+      searchBtn.attr 'disabled', !input.val().trim()
+
+      if event.key == "Enter" && input.val().trim()
+        searchBtn.click()
+
+      if event.key == "Escape"
+        input.val('')
+        input.blur()
+
+    searchBtn.click ->
+      location.href = searchBtn.data('path') + '?name=' + input.val().trim()
+
   # delete multiple items
   addDeleteMultipleItemsListeners = (reloading) ->
     deleteBtn = $('#items-delete-button')

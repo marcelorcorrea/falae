@@ -297,7 +297,8 @@ RSpec.describe User, type: :model  do
           category: category,
           user: user,
           image: img,
-          image_type: 'PrivateImage'
+          image_type: 'PrivateImage',
+          private: true
         }
       end
       let(:name_to_search) { 'item_to_retrive' }

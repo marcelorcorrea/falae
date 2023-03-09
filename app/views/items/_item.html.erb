@@ -3,7 +3,9 @@
     <%= fa_icon 'square-o', class: "checkbox show" %>
     <%= fa_icon 'check-square', class: "checkbox" %>
   </div>
+
   <% class_list = "items-list-item #{css_class_name(item.category)}" %>
+
   <div class="<%= class_list %>" draggable="true" data-id="<%= item.id %>" >
     <% if content_for? :item_menu %>
       <%= content_for :item_menu %>
@@ -14,15 +16,19 @@
       </div>
       <% end %>
     <% end %>
+
     <div class="items-list-item-name">
       <span><%= item.name %></span>
     </div>
+
     <% if content_for? :item_link_to %>
       <%= content_for :item_link_to %>
     <% end %>
+
     <div class="items-list-item-image">
       <span><%= image_tag item.image.image, alt: item.name %></span>
     </div>
   </div>
+
   <div class="item-layer"></div>
 </div>

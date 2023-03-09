@@ -3,18 +3,38 @@
     <p id="notice"><%= notice %></p>
   <% end %>
 
-  <p>
-    &nbsp;
-    <%= link_to new_user_item_path(@user), class: 'button-box' do %>
-      <%= fa_icon 'plus-circle' %><%= t '.new' %>
+  <div class="actions-bar">
+    <% if params[:name] %>
+    <div id="item-search-results">
+      <span><%= t '.filter.noun' %>:</span>
+      <%= link_to :back, class: 'button-box' do %>
+        <%= fa_icon 'remove' %><%= t '.filter.name' %>: <%= params[:name] %>
+      <% end %>
+    </div>
+    <% else %>
+    <div class="search" id="items-search-area">
+      <%= text_field_tag :name%>
+
+      <%= button_tag class: 'button-box', disabled: true,
+        data: { path: private_items_user_path(current_user) } do
+      %>
+        <%= fa_icon 'filter' %><%= t '.filter.verb' %>
+      <% end %>
+    </div>
     <% end %>
 
-    <%= link_to destroy_multiple_user_items_path(@user, ids: ''), method: :delete,
-      id: 'items-delete-button', class: 'button-box destroy disabled',
-      data: { confirm: t('.destroy_multiple_alert') } do %>
-      <%= fa_icon 'trash-o' %><%= t '.delete' %>
-    <% end %>
-  </p>
+    <div class="button-group">
+      <%= link_to new_user_item_path(@user) do %>
+        <%= fa_icon 'plus-circle' %><%= t '.new' %>
+      <% end %>
+
+      <%= link_to destroy_multiple_user_items_path(@user, ids: ''), method: :delete,
+        id: 'items-delete-button', class: 'destroy',
+        data: { confirm: t('.destroy_multiple_alert') } do %>
+        <%= fa_icon 'trash-o' %><%= t '.delete' %>
+      <% end %>
+    </div>
+  </div>
 
   <% if @items.present? %>
     <div class="items-list">
@@ -24,6 +44,12 @@
         <% end %>
       <% end %>
     </div>
+
+    <% if local_assigns[:paginate] %>
+      <%= will_paginate @items, param_name: :offset, params: { name: params[:name] }, class: 'paginate' %>
+    <% end %>
+  <% elsif params[:name] %>
+    <p><%= t '.filter.no-results' %></p>
   <% else %>
     <p><%= t '.none' %></p>
   <% end %>
