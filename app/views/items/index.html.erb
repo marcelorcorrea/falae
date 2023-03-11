@@ -7,7 +7,7 @@
     <% if params[:name] %>
     <div id="item-search-results">
       <span><%= t '.filter.noun' %>:</span>
-      <%= link_to :back, class: 'button-box' do %>
+      <%= link_to private_items_user_path(@user), class: 'button-box' do %>
         <%= fa_icon 'remove' %><%= t '.filter.name' %>: <%= params[:name] %>
       <% end %>
     </div>
@@ -16,7 +16,7 @@
       <%= text_field_tag :name%>
 
       <%= button_tag class: 'button-box', disabled: true,
-        data: { path: private_items_user_path(current_user) } do
+        data: { path: private_items_user_path(@user) } do
       %>
         <%= fa_icon 'filter' %><%= t '.filter.verb' %>
       <% end %>
@@ -28,9 +28,10 @@
         <%= fa_icon 'plus-circle' %><%= t '.new' %>
       <% end %>
 
-      <%= link_to destroy_multiple_user_items_path(@user, ids: ''), method: :delete,
-        id: 'items-delete-button', class: 'destroy',
-        data: { confirm: t('.destroy_multiple_alert') } do %>
+      <%= link_to destroy_multiple_user_items_path(@user, ids: ''),
+        method: :delete, data: { confirm: t('.destroy_multiple_alert') },
+        id: 'items-delete-button', class: 'destroy' do
+      %>
         <%= fa_icon 'trash-o' %><%= t '.delete' %>
       <% end %>
     </div>
@@ -46,7 +47,9 @@
     </div>
 
     <% if local_assigns[:paginate] %>
-      <%= will_paginate @items, param_name: :offset, params: { name: params[:name] }, class: 'paginate' %>
+      <%= will_paginate @items, param_name: :offset, class: 'paginate',
+        params: { name: params[:name] }
+      %>
     <% end %>
   <% elsif params[:name] %>
     <p><%= t '.filter.no-results' %></p>

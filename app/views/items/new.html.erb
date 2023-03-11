@@ -1,10 +1,12 @@
 <div class="items">
   <%= render 'shared/error', model: @item %>
+
   <div class="button-bar">
-    <%= link_to :back, class: 'button-box cancel' do %>
+    <%= link_to private_items_user_path(@user), class: 'button-box cancel' do %>
       <%= fa_icon 'times' %><%= t '.cancel' %>
     <% end %>
   </div>
+
   <div class="form-box">
     <div class="label"><%= t '.new' %></div>
     <%= render 'form', item: @item %>
