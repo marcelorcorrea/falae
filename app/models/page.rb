@@ -52,7 +52,7 @@ class Page < ApplicationRecord
       only: [:name, :columns, :rows, :spreadsheet_id],
       include: {
         items: {
-          only: [:id, :name, :speech, :category_id],
+          only: [:id, :name, :speech, :category_id, :private],
           include: {
             image: {
               only: [:id, :type]
@@ -64,15 +64,15 @@ class Page < ApplicationRecord
   end
 
   def export(include_private_items = false)
-    page = self.export_as_json
-    if !include_private_items
-      page['items'] = page['items'].select { |i| i['image']['type'] != PrivateImage.name }
+    exported_page = if include_private_items
+      self.export_as_json
+    else
+      page = self.dup
+      page.items << self.items.where(private: false)
+      page.export_as_json
     end
-    EncryptionService.encrypt page.to_json
-  end
 
-  def private_items?
-    items.any? { |item| item.private? }
+    EncryptionService.encrypt exported_page.to_json
   end
 
   def self.import!(page_data, spreadsheet, user, opts = {})
@@ -89,21 +89,40 @@ class Page < ApplicationRecord
         rows: parsed_page['rows'],
         spreadsheet: spreadsheet
 
+      user_private_images = user.items.where private: true
+
       parsed_page['items'].each do |item|
+        # fallbacks for page exported before adding private field to Item model
+        item_private = false
+        user_private_item = nil
+
         img = if item['image']['type'] == Pictogram.name
           Image.find item['image']['id']
         else
-          private_image = Image.find(item['image']['id'])
-          img_dup = private_image.dup
-          img_dup.image = private_image.image
-          img_dup.user_id = user.id
-          img_dup
+          item_private = true
+          user_private_item = user.items.find_by id: item['id']
+
+          if user_private_item
+            nil
+          else
+            private_image = Image.find(item['image']['id'])
+            img_dup = private_image.dup
+            img_dup.image = private_image.image
+            img_dup.user_id = user.id
+            img_dup
+          end
         end
-        page.items.create! name: item['name'],
-          speech: item['speech'],
-          category_id: item['category_id'],
-          user: user,
-          image: img
+
+        if user_private_item
+          page.items << user_private_item
+        else
+          page.items.create! name: item['name'],
+            speech: item['speech'],
+            category_id: item['category_id'],
+            user: user,
+            private: item['private'].nil? ? item_private : item['private'],
+            image: img
+        end
       end
     end
   end
