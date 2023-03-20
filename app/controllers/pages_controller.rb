@@ -161,23 +161,6 @@ class PagesController < ApplicationController
     render :update_items_list
   end
 
-  # DELETE /pages/:id/destroy_multiple_items
-  def destroy_multiple_items
-    ids = params[:ids].split(',').map(&:to_i)
-    items = @page.items.where id: ids
-    return if items.empty?
-
-    private_item_ids, page_item_ids = items.reduce([[], []]) do |acc, item|
-      acc[item.private? ? 0 : 1] << item.id
-      acc
-    end
-
-    @page.item_pages.where(item_id: private_item_ids).destroy_all if private_item_ids.any?
-    @page.items.where(id: page_item_ids).destroy_all if page_item_ids.any?
-
-    render :update_items_list
-  end
-
   # PUT
   def swap_items
     # TODO: check if @page has items with id_1 and id_2

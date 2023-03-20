@@ -33,39 +33,6 @@
   .items-list {
     font-size: 0;
 
-    .item-wrapper {
-      display: inline-block;
-      font-size: $default-font-size;
-      margin: 2px 0;
-      position: relative;
-      text-align: right;
-
-      .selected {
-        background-color: rgba($dark-orange, 0.5);
-        border-radius: 4px;
-        cursor: pointer;
-        height: 100%;
-        left: 2px;
-        position: absolute;
-        top: -2px;
-        width: calc(100% - 4px);
-      }
-
-      .item-checkbox {
-        margin-bottom: -6px;
-
-        > * {
-          cursor: pointer;
-          display: none;
-          margin-right: 6px;
-
-          &.show {
-            display: inline-block;
-          }
-        }
-      }
-    }
-
     .items-list-item {
       border-radius: 4px;
       border: 2px solid $medium-sea-green;
