@@ -272,18 +272,6 @@ body {
       cursor: pointer;
     }
   }
-
-  &.disabled, &:disabled {
-    border-color: gray;
-    color: gray;
-    pointer-events: none;
-
-    &:hover {
-      background-color: transparent;
-      color: gray;
-      cursor: default;
-    }
-  }
 }
 
 .form-box {

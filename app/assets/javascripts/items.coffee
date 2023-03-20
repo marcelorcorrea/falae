@@ -24,51 +24,7 @@ document.addEventListener 'turbolinks:load', ->
 
     searchBtn.click ->
       location.href = searchBtn.data('path') + '?name=' + input.val().trim()
-
-  # delete multiple items
-  addDeleteMultipleItemsListeners = (reloading) ->
-    deleteBtn = $('#items-delete-button')
-
-    $('.item-checkbox > .checkbox').click ->
-      $(this).removeClass 'show'
-      $(this).siblings().addClass 'show'
-      layer = $(this).parent().siblings('.item-layer')
-      layer.addClass 'selected'
-      deleteBtn.removeClass 'disabled'
-      pagesItemsgroupBtn = $('#pages-items-button-group')
-      if pagesItemsgroupBtn
-        pagesItemsgroupBtn.removeClass 'hidden'
-      hrefSplited = deleteBtn.attr('href').split('=')
-      curIds = if hrefSplited[1] then hrefSplited[1].split(',') else []
-      curIds.push($(this).parent().parent().data('item-id'))
-      deleteBtn.attr('href', hrefSplited[0] + '=' + curIds.join(','))
-
-      that = $(this)
-      layer.click ->
-        $(this).removeClass 'selected'
-        if !$('.item-wrapper').children('.item-layer.selected').length
-          $('#items-delete-button').addClass 'disabled'
-          if pagesItemsgroupBtn
-            pagesItemsgroupBtn.addClass 'hidden'
-        $(this).siblings('.item-checkbox').toggleClass 'show'
-        that.addClass 'show'
-        that.siblings().removeClass 'show'
-        itemId = $(this).parent().data('item-id')
-        layerCurIds = deleteBtn.attr('href').split('=')[1].split(',')
-        filtered = layerCurIds.filter((id) -> id != itemId + '')
-        deleteBtn.attr('href', hrefSplited[0] + '=' + filtered.join(','))
-        $(this).off 'click'
-
-    if reloading && deleteBtn
-      deleteBtn.addClass 'disabled'
-
-  addDeleteMultipleItemsListeners()
-
-  pageItems = $('.page-items')
-  if pageItems
-    $('#items-delete-button').addClass 'disabled'
-    pageItems.change -> addDeleteMultipleItemsListeners(true)
-  # end delete multiple items
+  # end
 
   $('#item-image').parent().css { display: 'inline-block' }
 

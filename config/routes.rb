@@ -41,7 +41,6 @@ Rails.application.routes.draw do
           post 'add_to_page'
           put 'swap_items'
           put 'update_item'
-          delete 'destroy_multiple_items'
           delete 'remove_item'
         end
       end
@@ -50,9 +49,6 @@ Rails.application.routes.draw do
       member do
         get 'image'
         get 'pdf'
-      end
-      collection do
-        delete 'destroy_multiple'
       end
     end
   end
