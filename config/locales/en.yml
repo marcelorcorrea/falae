@@ -276,11 +276,15 @@ en:
       cancel: Cancel
       new: New item
     show:
-      back: Cancel
+      back: Back
       destroy: Delete
-      destroy_alert: Delete this item will remove it of all pages.
+      destroy_alert:
+        one: "This item is present in the page: %{pages}. Once removed, it will also be removed from that page."
+        other: "This item is present in the pages: %{pages}. Once removed, it will also be removed from those pages."
       edit: Edit
-      edit_alert: This is a private item. Once edited, changes will be reflected in all pages and boards this item is being used.
+      edit_alert:
+        one: "This item is present in the following page: %{pages}. Once edited, changes will be reflected in it."
+        other: "This item is present in the following pages: %{pages}. Once edited, changes will be reflected in all of them."
       print: Print
     edit:
       cancel: Cancel
@@ -389,7 +393,9 @@ en:
       none: You don't have pages in this board yet.
     items:
       edit: Edit
-      edit_alert: This is a private item. Once edited, changes will be reflected in all pages and boards this item is being used.
+      edit_alert:
+        one: "This item is present in the page: %{pages}. Once edited, changes will be reflected in it."
+        other: "This item is present in the pages: %{pages}. Once edited, changes will be reflected in all of them."
       remove: Delete
       remove_alert: Delete item from page?
     add_item:

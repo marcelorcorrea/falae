@@ -39,7 +39,7 @@ module PagesHelper
       method: :get,
       remote: true
     }
-    options[:data] = { confirm: t('.edit_alert') } if item.private?
+    options[:data] = { confirm: edit_item_confirmation_message(item) } if item.private?
 
     link_to path, options do
       concat fa_icon('pencil-square-o')
