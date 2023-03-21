@@ -3,12 +3,13 @@
 
   <div class="button-bar">
     <%= link_to user_item_path(@user, @item), method: :delete, class: 'button-box destroy',
-      data: { confirm: t('.destroy_alert') } do %>
+      data: { confirm: @item.pages.any? ? destroy_item_confirmation_message(@item) : nil } do %>
       <%= fa_icon 'trash-o' %><%= t '.destroy' %>
     <% end %>
 
     <%= link_to edit_user_item_path(@user, @item), class: 'button-box',
-      data: { confirm: t('.edit_alert') } do %>
+      data: { confirm: @item.pages.any? ? edit_item_confirmation_message(@item) : nil } do
+    %>
       <%= fa_icon 'edit' %><%= t '.edit' %>
     <% end %>
 

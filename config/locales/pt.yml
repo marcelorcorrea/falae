@@ -278,9 +278,13 @@ pt:
     show:
       back: Voltar
       destroy: Apagar
-      destroy_alert: Apagar este item o removerá de todas as páginas.
+      destroy_alert:
+        one: "Este item está presente na página: %{pages}. Ao removê-lo, também irá removê-lo da página."
+        other: "Este item está presente nas páginas: %{pages}. Ao removê-lo, também irá removê-lo de todas elas."
       edit: Editar
-      edit_alert: Este é um item privado. Ao editá-lo, as mudanças serão refletidas em todas páginas e pranchas que o item está sendo utilizado.
+      edit_alert:
+        one: "Este item está presente na página: %{pages}. Ao editá-lo, as mudanças serão refletidas nela."
+        other: "Este item está presente nas páginas: %{pages}. Ao editá-lo, as mudanças serão refletidas em todas elas."
       print: Imprimir
     edit:
       cancel: Cancelar
@@ -389,7 +393,9 @@ pt:
       none: Você ainda não possui página nesta prancha.
     items:
       edit: Editar
-      edit_alert: Este é um item privado. Ao editá-lo, as mudanças serão refletidas em todas páginas e pranchas que o item está sendo utilizado.
+      edit_alert:
+        one: "Este item está presente na página: %{pages}. Ao editá-lo, as mudanças serão refletidas nela."
+        other: "Este item está presente nas páginas: %{pages}. Ao editá-lo, as mudanças serão refletidas em todas elas."
       remove: Remover
       remove_alert: Remover item da página?
     add_item:
