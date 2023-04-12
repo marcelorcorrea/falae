@@ -104,7 +104,7 @@ GEM
     multi_json (1.12.1)
     mysql2 (0.4.9)
     nio4r (2.5.8)
-    nokogiri (1.14.0)
+    nokogiri (1.14.3)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     paperclip (5.2.0)
