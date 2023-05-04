@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.15'
 
 # JQuery
-gem 'jquery-rails', '~> 4.3.1'
+gem 'jquery-rails', '~> 4.4.0'
 
 # Awesome Fonts (Icons)
 gem "font-awesome-rails", '~> 4.7.0'
