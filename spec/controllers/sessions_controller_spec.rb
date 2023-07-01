@@ -79,7 +79,7 @@ RSpec.describe SessionsController, type: :controller do
         end
 
         it 'responds with success status' do
-          expect(response).to have_http_status(:success)
+          expect(response).to be_successful
         end
       end
     end
@@ -99,7 +99,7 @@ RSpec.describe SessionsController, type: :controller do
       end
 
       it 'responds with success status' do
-        expect(response).to have_http_status(:success)
+        expect(response).to be_successful
       end
     end
   end

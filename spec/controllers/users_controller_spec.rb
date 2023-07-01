@@ -13,7 +13,7 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it 'responds with success' do
-      expect(response).to have_http_status(:success)
+      expect(response).to be_successful
     end
   end
 
@@ -72,7 +72,7 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it 'responds with redirect status' do
-        expect(response).to have_http_status(:success)
+        expect(response).to be_successful
       end
     end
   end
@@ -123,7 +123,7 @@ RSpec.describe UsersController, type: :controller do
         end
 
         it 'responds with success' do
-          expect(response).to have_http_status(:success)
+          expect(response).to be_successful
         end
       end
 
@@ -206,7 +206,7 @@ RSpec.describe UsersController, type: :controller do
           end
 
           it 'responds with redirect status' do
-            expect(response).to have_http_status(:success)
+            expect(response).to be_successful
           end
         end
       end
@@ -240,7 +240,7 @@ RSpec.describe UsersController, type: :controller do
         end
 
         it 'responds with success status' do
-          expect(response).to have_http_status(:success)
+          expect(response).to be_successful
         end
       end
     end
@@ -258,7 +258,7 @@ RSpec.describe UsersController, type: :controller do
         end
 
         it 'responds with success status' do
-          expect(response).to have_http_status(:success)
+          expect(response).to be_successful
         end
       end
     end
@@ -297,7 +297,7 @@ RSpec.describe UsersController, type: :controller do
           end
 
           it 'responds with success status' do
-            expect(response).to have_http_status(:success)
+            expect(response).to be_successful
           end
         end
 
@@ -361,7 +361,7 @@ RSpec.describe UsersController, type: :controller do
           end
 
           it 'responds with success status' do
-            expect(response).to have_http_status(:success)
+            expect(response).to be_successful
           end
         end
       end
@@ -402,7 +402,7 @@ RSpec.describe UsersController, type: :controller do
           end
 
           it 'responds with success status' do
-            expect(response).to have_http_status(:success)
+            expect(response).to be_successful
           end
         end
 
@@ -468,7 +468,7 @@ RSpec.describe UsersController, type: :controller do
           end
 
           it 'responds with success status' do
-            expect(response).to have_http_status(:success)
+            expect(response).to be_successful
           end
         end
       end

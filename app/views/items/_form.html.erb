@@ -14,7 +14,7 @@
     <div id="item-image-container">
       <div id="item-image-wrapper">
         <% if item.image? %>
-        <%= image_tag item.image.image, id: 'item-image' %>
+        <%= image_tag item.image.image.url, id: 'item-image' %>
         <% end %>
       </div>
     </div>
