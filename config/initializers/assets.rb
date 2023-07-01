@@ -8,10 +8,10 @@ Rails.application.config.assets.version = '1.0'
 # Add Yarn node_modules folder to the asset load path.
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
-# Add public images to assets path
-Rails.application.config.assets.paths << "#{ENV['FALAE_IMAGES_PATH']}/public"
-
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+
+# Add public images to assets path
+Rails.application.config.assets.paths << "#{ENV['FALAE_IMAGES_PATH']}/public"

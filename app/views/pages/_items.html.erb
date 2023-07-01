@@ -10,12 +10,14 @@
   <% items.each_slice(columns * rows) do |page| %>
     <div class="items">
       <div class="items-list page">
+
       <% page.each_slice(columns) do |row| %>
         <div class="page-row columns-<%= columns %>">
           <% row.each do |item| %>
             <% content_for :item_menu, flush: true do %>
               <%= page_item_menu_icon(item) %>
             <% end %>
+
             <% if item.link_to? %>
               <% content_for :item_link_to, flush: true do %>
                 <div class="link-to">
@@ -25,6 +27,7 @@
             <% else %>
               <% content_for :item_link_to, '', flush: true %>
             <% end %>
+            
             <%= render 'items/item', item: item %>
           <% end %>
           <%= add_item_button if row.length != columns %>

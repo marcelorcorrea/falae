@@ -5,9 +5,9 @@
     <%= content_for :item_menu %>
   <% else %>
     <%= link_to user_item_path(item.user, item) do %>
-    <div class="items-list-item-menu">
-      <%= fa_icon('external-link') %>
-    </div>
+      <div class="items-list-item-menu">
+        <%= fa_icon('external-link') %>
+      </div>
     <% end %>
   <% end %>
 

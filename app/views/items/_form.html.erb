@@ -11,6 +11,7 @@
 
   <div class="field">
     <%= label_tag Item.human_attribute_name :image %>
+
     <div id="item-image-container">
       <div id="item-image-wrapper">
         <% if item.image? %>
@@ -18,13 +19,16 @@
         <% end %>
       </div>
     </div>
+
     <div class="wrapper-custom-input-file"
       data-unsupported-image-type="<%= t '.unsupported_image_type' %>">
       <%= form.fields_for :image do |image| %>
         <% [:crop_x, :crop_y, :crop_w, :crop_h].each do |attribute| %>
           <%= image.hidden_field attribute, id: attribute %>
         <% end %>
+
         <%= image.file_field :image %>
+        
         <%= image.label :image, class: 'custom-input-file' do %>
           <%= fa_icon 'upload' %> <%= t '.upload_file' %>
         <% end %>
@@ -34,8 +38,7 @@
 
   <div class="field">
     <%= form.label :item_category_id, Category.model_name.human %>
-    <%= form.select :category_id,
-          options_for_select(select_options_for_categories, category_id(item)) %>
+    <%= form.select :category_id, options_for_select(select_options_for_categories, category_id(item)) %>
   </div>
 
   <div class="actions">

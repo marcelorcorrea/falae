@@ -2,11 +2,13 @@
     <% if notice %>
       <p id="notice"><%= notice %></p>
     <% end %>
+
     <div class="button-bar">
       <%= link_to new_user_spreadsheet_page_path(@user, @spreadsheet), class: 'button-box' do %>
         <%= fa_icon 'plus-circle' %><%= t '.new' %>
       <% end %>
     </div>
+
     <%#= render 'shared/mobile' do %>
       <%= render 'page' %>
     <%# end %>

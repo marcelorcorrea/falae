@@ -4,10 +4,13 @@
       <%= fa_icon 'times-circle-o', class: :default %>
       <%= fa_icon 'times-circle', class: :hover %>
     </a>
+
     <p class="title"><%= t '.title' %></p>
+
     <div class="img-crop-container">
       <img src='' />
     </div>
+
     <%= button_tag id: 'crop-btn', type: :button do %>
       <%= fa_icon 'check' %><%= t '.crop' %>
     <% end %>

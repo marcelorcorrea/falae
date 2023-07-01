@@ -1,19 +1,21 @@
 <div class="spreadsheet">
   <% if notice %>
-  <p id="notice"><%= notice %></p>
+    <p id="notice"><%= notice %></p>
   <% end %>
+
   <div class="button-bar">
-    <%= link_to import_spreadsheet_user_path(@user),
-      class: 'button-box', remote: true do %>
+    <%= link_to import_spreadsheet_user_path(@user), class: 'button-box', remote: true do %>
       <%= fa_icon 'download' %><%= t('.import') %>
     <% end %>
+
     <%= link_to new_user_spreadsheet_path, class: 'button-box' do %>
       <%= fa_icon 'plus-circle' %><%= t '.new' %>
     <% end %>
   </div>
+
   <% if @spreadsheets.present? %>
     <%= render 'spreadsheets/spreadsheet' %>
   <% else %>
-  <p id='no-spreadsheet'><%= t '.none' %></p>
+    <p id='no-spreadsheet'><%= t '.none' %></p>
   <% end %>
 </div>

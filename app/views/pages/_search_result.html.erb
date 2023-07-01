@@ -6,8 +6,10 @@
   <% items.each do |item| %>
     <div class="form-box item-result">
       <%= form_with model: [@page, item], url: add_to_page_user_spreadsheet_page_path,
-        method: :post do |form| %>
+        method: :post do |form|
+      %>
         <% new_record = item.new_record? %>
+
         <% if new_record %>
           <% item.name.capitalize! %>
           <% item.category = Category.default %>
@@ -17,33 +19,36 @@
         <% else %>
           <%= form.hidden_field :id, value: item.id %>
         <% end %>
+
         <div class="items">
           <div class="items-list">
             <% content_for :item_menu, flush: true do %>
-              <div sytle="display: none" />
+              <div sytle="display: none"></div>
             <% end %>
             <% item.name.capitalize! if item.new_record? %>
             <%= render 'items/item', item: item %>
           </div>
         </div>
+
         <div class="fields<%= ' private' unless new_record %>"<%= ' disabled' unless new_record %> >
           <p class="field">
             <strong><%= Item.human_attribute_name :name %>:</strong>
               <%= form.text_field :name, id: :item_name, value: item.name, disabled: !new_record %>
           </p>
+
           <div class="field">
             <strong><%= Item.human_attribute_name :speech %>:</strong>
             <%= form.text_field :speech, id: :item_speech, disabled: !new_record %>
           </div>
+
           <div class="field">
             <strong><%= Category.model_name.human %>:</strong>
             <%= new_record ?
-                  form.select(:category_id,
-                            options_for_select(select_options_for_categories,
-                                               Category.default.id)) :
-                  form.text_field(:category, id: :category, value: item.category.description,
-                    disabled: true) %>
+              form.select(:category_id, options_for_select(select_options_for_categories, Category.default.id)) :
+              form.text_field(:category, id: :category, value: item.category.description, disabled: true)
+            %>
           </div>
+
           <div class="actions">
             <%= form.submit t('.add_to_page') %>
           </div>

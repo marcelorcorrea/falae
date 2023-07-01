@@ -3,10 +3,11 @@
     <div class="error-wrapper">
       <span class="message"><%= t 'activerecord.errors.template.header',
         model: model.model_name.human, count: model.errors.count %></span>
+
       <ul>
-      <% model.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% model.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   </div>
