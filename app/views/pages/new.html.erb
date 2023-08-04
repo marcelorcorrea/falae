@@ -1,12 +1,15 @@
   <div class="page">
     <%= render 'shared/error', model: @page %>
+
     <div class="button-bar">
       <%= link_to user_spreadsheet_path(@user, @spreadsheet), class: 'button-box cancel' do %>
         <%= fa_icon 'times' %><%= t '.cancel' %>
       <% end %>
     </div>
+
     <div class="form-box">
       <div class="label"><%= t '.new'%></div>
+
       <%= render 'form', page: @page %>
     </div>
   </div>

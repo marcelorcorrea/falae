@@ -12,7 +12,7 @@
     <p class="alert"><%= alert %></p>
   <% else %>
     <% @user.errors.full_messages.each do |message| %>
-    <p class="alert"><%= message %></p>
+      <p class="alert"><%= message %></p>
     <% end %>
   <% end %>
 
@@ -20,27 +20,36 @@
     <div class="label">
       <%= t '.change_email' %>
     </div>
-    <%= form_with model: @user, url: update_email_user_path(@user),
-      local: true do |form| %>
+
+    <%= form_with model: @user, url: update_email_user_path(@user), local: true do |form| %>
       <div class="field">
         <%= form.label :email %>
+
         <span class="input-icon"><%= fa_icon 'envelope-square' %></span>
+
         <%= form.text_field :email, id: :user_email, class: 'offset-for-icon',
-            placeholder: true, autofocus: true %>
+          placeholder: true, autofocus: true
+        %>
       </div>
 
       <div class="field">
         <%= form.label :email_confirmation %>
+
         <span class="input-icon"><%= fa_icon 'envelope-square' %></span>
+
         <%= form.text_field :email_confirmation, id: :user_email_confirmation,
-          class: 'offset-for-icon', placeholder: true %>
+          class: 'offset-for-icon', placeholder: true
+        %>
       </div>
 
       <div class="field">
         <%= form.label :password %>
+
         <span class="input-icon"><%= fa_icon 'lock' %></span>
-        <%= form.password_field :password, id: :user_password,
-          class: 'offset-for-icon', placeholder: true, autocomplete: 'off' %>
+
+        <%= form.password_field :password, id: :user_password, class: 'offset-for-icon',
+          placeholder: true, autocomplete: 'off'
+        %>
       </div>
 
       <div class="actions">

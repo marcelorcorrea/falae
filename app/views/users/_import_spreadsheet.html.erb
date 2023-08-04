@@ -2,17 +2,24 @@
   <div class="import">
     <a class="close">
       <%= fa_icon 'times-circle-o', class: :default %>
+
       <%= fa_icon 'times-circle', class: :hover %>
     </a>
+
     <p class="import-title"><%= t '.title' %></p>
+
     <div class="form-box">
-      <%= form_with model: user, url: add_spreadsheet_user_path,
-        method: :post, html: {multipart: true}, id: "import-spreadsheet" do |form| %>
+      <%= form_with model: user, url: add_spreadsheet_user_path, method: :post,
+        html: {multipart: true}, id: "import-spreadsheet" do |form|
+      %>
         <div class="field">
           <%= form.label :select_file, t('.select_file') %>
+
           <div class="wrapper-custom-input-file import-file">
             <%= form.label 'spreadsheet-file', t('.search'), class: 'custom-input-file' %>
+
             <span id="selected-file" class="no-file-selected"><%= t '.no_file' %></span>
+
             <%= form.file_field :spreadsheet_file, id: 'user_spreadsheet-file', class: 'hidden-file-field' %>
           </div>
         </div>

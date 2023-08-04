@@ -5,22 +5,22 @@
 
   <div class="actions-bar">
     <% if params[:name] %>
-    <div id="item-search-results">
-      <span><%= t '.filter.noun' %>:</span>
-      <%= link_to private_items_user_path(@user), class: 'button-box' do %>
-        <%= fa_icon 'remove' %><%= t '.filter.name' %>: <%= params[:name] %>
-      <% end %>
-    </div>
+      <div id="item-search-results">
+        <span><%= t '.filter.noun' %>:</span>
+        <%= link_to private_items_user_path(@user), class: 'button-box' do %>
+          <%= fa_icon 'remove' %><%= t '.filter.name' %>: <%= params[:name] %>
+        <% end %>
+      </div>
     <% else %>
-    <div class="search" id="items-search-area">
-      <%= text_field_tag :name%>
+      <div class="search" id="items-search-area">
+        <%= text_field_tag :name%>
 
-      <%= button_tag class: 'button-box', disabled: true,
-        data: { path: private_items_user_path(@user) } do
-      %>
-        <%= fa_icon 'filter' %><%= t '.filter.verb' %>
-      <% end %>
-    </div>
+        <%= button_tag class: 'button-box', disabled: true,
+          data: { path: private_items_user_path(@user) } do
+        %>
+          <%= fa_icon 'filter' %><%= t '.filter.verb' %>
+        <% end %>
+      </div>
     <% end %>
 
     <div class="button-group">

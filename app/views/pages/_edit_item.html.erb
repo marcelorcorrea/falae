@@ -4,10 +4,14 @@
       <%= fa_icon 'times-circle-o', class: :default %>
       <%= fa_icon 'times-circle', class: :hover %>
     </a>
+
     <p class="item-title"><%= t '.edit' %></p>
+
     <div class="form-box">
       <%= form_with url: update_item_user_spreadsheet_page_path(@user, @spreadsheet, @page),
-                    model: item, method: :put do |form| %>
+          model: item,
+          method: :put do |form|
+      %>
         <%= form.hidden_field :id, value: item.id %>
         <div class="items">
           <div class="items-list">
@@ -18,34 +22,42 @@
                 </div>
               <% end %>
             <% end %>
+
             <%= render 'items/item', item: item %>
           </div>
         </div>
+
         <div class="fields">
           <p class="field">
             <strong><%= Item.human_attribute_name :name %>:</strong>
             <%= form.text_field :name, id: :item_name %>
           </p>
+
           <div class="field">
             <strong><%= Item.human_attribute_name :speech %>:</strong>
             <%= form.text_field :speech, id: :item_speech %>
           </div>
+
           <div class="field">
             <strong><%= Category.model_name.human %>:</strong>
-            <%= form.select :category_id,
-                            options_for_select(select_options_for_categories,
-                                              item.category_id) %>
+            <%= form.select :category_id, options_for_select(select_options_for_categories, item.category_id) %>
           </div>
+
           <% unless @spreadsheet.pages.one? %>
             <div class="field">
               <% linked_page_id = @page.get_linked_page_id(item.id) %>
+
               <% text_for_include_blank = item.link_to ? t('.unlink') : t('.not_linked') %>
+
               <strong><%= Page.model_name.human %>:</strong>
+
               <%= select_tag :link_to_page,
-                    options_for_select(select_pages_options_helper, linked_page_id),
-                    include_blank: text_for_include_blank %>
+                options_for_select(select_pages_options_helper, linked_page_id),
+                include_blank: text_for_include_blank
+              %>
             </div>
           <% end %>
+
           <div class="actions">
             <%= form.button :submit, name: :save do %>
               <%= fa_icon 'floppy-o' %><%= t '.save' %>

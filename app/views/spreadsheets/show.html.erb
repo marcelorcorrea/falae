@@ -2,15 +2,19 @@
   <p id="notice"><%= notice %></p>
 
   <%= link_to user_spreadsheet_path(@user, @spreadsheet), method: :delete,
-      class: 'button-box destroy', data: { confirm: t('.destroy_alert') } do %>
+    class: 'button-box destroy', data: { confirm: t('.destroy_alert') } do
+  %>
     <%= fa_icon 'trash-o' %><%= t '.destroy' %>
   <% end %>
+
   <%= link_to edit_user_spreadsheet_path(@user, @spreadsheet), class: 'button-box' do %>
     <%= fa_icon 'edit' %><%= t '.edit' %>
   <% end %>
+
   <%= link_to user_spreadsheets_path(@user), class: 'button-box' do %>
     <%= fa_icon 'arrow-left' %><%= t '.back' %>
   <% end %>
+
   <%= link_to user_spreadsheet_export_path(@user, @spreadsheet),
     class: 'button-box', remote: true do %>
     <%= fa_icon 'upload' %><%= t '.export' %>
@@ -23,17 +27,18 @@
 
   <p>
     <strong><%= t Spreadsheet.human_attribute_name :initial_page %>:</strong>
+
     <% if @spreadsheet.initial_page.present? %>
-    <span class="initial-page-name"><%= @spreadsheet.initial_page %></span>
+      <span class="initial-page-name"><%= @spreadsheet.initial_page %></span>
     <% else %>
-    <span class="initial-page-name no-initial-page"><%= t '.no_initial_page' %></span>
+      <span class="initial-page-name no-initial-page"><%= t '.no_initial_page' %></span>
     <% end %>
   </p>
 
-  <%= link_to user_spreadsheet_import_page_path(@user, @spreadsheet),
-    class: 'button-box', remote: true do %>
+  <%= link_to user_spreadsheet_import_page_path(@user, @spreadsheet), class: 'button-box', remote: true do %>
     <%= fa_icon 'download' %><%= t '.import' %>
   <% end %>
+
   <%= link_to new_user_spreadsheet_page_path(@user, @spreadsheet), class: 'button-box' do %>
     <%= fa_icon 'plus-circle' %><%= t '.new_page' %>
   <% end %>
