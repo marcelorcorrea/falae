@@ -129,7 +129,7 @@ GEM
     mini_portile2 (2.8.2)
     minitest (5.18.1)
     msgpack (1.7.1)
-    mysql2 (0.4.10)
+    mysql2 (0.5.5)
     net-imap (0.3.6)
       date
       net-protocol
@@ -155,6 +155,9 @@ GEM
       ttfunk (~> 1.5)
     puma (5.6.6)
       nio4r (~> 2.0)
+    puma-daemon (0.3.2)
+      puma (>= 5.0)
+      rack
     racc (1.7.1)
     rack (2.2.7)
     rack-attack (5.4.2)
@@ -284,10 +287,11 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jquery-rails (~> 4.4.0)
   listen (~> 3.3)
-  mysql2 (~> 0.4.10)
+  mysql2 (~> 0.5)
   paperclip (~> 5.2.0)
   prawn (~> 2.2.2)
   puma (~> 5.0)
+  puma-daemon
   rack-attack (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.7, >= 6.1.7.4)
