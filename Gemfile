@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.3'
+ruby '3.0.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.7', '>= 6.1.7.4'
@@ -49,13 +49,13 @@ gem 'secure_headers', '~>3.9.0'
 gem "rack-attack", "~> 5.0"
 
 # File attachment management for ActiveRecord
-gem 'paperclip', '~> 5.2.0'
+gem 'kt-paperclip', '~> 7.2.0'
 
 gem 'will_paginate', '~> 3.1.6'
 
 gem 'rufus-scheduler', '~> 3.4.2'
 
-gem 'prawn', '~> 2.2.2'
+gem 'prawn', '~> 2.4.0'
 
 # HTTP Accept-Language header filtering library
 gem "http_accept_language", "~> 2.1"
