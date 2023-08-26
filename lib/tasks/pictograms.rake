@@ -13,8 +13,8 @@ namespace :pictograms do
   end
 
   desc 'Download some pictograms from araasac and populate db'
-  task download_samples: :environment do
-    download_samples()
+  task populate_with_samples: :environment do
+    populate_with_samples()
   end
 
 
@@ -102,46 +102,32 @@ namespace :pictograms do
     puts
   end
 
-  def download_samples()
-    tmp_load_folder = '/tmp/pictograms'
+  def populate_with_samples()
+    samples_folder_path = '/tmp/pictograms'
 
-    pictograms = [
-      { name: 'oi', url: 'http://www.arasaac.org/repositorio/thumbs/10/200/6/6522.png' },
-      { name: 'tchau', url: 'http://www.arasaac.org/repositorio/thumbs/10/200/6/6028.png' },
-      { name: 'obrigado', url: 'http://www.arasaac.org/repositorio/thumbs/10/200/8/8129.png' },
-      { name: 'eu', url: 'http://www.arasaac.org/repositorio/thumbs/10/200/6/6632.png' },
-      { name: 'voce', url: 'http://www.arasaac.org/repositorio/thumbs/10/200/6/6625.png' },
-      { name: 'nos', url: 'http://www.arasaac.org/repositorio/thumbs/10/200/7/7186.png' },
-      { name: 'querer', url: 'http://www.arasaac.org/repositorio/thumbs/10/200/3/31141.png' },
-      { name: 'comer', url: 'http://www.arasaac.org/repositorio/thumbs/10/200/2/28413.png' },
-      { name: 'beber', url: 'http://www.arasaac.org/repositorio/thumbs/10/200/6/6061.png' },
-      { name: 'fruta', url: 'http://www.arasaac.org/repositorio/thumbs/10/200/4/4653.png' },
-      { name: 'bolo', url: 'http://www.arasaac.org/repositorio/thumbs/10/200/8/8042.png' },
-      { name: 'sorvete', url: 'http://www.arasaac.org/repositorio/thumbs/10/200/1/11382.png' },
-      { name: 'agua', url: 'http://www.arasaac.org/repositorio/thumbs/10/200/2/2248.png' },
-      { name: 'leite', url: 'http://www.arasaac.org/repositorio/thumbs/10/200/2/2445.png' },
-      { name: 'suco', url: 'http://www.arasaac.org/repositorio/thumbs/10/200/1/11463.png' },
-      { name: 'quente', url: 'http://www.arasaac.org/repositorio/thumbs/10/200/2/26716.png' },
-      { name: 'frio', url: 'http://www.arasaac.org/repositorio/thumbs/10/200/2/26865.png' },
-      { name: 'gostoso', url: 'http://www.arasaac.org/repositorio/thumbs/10/200/7/7124.png' },
+    sample_files = [
+      'oi.png',
+      'tchau.png',
+      'obrigado.png',
+      'eu.png',
+      'voce.png',
+      'nos.png',
+      'querer.png',
+      'comer.png',
+      'beber.png',
+      'fruta.png',
+      'bolo.png',
+      'sorvete.png',
+      'agua.png',
+      'leite.png',
+      'suco.png',
+      'quente.png',
+      'frio.png',
+      'gostoso.png',
     ]
 
-    Dir.mkdir tmp_load_folder unless Dir.exist? tmp_load_folder
-
-    puts "Saving samples in #{tmp_load_folder}"
-
-    pictograms.each do |pictogram|
-      file_path = File.join tmp_load_folder, pictogram[:name]
-      File.open(file_path, 'wb') do |file|
-        puts "Downloading: #{pictogram[:url]}"
-        file.write open(pictogram[:url], proxy: ENV['http_proxy']).read
-      end
-      file_type = MimeMagic.by_magic(File.open(file_path)).subtype
-      File.rename file_path, "#{file_path}.#{file_type}"
-    end
-
-    Dir.entries(tmp_load_folder).reject {|f| File.directory? f}.each do |entry|
-      img = File.new File.join(tmp_load_folder, entry)
+    sample_files.each do |file|
+      img = File.new File.join(samples_folder_path, file)
       Pictogram.create! image: img, locale: 'pt'
     end
   end

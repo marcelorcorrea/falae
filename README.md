@@ -18,11 +18,32 @@ Feel free to fork or contribute this project.
 
 ## Local setup
 
-Falaê is currently using ruby 3.0.6. It is recommend to use *rbenv* or *rvm* and install the version.
+Falaê is currently using ruby 3.0.6. It is recommend to use *rbenv* or *rvm* and install the version - you do not need to install both.
 
 #### Install rbenv
 
-- Follow instructions available in https://github.com/rbenv/rbenv.
+Full instructions available in https://github.com/rbenv/rbenv.
+
+
+1. Clone rbenv into `~/.rbenv`.
+```
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+```
+
+2. Configure your shell to load rbenv:
+```
+echo 'eval "$(~/.rbenv/bin/rbenv init - bash)"' >> ~/.bashrc
+```
+
+3. Source `.bashrc` file for changes to take effect:
+```
+source ~/.bashrc
+```
+
+4. Clone rbenv-install plugin:
+```
+git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+```
 
 #### Install RVM
 
@@ -51,29 +72,35 @@ Using rvm
 rvm install ruby-3.0.6
 ```
 
-#### Set FALAE_IMAGES_PATH environment variable
+#### FALAE_IMAGES_PATH environment variable
 
-You must set FALAE_IMAGES_PATH environment variable to point to a directory where pictograms and user's images will be stored in. This variable should not point to the app's public directory.
+FALAE_IMAGES_PATH environment variable should be set for production enviroment to point to a directory where pictograms and user's images will be stored in. This variable should not point to the app's public directory, otherwise all files will be public accessible. It is optional for development environment, falling back to app storage directory.
 ```
 export FALAE_IMAGES_PATH=<dir-name>
 ```
 
-#### Setup local database
-```
-rails db:setup
-```
-
-#### Install bundler gem at global gemset (optional)
+#### If you are using rvm, you can install bundler gem at global gemset (optional)
 ```
 rvm @global do gem install bundler
 ```
-
-#### Running falae
+#### Setup local falae
 
 Install gems:
 ```
 bundle install
 ```
+
+Run followig command if you are using `rbenv`:
+```
+rbenv rehash
+```
+
+Set up local database
+```
+rails db:setup
+```
+
+#### Running falae
 
 Run the application
 ```
@@ -82,10 +109,11 @@ rails server
 
 For development purposes, there is a useful rails task to populate the database with some pictogram samples.
 ```
-rails pictograms:download_samples
+rails pictograms:populate_with_samples
 ```
 
 #### System dependencies
+Notice both `ruby` and `rails` have system dependecies that must be installed depending on Operating System you are using.
 
 * ImageMagick
   * Depending on the OS, this library is installed by default. If not, you can find build and install instructions [here](https://imagemagick.org/script/index.php).
