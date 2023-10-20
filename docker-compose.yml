@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  app:
+    image: guilherme2041/falae-app
+    depends_on:
+      - db
+    restart: unless-stopped
+    networks:
+      - falae-net
+    env_file:
+      - ./.env
+
+  proxy:
+    depends_on:
+      - app
+    restart: unless-stopped
+    container_name: proxy_falae
+    image: guilherme2041/falae-nginx
+    ports:
+      - "80:80"
+    networks:
+      - falae-net
+
+  db:
+    image: mysql:8.0.34
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - falae-net
+
+networks:
+  falae-net:
+
+volumes:
+  mysql-data:

@@ -48,3 +48,5 @@ yarn-debug.log*
 /coverage/
 /spec/support/images/falae_images/*
 !/spec/support/images/falae_images/.keep
+
+.env
