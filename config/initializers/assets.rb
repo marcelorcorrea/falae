@@ -14,4 +14,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
 # Add public images to assets path
-Rails.application.config.assets.paths << "#{ENV['FALAE_IMAGES_PATH']}/public"
+Rails.application.config.assets.paths << FALAE_PUBLIC_IMAGES_PATH

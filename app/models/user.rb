@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :items, dependent: :destroy
   has_attached_file :photo,
                     default_url: 'missing_photo.png',
-                    path: "#{ENV['FALAE_IMAGES_PATH']}/private/user_:id/"\
+                    path: "#{FALAE_IMAGES_PATH}/private/user_:id/"\
                           'photo.:extension',
                     url: '/users/:id/photo',
                     styles: {

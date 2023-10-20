@@ -4,7 +4,7 @@ class PrivateImage < Image
   validates :user, presence: true
 
   def attachment_path
-    "#{ENV['FALAE_IMAGES_PATH']}/private/user_#{user_id}/:id.:extension"
+    "#{FALAE_IMAGES_PATH}/private/user_#{user_id}/:id.:extension"
   end
 
   def attachment_url

@@ -11,7 +11,7 @@ class Pictogram < Image
   end
 
   def attachment_path
-    "#{ENV['FALAE_IMAGES_PATH']}/public/:id.:extension"
+    "#{FALAE_IMAGES_PATH}/public/:id.:extension"
   end
 
   def attachment_url

@@ -103,7 +103,7 @@ namespace :pictograms do
   end
 
   def populate_with_samples()
-    samples_folder_path = '/tmp/pictograms'
+    samples_folder_path = "#{Rails.root}/storage/samples"
 
     sample_files = [
       'oi.png',
