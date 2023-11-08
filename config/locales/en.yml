@@ -549,6 +549,7 @@ en:
       body_end: 'If you did not request your password to be reset, please ignore this
                  email and your password will stay as it is.'
       invalid: Invalid reset password link.
+      invalid_email: Invalid email.
       subject: Password reset
       reset_password: Reset password
       verification: Please check your email for password reset instructions.

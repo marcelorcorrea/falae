@@ -25,6 +25,8 @@ AVAILABLE_LOCALES = {
 
 DEFAULT_LOCALE = :pt
 
+VALID_EMAIL_REGEX = /\A[\w+\-]+(?:\.[\w+\-]+)*@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,6}\z/
+
 module Falae
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.

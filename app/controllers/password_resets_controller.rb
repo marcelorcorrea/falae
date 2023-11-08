@@ -7,7 +7,13 @@ class PasswordResetsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(email: params[:password_reset][:email].downcase)
+    email = params[:password_reset][:email].downcase
+    if email.blank? || email !~ VALID_EMAIL_REGEX
+      flash.now[:alert] = 'email inválido'
+      render :new and return
+    end
+
+    @user = User.find_by(email: email)
     if @user&.activated?
       @user.create_reset_digest
       @user.send_password_reset_email

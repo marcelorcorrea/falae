@@ -550,6 +550,7 @@ pt:
                 e sua senha continuará a mesma.'
       expired_token: Link de alteração de senha expirou.
       invalid: Link de alteração de senha inválido.
+      invalid_email: Email inválido.
       subject: Alteração de senha
       reset_password: Alterar senha
       valid_reset: Senha alterada com sucesso.

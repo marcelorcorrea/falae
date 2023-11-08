@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   PHOTO_WIDTH = 400
   PHOTO_HEIGHT = 480
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   UNACTIVATED_TTL = 30
 
   attr_accessor :activation_token, :reset_token, :crop_x, :crop_y, :crop_w,
