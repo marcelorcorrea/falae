@@ -1,7 +1,7 @@
 $('#paginate-loading-layer').remove();
 
 <% if defined? error %>
-  alert("<%= t('.page_not_inported') %> <%= error %>");
+  alert("<%= t('.page_not_imported') %> <%= error %>");
 <% else %>
   <% if initial_page %>
     $(".initial-page-name")
@@ -12,4 +12,4 @@ $('#paginate-loading-layer').remove();
   $('.list').empty();
   $("<%= escape_javascript(render 'pages/page') %>")
     .appendTo(".spreadsheet");
-<% end%>
+<% end %>

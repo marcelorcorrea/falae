@@ -470,7 +470,7 @@ pt:
       search: Procurar
       select_file: 'Selecionar arquivo:'
       title: Importar página
-    update_page_list:
+    update_pages_list:
       page_not_imported: Não foi possível importar a página.
   support:
     array:
@@ -532,7 +532,7 @@ pt:
       select_file: 'Selecionar arquivo:'
       title: Importar prancha
     update_spreadsheet_list:
-      spreadsheet_not_inported: Não foi possível importar a prancha.
+      spreadsheet_not_imported: Não foi possível importar a prancha.
   user_mailer:
     account_activation:
       activate: Ativar

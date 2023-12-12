@@ -470,7 +470,7 @@ en:
       search: Search
       select_file: 'Select file:'
       title: Import page
-    update_page_list:
+    update_pages_list:
       page_not_imported: It was not possible to import the page.
   support:
     array:
@@ -532,7 +532,7 @@ en:
       select_file: 'Select file:'
       title: Import board
     update_spreadsheet_list:
-      spreadsheet_not_inported: It was not possible to import the board.
+      spreadsheet_not_imported: It was not possible to import the board.
   user_mailer:
     account_activation:
       activate: Activate

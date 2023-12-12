@@ -55,9 +55,7 @@ class Spreadsheet < ApplicationRecord
       end
       nil
     end
-  rescue ActiveSupport::MessageVerifier::InvalidSignature, JSON::ParserError => ex
+  rescue
     I18n.t 'errors.invalid_file'
-  rescue ActiveRecord::RecordInvalid => ex
-    ex.message
   end
 end
